@@ -2,6 +2,15 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://www.iamlay.com/post/CokeCloud/</loc>
+    
+    <lastmod>2025-06-27</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://www.iamlay.com/post/MacRemoveGoogle/</loc>
     
     <lastmod>2025-05-23</lastmod>
@@ -516,6 +525,13 @@
   </url>
   
   <url>
+    <loc>https://www.iamlay.com/tags/VPN/</loc>
+    <lastmod>2025-06-27</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
     <loc>https://www.iamlay.com/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</loc>
     <lastmod>2025-06-27</lastmod>
     <changefreq>weekly</changefreq>
@@ -567,14 +583,14 @@
   </url>
   
   <url>
-    <loc>https://www.iamlay.com/categories/iOS/</loc>
+    <loc>https://www.iamlay.com/categories/%E5%91%A8%E6%8A%A5/</loc>
     <lastmod>2025-06-27</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://www.iamlay.com/categories/%E5%91%A8%E6%8A%A5/</loc>
+    <loc>https://www.iamlay.com/categories/iOS/</loc>
     <lastmod>2025-06-27</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
