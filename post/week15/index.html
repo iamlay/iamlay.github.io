@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.3.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+  <meta name="google-site-verification" content="bdLSZKDAikc4SOPIlDwwuSFBawDGQU3GmqUWTzUM-rE">
+  <meta name="baidu-site-verification" content="codeva-lCWvLLHuj5">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3825645052664031"
+     crossorigin="anonymous"></script>
+  <meta name="baidu-site-verification" content="true">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha256-AbA177XfpSnFEvgpYu1jMygiLabzPCJCRIBtR5jGc0k=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"www.iamlay.com","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.13.1","exturl":true,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"gitalk","storage":true,"lazyload":false,"nav":{"gitalk":{"ordcer":-1}},"activeClass":"gitalk"},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="面向切面编程(AOP)是对面向对象编程(OOP)的一种补充.本篇周报介绍了下什么是AOP，以及AOP的应用场景。并对iOS中一个轻量级的AOP三方库ASpects源码进行了简单的分析。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="以技术之名周报03#AOP| 2020-04-12">
+<meta property="og:url" content="https://www.iamlay.com/post/week15/index.html">
+<meta property="og:site_name" content="以技术之名">
+<meta property="og:description" content="面向切面编程(AOP)是对面向对象编程(OOP)的一种补充.本篇周报介绍了下什么是AOP，以及AOP的应用场景。并对iOS中一个轻量级的AOP三方库ASpects源码进行了简单的分析。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://testingcf.jsdelivr.net/gh/iamlay/BlogResources@main/imgs/week/week1501.jpg">
+<meta property="og:image" content="https://testingcf.jsdelivr.net/gh/iamlay/BlogResources@main/imgs/week/week1502.jpg">
+<meta property="article:published_time" content="2020-04-12T11:55:37.000Z">
+<meta property="article:modified_time" content="2024-01-24T10:22:18.555Z">
+<meta property="article:author" content="Ray">
+<meta property="article:tag" content="转载">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://testingcf.jsdelivr.net/gh/iamlay/BlogResources@main/imgs/week/week1501.jpg">
+
+
+<link rel="canonical" href="https://www.iamlay.com/post/week15/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://www.iamlay.com/post/week15/","path":"post/week15/","title":"以技术之名周报03#AOP| 2020-04-12"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>以技术之名周报03#AOP| 2020-04-12 | 以技术之名</title>
+  <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-170943611-2"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-170943611-2');
+</script>
+  <script src="/js/third-party/analytics/baidu-analytics.js"></script>
+  <script async src="https://hm.baidu.com/hm.js?2fdaf8ee633a188c5649eefea79b28b3"></script>
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<!-- hexo injector head_end start --><script async defer data-website-id="fad553b1-b94d-4311-8d52-913dc067e883" src="https://tongji.iamlay.com/script.js"></script><!-- hexo injector head_end end --></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">以技术之名</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">以技术之名</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-chatgpt"><a href="/chatgpt" rel="section"><i class="fa fa-comment-dots fa-fw"></i>AI体验</a></li><li class="menu-item menu-item-sitemap"><a href="/sitemap.xml" rel="section"><i class="fa fa-sitemap fa-fw"></i>站点地图</a></li><li class="menu-item menu-item-links"><a href="/links/" rel="section"><i class="fa fa-link fa-fw"></i>友情链接</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Part01-%E4%BB%80%E4%B9%88%E6%98%AFAOP"><span class="nav-number">1.</span> <span class="nav-text">Part01-什么是AOP?</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Part02-AOP%E4%B8%80%E4%B8%AA%E4%BD%BF%E7%94%A8%E5%9C%BA%E6%99%AF%EF%BC%9A%E5%9F%8B%E7%82%B9"><span class="nav-number">2.</span> <span class="nav-text">Part02-AOP一个使用场景：埋点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Part03-iOS%E5%AE%9E%E7%8E%B0AOP%E7%9A%84%E5%8E%9F%E7%90%86"><span class="nav-number">3.</span> <span class="nav-text">Part03-iOS实现AOP的原理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Part04-iOS%E5%AE%9E%E7%8E%B0AOP%E7%9A%84%E4%B8%80%E4%B8%AA%E6%88%90%E7%86%9F%E7%9A%84%E5%BC%80%E6%BA%90%E6%A1%86%E6%9E%B6%EF%BC%9AAspects"><span class="nav-number">4.</span> <span class="nav-text">Part04- iOS实现AOP的一个成熟的开源框架：Aspects</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Aspects%E7%9A%84%E5%AE%9E%E7%8E%B0%E6%80%9D%E8%B7%AF"><span class="nav-number">4.1.</span> <span class="nav-text">Aspects的实现思路</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90"><span class="nav-number">4.2.</span> <span class="nav-text">源码分析</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84"><span class="nav-number">4.2.1.</span> <span class="nav-text">数据结构</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#AspectOptions"><span class="nav-number">4.2.2.</span> <span class="nav-text">AspectOptions</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#AspectsContainer"><span class="nav-number">4.2.3.</span> <span class="nav-text">AspectsContainer</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#AspectIdentifier"><span class="nav-number">4.2.4.</span> <span class="nav-text">AspectIdentifier</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#AspectInfo"><span class="nav-number">4.2.5.</span> <span class="nav-text">AspectInfo</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BB%A3%E7%A0%81%E6%B5%81%E7%A8%8B"><span class="nav-number">4.3.</span> <span class="nav-text">代码流程</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%88%A4%E6%96%AD%E8%83%BD%E5%90%A6%E8%A2%AB-hook"><span class="nav-number">4.3.1.</span> <span class="nav-text">判断能否被 hook</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#swizzling-method"><span class="nav-number">4.3.2.</span> <span class="nav-text">swizzling method</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#swizzling-forwardInvocation"><span class="nav-number">4.3.2.1.</span> <span class="nav-text">swizzling forwardInvocation:</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#swizzling-selector"><span class="nav-number">4.3.2.2.</span> <span class="nav-text">swizzling selector</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#handle-ForwardInvocation"><span class="nav-number">4.3.2.3.</span> <span class="nav-text">handle ForwardInvocation</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8F%82%E8%80%83"><span class="nav-number">5.</span> <span class="nav-text">参考</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Ray</p>
+  <div class="site-description" itemprop="description">为信仰而生</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">45</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">12</span>
+        <span class="site-state-item-name">分类</span>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">9</span>
+        <span class="site-state-item-name">标签</span>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2lhbWxheQ==" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;iamlay"><i class="fab fa-github fa-fw"></i>GitHub</span>
+      </span>
+      <span class="links-of-author-item">
+        <span class="exturl" data-url="bWFpbHRvOjExODcwNzQ1NDNAcXEuY29t" title="E-Mail → mailto:1187074543@qq.com"><i class="fa fa-envelope fa-fw"></i>E-Mail</span>
+      </span>
+  </div>
+
+
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://www.iamlay.com/post/week15/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Ray">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="以技术之名">
+      <meta itemprop="description" content="为信仰而生">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="以技术之名周报03#AOP| 2020-04-12 | 以技术之名">
+      <meta itemprop="description" content="面向切面编程(AOP)是对面向对象编程(OOP)的一种补充.本篇周报介绍了下什么是AOP，以及AOP的应用场景。并对iOS中一个轻量级的AOP三方库ASpects源码进行了简单的分析。">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          以技术之名周报03#AOP| 2020-04-12
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2020-04-12 19:55:37" itemprop="dateCreated datePublished" datetime="2020-04-12T19:55:37+08:00">2020-04-12</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2024-01-24 18:22:18" itemprop="dateModified" datetime="2024-01-24T18:22:18+08:00">2024-01-24</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/iOS/" itemprop="url" rel="index"><span itemprop="name">iOS</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+</div>
+
+	
+            <div class="post-description">面向切面编程(AOP)是对面向对象编程(OOP)的一种补充.本篇周报介绍了下什么是AOP，以及AOP的应用场景。并对iOS中一个轻量级的AOP三方库ASpects源码进行了简单的分析。</div>
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h3 id="Part01-什么是AOP"><a href="#Part01-什么是AOP" class="headerlink" title="Part01-什么是AOP?"></a>Part01-什么是AOP?</h3><blockquote>
+<p>面向切面的程序设计（Aspect-oriented programming，AOP，又译作面向方面的程序设计、剖面导向程序设计）是计算机科学中的一种程序设计思想，旨在将横切关注点与业务主体进行进一步分离，以提高程序代码的模块化程度。通过在现有代码基础上增加额外的通知（Advice）机制，能够对被声明为“切点（Pointcut）”的代码块进行统一管理与装饰，如“对所有方法名以‘set*’开头的方法添加后台日志”。该思想使得开发人员能够将与代码核心业务逻辑关系不那么密切的功能（如日志功能）添加至程序中，同时又不降低业务代码的可读性。</p>
+</blockquote>
+<span id="more"></span>
+<h3 id="Part02-AOP一个使用场景：埋点"><a href="#Part02-AOP一个使用场景：埋点" class="headerlink" title="Part02-AOP一个使用场景：埋点"></a>Part02-AOP一个使用场景：埋点</h3><p>互联网进入到下半场，用户也由增量进入到存量时代。通过统计用户操作行为了解用户的偏好，结合大数据分析，可以方便公司更加合理的作出决策更好的吸引客户、留住客户。对任何一个主流的APP来讲，都会存在大量的埋点来统计用户的行为。埋点功能不属于业务逻辑，埋点代码和业务代码混合在一块会严重污染业务代码，且埋点的代码会分散到整个工程。面向切面编程是解决这种问题一个很好的方案，其原理就是在不更改正常业务处理流程的前提下，动态生成一个代理类，从而实现对目标对象嵌入附加的操作。</p>
+<h3 id="Part03-iOS实现AOP的原理"><a href="#Part03-iOS实现AOP的原理" class="headerlink" title="Part03-iOS实现AOP的原理"></a>Part03-iOS实现AOP的原理</h3><p>利用OC的动态性，通过wizzling method 改变目标函数的 selector 所指向的实现，然后在新的实现中实现附加的操作，完成之后再回到原来的处理逻辑。OC是一门动态语言，在OC中执行一个方法的时候实际上是在发送一条消息给接受对象<code>[receiver message]</code>。完整的过程是根据<code>message</code>生成一个选择子<code>selector</code>，然后根据<code>selector</code>找到指向函数的的具体的实现的指针<code>IMP</code>，然后找到真正的函数执行逻辑。OC的这种处理流程为我们动态修改函数的实现提供了可能，在运行时，只要我们改变selector和IMP的对应关系，我们就可以在执行<code>[receiver message]</code>时进入到新的函数实现。</p>
+<h3 id="Part04-iOS实现AOP的一个成熟的开源框架：Aspects"><a href="#Part04-iOS实现AOP的一个成熟的开源框架：Aspects" class="headerlink" title="Part04- iOS实现AOP的一个成熟的开源框架：Aspects"></a>Part04- iOS实现AOP的一个成熟的开源框架：Aspects</h3><h4 id="Aspects的实现思路"><a href="#Aspects的实现思路" class="headerlink" title="Aspects的实现思路"></a>Aspects的实现思路</h4><p>Aspects是利用 oc 自己的消息转发机制进行转发，在解释这个过程之前，我们先看一下消息是怎么找到对应的IMP的<img src="https://testingcf.jsdelivr.net/gh/iamlay/BlogResources@main/imgs/week/week1501.jpg"></p>
+<p>从上面我们可以发现，在发消息的时候，如果 <code>selector</code> 有对应的 <code>IMP</code> ,则直接执行，如果没有，oc 给我们提供了几个可供补救的机会，依次有 <code>resolveInstanceMethod</code> 、<code>forwardingTargetForSelector</code>、<code>forwardInvocation</code>。Aspects 之所以选择在 <code>forwardInvocation </code>这里处理是因为，这几个阶段特性都不太一样：<code>resolvedInstanceMethod </code>适合给类&#x2F;对象动态添加一个相应的实现，<code>forwardingTargetForSelector </code>适合将消息转发给其他对象处理,相对而言，<code>forwardInvocation</code> 是里面最灵活，最能符合需求的。因此 Aspects 的方案就是，对于待<code> hook</code> 的 <code>selector</code>，将其指向 <code>objc_msgForward / _objc_msgForward_stret </code>,同时生成一个新的 <code>aliasSelector</code> 指向原来的 <code>IMP</code>，并且 <code>hook</code> 住 <code>forwardInvocation</code> 函数，使他指向自己的实现。按照上面的思路，当被 <code>hook </code>的 <code>selector</code> 被执行的时候，首先根据 <code>selector </code>找到了<code>objc_msgForward / _objc_msgForward_stret</code>,而这个会触发消息转发，从而进入 <code>forwardInvocation</code>。同时由于 <code>forwardInvocation</code> 的指向也被修改了，因此会转入新的<code> forwardInvocation</code> 函数，在里面执行需要嵌入的附加代码，完成之后，再转回原来的<code> IMP</code>。</p>
+<h4 id="源码分析"><a href="#源码分析" class="headerlink" title="源码分析"></a>源码分析</h4><h5 id="数据结构"><a href="#数据结构" class="headerlink" title="数据结构"></a>数据结构</h5><p>从头文件中可以看到使用aspects有两种使用方式：(1)类方法 ；(2)实例方法</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">+ (id&lt;AspectToken&gt;)aspect_hookSelector:(SEL)selector</span><br><span class="line">                           withOptions:(AspectOptions)options</span><br><span class="line">                            usingBlock:(id)block</span><br><span class="line">                                 error:(NSError **)error;</span><br><span class="line">/// Adds a block of code before/instead/after the current `selector` for a specific instance.</span><br><span class="line">- (id&lt;AspectToken&gt;)aspect_hookSelector:(SEL)selector</span><br><span class="line">                           withOptions:(AspectOptions)options</span><br><span class="line">                            usingBlock:(id)block</span><br><span class="line">                                 error:(NSError **)error;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>两者的主要原理基本差不多，这里不做一一介绍，只是以实例方法为例进行说明。在介绍之前，先介绍里面几个重要的数据结构：</p>
+<h5 id="AspectOptions"><a href="#AspectOptions" class="headerlink" title="AspectOptions"></a>AspectOptions</h5><p> block 执行的时机，也就是额外操作的执行时机，它可以在原始函数执行之前，也可以是执行之后，甚至可以完全替换掉原来的逻辑。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">typedef NS_OPTIONS(NSUInteger, AspectOptions) &#123;</span><br><span class="line">    AspectPositionAfter   = 0,            /// Called after the original implementation (default)</span><br><span class="line">    AspectPositionInstead = 1,            /// Will replace the original implementation.</span><br><span class="line">    AspectPositionBefore  = 2,            /// Called before the original implementation.</span><br><span class="line">    AspectOptionAutomaticRemoval = 1 &lt;&lt; 3 /// Will remove the hook after the first execution.</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<h5 id="AspectsContainer"><a href="#AspectsContainer" class="headerlink" title="AspectsContainer"></a>AspectsContainer</h5><p>一个对象或者类的所有的 Aspects 整体情况:一个对象和类可能有多个Aspect，每个Aspect的执行的时机都是不一样的，AspectsContainer存储了这个类或对象全部的Aspect</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">// Tracks all aspects for an object/class.</span><br><span class="line">@interface AspectsContainer : NSObject</span><br><span class="line">- (void)addAspect:(AspectIdentifier *)aspect withOptions:(AspectOptions)injectPosition;</span><br><span class="line">- (BOOL)removeAspect:(id)aspect;</span><br><span class="line">- (BOOL)hasAspects;</span><br><span class="line">@property (atomic, copy) NSArray *beforeAspects;</span><br><span class="line">@property (atomic, copy) NSArray *insteadAspects;</span><br><span class="line">@property (atomic, copy) NSArray *afterAspects;</span><br><span class="line">@end</span><br></pre></td></tr></table></figure>
+<h5 id="AspectIdentifier"><a href="#AspectIdentifier" class="headerlink" title="AspectIdentifier"></a>AspectIdentifier</h5><p>一个 Aspect 的具体内容，这里主要包含了单个的 aspect 的具体信息，包括执行时机，要执行 block 所需要用到的具体信息：包括方法签名、参数等等</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">@interface AspectIdentifier : NSObject</span><br><span class="line">+ (instancetype)identifierWithSelector:(SEL)selector object:(id)object options:(AspectOptions)options block:(id)block error:(NSError **)error;</span><br><span class="line">- (BOOL)invokeWithInfo:(id&lt;AspectInfo&gt;)info;</span><br><span class="line">@property (nonatomic, assign) SEL selector;</span><br><span class="line">@property (nonatomic, strong) id block;</span><br><span class="line">@property (nonatomic, strong) NSMethodSignature *blockSignature;</span><br><span class="line">@property (nonatomic, weak) id object;</span><br><span class="line">@property (nonatomic, assign) AspectOptions options;</span><br><span class="line">@end</span><br></pre></td></tr></table></figure>
+<h5 id="AspectInfo"><a href="#AspectInfo" class="headerlink" title="AspectInfo"></a>AspectInfo</h5><p>一个 Aspect 执行环境，主要是 NSInvocation 信息</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">@interface AspectInfo : NSObject &lt;AspctInfo&gt;</span><br><span class="line">- (id)initWithInstance:(__unsafe_unretained id)instance invocation:(NSInvocation *)invocation;</span><br><span class="line">@property (nonatomic, unsafe_unretained, readonly) id instance;</span><br><span class="line">@property (nonatomic, strong, readonly) NSArray *arguments;</span><br><span class="line">@property (nonatomic, strong, readonly) NSInvocation *originalInvocation;</span><br><span class="line">@end</span><br></pre></td></tr></table></figure>
+<h4 id="代码流程"><a href="#代码流程" class="headerlink" title="代码流程"></a>代码流程</h4><p>有了上面的了解，我们就能更好的分析整个 apsects 的执行流程。添加一个 aspect 的关键流程如下图所示：</p>
+<p><img src="https://testingcf.jsdelivr.net/gh/iamlay/BlogResources@main/imgs/week/week1502.jpg"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">tatic id aspect_add(id self, SEL selector, AspectOptions options, id block, NSError **error) &#123;</span><br><span class="line">    ...</span><br><span class="line">    __block AspectIdentifier *identifier = nil;</span><br><span class="line">    aspect_performLocked(^&#123;</span><br><span class="line">        if (aspect_isSelectorAllowedAndTrack(self, selector, options, error)) &#123;//1判断能否hook</span><br><span class="line">            ...//2 记录数据结构</span><br><span class="line">            aspect_prepareClassAndHookSelector(self, selector, error);//3 swizzling</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">    return identifier;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h5 id="判断能否被-hook"><a href="#判断能否被-hook" class="headerlink" title="判断能否被 hook"></a>判断能否被 hook</h5><p>对于对象实例而言，这里主要是根据黑名单，比如 retain forwardInvocation 等这些方法在外部是不能被 hook ,(对于类对象还要确保同一个类继承关系层级中，只能被 hook 一次，因此这里需要判断子类，父类有没有被 hook，之所以做这样的实现，主要是为了避免出现死循环的出现，这里有相关的讨论)。如果能够 hook，则继续下面的步骤。</p>
+<h5 id="swizzling-method"><a href="#swizzling-method" class="headerlink" title="swizzling method"></a>swizzling method</h5><p>这是真正的核心逻辑，<code>swizzling method </code>主要有两部分，一个是对对象的 <code>forwardInvocation </code>进行 <code>swizzling</code>,另一个是对传入的 <code>selector</code> 进行 <code>swizzling</code>.</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">static void aspect_prepareClassAndHookSelector(NSObject *self, SEL selector, NSError **error) &#123;</span><br><span class="line">    Class klass = aspect_hookClass(self, error); //1  swizzling forwardInvocation</span><br><span class="line">    Method targetMethod = class_getInstanceMethod(klass, selector);</span><br><span class="line">    IMP targetMethodIMP = method_getImplementation(targetMethod);</span><br><span class="line">    if (!aspect_isMsgForwardIMP(targetMethodIMP)) &#123;//2  swizzling method</span><br><span class="line">       ...//</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h6 id="swizzling-forwardInvocation"><a href="#swizzling-forwardInvocation" class="headerlink" title="swizzling forwardInvocation:"></a>swizzling forwardInvocation:</h6><p><code>aspect_hookClass</code> 函数主要 <code>swizzling </code>类&#x2F;对象的 <code>forwardInvocation</code> 函数，<code>aspects </code>的真正的处理逻辑都是在 <code>forwradInvocation</code> 函数里面进行的。对于对象实例而言，源代码中并没有直接 swizzling 对象的 <code>forwardInvocation </code>方法，而是动态生成一个当前对象的子类，并将当前对象与子类关联,然后替换子类的<code> forwardInvocation</code> 方法(这里具体方法就是调用了 <code>object_setClass(self, subclass) </code>,将当前对象 <code>isa </code>指针指向了<code> subclass</code> ,同时修改了<code>subclass</code>以及其 <code>subclass metaclass</code> 的 <code>class</code> 方法,使他返回当前对象的 <code>class</code>。它的原理有点类似 <code>kvo</code> 的实现，它想要实现的效果就是，将当前对象变成一个 <code>subclass</code> 的实例，同时对于外部使用者而言，又能把它继续当成原对象在使用，而且所有的 <code>swizzling </code>操作都发生在子类，这样做的好处是你不需要去更改对象本身的类，也就是，当你在<code>remove aspects</code>的时候，如果发现当前对象的 <code>aspect</code> 都被移除了，那么，你可以将 isa 指针重新指回对象本身的类，从而消除了该对象的 <code>swizzling</code> ,同时也不会影响到其他该类的不同对象)。对于每一个对象而言，这样的动态对象只会生成一次，这里<code>aspect_swizzlingForwardInvocation</code>将使得 <code>forwardInvocation</code> 方法指向 <code>aspects </code>自己的实现逻辑 ,具体代码如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">static Class aspect_hookClass(NSObject *self, NSError **error) &#123;</span><br><span class="line">     ...</span><br><span class="line">     //生成动态子类，并swizzling forwardInvocation方法</span><br><span class="line">     subclass = objc_allocateClassPair(baseClass, subclassName, 0); </span><br><span class="line">     aspect_swizzleForwardInvocation(subclass);//swizzling forwardinvation方法</span><br><span class="line">     objc_registerClassPair(subclass);</span><br><span class="line">      ...</span><br><span class="line">     object_setClass(self, subclass);//将当前self设置为子类，这里其实只是更改了self的isa指针而已</span><br><span class="line">     return subclass;</span><br><span class="line">&#125;</span><br><span class="line">...</span><br><span class="line">static void aspect_swizzleForwardInvocation(Class klass) &#123;</span><br><span class="line">     ...</span><br><span class="line">    IMP originalImplementation = class_replaceMethod(klass, @selector(forwardInvocation:),     (IMP)__ASPECTS_ARE_BEING_CALLED__, &quot;v@:@&quot;);</span><br><span class="line">    if (originalImplementation) &#123;</span><br><span class="line">         class_addMethod(klass, NSSelectorFromString(AspectsForwardInvocationSelectorName),        originalImplementation, &quot;v@:@&quot;)</span><br><span class="line">      &#125;</span><br><span class="line">...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>由于子类本身并没有实现 <code>forwardInvocation</code> ，隐藏返回的 <code>originalImplementation</code> 将为空值，所以也不会生成 <code>NSSelectorFromString(AspectsForwardInvocationSelectorName) </code>。</p>
+<h6 id="swizzling-selector"><a href="#swizzling-selector" class="headerlink" title="swizzling selector"></a>swizzling selector</h6><p>当 <code>forwradInvocation</code> 被<code>hook</code>之后，接下来，将对传入的<code>selector</code>进行<code> hook</code> ，这里的做法是，将<code> selector</code> 指向了转发 <code>IMP </code>，同时生成一个 <code>aliasSelector</code> ，指向了原来的<code>IMP</code>,同时为防止重复<code> hook</code> ,做了一个判断，如果发现 <code>selector</code> 已经指向了转发<code> IMP</code> ,那就就不需要进行交换了，代码如下:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">tatic void aspect_prepareClassAndHookSelector(NSObject *self, SEL selector, NSError **error) &#123;</span><br><span class="line">     ...</span><br><span class="line">     Method targetMethod = class_getInstanceMethod(klass, selector);</span><br><span class="line">     IMP targetMethodIMP = method_getImplementation(targetMethod);</span><br><span class="line">     if (!aspect_isMsgForwardIMP(targetMethodIMP)) &#123;</span><br><span class="line">     ...</span><br><span class="line">     SEL aliasSelector = aspect_aliasForSelector(selector);//generator aliasSelector</span><br><span class="line">     if (![klass instancesRespondToSelector:aliasSelector]) &#123;</span><br><span class="line">          __unused BOOL addedAlias = class_addMethod(klass, aliasSelector, method_getImplementation(targetMethod), typeEncoding); </span><br><span class="line">     &#125;</span><br><span class="line">     class_replaceMethod(klass, selector, aspect_getMsgForwardIMP(self, selector), typeEncoding);// point to   _objc_msgForward</span><br><span class="line">   ...</span><br><span class="line">     &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h6 id="handle-ForwardInvocation"><a href="#handle-ForwardInvocation" class="headerlink" title="handle ForwardInvocation"></a>handle ForwardInvocation</h6><p>基于上面的代码分析知道，转发最终的逻辑代码最终转入 <code>__ASPECTS_ARE_BEING_CALLED__</code> 函数的处理中。这里，需要处理的部分包括额外处理代码（如打点代码）以及最终重新转会原来的<code>selector</code>所指向的函数，其实现代码如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">static void __ASPECTS_ARE_BEING_CALLED__(__unsafe_unretained NSObject *self, SEL selector, NSInvocation *invocation) &#123;</span><br><span class="line">...</span><br><span class="line">     // Before hooks.  原来逻辑之前执行</span><br><span class="line">    aspect_invoke(classContainer.beforeAspects, info);</span><br><span class="line">    aspect_invoke(objectContainer.beforeAspects, info);</span><br><span class="line">    // Instead hooks.</span><br><span class="line">    BOOL respondsToAlias = YES;</span><br><span class="line">    if (objectContainer.insteadAspects.count || classContainer.insteadAspects.count) &#123;//是否需要替换掉原来的路基</span><br><span class="line">         aspect_invoke(classContainer.insteadAspects, info);</span><br><span class="line">         aspect_invoke(objectContainer.insteadAspects, info);</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">        Class klass = object_getClass(invocation.target);</span><br><span class="line">        do &#123;</span><br><span class="line">              if ((respondsToAlias = [klass instancesRespondToSelector:aliasSelector])) &#123;</span><br><span class="line">                    [invocation invoke];//根据aliasSelector找到原来的逻辑并执行</span><br><span class="line">                    break;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;while (!respondsToAlias &amp;&amp; (klass = class_getSuperclass(klass)));</span><br><span class="line">     &#125;</span><br><span class="line">    // After hooks.  原来逻辑之后执行</span><br><span class="line">     aspect_invoke(classContainer.afterAspects, info);</span><br><span class="line">     aspect_invoke(objectContainer.afterAspects, info);</span><br><span class="line">    // If no hooks are installed, call original implementation (usually to throw an exception)</span><br><span class="line">     if (!respondsToAlias) &#123;//找不到aliasSelector的IMP实现，没有找到原来的逻辑，进行消息转发</span><br><span class="line">          invocation.selector = originalSelector;</span><br><span class="line">          SEL originalForwardInvocationSEL = NSSelectorFromString(AspectsForwardInvocationSelectorName);</span><br><span class="line">          if ([self respondsToSelector:originalForwardInvocationSEL]) &#123;</span><br><span class="line">               ((void( *)(id, SEL, NSInvocation *))objc_msgSend)(self, originalForwardInvocationSEL, invocation);</span><br><span class="line">          &#125; else &#123;</span><br><span class="line">              [self doesNotRecognizeSelector:invocation.selector];</span><br><span class="line">         &#125;</span><br><span class="line">     &#125;                     </span><br><span class="line">...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>依次处理 <code>before/instead/after hook</code> 以及真正函数实现。如果没有找到原始的函数实现，还需要进行转发操作。</p>
+<h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><p><span class="exturl" data-url="aHR0cHM6Ly93ZXJlYWR0ZWFtLmdpdGh1Yi5pby8yMDE2LzA2LzMwL0FzcGVjdHMv">面向切面编程之 Aspects 源码解析及应用<i class="fa fa-external-link-alt"></i></span></p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="reward-container">
+  <div>如果觉得我的文章对您有用，请随意打赏。您的支持将鼓励我继续创作！</div>
+  <button>
+    赞赏
+  </button>
+  <div class="post-reward">
+      <div>
+        <img src="/images/wechatpay.png" alt="Ray 微信">
+        <span>微信</span>
+      </div>
+
+  </div>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/%E8%BD%AC%E8%BD%BD/" rel="tag"># 转载</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/post/week14/" rel="prev" title="以技术之名周报02#X86-汇编| 2020-04-05">
+                  <i class="fa fa-chevron-left"></i> 以技术之名周报02#X86-汇编| 2020-04-05
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/post/OCCodeAnalysis/" rel="next" title="如何在OC中进行源码分析">
+                  如何在OC中进行源码分析 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    <div class="comments gitalk-container"></div>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2025</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Ray</span>
+</div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+  <div class="powered-by">由 <span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlv">Hexo</span> & <span class="exturl" data-url="aHR0cHM6Ly90aGVtZS1uZXh0LmpzLm9yZw==">NexT.Gemini</span> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+<script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.0/search.js" integrity="sha256-vXZMYLEqsROAXkEw93GGIvaB2ab+QW6w3+1ahD9nXXA=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.8.0/gitalk.css" integrity="sha256-AJnUHL7dBv6PGaeyPQJcgQPDjt/Hn/PvYZde1iqfp8U=" crossorigin="anonymous">
+
+<script class="next-config" data-name="gitalk" type="application/json">{"enable":true,"github_id":"iamlay","repo":"gitalk","client_id":"798848f6f91162435156","client_secret":"d9b621213c7353cfa8b2286491f877ef4507da1e","admin_user":"iamlay","distraction_free_mode":true,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token","language":"zh-CN","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.8.0/gitalk.min.js","integrity":"sha256-MVK9MGD/XJaGyIghSVrONSnoXoGh3IFxLw0zfvzpxR4="},"path_md5":"10e6fffa62deebdde1d3fc4cc47e3342"}</script>
+<script src="/js/third-party/comments/gitalk.js"></script>
+
+</body>
+</html>

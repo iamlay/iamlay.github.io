@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.3.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+  <meta name="google-site-verification" content="bdLSZKDAikc4SOPIlDwwuSFBawDGQU3GmqUWTzUM-rE">
+  <meta name="baidu-site-verification" content="codeva-lCWvLLHuj5">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3825645052664031"
+     crossorigin="anonymous"></script>
+  <meta name="baidu-site-verification" content="true">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha256-AbA177XfpSnFEvgpYu1jMygiLabzPCJCRIBtR5jGc0k=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"www.iamlay.com","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.13.1","exturl":true,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"gitalk","storage":true,"lazyload":false,"nav":{"gitalk":{"ordcer":-1}},"activeClass":"gitalk"},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="开篇：保姆级的电子书查找文档这篇关于电子书查找的文章，是对这篇文章的进一步升级，相信如果你按照本篇文章的推荐方式，能够找到90%以上你需要的书籍。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="电子书查找指导文档">
+<meta property="og:url" content="https://www.iamlay.com/post/PDFFindGuide/index.html">
+<meta property="og:site_name" content="以技术之名">
+<meta property="og:description" content="开篇：保姆级的电子书查找文档这篇关于电子书查找的文章，是对这篇文章的进一步升级，相信如果你按照本篇文章的推荐方式，能够找到90%以上你需要的书籍。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://testingcf.jsdelivr.net/gh/iamlay/BlogResources@main/imgs/pdffind/001.png">
+<meta property="og:image" content="https://testingcf.jsdelivr.net/gh/iamlay/BlogResources@main/imgs/pdffind/002.png">
+<meta property="og:image" content="https://testingcf.jsdelivr.net/gh/iamlay/BlogResources@main/imgs/pdffind/003.png">
+<meta property="og:image" content="https://testingcf.jsdelivr.net/gh/iamlay/BlogResources@main/imgs/pdffind/PDF04.png">
+<meta property="og:image" content="https://testingcf.jsdelivr.net/gh/iamlay/BlogResources@main/imgs/pdffind/PDF05.png">
+<meta property="og:image" content="https://testingcf.jsdelivr.net/gh/iamlay/BlogResources@main/imgs/pdffind/PDF06.gif">
+<meta property="og:image" content="https://testingcf.jsdelivr.net/gh/iamlay/BlogResources@main/imgs/pdffind/PDF07.gif">
+<meta property="og:image" content="https://testingcf.jsdelivr.net/gh/iamlay/BlogResources@main/imgs/pdffind/PDF08.gif">
+<meta property="og:image" content="https://testingcf.jsdelivr.net/gh/iamlay/BlogResources@main/imgs/pdffind/PDF09.gif">
+<meta property="og:image" content="https://testingcf.jsdelivr.net/gh/iamlay/BlogResources@main/imgs/pdffind/PDF10.gif">
+<meta property="article:published_time" content="2022-10-16T04:07:46.000Z">
+<meta property="article:modified_time" content="2024-01-24T10:20:47.122Z">
+<meta property="article:author" content="Ray">
+<meta property="article:tag" content="原创">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://testingcf.jsdelivr.net/gh/iamlay/BlogResources@main/imgs/pdffind/001.png">
+
+
+<link rel="canonical" href="https://www.iamlay.com/post/PDFFindGuide/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://www.iamlay.com/post/PDFFindGuide/","path":"post/PDFFindGuide/","title":"电子书查找指导文档"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>电子书查找指导文档 | 以技术之名</title>
+  <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-170943611-2"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-170943611-2');
+</script>
+  <script src="/js/third-party/analytics/baidu-analytics.js"></script>
+  <script async src="https://hm.baidu.com/hm.js?2fdaf8ee633a188c5649eefea79b28b3"></script>
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<!-- hexo injector head_end start --><script async defer data-website-id="fad553b1-b94d-4311-8d52-913dc067e883" src="https://tongji.iamlay.com/script.js"></script><!-- hexo injector head_end end --></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">以技术之名</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">以技术之名</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-chatgpt"><a href="/chatgpt" rel="section"><i class="fa fa-comment-dots fa-fw"></i>AI体验</a></li><li class="menu-item menu-item-sitemap"><a href="/sitemap.xml" rel="section"><i class="fa fa-sitemap fa-fw"></i>站点地图</a></li><li class="menu-item menu-item-links"><a href="/links/" rel="section"><i class="fa fa-link fa-fw"></i>友情链接</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-%E5%AE%89%E8%A3%85%E9%AD%94%E6%B3%95"><span class="nav-number">1.</span> <span class="nav-text">1.安装魔法</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1-1-Fire-Fly"><span class="nav-number">1.1.</span> <span class="nav-text">1.1 Fire Fly</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-%E7%A1%AE%E5%AE%9A%E4%B9%A6%E7%9B%AE%E4%BF%A1%E6%81%AF"><span class="nav-number">2.</span> <span class="nav-text">2.确定书目信息</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#2-1-%E4%BD%BF%E7%94%A8%E6%AD%A5%E9%AA%A4-%E4%B8%BE%E4%BE%8B"><span class="nav-number">2.1.</span> <span class="nav-text">2.1 使用步骤-举例</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-%E5%9B%BE%E4%B9%A6%E8%B5%84%E6%BA%90%E7%BD%91%E7%AB%99%E5%92%8C%E6%9F%A5%E6%89%BE%E7%94%B5%E5%AD%90%E4%B9%A6%E6%8F%92%E4%BB%B6"><span class="nav-number">3.</span> <span class="nav-text">3.图书资源网站和查找电子书插件</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#3-1-%E7%94%B5%E5%AD%90%E4%B9%A6%E8%B5%84%E6%BA%90%E7%BD%91%E7%AB%99%E4%BB%8B%E7%BB%8D"><span class="nav-number">3.1.</span> <span class="nav-text">3.1 电子书资源网站介绍</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#3-1-1-%E5%85%A8%E4%B8%96%E7%95%8C%E6%9C%80%E5%A4%A7%E7%9A%84%E7%94%B5%E5%AD%90%E5%9B%BE%E4%B9%A6%E9%A6%86-Zlibrary"><span class="nav-number">3.1.1.</span> <span class="nav-text">3.1.1  全世界最大的电子图书馆 -  Zlibrary</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#3-1-2-%E8%81%9A%E5%90%88%E6%90%9C%E7%B4%A0%E5%BC%95%E6%93%8E-%E9%B8%A0%E6%91%A9%E6%90%9C%E7%B4%A2"><span class="nav-number">3.1.2.</span> <span class="nav-text">3.1.2  聚合搜素引擎-  鸠摩搜索</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-2-%E7%94%B5%E5%AD%90%E4%B9%A6%E6%9F%A5%E6%89%BE%E6%8F%92%E4%BB%B6%E4%BD%BF%E7%94%A8%E4%BB%8B%E7%BB%8D"><span class="nav-number">3.2.</span> <span class="nav-text">3.2 电子书查找插件使用介绍</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#3-2-1-%E8%84%9A%E6%9C%AC%E7%AE%A1%E7%90%86%E5%99%A8-Tampermonkey-%E9%9C%80%E5%BC%80%E5%90%AFVPN"><span class="nav-number">3.2.1.</span> <span class="nav-text">3.2.1 脚本管理器: Tampermonkey ,需开启VPN</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#3-2-2-%E8%B1%86%E7%93%A3%E8%AF%BB%E4%B9%A6%E4%BA%92%E5%8A%A9-%E8%B1%86%E7%93%A3%E8%AF%BB%E4%B9%A6%E5%8A%A9%E6%89%8B%E8%84%9A%E6%9C%AC"><span class="nav-number">3.2.2.</span> <span class="nav-text">3.2.2 豆瓣读书互助: 豆瓣读书助手脚本</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#3-2-3-%E7%8C%B4%E5%93%A5%E5%9B%BE%E4%B9%A6%E4%BA%92%E5%8A%A9-%E7%8C%B4%E5%93%A5%E5%9B%BE%E4%B9%A6%E4%BA%92%E5%8A%A9"><span class="nav-number">3.2.3.</span> <span class="nav-text">3.2.3 猴哥图书互助: 猴哥图书互助</span></a></li></ol></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-%E5%85%9C%E5%BA%95%E6%93%8D%E4%BD%9C-Google"><span class="nav-number">4.</span> <span class="nav-text">4.兜底操作 - Google</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-%E7%BB%93%E8%AF%AD"><span class="nav-number">5.</span> <span class="nav-text">4.结语</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Ray</p>
+  <div class="site-description" itemprop="description">为信仰而生</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">45</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">12</span>
+        <span class="site-state-item-name">分类</span>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">9</span>
+        <span class="site-state-item-name">标签</span>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2lhbWxheQ==" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;iamlay"><i class="fab fa-github fa-fw"></i>GitHub</span>
+      </span>
+      <span class="links-of-author-item">
+        <span class="exturl" data-url="bWFpbHRvOjExODcwNzQ1NDNAcXEuY29t" title="E-Mail → mailto:1187074543@qq.com"><i class="fa fa-envelope fa-fw"></i>E-Mail</span>
+      </span>
+  </div>
+
+
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://www.iamlay.com/post/PDFFindGuide/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Ray">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="以技术之名">
+      <meta itemprop="description" content="为信仰而生">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="电子书查找指导文档 | 以技术之名">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          电子书查找指导文档
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2022-10-16 12:07:46" itemprop="dateCreated datePublished" datetime="2022-10-16T12:07:46+08:00">2022-10-16</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2024-01-24 18:20:47" itemprop="dateModified" datetime="2024-01-24T18:20:47+08:00">2024-01-24</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E9%9A%8F%E7%AC%94/" itemprop="url" rel="index"><span itemprop="name">随笔</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+</div>
+
+	
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <blockquote>
+<p>开篇：保姆级的电子书查找文档<br>这篇关于电子书查找的文章，是对<span class="exturl" data-url="aHR0cHM6Ly9pYW1sYXkuY29tL3Bvc3QvRUJvb2tGaW5kLw==">这篇文章<i class="fa fa-external-link-alt"></i></span>的进一步升级，相信如果你按照本篇文章的推荐方式，能够找到90%以上你需要的书籍。</p>
+</blockquote>
+<span id="more"></span>
+
+<h4 id="1-安装魔法"><a href="#1-安装魔法" class="headerlink" title="1.安装魔法"></a>1.安装魔法</h4><p>因为某些众所周知的原因，下面介绍的某些网站在国内可能是无法访问，或者访问很慢，所以首先你需要准备一个魔法能够正常访问下面的网站。这里推荐一个我觉得还不错的魔法 - <span class="exturl" data-url="aHR0cHM6Ly9jdXN0b21lci0wMS55aGN2cG4ueHl6LyMvcmVnaXN0ZXI/Y29kZT1NSVdteEZHMg==">Fire Fly<i class="fa fa-external-link-alt"></i></span></p>
+<h5 id="1-1-Fire-Fly"><a href="#1-1-Fire-Fly" class="headerlink" title="1.1 Fire Fly"></a>1.1 <span class="exturl" data-url="aHR0cHM6Ly9jdXN0b21lci0wMS55aGN2cG4ueHl6LyMvcmVnaXN0ZXI/Y29kZT1NSVdteEZHMg==">Fire Fly<i class="fa fa-external-link-alt"></i></span></h5><p><strong>套餐选择</strong><br><img src="https://testingcf.jsdelivr.net/gh/iamlay/BlogResources@main/imgs/pdffind/001.png"><br><strong>使用文档</strong><br><img src="https://testingcf.jsdelivr.net/gh/iamlay/BlogResources@main/imgs/pdffind/002.png"><br><strong>节点切换</strong><br><img src="https://testingcf.jsdelivr.net/gh/iamlay/BlogResources@main/imgs/pdffind/003.png"></p>
+<!-- `步骤1`：点击上面绿色文字，跳转到极光官网
+
+`步骤2`：点击右上角的download按钮，跳转到VPN下载页
+
+![@==点击download标签==](https://raw.githubusercontent.com/iamlay/BlogResources/main/PicturesPDF01.png)
+
+`步骤3`：根据电脑系统，下载适合自己的软件
+
+![@下载对应的软件](https://raw.githubusercontent.com/iamlay/BlogResources/main/PicturesPDF02.png)
+
+`步骤4`：点击下载的软件进行安装，并双击打开
+
+`步骤5`：点击连接，连接VPN， 并点击下面的网站并进行验证，如果可以打开证明访问正常
+![@连接VPN](https://raw.githubusercontent.com/iamlay/BlogResources/main/PicturesPDF03.png) -->
+
+<hr>
+<h4 id="2-确定书目信息"><a href="#2-确定书目信息" class="headerlink" title="2.确定书目信息"></a>2.确定书目信息</h4><blockquote>
+<p>在查找电子书之前，需要知道书名、作者或ISBN号，如果不知道这些信息，可以使用下面几个网站进行查询。<br>1.对大部分用户来说，<span class="exturl" data-url="aHR0cHM6Ly9ib29rLmRvdWJhbi5jb20v">豆瓣读书<i class="fa fa-external-link-alt"></i></span>已经基本覆盖大部分的查找场景。<br>2.对一些学生来说，可能有一些专业书籍或文献在查找不到信息，可以尝试使用<span class="exturl" data-url="aHR0cDovL3d3dy51Y2Rycy5zdXBlcmxpYi5uZXQv">全国图书馆参考联盟<i class="fa fa-external-link-alt"></i></span> 查找。<br>3.一些外国书籍如果查找不到，可以使用<span class="exturl" data-url="aHR0cHM6Ly93d3cud29ybGRjYXQub3JnLw==">Worldcat<i class="fa fa-external-link-alt"></i></span>来查询，访问该网站需打开VPN</p>
+</blockquote>
+<h5 id="2-1-使用步骤-举例"><a href="#2-1-使用步骤-举例" class="headerlink" title="2.1 使用步骤-举例"></a>2.1 使用步骤-举例</h5><p>这里我们只以豆瓣读书来距举例如何获取电子书信息，全国图书馆参考联盟和Worldcat使用方式大同小异。但是需要说明的是，使用全国图书馆参考联盟需要注册账户，使用Worldcat需要打开VPN才能正常访问。</p>
+<p><code>2.1.1 在输入框输入需要查找的书籍</code></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/iamlay/BlogResources@main/imgs/pdffind/PDF04.png" alt="@搜索电子书|left"></p>
+<p><code>2.1.2 查看书籍的详细信息</code></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/iamlay/BlogResources@main/imgs/pdffind/PDF05.png" alt="@查看详细信息|left"></p>
+<hr>
+<h4 id="3-图书资源网站和查找电子书插件"><a href="#3-图书资源网站和查找电子书插件" class="headerlink" title="3.图书资源网站和查找电子书插件"></a>3.图书资源网站和查找电子书插件</h4><p>&#x3D;&#x3D;FBI警告:  请仔细阅读该介绍！&#x3D;&#x3D;</p>
+<blockquote>
+<p> 获取到电子书的详细信息之后，就可以去电子书资源网站进行查找和下载。关于电子书的查找，目前提供两种方式</p>
+<ul>
+<li>在图书资源网站直接根据上面查找到的信息进行搜索和下载；</li>
+<li>通过安装浏览器插件, 通过插件快速找到电子书并下载；</li>
+</ul>
+</blockquote>
+<blockquote>
+<p>这两种方式是互为补充的关系，在使用第一种方式找不到的时候，可以再使用第二种方式继续查找，如果两种方式都找不到，那么该电子书能被查找到的概率就很低。</p>
+</blockquote>
+<h5 id="3-1-电子书资源网站介绍"><a href="#3-1-电子书资源网站介绍" class="headerlink" title="3.1 电子书资源网站介绍"></a>3.1 电子书资源网站介绍</h5><p><u>下面介绍的资源网站有优先级，在查找电子书的时候，可以根据介绍的优先级顺序来查找电子书</u></p>
+<h6 id="3-1-1-全世界最大的电子图书馆-Zlibrary"><a href="#3-1-1-全世界最大的电子图书馆-Zlibrary" class="headerlink" title="3.1.1  全世界最大的电子图书馆 -  Zlibrary"></a>3.1.1  全世界最大的电子图书馆 -  <span class="exturl" data-url="aHR0cHM6Ly96bGlicmFyeS50ay8=">Zlibrary<i class="fa fa-external-link-alt"></i></span></h6><blockquote>
+<p>1.支持通过作者、图书名字、ISBN、出版社、MD5 进⾏检索，支持通过短语和单词进⾏全⽂检索，英⽂原版电⼦⽂档很多<br>2.支持多种电子书格式：PDF、EPUB、TXT、MOBI等<br>3.支持免费下载, 但是单日下载数量有限制，注册会员单日下载数量<br>4.有1100多万本书籍和8000多万篇文章</p>
+</blockquote>
+<p><code>电子书查找演示 - 以查找三体为例</code></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/iamlay/BlogResources@main/imgs/pdffind/PDF06.gif"></p>
+<h6 id="3-1-2-聚合搜素引擎-鸠摩搜索"><a href="#3-1-2-聚合搜素引擎-鸠摩搜索" class="headerlink" title="3.1.2  聚合搜素引擎-  鸠摩搜索"></a>3.1.2  聚合搜素引擎-  <span class="exturl" data-url="aHR0cHM6Ly93d3cuaml1bW9kaWFyeS5jb20v">鸠摩搜索<i class="fa fa-external-link-alt"></i></span></h6><blockquote>
+<p>鸠摩 摩搜索是⼀个聚合引擎，主要是聚合了百度和bing两个搜索引擎。搜索的站点包括：⾖瓣、淘宝、百度⽂库、百度云、百度⽹盘、 国学⼤师、微盘、新浪爱问、孔夫⼦⽹、国家数字图书馆、喜马拉雅有声阅读、⼤学图书馆等站点。</p>
+</blockquote>
+<p><code>电子书查找演示 - 以查找三体为例</code></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/iamlay/BlogResources@main/imgs/pdffind/PDF07.gif"></p>
+<h5 id="3-2-电子书查找插件使用介绍"><a href="#3-2-电子书查找插件使用介绍" class="headerlink" title="3.2 电子书查找插件使用介绍"></a>3.2 电子书查找插件使用介绍</h5><blockquote>
+<p>使用上面介绍的电子书资源库大部分常见的电子书应该都找的到，但是有一些比较偏的电子书还是有可能找不到，这时候我们可以借助电子书插件进一步来查找电子书。使用插件步骤如下：</p>
+<ol>
+<li>安装浏览器脚本管理器Tampermonkey（油猴）</li>
+<li>安装脚本</li>
+<li>在脚本支持的网站进行搜索电子书</li>
+</ol>
+</blockquote>
+<h6 id="3-2-1-脚本管理器-Tampermonkey-需开启VPN"><a href="#3-2-1-脚本管理器-Tampermonkey-需开启VPN" class="headerlink" title="3.2.1 脚本管理器: Tampermonkey ,需开启VPN"></a>3.2.1 脚本管理器: <span class="exturl" data-url="aHR0cHM6Ly9jaHJvbWUuZ29vZ2xlLmNvbS93ZWJzdG9yZS9kZXRhaWwvdGFtcGVybW9ua2V5L2RoZGdmZmtrZWJobWtmam9qZWptcGJsZG1wb2Jma2Zv">Tampermonkey<i class="fa fa-external-link-alt"></i></span> ,需开启VPN</h6><blockquote>
+<p>Tampermonkey（油猴）是最受欢迎的浏览器扩展之一，拥有超过1000万用户。Tampermonkey用于在网站上运行所谓的用户脚本（有时也称为Greasemonkey脚本）。<br>Tampermonkey可以直接在浏览器进行安装(需安装VPN)，也可以下载好插件在本地直接安装，由于篇幅限制，安装教程不在本文档介绍，可以看<span class="exturl" data-url="aHR0cHM6Ly96aHVhbmxhbi56aGlodS5jb20vcC8xMjg0NTMxMTA=">Tampermonkey油猴插件——安装与使用教程<i class="fa fa-external-link-alt"></i></span></p>
+</blockquote>
+<h6 id="3-2-2-豆瓣读书互助-豆瓣读书助手脚本"><a href="#3-2-2-豆瓣读书互助-豆瓣读书助手脚本" class="headerlink" title="3.2.2 豆瓣读书互助: 豆瓣读书助手脚本"></a>3.2.2 豆瓣读书互助: <span class="exturl" data-url="aHR0cHM6Ly9ncmVhc3lmb3JrLm9yZy96aC1DTi9zY3JpcHRzLzQxMjQ3OS1lYm9va3MtYXNzaXN0YW50">豆瓣读书助手脚本<i class="fa fa-external-link-alt"></i></span></h6><blockquote>
+<p>为豆瓣读书页面添加亚马逊Kindle、微信读书、多看阅读、京东读书、当当云阅读、喜马拉雅等直达链接。<br>使用网站： <span class="exturl" data-url="aHR0cHM6Ly9ib29rLmRvdWJhbi5jb20v">豆瓣读书<i class="fa fa-external-link-alt"></i></span></p>
+</blockquote>
+<p><code>使用效果</code><br><img src="https://testingcf.jsdelivr.net/gh/iamlay/BlogResources@main/imgs/pdffind/PDF08.gif"></p>
+<h6 id="3-2-3-猴哥图书互助-猴哥图书互助"><a href="#3-2-3-猴哥图书互助-猴哥图书互助" class="headerlink" title="3.2.3 猴哥图书互助: 猴哥图书互助"></a>3.2.3 猴哥图书互助: <span class="exturl" data-url="aHR0cHM6Ly9ncmVhc3lmb3JrLm9yZy96aC1DTi9zY3JpcHRzLzQzODU2My0lRTclOEMlQjQlRTUlOTMlQTUlRTUlOUIlQkUlRTQlQjklQTYlRTQlQkElOTIlRTUlOEElQTktJUU3JTlCJUI0JUU2JThFJUE1JUU0JUI4JThCJUU4JUJEJUJEJUU1JTg1JUE4JUU1JTlCJUJEJUU1JTlCJUJFJUU0JUI5JUE2JUU5JUE2JTg2JUU1JThGJTgyJUU4JTgwJTgzJUU1JTkyJUE4JUU4JUFGJUEyJUU4JTgxJTk0JUU3JTlCJTlGJUU0JUI4JUJBcGRmLSVFNiU5QyU4OSVFNyU5QiVBRSVFNSVCRCU5NSVFNCVCOSVBNiVFNyVBRCVCRS0lRTglOEElODIlRTclOUMlODElRTQlQjglOEIlRTYlOUQlQTUlRTclOUElODQlRTYlOTclQjYlRTklOTclQjQlRTUlQjAlQjElRTYlOTglQUYlRTQlQkQlQTAlRTYlOUMlODAlRTUlQTQlQTclRTclOUElODQlRTglQjQlQTIlRTUlQUYlOEMtJUU2JThDJTgxJUU3JUJCJUFEJUU3JUJCJUI0JUU2JThBJUE0JUU0JUI4JUFE">猴哥图书互助<i class="fa fa-external-link-alt"></i></span></h6><blockquote>
+<p> 猴哥互助脚本，找到电子书后，会在对应的网站显示红色的<code>发起互助</code>标签，点击<code>发起互助</code>后会跳转到猴哥互助网站，然后点击下载按钮会跳转到发起互助页面，填写好收货邮箱后，发起互助，一般需要支付两块钱，电子书会在十分钟内发送到邮箱<br> 该脚本支持的网站有：</p>
+<ul>
+<li><span class="exturl" data-url="aHR0cDovL3d3dy51Y2Rycy5zdXBlcmxpYi5uZXQv">全国图书馆参考咨询联盟<i class="fa fa-external-link-alt"></i></span></li>
+<li><span class="exturl" data-url="aHR0cHM6Ly9ib29rLmRvdWJhbi5jb20v">豆瓣读书<i class="fa fa-external-link-alt"></i></span></li>
+<li><span class="exturl" data-url="aHR0cHM6Ly9ib29rLmRhbmdkYW5nLmNvbS8=">当当图书<i class="fa fa-external-link-alt"></i></span></li>
+<li><span class="exturl" data-url="aHR0cHM6Ly93d3cua29uZ2Z6LmNvbS8=">孔夫子旧书网<i class="fa fa-external-link-alt"></i></span></li>
+</ul>
+</blockquote>
+<p><code>使用效果</code></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/iamlay/BlogResources@main/imgs/pdffind/PDF09.gif"></p>
+<h4 id="4-兜底操作-Google"><a href="#4-兜底操作-Google" class="headerlink" title="4.兜底操作 - Google"></a>4.兜底操作 - Google</h4><blockquote>
+<p>如果使用过上面的两种方式之后，还是无法搜索到需要的电子书，大概率是搜不到的。但是可能还有一丝希望，因为上面的网站未必收录你需要的电子书。<br>可以尝试下面几个网站，通过搜索： 电子书名 + PDF的方式进行查找</p>
+<ul>
+<li><span class="exturl" data-url="aHR0cHM6Ly93d3cuZ29vZ2xlLmNvbS8=">Google官网<i class="fa fa-external-link-alt"></i></span></li>
+<li><span class="exturl" data-url="aHR0cHM6Ly9zY2hvbGFyLmdvb2dsZS5jb20vc2NoaHA/aGw9ZW4=">谷歌学术<i class="fa fa-external-link-alt"></i></span></li>
+<li><span class="exturl" data-url="aHR0cHM6Ly93d3cucGRmZHJpdmUuY29tLw==">PDFDRIVE<i class="fa fa-external-link-alt"></i></span></li>
+</ul>
+</blockquote>
+<p><code>使用效果</code></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/iamlay/BlogResources@main/imgs/pdffind/PDF10.gif"></p>
+<h4 id="4-结语"><a href="#4-结语" class="headerlink" title="4.结语"></a>4.结语</h4><p>电子书查找的指导内容以后<code>还可能继续补充完善</code>，请您保存好链接，确保您可以继续看到更新之后的内容。感谢支持！</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="reward-container">
+  <div>如果觉得我的文章对您有用，请随意打赏。您的支持将鼓励我继续创作！</div>
+  <button>
+    赞赏
+  </button>
+  <div class="post-reward">
+      <div>
+        <img src="/images/wechatpay.png" alt="Ray 微信">
+        <span>微信</span>
+      </div>
+
+  </div>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/%E5%8E%9F%E5%88%9B/" rel="tag"># 原创</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/post/MacRecommannd/" rel="prev" title="以技术之名周报10#｜推荐：Mac用户必备网站和App｜2022-04-17">
+                  <i class="fa fa-chevron-left"></i> 以技术之名周报10#｜推荐：Mac用户必备网站和App｜2022-04-17
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/post/GPTRegister/" rel="next" title="ChatGPT保姆级注册教程">
+                  ChatGPT保姆级注册教程 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    <div class="comments gitalk-container"></div>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2025</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Ray</span>
+</div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+  <div class="powered-by">由 <span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlv">Hexo</span> & <span class="exturl" data-url="aHR0cHM6Ly90aGVtZS1uZXh0LmpzLm9yZw==">NexT.Gemini</span> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+<script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.0/search.js" integrity="sha256-vXZMYLEqsROAXkEw93GGIvaB2ab+QW6w3+1ahD9nXXA=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.8.0/gitalk.css" integrity="sha256-AJnUHL7dBv6PGaeyPQJcgQPDjt/Hn/PvYZde1iqfp8U=" crossorigin="anonymous">
+
+<script class="next-config" data-name="gitalk" type="application/json">{"enable":true,"github_id":"iamlay","repo":"gitalk","client_id":"798848f6f91162435156","client_secret":"d9b621213c7353cfa8b2286491f877ef4507da1e","admin_user":"iamlay","distraction_free_mode":true,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token","language":"zh-CN","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.8.0/gitalk.min.js","integrity":"sha256-MVK9MGD/XJaGyIghSVrONSnoXoGh3IFxLw0zfvzpxR4="},"path_md5":"c773724f4d34aff54241c6a89f24a144"}</script>
+<script src="/js/third-party/comments/gitalk.js"></script>
+
+</body>
+</html>

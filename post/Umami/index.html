@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.3.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+  <meta name="google-site-verification" content="bdLSZKDAikc4SOPIlDwwuSFBawDGQU3GmqUWTzUM-rE">
+  <meta name="baidu-site-verification" content="codeva-lCWvLLHuj5">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3825645052664031"
+     crossorigin="anonymous"></script>
+  <meta name="baidu-site-verification" content="true">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha256-AbA177XfpSnFEvgpYu1jMygiLabzPCJCRIBtR5jGc0k=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"www.iamlay.com","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.13.1","exturl":true,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"gitalk","storage":true,"lazyload":false,"nav":{"gitalk":{"ordcer":-1}},"activeClass":"gitalk"},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="Umami 是一个开源的、以隐私为中心的 Google Analytics 替代方案。Umami 提供强大的网络分析解决方案，不会侵犯用户隐私。此外，当自行托管 Umami 时，可以完全控制自己的数据。 Umami 基于 Node.js 开发，支持 Mysql 和 Postgresql 数据库，除服务器外，它甚至可以部署在 Serverless 中。自部署的好处在于某些商业服务滥用用户数据，当数">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Hexo + Umami + Vercel + Supabase  + 搭建网站分析系统">
+<meta property="og:url" content="https://www.iamlay.com/post/Umami/index.html">
+<meta property="og:site_name" content="以技术之名">
+<meta property="og:description" content="Umami 是一个开源的、以隐私为中心的 Google Analytics 替代方案。Umami 提供强大的网络分析解决方案，不会侵犯用户隐私。此外，当自行托管 Umami 时，可以完全控制自己的数据。 Umami 基于 Node.js 开发，支持 Mysql 和 Postgresql 数据库，除服务器外，它甚至可以部署在 Serverless 中。自部署的好处在于某些商业服务滥用用户数据，当数">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://testingcf.jsdelivr.net/gh/iamlay/BlogResources@main/imgs/umami/Umami01.png">
+<meta property="og:image" content="https://testingcf.jsdelivr.net/gh/iamlay/BlogResources@main/imgs/umami/Umami02.png">
+<meta property="og:image" content="https://testingcf.jsdelivr.net/gh/iamlay/BlogResources@main/imgs/umami/Umami03.png">
+<meta property="og:image" content="https://testingcf.jsdelivr.net/gh/iamlay/BlogResources@main/imgs/umami/Umami04.png">
+<meta property="og:image" content="https://testingcf.jsdelivr.net/gh/iamlay/BlogResources@main/imgs/umami/Umami05.png">
+<meta property="og:image" content="https://testingcf.jsdelivr.net/gh/iamlay/BlogResources@main/imgs/umami/Umami06.png">
+<meta property="og:image" content="https://testingcf.jsdelivr.net/gh/iamlay/BlogResources@main/imgs/umami/Umami07.png">
+<meta property="og:image" content="https://testingcf.jsdelivr.net/gh/iamlay/BlogResources@main/imgs/umami/Umami08.png">
+<meta property="og:image" content="https://testingcf.jsdelivr.net/gh/iamlay/BlogResources@main/imgs/umami/Umami09.png">
+<meta property="og:image" content="https://testingcf.jsdelivr.net/gh/iamlay/BlogResources@main/imgs/umami/Umami10.png">
+<meta property="og:image" content="https://testingcf.jsdelivr.net/gh/iamlay/BlogResources@main/imgs/umami/Umami11.png">
+<meta property="og:image" content="https://testingcf.jsdelivr.net/gh/iamlay/BlogResources@main/imgs/umami/Umami12.png">
+<meta property="og:image" content="https://testingcf.jsdelivr.net/gh/iamlay/BlogResources@main/imgs/umami/Umami13.png">
+<meta property="article:published_time" content="2023-06-24T02:07:22.000Z">
+<meta property="article:modified_time" content="2024-01-24T10:21:31.736Z">
+<meta property="article:author" content="Ray">
+<meta property="article:tag" content="转载">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://testingcf.jsdelivr.net/gh/iamlay/BlogResources@main/imgs/umami/Umami01.png">
+
+
+<link rel="canonical" href="https://www.iamlay.com/post/Umami/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://www.iamlay.com/post/Umami/","path":"post/Umami/","title":"Hexo + Umami + Vercel + Supabase  + 搭建网站分析系统"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>Hexo + Umami + Vercel + Supabase  + 搭建网站分析系统 | 以技术之名</title>
+  <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-170943611-2"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-170943611-2');
+</script>
+  <script src="/js/third-party/analytics/baidu-analytics.js"></script>
+  <script async src="https://hm.baidu.com/hm.js?2fdaf8ee633a188c5649eefea79b28b3"></script>
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<!-- hexo injector head_end start --><script async defer data-website-id="fad553b1-b94d-4311-8d52-913dc067e883" src="https://tongji.iamlay.com/script.js"></script><!-- hexo injector head_end end --></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">以技术之名</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">以技术之名</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-chatgpt"><a href="/chatgpt" rel="section"><i class="fa fa-comment-dots fa-fw"></i>AI体验</a></li><li class="menu-item menu-item-sitemap"><a href="/sitemap.xml" rel="section"><i class="fa fa-sitemap fa-fw"></i>站点地图</a></li><li class="menu-item menu-item-links"><a href="/links/" rel="section"><i class="fa fa-link fa-fw"></i>友情链接</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%80%E3%80%81%E5%87%86%E5%A4%87%E6%9D%A1%E4%BB%B6"><span class="nav-number">1.</span> <span class="nav-text">一、准备条件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BA%8C%E3%80%81%E5%9C%A8Supabase%E5%BB%BA%E7%AB%8B%E6%95%B0%E6%8D%AE%E5%BA%93"><span class="nav-number">2.</span> <span class="nav-text">二、在Supabase建立数据库</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%89%E3%80%81%E5%9C%A8-Vercel-%E9%83%A8%E7%BD%B2-Umami"><span class="nav-number">3.</span> <span class="nav-text">三、在 Vercel 部署 Umami</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%9B%9B%E3%80%81%E8%87%AA%E5%AE%9A%E4%B9%89%E5%9F%9F%E5%90%8D"><span class="nav-number">4.</span> <span class="nav-text">四、自定义域名</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BA%94%E3%80%81%E4%BD%BF%E7%94%A8-Umami"><span class="nav-number">5.</span> <span class="nav-text">五、使用 Umami</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%85%AD%E3%80%81%E4%BD%BF%E7%94%A8-%E6%9C%80%E7%BB%88%E6%95%88%E6%9E%9C"><span class="nav-number">6.</span> <span class="nav-text">六、使用 最终效果</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%83%E3%80%81FAQ"><span class="nav-number">7.</span> <span class="nav-text">七、FAQ</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%83%E3%80%81%E5%8F%82%E8%80%83"><span class="nav-number">8.</span> <span class="nav-text">七、参考</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Ray</p>
+  <div class="site-description" itemprop="description">为信仰而生</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">45</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">12</span>
+        <span class="site-state-item-name">分类</span>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">9</span>
+        <span class="site-state-item-name">标签</span>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2lhbWxheQ==" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;iamlay"><i class="fab fa-github fa-fw"></i>GitHub</span>
+      </span>
+      <span class="links-of-author-item">
+        <span class="exturl" data-url="bWFpbHRvOjExODcwNzQ1NDNAcXEuY29t" title="E-Mail → mailto:1187074543@qq.com"><i class="fa fa-envelope fa-fw"></i>E-Mail</span>
+      </span>
+  </div>
+
+
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://www.iamlay.com/post/Umami/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Ray">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="以技术之名">
+      <meta itemprop="description" content="为信仰而生">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="Hexo + Umami + Vercel + Supabase  + 搭建网站分析系统 | 以技术之名">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Hexo + Umami + Vercel + Supabase  + 搭建网站分析系统
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2023-06-24 10:07:22" itemprop="dateCreated datePublished" datetime="2023-06-24T10:07:22+08:00">2023-06-24</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2024-01-24 18:21:31" itemprop="dateModified" datetime="2024-01-24T18:21:31+08:00">2024-01-24</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Hexo/" itemprop="url" rel="index"><span itemprop="name">Hexo</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+</div>
+
+	
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <blockquote>
+<p>Umami 是一个开源的、以隐私为中心的 Google Analytics 替代方案。Umami 提供强大的网络分析解决方案，不会侵犯用户隐私。此外，当自行托管 Umami 时，可以完全控制自己的数据。</p>
+<p>Umami 基于 Node.js 开发，支持 Mysql 和 Postgresql 数据库，除服务器外，它甚至可以部署在 Serverless 中。自部署的好处在于某些商业服务滥用用户数据，当数据保存在自己手中时可以确保不会分享给第三方</p>
+</blockquote>
+<span id="more"></span>
+
+<p>官方文档介绍了多种部署方式，包括使用自己服务器，或者第三方平台，例如 Netlify、Heroku、Railway 等等，不过这些第三方平台一般都不提供数据库服务，所以我选择使用 Supabse 提供的免费数据库服务，以及 Vercel 的部署。</p>
+<h4 id="一、准备条件"><a href="#一、准备条件" class="headerlink" title="一、准备条件"></a>一、准备条件</h4><p>在使用前，先注册并登录好 GitHub、Vercel、Supabase 三个平台，并在 GitHub 平台 Fork Umami 的项目仓库。</p>
+<p>GitHub：<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3VtYW1pLXNvZnR3YXJlL3VtYW1p">https://github.com/umami-software/umami<i class="fa fa-external-link-alt"></i></span><br>Vercel：<span class="exturl" data-url="aHR0cHM6Ly92ZXJjZWwuY29tLw==">https://vercel.com/<i class="fa fa-external-link-alt"></i></span><br>Supabase：<span class="exturl" data-url="aHR0cHM6Ly9zdXBhYmFzZS5jb20v">https://supabase.com/<i class="fa fa-external-link-alt"></i></span></p>
+<h4 id="二、在Supabase建立数据库"><a href="#二、在Supabase建立数据库" class="headerlink" title="二、在Supabase建立数据库"></a>二、在Supabase建立数据库</h4><p><img src="https://testingcf.jsdelivr.net/gh/iamlay/BlogResources@main/imgs/umami/Umami01.png"></p>
+<p>在官网选择 <code>Free </code>方案，进入 <code>Create a new project</code> 页面，按要求填写相关内容。<code>Name </code>填写任意项目名，<code>Database Password</code> 可以使用下方工具 <code>Generate a password </code>生成，并<code>保存到记事本备用</code>。</p>
+<p><img src="https://testingcf.jsdelivr.net/gh/iamlay/BlogResources@main/imgs/umami/Umami02.png"></p>
+<p>等待数据库建立，需要几分钟的时间。</p>
+<p>建立之后，点击左下方的 <code>Project Settings</code>，选择<code> Database</code>，找到 <code>Connection string </code>中的<code>URL</code>一栏，复制内容，并将<code>[YOUR-PASSWORD]</code>替换为上一步生成的密码，稍后会用到。</p>
+<p><img src="https://testingcf.jsdelivr.net/gh/iamlay/BlogResources@main/imgs/umami/Umami03.png"></p>
+<p>Supabase 平台的操作就结束了。</p>
+<h4 id="三、在-Vercel-部署-Umami"><a href="#三、在-Vercel-部署-Umami" class="headerlink" title="三、在 Vercel 部署 Umami"></a>三、在 Vercel 部署 Umami</h4><p>登录 Vercel 之后，点击右上角 <code>Add New Project</code>，并导入事先<code>Fork</code>的项目仓库。</p>
+<p><img src="https://testingcf.jsdelivr.net/gh/iamlay/BlogResources@main/imgs/umami/Umami04.png"></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/iamlay/BlogResources@main/imgs/umami/Umami05.png"></p>
+<p>在 Configure Project 中需要设置两个环境变量（Environment Variables）。<br><img src="https://testingcf.jsdelivr.net/gh/iamlay/BlogResources@main/imgs/umami/Umami06.png"></p>
+<p>分别添加 <code>DATABASE_URL</code> 和 <code>HASH_SALT</code>。</p>
+<p><code>DATABASE_URL</code>: 是上一步在 Subabase 复制的 URL，记得替换自己的 Password；<br><code>HASH_SALT</code>: 需要自己随意生成一长串字符串。</p>
+<p><strong>特别提醒</strong>：需要在数据连接信息后面加上 ?pgbouncer&#x3D;true，例如：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">postgresql://postgres:密码@db.随机字符.supabase.co:5432/postgres?pgbouncer=true</span><br></pre></td></tr></table></figure>
+<p><img src="https://testingcf.jsdelivr.net/gh/iamlay/BlogResources@main/imgs/umami/Umami07.png"></p>
+<p>最后点击<code> Deploy</code>，等待两分钟。</p>
+<p><img src="https://testingcf.jsdelivr.net/gh/iamlay/BlogResources@main/imgs/umami/Umami08.png"></p>
+<h4 id="四、自定义域名"><a href="#四、自定义域名" class="headerlink" title="四、自定义域名"></a>四、自定义域名</h4><p>由于 Vercel 提供的域名在大陆无法访问，所以如果是想大陆流畅访问，建议绑定一个自己的域名。</p>
+<p>1、在自有域名的 <code>DNS </code>服务中添加一条记录，选择<code> CNAME</code> 类型转发，记录值填写为：<code>cname.vercel-dns.com</code></p>
+<p>2、然后在 Vercel 中找到 umami 项目，点击 Settings 标签卡，跳转页面后点击左侧的<code>Domains</code>菜单项，输入你自己<code>定义的域名</code>点击<code> Add 按钮</code>即可。</p>
+<p><img src="https://testingcf.jsdelivr.net/gh/iamlay/BlogResources@main/imgs/umami/Umami09.png"></p>
+<h4 id="五、使用-Umami"><a href="#五、使用-Umami" class="headerlink" title="五、使用 Umami"></a>五、使用 Umami</h4><p>按照上述步骤，Umami 已经部署成功了，通过绑定的域名进入网站，默认用户名和密码分别是 <code>admin</code> 和 <code>umami </code>，进入后台可以修改密码、设置语言，然后就可以<code>添加网站</code>了。</p>
+<p>1、完成基础帐号配置后，点击侧边栏网站 Tab，点击添加网站。<br><img src="https://testingcf.jsdelivr.net/gh/iamlay/BlogResources@main/imgs/umami/Umami10.png"></p>
+<p>2、填写网站基本信息</p>
+<p><img src="https://testingcf.jsdelivr.net/gh/iamlay/BlogResources@main/imgs/umami/Umami11.png"></p>
+<p>3、网站创建完成，点击<code>编辑</code>按钮进入如下页面，获取 umami 脚本,</p>
+<p><img src="https://testingcf.jsdelivr.net/gh/iamlay/BlogResources@main/imgs/umami/Umami12.png"></p>
+<p>4、在Hexo中使用该信息<br>    如果主题没有适配 umami 的话，可以使用 <span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlvL3poLWNuL2FwaS9pbmplY3Rvcg==">hexo injector <i class="fa fa-external-link-alt"></i></span> 直接注入，hexo 版本需要大于 5</p>
+<ul>
+<li>在博客项目根目录，创建<code>scripts</code>文件夹</li>
+<li>在<code>scripts</code>文件夹下，创建<code>injector.js</code>文件</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">// your-website-id： 上面的umami脚本中获取的</span><br><span class="line">// your-umami-url： 上面umami脚本中获取的</span><br><span class="line">hexo.extend.injector.register(&#x27;head_end&#x27;, &#x27;&lt;script async defer data-website-id=&quot;&lt;your-website-id&gt;&quot; src=&quot;&lt;your-umami-url&gt;&quot;&gt;&lt;/script&gt;&#x27;);</span><br></pre></td></tr></table></figure>
+
+<p>然后重新部署hexo就可以了</p>
+<h4 id="六、使用-最终效果"><a href="#六、使用-最终效果" class="headerlink" title="六、使用 最终效果"></a>六、使用 最终效果</h4><p><img src="https://testingcf.jsdelivr.net/gh/iamlay/BlogResources@main/imgs/umami/Umami13.png"></p>
+<h4 id="七、FAQ"><a href="#七、FAQ" class="headerlink" title="七、FAQ"></a>七、FAQ</h4><p>1、 在Vercel上进行部署的时候，报了如下错误，怎么解决</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">$ node scripts/check-db.js</span><br><span class="line">✓ DATABASE_URL is defined.</span><br><span class="line">✗ Unable to connect to the database.</span><br><span class="line">error Command failed with exit code 1.</span><br><span class="line">info Visit https://yarnpkg.com/en/docs/cli/run for documentation about this command.</span><br><span class="line">ERROR: &quot;check-db&quot; exited with 1.</span><br><span class="line">error Command failed with exit code 1.</span><br><span class="line">info Visit https://yarnpkg.com/en/docs/cli/run for documentation about this command.</span><br><span class="line">Error: Command &quot;yarn run build&quot; exited with 1</span><br></pre></td></tr></table></figure>
+
+<p>A:  通过在 <code>数据连接信息后面加上 ?pgbouncer=true解决的</code>，如上文</p>
+<h4 id="七、参考"><a href="#七、参考" class="headerlink" title="七、参考"></a>七、参考</h4><p><span class="exturl" data-url="aHR0cHM6Ly9ibG9nLndhbmd0d290aHJlZS5jb20vY29kZS8yMzMuaHRtbA==">1、使用 Vercel + Supabase 零成本部署 Umami<i class="fa fa-external-link-alt"></i></span><br><span class="exturl" data-url="aHR0cHM6Ly96aHVsLmluLzIwMjIvMTEvMDgvZnJlZS11bWFtaS1kZXBsb3ktcGxhbi8=">2、使用 vercel+supabase 免费部署 umami<i class="fa fa-external-link-alt"></i></span><br><span class="exturl" data-url="aHR0cHM6Ly93d3cucHNldWRveXUuY29tL3poLzIwMjIvMDUvMjEvZnJlZV9ibG9nX2FuYWx5c2lzX3VzaW5nX3VtYW1pX3ZlcmNlbF9hbmRfaGVyb2t1Lw==">3、从零开始搭建一个免费的个人博客数据统计系统：umami + Vercel + Heroku<i class="fa fa-external-link-alt"></i></span><br><span class="exturl" data-url="aHR0cHM6Ly95amsuaW0uc2Ivc2VsZi1ob3N0ZWQtdW1hbWkv">4、自建 UMAMI | 一个开源网站分析工具<i class="fa fa-external-link-alt"></i></span><br><span class="exturl" data-url="aHR0cHM6Ly93d3cuY25ibG9ncy5jb20vaGltZWthL3AvMTY2MTA3MDYuaHRtbA==">5、使用 Umar 统计个人网站访问数据<i class="fa fa-external-link-alt"></i></span></p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="reward-container">
+  <div>如果觉得我的文章对您有用，请随意打赏。您的支持将鼓励我继续创作！</div>
+  <button>
+    赞赏
+  </button>
+  <div class="post-reward">
+      <div>
+        <img src="/images/wechatpay.png" alt="Ray 微信">
+        <span>微信</span>
+      </div>
+
+  </div>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/%E8%BD%AC%E8%BD%BD/" rel="tag"># 转载</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/post/AzureGPT/" rel="prev" title="基于 Azure OpenAI 免费注册使用 ChatGPT 教程">
+                  <i class="fa fa-chevron-left"></i> 基于 Azure OpenAI 免费注册使用 ChatGPT 教程
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/post/Universallink/" rel="next" title="Universal Link 无效">
+                  Universal Link 无效 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    <div class="comments gitalk-container"></div>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2025</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Ray</span>
+</div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+  <div class="powered-by">由 <span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlv">Hexo</span> & <span class="exturl" data-url="aHR0cHM6Ly90aGVtZS1uZXh0LmpzLm9yZw==">NexT.Gemini</span> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+<script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.0/search.js" integrity="sha256-vXZMYLEqsROAXkEw93GGIvaB2ab+QW6w3+1ahD9nXXA=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.8.0/gitalk.css" integrity="sha256-AJnUHL7dBv6PGaeyPQJcgQPDjt/Hn/PvYZde1iqfp8U=" crossorigin="anonymous">
+
+<script class="next-config" data-name="gitalk" type="application/json">{"enable":true,"github_id":"iamlay","repo":"gitalk","client_id":"798848f6f91162435156","client_secret":"d9b621213c7353cfa8b2286491f877ef4507da1e","admin_user":"iamlay","distraction_free_mode":true,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token","language":"zh-CN","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.8.0/gitalk.min.js","integrity":"sha256-MVK9MGD/XJaGyIghSVrONSnoXoGh3IFxLw0zfvzpxR4="},"path_md5":"5ec1198eec3667c7b69810a34e91d280"}</script>
+<script src="/js/third-party/comments/gitalk.js"></script>
+
+</body>
+</html>

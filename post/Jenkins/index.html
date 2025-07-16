@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.3.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+  <meta name="google-site-verification" content="bdLSZKDAikc4SOPIlDwwuSFBawDGQU3GmqUWTzUM-rE">
+  <meta name="baidu-site-verification" content="codeva-lCWvLLHuj5">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3825645052664031"
+     crossorigin="anonymous"></script>
+  <meta name="baidu-site-verification" content="true">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha256-AbA177XfpSnFEvgpYu1jMygiLabzPCJCRIBtR5jGc0k=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"www.iamlay.com","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.13.1","exturl":true,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"gitalk","storage":true,"lazyload":false,"nav":{"gitalk":{"ordcer":-1}},"activeClass":"gitalk"},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="本文的大部分步骤参考的是一缕殇流化隐半边冰霜的博客，所以截图和很多步骤都是直接拷贝的该博客，然后补充了自己踩的一些坑。最后的脚本问题我没有拷贝过来，如果大家希望有所了解，可以去原博客，本文主要是个人以后回忆所用">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Jenkins自动打包搭建之路">
+<meta property="og:url" content="https://www.iamlay.com/post/Jenkins/index.html">
+<meta property="og:site_name" content="以技术之名">
+<meta property="og:description" content="本文的大部分步骤参考的是一缕殇流化隐半边冰霜的博客，所以截图和很多步骤都是直接拷贝的该博客，然后补充了自己踩的一些坑。最后的脚本问题我没有拷贝过来，如果大家希望有所了解，可以去原博客，本文主要是个人以后回忆所用">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://testingcf.jsdelivr.net/gh/iamlay/BlogResources@main/imgs/jenkins/jenkins02.png">
+<meta property="og:image" content="https://testingcf.jsdelivr.net/gh/iamlay/BlogResources@main/imgs/jenkins/jenkins03.png">
+<meta property="og:image" content="https://testingcf.jsdelivr.net/gh/iamlay/BlogResources@main/imgs/jenkins/jenkins04.png">
+<meta property="og:image" content="https://testingcf.jsdelivr.net/gh/iamlay/BlogResources@main/imgs/jenkins/jenkins05.png">
+<meta property="og:image" content="https://testingcf.jsdelivr.net/gh/iamlay/BlogResources@main/imgs/jenkins/jenkins06.png">
+<meta property="og:image" content="https://testingcf.jsdelivr.net/gh/iamlay/BlogResources@main/imgs/jenkins/jenkins07.png">
+<meta property="og:image" content="https://testingcf.jsdelivr.net/gh/iamlay/BlogResources@main/imgs/jenkins/jenkins08.png">
+<meta property="og:image" content="https://testingcf.jsdelivr.net/gh/iamlay/BlogResources@main/imgs/jenkins/jenkins09.png">
+<meta property="og:image" content="https://testingcf.jsdelivr.net/gh/iamlay/BlogResources@main/imgs/jenkins/jenkins10.png">
+<meta property="og:image" content="https://testingcf.jsdelivr.net/gh/iamlay/BlogResources@main/imgs/jenkins/jenkins11.png">
+<meta property="og:image" content="https://testingcf.jsdelivr.net/gh/iamlay/BlogResources@main/imgs/jenkins/jenkins12.png">
+<meta property="og:image" content="https://testingcf.jsdelivr.net/gh/iamlay/BlogResources@main/imgs/jenkins/jenkins13.png">
+<meta property="og:image" content="https://testingcf.jsdelivr.net/gh/iamlay/BlogResources@main/imgs/jenkins/jenkins14.png">
+<meta property="og:image" content="https://testingcf.jsdelivr.net/gh/iamlay/BlogResources@main/imgs/jenkins/jenkins15.png">
+<meta property="og:image" content="https://testingcf.jsdelivr.net/gh/iamlay/BlogResources@main/imgs/jenkins/jenkins16.png">
+<meta property="og:image" content="https://testingcf.jsdelivr.net/gh/iamlay/BlogResources@main/imgs/jenkins/jenkins17.png">
+<meta property="og:image" content="https://testingcf.jsdelivr.net/gh/iamlay/BlogResources@main/imgs/jenkins/jenkins18.png">
+<meta property="og:image" content="https://testingcf.jsdelivr.net/gh/iamlay/BlogResources@main/imgs/jenkins/jenkins19.png">
+<meta property="og:image" content="https://testingcf.jsdelivr.net/gh/iamlay/BlogResources@main/imgs/jenkins/jenkins20.png">
+<meta property="og:image" content="https://testingcf.jsdelivr.net/gh/iamlay/BlogResources@main/imgs/jenkins/jenkins21.png">
+<meta property="article:published_time" content="2018-04-20T16:00:00.000Z">
+<meta property="article:modified_time" content="2024-01-24T10:19:34.574Z">
+<meta property="article:author" content="Ray">
+<meta property="article:tag" content="原创">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://testingcf.jsdelivr.net/gh/iamlay/BlogResources@main/imgs/jenkins/jenkins02.png">
+
+
+<link rel="canonical" href="https://www.iamlay.com/post/Jenkins/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://www.iamlay.com/post/Jenkins/","path":"post/Jenkins/","title":"Jenkins自动打包搭建之路"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>Jenkins自动打包搭建之路 | 以技术之名</title>
+  <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-170943611-2"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-170943611-2');
+</script>
+  <script src="/js/third-party/analytics/baidu-analytics.js"></script>
+  <script async src="https://hm.baidu.com/hm.js?2fdaf8ee633a188c5649eefea79b28b3"></script>
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<!-- hexo injector head_end start --><script async defer data-website-id="fad553b1-b94d-4311-8d52-913dc067e883" src="https://tongji.iamlay.com/script.js"></script><!-- hexo injector head_end end --></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">以技术之名</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">以技术之名</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-chatgpt"><a href="/chatgpt" rel="section"><i class="fa fa-comment-dots fa-fw"></i>AI体验</a></li><li class="menu-item menu-item-sitemap"><a href="/sitemap.xml" rel="section"><i class="fa fa-sitemap fa-fw"></i>站点地图</a></li><li class="menu-item menu-item-links"><a href="/links/" rel="section"><i class="fa fa-link fa-fw"></i>友情链接</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E6%8C%81%E7%BB%AD%E9%9B%86%E6%88%90"><span class="nav-number">1.</span> <span class="nav-text">什么是持续集成</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E4%BD%BF%E7%94%A8%E6%8C%81%E7%BB%AD%E9%9B%86%E6%88%90"><span class="nav-number">2.</span> <span class="nav-text">为什么使用持续集成</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%8E%AF%E5%A2%83%E5%87%86%E5%A4%87%E6%AD%A5%E9%AA%A4"><span class="nav-number">3.</span> <span class="nav-text">环境准备步骤</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%89%E8%A3%85GitLab%E6%8F%92%E4%BB%B6"><span class="nav-number">4.</span> <span class="nav-text">安装GitLab插件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%89%E8%A3%85Xcode%E6%8F%92%E4%BB%B6"><span class="nav-number">5.</span> <span class="nav-text">安装Xcode插件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%89%E8%A3%85%E7%AD%BE%E5%90%8D%E8%AF%81%E4%B9%A6%E7%AE%A1%E7%90%86%E6%8F%92%E4%BB%B6"><span class="nav-number">6.</span> <span class="nav-text">安装签名证书管理插件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%89%E8%A3%85%E8%84%9A%E6%9C%AC%E6%8F%92%E4%BB%B6"><span class="nav-number">7.</span> <span class="nav-text">安装脚本插件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9E%84%E5%BB%BA%E7%8E%AF%E5%A2%83%E8%AE%BE%E7%BD%AE"><span class="nav-number">8.</span> <span class="nav-text">构建环境设置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%84%9A%E6%9C%AC%E5%86%85%E5%AE%B9"><span class="nav-number">9.</span> <span class="nav-text">脚本内容</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#plist%E5%86%85%E5%AE%B9"><span class="nav-number">10.</span> <span class="nav-text">plist内容</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9E%84%E5%BB%BA%E5%90%8E%EF%BC%8C%E5%B0%86ipa%E5%8C%85%E4%B8%8A%E4%BC%A0%E5%88%B0%E8%92%B2%E5%85%AC%E8%8B%B1"><span class="nav-number">11.</span> <span class="nav-text">构建后，将ipa包上传到蒲公英</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9E%84%E5%BB%BA%E5%90%8E%E8%84%9A%E6%9C%AC%E5%86%85%E5%AE%B9"><span class="nav-number">12.</span> <span class="nav-text">构建后脚本内容</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Jenkins%E8%87%AA%E5%8A%A8%E6%89%93%E5%8C%85%EF%BC%8C%E6%96%AD%E6%96%AD%E7%BB%AD%E7%BB%AD%E6%8C%81%E7%BB%AD%E4%BA%86%E4%B8%80%E5%B9%B4%E6%89%8D%E6%88%90%E5%8A%9F%EF%BC%8C%E5%BC%80%E5%A7%8B%E7%9A%84%E6%97%B6%E5%80%99%E4%B8%80%E7%9B%B4%E5%A4%B1%E8%B4%A5%EF%BC%8C%E4%B8%AD%E9%97%B4%E4%B8%80%E6%AE%B5%E6%97%B6%E9%97%B4%E5%9B%A0%E4%B8%BA%E6%B2%A1%E6%9C%89%E6%97%B6%E9%97%B4%E5%B0%9D%E8%AF%95%EF%BC%8C%E6%9C%80%E8%BF%91%E9%87%8D%E6%96%B0%E6%8B%BE%E8%B5%B7%E6%9D%A5%E4%BA%86%E3%80%82%E9%81%87%E5%88%B0%E7%9A%84%E5%9D%91%EF%BC%8C%E6%88%91%E6%83%B3%E8%B5%B7%E6%9D%A5%E7%9A%84%E6%97%B6%E5%80%99%EF%BC%8C%E4%BC%9A%E6%8C%81%E7%BB%AD%E8%A1%A5%E5%85%85"><span class="nav-number">13.</span> <span class="nav-text">Jenkins自动打包，断断续续持续了一年才成功，开始的时候一直失败，中间一段时间因为没有时间尝试，最近重新拾起来了。遇到的坑，我想起来的时候，会持续补充</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8F%82%E8%80%83"><span class="nav-number">14.</span> <span class="nav-text">参考</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Ray</p>
+  <div class="site-description" itemprop="description">为信仰而生</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">45</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">12</span>
+        <span class="site-state-item-name">分类</span>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">9</span>
+        <span class="site-state-item-name">标签</span>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2lhbWxheQ==" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;iamlay"><i class="fab fa-github fa-fw"></i>GitHub</span>
+      </span>
+      <span class="links-of-author-item">
+        <span class="exturl" data-url="bWFpbHRvOjExODcwNzQ1NDNAcXEuY29t" title="E-Mail → mailto:1187074543@qq.com"><i class="fa fa-envelope fa-fw"></i>E-Mail</span>
+      </span>
+  </div>
+
+
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://www.iamlay.com/post/Jenkins/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Ray">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="以技术之名">
+      <meta itemprop="description" content="为信仰而生">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="Jenkins自动打包搭建之路 | 以技术之名">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Jenkins自动打包搭建之路
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2018-04-21 00:00:00" itemprop="dateCreated datePublished" datetime="2018-04-21T00:00:00+08:00">2018-04-21</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2024-01-24 18:19:34" itemprop="dateModified" datetime="2024-01-24T18:19:34+08:00">2024-01-24</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/iOS/" itemprop="url" rel="index"><span itemprop="name">iOS</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+</div>
+
+	
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <blockquote>
+<p>本文的大部分步骤参考的是<span class="exturl" data-url="aHR0cHM6Ly9oYWxmcm9zdC5jb20vaW9zX2plbmtpbnMv">一缕殇流化隐半边冰霜的博客<i class="fa fa-external-link-alt"></i></span>，所以截图和很多步骤都是直接拷贝的该博客，然后补充了自己踩的一些坑。最后的脚本问题我没有拷贝过来，如果大家希望有所了解，可以去原博客，本文主要是个人以后回忆所用</p>
+</blockquote>
+<span id="more"></span>
+
+<h3 id="什么是持续集成"><a href="#什么是持续集成" class="headerlink" title="什么是持续集成"></a>什么是持续集成</h3><blockquote>
+<p>持续集成是一种软件开发实践，即团队开发成员经常集成它们的工作，通过每个成员每天至少集成一次，也就意味着每天可能会发生多次集成。每次集成都通过自动化的构建（包括编译，发布，自动化测试）来验证，从而尽早地发现集成错误。</p>
+</blockquote>
+<h3 id="为什么使用持续集成"><a href="#为什么使用持续集成" class="headerlink" title="为什么使用持续集成"></a>为什么使用持续集成</h3><ol>
+<li>减少重复过程</li>
+<li>减少风险</li>
+<li>任何时间、任何地点生成可部署的软件</li>
+<li>增强项目的可见性</li>
+</ol>
+<h3 id="环境准备步骤"><a href="#环境准备步骤" class="headerlink" title="环境准备步骤"></a>环境准备步骤</h3><p>现在我们来开始安装Jenkins。从<span class="exturl" data-url="aHR0cHM6Ly9qZW5raW5zLmlvL3poLw==">官网<i class="fa fa-external-link-alt"></i></span> 上下载最新的pkg安装包。但是，这个时候直接安装是装不上的，Jenkins依赖于Java运行环境，因此需要首先安装<span class="exturl" data-url="aHR0cHM6Ly93d3cub3JhY2xlLmNvbS9qYXZhL3RlY2hub2xvZ2llcy9qYXZhc2UtamRrOC1kb3dubG9hZHMuaHRtbA==">Java的SDK<i class="fa fa-external-link-alt"></i></span>。</p>
+<p>下载JAVA的SDK，并安装。安装完成后，打开终端，cd进入到jenkins.war包所在目录，执行以下命令：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">java -jar jenkins.war --httpPort=8080</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>httpPort指的就是Jenkins所使用的http端口，这里指定8080(默认的就是这个)，可根据具体情况来修改。待Jenkins启动后，在浏览器页面输入以下地址:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://localhost:8080</span><br></pre></td></tr></table></figure>
+
+<p>这样就打开Jenkins管理页面了。这个时候Jenkins给你新增了一个用户，名字就叫Jenkins，不过这个时候你不知道密码。你可能会去试密码，肯定是是不对的，因为初始密码很复杂。这个时候正确做法是打开<code>http://localhost:8080</code> 会出现下图的重设初始密码的界面。</p>
+<p><img src="https://testingcf.jsdelivr.net/gh/iamlay/BlogResources@main/imgs/jenkins/jenkins02.png"></p>
+<p>按照提示，找到<code>/Users/Shared/Jenkins/Home/</code>这个目录下，这个目录虽然是共享目录，但是有权限的，非Jenkins用户&#x2F;secrets&#x2F;目录是没有读写权限的。<br><img src="https://testingcf.jsdelivr.net/gh/iamlay/BlogResources@main/imgs/jenkins/jenkins03.png"><br><img src="https://testingcf.jsdelivr.net/gh/iamlay/BlogResources@main/imgs/jenkins/jenkins04.png"></p>
+<p>打开initialAdminPassword文件，复制出密码，就可以填到网页上去重置密码了。如下图<br><img src="https://testingcf.jsdelivr.net/gh/iamlay/BlogResources@main/imgs/jenkins/jenkins05.png"><br><img src="https://testingcf.jsdelivr.net/gh/iamlay/BlogResources@main/imgs/jenkins/jenkins06.png"></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/iamlay/BlogResources@main/imgs/jenkins/jenkins07.png"><br><img src="https://testingcf.jsdelivr.net/gh/iamlay/BlogResources@main/imgs/jenkins/jenkins08.png"><br><img src="https://testingcf.jsdelivr.net/gh/iamlay/BlogResources@main/imgs/jenkins/jenkins09.png"></p>
+<p>一路安装过来，输入用户名，密码，邮件这些，就算安装完成了。Jenkins安装完成之后，需要安装一些插件。</p>
+<h3 id="安装GitLab插件"><a href="#安装GitLab插件" class="headerlink" title="安装GitLab插件"></a>安装GitLab插件</h3><p>GitLab用来管理源代码，Jenkins本身并没有自带GitLab插件，所以我们需要依次选择 系统管理-&gt;管理插件，在“可选插件”中选中<code>“GitLab Plugin”</code>和<code>“Gitlab Hook Plugin”</code>这两项，然后安装。</p>
+<h3 id="安装Xcode插件"><a href="#安装Xcode插件" class="headerlink" title="安装Xcode插件"></a>安装Xcode插件</h3><p>同安装GitLab插件的步骤一样，我们依次选择系统管理-&gt;管理插件，在“可选插件”中选中<code>“Xcode integration”</code>安装。</p>
+<h3 id="安装签名证书管理插件"><a href="#安装签名证书管理插件" class="headerlink" title="安装签名证书管理插件"></a>安装签名证书管理插件</h3><p>OS打包内测版时，需要发布证书及相关签名文件，因此这两个插件对于管理iOS证书非常方便。还是在系统管理-&gt;管理插件，在“可选插件”中选中<code>“Credentials Plugin”</code>和<code>“Keychains and Provisioning Profiles Management”</code>安装。</p>
+<h3 id="安装脚本插件"><a href="#安装脚本插件" class="headerlink" title="安装脚本插件"></a>安装脚本插件</h3><p>这个插件的功能主要是用于在build后执行相关脚本。在系统管理-&gt;管理插件，在“可选插件”中选中<code>“Post-Build Script Plug-in”</code>安装。</p>
+<p>安装完了插件，我们就可以配置一个构建项目了。</p>
+<p><img src="https://testingcf.jsdelivr.net/gh/iamlay/BlogResources@main/imgs/jenkins/jenkins10.png"><br><img src="https://testingcf.jsdelivr.net/gh/iamlay/BlogResources@main/imgs/jenkins/jenkins11.png"></p>
+<p>点击新建好的项目，进来配置一下General参数。<br>接着设置源码管理。<br>由于现在我用到的是Github，在Jenkins的证书管理中添加账号、密码。在Jenkins管理页面，选择<code>“Credentials”</code>，然后选择<code>“Global credentials (unrestricted)”</code>，点击<code>“Add Credentials”</code>，如下图所示，我们填写自己的账号密码信息，然后点击<code>“Save”</code>，这样就把账号密码添加到Jenkins的全局域中去了</p>
+<p><img src="https://testingcf.jsdelivr.net/gh/iamlay/BlogResources@main/imgs/jenkins/jenkins12.png"></p>
+<p>如果正常的配置正确的话，是不会出现下图中的那段红色的警告。如果有下图的提示，就说明Jenkins还没有连通Github或者SVN，那就请再检查账号密码是否配置正确。</p>
+<p><img src="https://testingcf.jsdelivr.net/gh/iamlay/BlogResources@main/imgs/jenkins/jenkins13.png"></p>
+<p>构建触发器设置这里是设置自动化测试的地方。这里涉及的内容很多，暂时我也没有深入研究，这里暂时先不设置。有自动化测试需求的可以好好研究研究这里的设置。<br>不过这里有两个配置还是需要是配置的<br><code>Poll SCM (poll source code management) </code>轮询源码管理<br>需要设置源码的路径才能起到轮询的效果。一般设置为类似结果： 0&#x2F;5 每5分钟轮询一次<br><code>Build periodically </code>(定时build)<br>一般设置为类似： 00 20 * 每天 20点执行定时build 。当然两者的设置都是一样可以通用的。</p>
+<p>格式是这样的</p>
+<p>分钟(0-59) 小时(0-23) 日期(1-31) 月(1-12) 周几(0-7,0和7都是周日)</p>
+<p><img src="https://testingcf.jsdelivr.net/gh/iamlay/BlogResources@main/imgs/jenkins/jenkins14.png"></p>
+<h3 id="构建环境设置"><a href="#构建环境设置" class="headerlink" title="构建环境设置"></a>构建环境设置</h3><p>iOS打包需要签名文件和证书，所以这部分我们勾选<code>“Keychains and Code Signing Identities”</code>和<code>“Mobile Provisioning Profiles”</code>。<br>这里我们又需要用到Jenkins的插件，在系统管理页面，选择<code>“Keychains and Provisioning Profiles Management”</code>。</p>
+<p><img src="https://testingcf.jsdelivr.net/gh/iamlay/BlogResources@main/imgs/jenkins/jenkins15.png"></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/iamlay/BlogResources@main/imgs/jenkins/jenkins16.png"></p>
+<p>注意：这里可以上传的一种是<code>login.keychain</code>文件一种是<code>ProvisioningProfiles</code>文件。这里需要的Keychain，并不是cer证书文件。这个Keychain其实在&#x2F;Users&#x2F;管理员用户名<code>/Library/keychains/login.keychain</code>,当把这个Keychain设置好了之后，Jenkins会把这个Keychain拷贝到<code>/Users/Shared/Jenkins/Library/keychains</code>这里，(Library是隐藏文件)。Tips:后面的Code Signing Identity里面的开发者账号是手写的，而不是上传完keychain文件之后，自动识别的，这里坑了我好久</p>
+<p>找到对应的<code>Provisioning Profiles</code>文件(这个文件不是直接在开发者平台下载下来的文件名字，而是安装到本地之后的文件名)上传之后， <code>Provisioning Profiles</code>也直接拷贝到<code>/Users/Shared/Jenkins/Library/MobileDevic</code>e文件目录下。</p>
+<p>Tips: 如图的那个路径也是填写的，而不是上传后直接识别的，同上。</p>
+<p>这样证书和签名文件就在Jenkins中配置好了，接下来我们只需要在item设置中指定相关文件即可。 回到我们新建的item，找到构建环境，按下图选好自己的相关证书和签名文件。Tips：在这里有时候你发现上传完上面的文件并填写完相应的账号和路径之后，点击下拉箭头，啥都没有，这个时候点击保存，然后退出，从新进来配置，多试几次。</p>
+<p><img src="https://testingcf.jsdelivr.net/gh/iamlay/BlogResources@main/imgs/jenkins/jenkins17.png"></p>
+<p>接下来在进行构建的设置，这里没有用Xcode插件，用的是执行脚本。我本地项目Xcode证书和描述文件不是自动配置的，而是手动选择的。本地配置好之后，一定要执行git上传到远程仓库。</p>
+<p>在导出ipa包的时候，注意xcodebuild 命令，里面选项配置是一个plist文件，我在下面贴出来plist内容</p>
+<p><img src="https://testingcf.jsdelivr.net/gh/iamlay/BlogResources@main/imgs/jenkins/jenkins18.png"></p>
+<h3 id="脚本内容"><a href="#脚本内容" class="headerlink" title="脚本内容"></a>脚本内容</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"># 工程名</span><br><span class="line">APP_NAME=&quot;KIFTestDemo&quot;  </span><br><span class="line"># 证书</span><br><span class="line">CODE_SIGN_DISTRIBUTION=&quot;iPhone Distribution: China Mobile Group Guangdong Company Limited&quot;  </span><br><span class="line"># info.plist路径</span><br><span class="line">project_infoplist_path=&quot;./$&#123;APP_NAME&#125;/Info.plist&quot;</span><br><span class="line">#取版本号</span><br><span class="line">bundleShortVersion=$(/usr/libexec/PlistBuddy -c &quot;print CFBundleShortVersionString&quot; &quot;$&#123;project_infoplist_path&#125;&quot;)</span><br><span class="line">#取build值</span><br><span class="line">bundleVersion=$(/usr/libexec/PlistBuddy -c &quot;print CFBundleVersion&quot; &quot;$&#123;project_infoplist_path&#125;&quot;)</span><br><span class="line">DATE=&quot;$(date +%Y%m%d)&quot;  </span><br><span class="line">IPANAME=&quot;$&#123;APP_NAME&#125;_V$&#123;bundleShortVersion&#125;_$&#123;DATE&#125;.ipa&quot;</span><br><span class="line">#要上传的ipa文件路径</span><br><span class="line">IPA_PATH=&quot;$HOME/$&#123;IPANAME&#125;&quot;  </span><br><span class="line">echo $&#123;IPA_PATH&#125;  </span><br><span class="line">echo &quot;$&#123;IPA_PATH&#125;&quot;&gt;&gt; text.txt</span><br><span class="line">RchivePath=&quot;./KIFTestDemo.xcarchive&quot;</span><br><span class="line">IPAPath=&quot;./KIFTestDemoipa&quot;</span><br><span class="line">optionsPlist=&quot;./EnterpriseExportOptions.plist&quot;  </span><br><span class="line">echo &quot;=================clean=================&quot;  </span><br><span class="line">xcodebuild clean -workspace &quot;$&#123;APP_NAME&#125;.xcworkspace&quot; -scheme &quot;$&#123;APP_NAME&#125;&quot;  -configuration &#x27;Release&#x27; clean</span><br><span class="line">echo &quot;+++++++++++++++++build+++++++++++++++++&quot;  </span><br><span class="line">xcodebuild archive -workspace &quot;$&#123;APP_NAME&#125;.xcworkspace&quot; -scheme &quot;$&#123;APP_NAME&#125;&quot; -sdk iphoneos -configuration &#x27;Release&#x27; -archivePath $RchivePath</span><br><span class="line">xcodebuild -exportArchive -archivePath $RchivePath -exportPath $IPAPath   -exportOptionsPlist $optionsPlist</span><br><span class="line">plist内容</span><br></pre></td></tr></table></figure>
+
+<h3 id="plist内容"><a href="#plist内容" class="headerlink" title="plist内容"></a>plist内容</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span><br><span class="line">&lt;!DOCTYPE plist PUBLIC &quot;-//Apple//DTD PLIST 1.0//EN&quot; &quot;http://www.apple.com/DTDs/PropertyList-1.0.dtd&quot;&gt;</span><br><span class="line">&lt;plist version=&quot;1.0&quot;&gt;</span><br><span class="line">&lt;dict&gt;</span><br><span class="line">&lt;key&gt;compileBitcode&lt;/key&gt;</span><br><span class="line">&lt;false/&gt;</span><br><span class="line">&lt;key&gt;provisioningProfiles&lt;/key&gt;</span><br><span class="line">&lt;dict&gt;</span><br><span class="line">&lt;key&gt;com.gmcc.gdmobileimoa&lt;/key&gt;</span><br><span class="line">&lt;string&gt;ee4c1dc2-cf62-41d5-9871-93f0abbacad5&lt;/string&gt;</span><br><span class="line">&lt;/dict&gt;</span><br><span class="line">&lt;key&gt;method&lt;/key&gt;</span><br><span class="line">&lt;string&gt;enterprise&lt;/string&gt;</span><br><span class="line">&lt;/dict&gt;</span><br><span class="line">&lt;/plist&gt;</span><br></pre></td></tr></table></figure>
+<h3 id="构建后，将ipa包上传到蒲公英"><a href="#构建后，将ipa包上传到蒲公英" class="headerlink" title="构建后，将ipa包上传到蒲公英"></a>构建后，将ipa包上传到蒲公英</h3><p><img src="https://testingcf.jsdelivr.net/gh/iamlay/BlogResources@main/imgs/jenkins/jenkins19.png"></p>
+<h3 id="构建后脚本内容"><a href="#构建后脚本内容" class="headerlink" title="构建后脚本内容"></a>构建后脚本内容</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">蒲公英上的User Key</span><br><span class="line">uKey=&quot;24d26944ee1ffacec4faeb1ac73a0a48&quot;</span><br><span class="line">#蒲公英上的API Key</span><br><span class="line">apiKey=&quot;8d418599c52f8bf47f6cd7db1c3116b7&quot;</span><br><span class="line">#要上传的ipa文件路径</span><br><span class="line">IPA_PATH=&quot;./KIFTestDemoipa/KIFTestDemo.ipa&quot;</span><br><span class="line">#执行上传至蒲公英的命令</span><br><span class="line">echo &quot;++++++++++++++upload+++++++++++++&quot;</span><br><span class="line">curl -F &quot;file=@$&#123;IPA_PATH&#125;&quot; -F &quot;uKey=$&#123;uKey&#125;&quot; -F &quot;_api_key=$&#123;apiKey&#125;&quot; http://www.pgyer.com/apiv1/app/upload</span><br></pre></td></tr></table></figure>
+<p>这里我们选择<code>Execute a set of scripts</code>，这里也是一个脚本，这个脚本用来上传自动打包好的ipa文件。</p>
+<p>至此，我们的Jenkins设置就全部完成了。点击构建，就会开始构建项目了。</p>
+<p>构建一次，各个颜色代表的意义如下：</p>
+<p><img src="https://testingcf.jsdelivr.net/gh/iamlay/BlogResources@main/imgs/jenkins/jenkins20.png"></p>
+<p>如果构建失败了，可以去查看Console Output可以查看log日志。</p>
+<p><img src="https://testingcf.jsdelivr.net/gh/iamlay/BlogResources@main/imgs/jenkins/jenkins21.png"></p>
+<h3 id="Jenkins自动打包，断断续续持续了一年才成功，开始的时候一直失败，中间一段时间因为没有时间尝试，最近重新拾起来了。遇到的坑，我想起来的时候，会持续补充"><a href="#Jenkins自动打包，断断续续持续了一年才成功，开始的时候一直失败，中间一段时间因为没有时间尝试，最近重新拾起来了。遇到的坑，我想起来的时候，会持续补充" class="headerlink" title="Jenkins自动打包，断断续续持续了一年才成功，开始的时候一直失败，中间一段时间因为没有时间尝试，最近重新拾起来了。遇到的坑，我想起来的时候，会持续补充"></a>Jenkins自动打包，断断续续持续了一年才成功，开始的时候一直失败，中间一段时间因为没有时间尝试，最近重新拾起来了。遇到的坑，我想起来的时候，会持续补充</h3><h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><p><span class="exturl" data-url="aHR0cHM6Ly9oYWxmcm9zdC5jb20vaW9zX2plbmtpbnMv">手把手教你利用 Jenkins 持续集成 iOS 项目<i class="fa fa-external-link-alt"></i></span></p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="reward-container">
+  <div>如果觉得我的文章对您有用，请随意打赏。您的支持将鼓励我继续创作！</div>
+  <button>
+    赞赏
+  </button>
+  <div class="post-reward">
+      <div>
+        <img src="/images/wechatpay.png" alt="Ray 微信">
+        <span>微信</span>
+      </div>
+
+  </div>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/%E5%8E%9F%E5%88%9B/" rel="tag"># 原创</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/post/OCSQLCipher/" rel="prev" title="OCSQLCipher">
+                  <i class="fa fa-chevron-left"></i> OCSQLCipher
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/post/MakeCocoapods/" rel="next" title="用Cocoapods制作属于自己的仓库">
+                  用Cocoapods制作属于自己的仓库 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    <div class="comments gitalk-container"></div>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2025</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Ray</span>
+</div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+  <div class="powered-by">由 <span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlv">Hexo</span> & <span class="exturl" data-url="aHR0cHM6Ly90aGVtZS1uZXh0LmpzLm9yZw==">NexT.Gemini</span> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+<script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.0/search.js" integrity="sha256-vXZMYLEqsROAXkEw93GGIvaB2ab+QW6w3+1ahD9nXXA=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.8.0/gitalk.css" integrity="sha256-AJnUHL7dBv6PGaeyPQJcgQPDjt/Hn/PvYZde1iqfp8U=" crossorigin="anonymous">
+
+<script class="next-config" data-name="gitalk" type="application/json">{"enable":true,"github_id":"iamlay","repo":"gitalk","client_id":"798848f6f91162435156","client_secret":"d9b621213c7353cfa8b2286491f877ef4507da1e","admin_user":"iamlay","distraction_free_mode":true,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token","language":"zh-CN","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.8.0/gitalk.min.js","integrity":"sha256-MVK9MGD/XJaGyIghSVrONSnoXoGh3IFxLw0zfvzpxR4="},"path_md5":"91628d2318c5f4590bc05f0147895f98"}</script>
+<script src="/js/third-party/comments/gitalk.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.3.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+  <meta name="google-site-verification" content="bdLSZKDAikc4SOPIlDwwuSFBawDGQU3GmqUWTzUM-rE">
+  <meta name="baidu-site-verification" content="codeva-lCWvLLHuj5">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3825645052664031"
+     crossorigin="anonymous"></script>
+  <meta name="baidu-site-verification" content="true">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha256-AbA177XfpSnFEvgpYu1jMygiLabzPCJCRIBtR5jGc0k=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"www.iamlay.com","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.13.1","exturl":true,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"gitalk","storage":true,"lazyload":false,"nav":{"gitalk":{"ordcer":-1}},"activeClass":"gitalk"},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="本文是笔者在对公司的App进行瘦身瘦身时候的一些实践，主要从资源文件、代码瘦身、编译三个方向上进行，希望对有需求的人有所帮助。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="以技术之名周报05#ipa包“瘦身”| 2020-04-26">
+<meta property="og:url" content="https://www.iamlay.com/post/week17/index.html">
+<meta property="og:site_name" content="以技术之名">
+<meta property="og:description" content="本文是笔者在对公司的App进行瘦身瘦身时候的一些实践，主要从资源文件、代码瘦身、编译三个方向上进行，希望对有需求的人有所帮助。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://www.iamlay.com/week1701.png">
+<meta property="og:image" content="https://www.iamlay.com/week1702.png">
+<meta property="og:image" content="https://www.iamlay.com/week1703.png">
+<meta property="og:image" content="https://www.iamlay.com/week1704.png">
+<meta property="og:image" content="https://www.iamlay.com/week1705.png">
+<meta property="article:published_time" content="2020-04-26T03:52:04.000Z">
+<meta property="article:modified_time" content="2023-03-22T05:29:58.975Z">
+<meta property="article:author" content="Ray">
+<meta property="article:tag" content="原创">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://www.iamlay.com/week1701.png">
+
+
+<link rel="canonical" href="https://www.iamlay.com/post/week17/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://www.iamlay.com/post/week17/","path":"post/week17/","title":"以技术之名周报05#ipa包“瘦身”| 2020-04-26"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>以技术之名周报05#ipa包“瘦身”| 2020-04-26 | 以技术之名</title>
+  <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-170943611-2"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-170943611-2');
+</script>
+  <script src="/js/third-party/analytics/baidu-analytics.js"></script>
+  <script async src="https://hm.baidu.com/hm.js?2fdaf8ee633a188c5649eefea79b28b3"></script>
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<!-- hexo injector head_end start --><script async defer data-website-id="fad553b1-b94d-4311-8d52-913dc067e883" src="https://tongji.iamlay.com/script.js"></script><!-- hexo injector head_end end --></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">以技术之名</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">以技术之名</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-chatgpt"><a href="/chatgpt" rel="section"><i class="fa fa-comment-dots fa-fw"></i>AI体验</a></li><li class="menu-item menu-item-sitemap"><a href="/sitemap.xml" rel="section"><i class="fa fa-sitemap fa-fw"></i>站点地图</a></li><li class="menu-item menu-item-links"><a href="/links/" rel="section"><i class="fa fa-link fa-fw"></i>友情链接</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%83%8C%E6%99%AF%EF%BC%9A"><span class="nav-number">1.</span> <span class="nav-text">背景：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Part01-%E7%98%A6%E8%BA%AB%E6%96%B9%E5%90%91"><span class="nav-number">2.</span> <span class="nav-text">Part01 - 瘦身方向</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AE%89%E8%A3%85%E5%8C%85%E7%BB%84%E6%88%90"><span class="nav-number">2.1.</span> <span class="nav-text">安装包组成</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AE%89%E8%A3%85%E5%8C%85%E4%BC%98%E5%8C%96%E5%88%86%E6%9E%90"><span class="nav-number">2.2.</span> <span class="nav-text">安装包优化分析</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Part02-%E7%98%A6%E8%BA%AB%E5%AE%9E%E6%96%BD"><span class="nav-number">3.</span> <span class="nav-text">Part02 - 瘦身实施</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%9B%BE%E7%89%87%E8%B5%84%E6%BA%90%E4%BC%98%E5%8C%96"><span class="nav-number">3.1.</span> <span class="nav-text">图片资源优化</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1%E2%83%A3%EF%B8%8F%EF%B8%8F%E5%B0%86%E9%83%A8%E5%88%86%E5%9B%BE%E7%89%87%E8%B5%84%E6%BA%90%E6%94%BE%E5%88%B0%E6%9C%8D%E5%8A%A1%E5%99%A8%E4%B8%8A"><span class="nav-number">3.1.1.</span> <span class="nav-text">1⃣️️将部分图片资源放到服务器上</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2%E2%83%A3%EF%B8%8F%E6%B8%85%E7%90%86%E6%B2%A1%E7%94%A8%E7%9A%84%E5%9B%BE%E7%89%87%E8%B5%84%E6%BA%90"><span class="nav-number">3.1.2.</span> <span class="nav-text">2⃣️清理没用的图片资源</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3%E2%83%A3%EF%B8%8F%E5%9B%BE%E7%89%87%E8%B5%84%E6%BA%90%E5%8E%8B%E7%BC%A9"><span class="nav-number">3.1.3.</span> <span class="nav-text">3⃣️图片资源压缩</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#4%E2%83%A3%EF%B8%8Ficonfont"><span class="nav-number">3.1.4.</span> <span class="nav-text">4⃣️iconfont</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%8F%AF%E6%89%A7%E8%A1%8C%E6%96%87%E4%BB%B6-Mach-O-%E4%BC%98%E5%8C%96"><span class="nav-number">3.2.</span> <span class="nav-text">可执行文件(Mach-O)优化</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1%E2%83%A3%EF%B8%8FLinkMap%E6%96%87%E4%BB%B6"><span class="nav-number">3.2.1.</span> <span class="nav-text">1⃣️LinkMap文件</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2%E2%83%A3%EF%B8%8F%E5%B0%BD%E9%87%8F%E4%B8%8D%E8%A6%81%E4%BD%BF%E7%94%A8OC%E5%92%8CSwift%E6%B7%B7%E7%BC%96"><span class="nav-number">3.2.2.</span> <span class="nav-text">2⃣️尽量不要使用OC和Swift混编</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3%E2%83%A3%EF%B8%8F%E4%BB%A3%E7%A0%81%E7%98%A6%E8%BA%AB"><span class="nav-number">3.2.3.</span> <span class="nav-text">3⃣️代码瘦身</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%BC%96%E8%AF%91%E4%BC%98%E5%8C%96"><span class="nav-number">3.3.</span> <span class="nav-text">编译优化</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1%E2%83%A3%EF%B8%8FBitCode"><span class="nav-number">3.3.1.</span> <span class="nav-text">1⃣️BitCode</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Part03-%E5%8F%82%E8%80%83"><span class="nav-number">4.</span> <span class="nav-text">Part03- 参考</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Ray</p>
+  <div class="site-description" itemprop="description">为信仰而生</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">45</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">12</span>
+        <span class="site-state-item-name">分类</span>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">9</span>
+        <span class="site-state-item-name">标签</span>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2lhbWxheQ==" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;iamlay"><i class="fab fa-github fa-fw"></i>GitHub</span>
+      </span>
+      <span class="links-of-author-item">
+        <span class="exturl" data-url="bWFpbHRvOjExODcwNzQ1NDNAcXEuY29t" title="E-Mail → mailto:1187074543@qq.com"><i class="fa fa-envelope fa-fw"></i>E-Mail</span>
+      </span>
+  </div>
+
+
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://www.iamlay.com/post/week17/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Ray">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="以技术之名">
+      <meta itemprop="description" content="为信仰而生">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="以技术之名周报05#ipa包“瘦身”| 2020-04-26 | 以技术之名">
+      <meta itemprop="description" content="本文是笔者在对公司的App进行瘦身瘦身时候的一些实践，主要从资源文件、代码瘦身、编译三个方向上进行，希望对有需求的人有所帮助。">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          以技术之名周报05#ipa包“瘦身”| 2020-04-26
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2020-04-26 11:52:04" itemprop="dateCreated datePublished" datetime="2020-04-26T11:52:04+08:00">2020-04-26</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2023-03-22 13:29:58" itemprop="dateModified" datetime="2023-03-22T13:29:58+08:00">2023-03-22</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/iOS/" itemprop="url" rel="index"><span itemprop="name">iOS</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+</div>
+
+	
+            <div class="post-description">本文是笔者在对公司的App进行瘦身瘦身时候的一些实践，主要从资源文件、代码瘦身、编译三个方向上进行，希望对有需求的人有所帮助。</div>
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h3 id="背景："><a href="#背景：" class="headerlink" title="背景："></a>背景：</h3><blockquote>
+<p>随着App版本的不断迭代，安装包会越来越大。安装包的大小是非常影响用户体验的。在推广App的时候，如果安装包很大，需要花费很多的时间来下载，会劝退很多用户。所以，我们应当使安装包尽量小。</p>
+</blockquote>
+<span id="more"></span>
+<h3 id="Part01-瘦身方向"><a href="#Part01-瘦身方向" class="headerlink" title="Part01 - 瘦身方向"></a>Part01 - 瘦身方向</h3><h4 id="安装包组成"><a href="#安装包组成" class="headerlink" title="安装包组成"></a>安装包组成</h4><p>通过将导出的ipa包，用<code>归档工具</code>解压，在解压出的<code>payload</code>文件夹中得到App文件,查看App包含的内容，我们可以发现该文件主要包含以下内容：</p>
+<ol>
+<li>Exectutable-可执行文件</li>
+<li>Resources:资源文件<br>-  图片资源（Assets.car&#x2F;bundle&#x2F;png&#x2F;jpg）<br>-  音&#x2F;视频资源（mp&#x2F;mp4）<br>-  静态网页资源：html&#x2F;css&#x2F;js<br>-  其他：文本&#x2F;字体&#x2F;证书等</li>
+<li>Framework:<br>- SwiftSupport: libSwiftxxx 等一系列 Swift 库<br>- 其他依赖库：Embeded Framework</li>
+<li>Plugins: Application Extensions<br>- appex：其组成大致与 ipa 包组成一致</li>
+</ol>
+<h4 id="安装包优化分析"><a href="#安装包优化分析" class="headerlink" title="安装包优化分析"></a>安装包优化分析</h4><p> 在安装包中，可执行文件、图片资源和动态库占比较大，所以我们优化的重点就是这三个方向。</p>
+<p> <img src="/week1701.png"></p>
+<h3 id="Part02-瘦身实施"><a href="#Part02-瘦身实施" class="headerlink" title="Part02 - 瘦身实施"></a>Part02 - 瘦身实施</h3><h4 id="图片资源优化"><a href="#图片资源优化" class="headerlink" title="图片资源优化"></a>图片资源优化</h4><p>对大部分的App来讲，占比最大资源文件应该就是图片资源，所以资源文件优化的重点就是图片资源的优化。图片资源的优化可以从下面几个方向来进行。</p>
+<h5 id="1⃣️️将部分图片资源放到服务器上"><a href="#1⃣️️将部分图片资源放到服务器上" class="headerlink" title="1⃣️️将部分图片资源放到服务器上"></a>1⃣️️将部分图片资源放到服务器上</h5><p>将所有的图片资源都打到安装包中其实是不必要的，反而会造成安装包极速的增大，资源应该是按需加载的。除了一些常用的图片资源和一些如果放在线上非常影响用户体验的图片，其他的图片都应该放在资源服务器上，做好相应的图片缓存策略。</p>
+<h5 id="2⃣️清理没用的图片资源"><a href="#2⃣️清理没用的图片资源" class="headerlink" title="2⃣️清理没用的图片资源"></a>2⃣️清理没用的图片资源</h5><p>随着版本的迭代，之前导入的一些图片资源已经不再使用，要做到及时的清理没用的图片资源。<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3RpbnltaW5kL0xTVW51c2VkUmVzb3VyY2Vz">LSUnusedResources <i class="fa fa-external-link-alt"></i></span>是一款非常不错的无用图片查找工具，<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3RpbnltaW5kL0xTVW51c2VkUmVzb3VyY2Vz">LSUnusedResources <i class="fa fa-external-link-alt"></i></span>的思路是，先获取图片文件(imageset, jpg, png, gif)集合A，然后搜索代码文件中所有字符串名称得到B，然后从A集合中排除集合B就得到未使用的图片资源。</p>
+<h5 id="3⃣️图片资源压缩"><a href="#3⃣️图片资源压缩" class="headerlink" title="3⃣️图片资源压缩"></a>3⃣️图片资源压缩</h5><p>可以使用<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL0ltYWdlT3B0aW0vSW1hZ2VPcHRpbQ==">ImageOptim<i class="fa fa-external-link-alt"></i></span>，通过优化压缩参数，移除无用的文件元数据和不必要的颜色配置来实现图片的无损压缩。我们UI切图使用的是蓝湖，蓝湖也支持图片压缩，如果没有使用过的同学可以尝试。</p>
+<h5 id="4⃣️iconfont"><a href="#4⃣️iconfont" class="headerlink" title="4⃣️iconfont"></a>4⃣️iconfont</h5><p>即使经过了图片转下载，无用图片删除，但是工程中的图片数量还是极为可观，其中各种各样的icon图标占了不少的数量。为了进一步减少图片数量，可以使用<code>iconfont</code>方案， <code>iconfont</code>优点：</p>
+<ul>
+<li>矢量，缩放不失真</li>
+<li>可以设置颜色</li>
+<li>接入成本低，不需要引入额外的类库</li>
+</ul>
+<p><code>iconfont </code>可以解决因为icon大小，颜色不同而重新切图的窘境。<code>iconfont</code>是一个能减少图片数量的好方案。</p>
+<h4 id="可执行文件-Mach-O-优化"><a href="#可执行文件-Mach-O-优化" class="headerlink" title="可执行文件(Mach-O)优化"></a>可执行文件(Mach-O)优化</h4><h5 id="1⃣️LinkMap文件"><a href="#1⃣️LinkMap文件" class="headerlink" title="1⃣️LinkMap文件"></a>1⃣️LinkMap文件</h5><p>但是通过<code>MachOView</code>，是不可以查看每个静态文件喝每个.o文件的大小，所以我们需要想办法量化文件的大小,我们可以通过分析<code>LinkMap</code>文件做到。</p>
+<p><code>LinkMap</code>文件是Xcode产生可执行文件的同时生成的链接信息，用来描述可执行文件的构造成分，包括代码段（__TEXT）和数据段（__DATA）的分布情况，可以根据这些信息进行针对性的优化。</p>
+<ul>
+<li>LinkMap文件获取：</li>
+</ul>
+<ol>
+<li>设置<code>Project-&gt;Build Settings-&gt;Write Link Map File</code>为<code>YES</code></li>
+<li>设置<code>Project-&gt;Build Settings-&gt;Path to Link Map File</code>为LinkMap文件的输出路径</li>
+</ol>
+<ul>
+<li>LinkMap文件分析：</li>
+</ul>
+<p> 可以使用<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2h1YW54c2QvTGlua01hcA==">LinkMap - LinkMap.txt 文件解析工具<i class="fa fa-external-link-alt"></i></span>分析每个类或者静态库的大小。通过查看LinkMap文件，各个静态库和文件的大小一目了然。</p>
+<p>  <img src="/week1702.png" alt="Alt text"></p>
+<p> 1、 在选用三方库的时候，尽量使用占用内存比较小的三方库，及时的移除不再使用的三方库。<br>2、分析占用内存比较大的类，删除类中没用的代码，减少冗余，保证用最简代码实现相应的功能，提升代码的复用性。</p>
+<p><code>LinkMap</code>可以在宏观上获取需要优化的部分，但是微观上，哪些是无用的类和方法，需要我们在    <code>Mach-O</code>层面进行分析，可以使用<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2ZhbmdzaHVmZW5nL01hY2hPVmlldw==">MachOView <i class="fa fa-external-link-alt"></i></span>对<code>Mach-O</code>文件进行分析。可以通过阅读<span class="exturl" data-url="aHR0cDovL2hhd2swNjIwLmdpdGh1Yi5pby9ibG9nLzIwMTgvMDMvMjIvc3R1ZHktbWFjaC1vLWZpbGUv">这篇文章<i class="fa fa-external-link-alt"></i></span>探秘<code>Mach-O</code>。 下面这张图是<code>MachOView</code>查看<code>Mach-O</code>文件的截图：</p>
+<p><img src="/week1703.png" alt="Alt text"></p>
+<p>大家可以阅读<span class="exturl" data-url="aHR0cHM6Ly9qdWVqaW4uaW0vcG9zdC81ZDVkMWE5MmU1MWQ0NTYyMDkyMzg4NmE=">:删除无用的类<i class="fa fa-external-link-alt"></i></span>进行实践</p>
+<h5 id="2⃣️尽量不要使用OC和Swift混编"><a href="#2⃣️尽量不要使用OC和Swift混编" class="headerlink" title="2⃣️尽量不要使用OC和Swift混编"></a>2⃣️尽量不要使用OC和Swift混编</h5><p>OC和Swift混编的时候，因为需要一些静态库的支持，会造成安装包急剧增大。所以，尽量选择一种语言开发，不要采用混编的方式。<br><img src="/week1704.png" alt="Alt text"></p>
+<h5 id="3⃣️代码瘦身"><a href="#3⃣️代码瘦身" class="headerlink" title="3⃣️代码瘦身"></a>3⃣️代码瘦身</h5><p>可以使用<span class="exturl" data-url="aHR0cHM6Ly93d3cuamV0YnJhaW5zLmNvbS9vYmpjLw==">AppCode<i class="fa fa-external-link-alt"></i></span>进行代码的静态检查。<span class="exturl" data-url="aHR0cHM6Ly93d3cuamV0YnJhaW5zLmNvbS9vYmpjLw==">AppCode<i class="fa fa-external-link-alt"></i></span> 提供了非常强大的代码静态检查工具，使用<code>Inspect Code</code>，可以找到很多代码优化的地方:主要包括删除不用的类，不用的函数，重复的代码等。<br><img src="/week1705.png" alt="Alt text"></p>
+<h4 id="编译优化"><a href="#编译优化" class="headerlink" title="编译优化"></a>编译优化</h4><p>Xcode 支持编译器层面的一些优化优化选项，可以让我们介于更快的编译速度、更小的二进制大小和更快的执行速度之间自由选择想要进行的优化粒度。</p>
+<h5 id="1⃣️BitCode"><a href="#1⃣️BitCode" class="headerlink" title="1⃣️BitCode"></a>1⃣️BitCode</h5><p>可以在<code> Xcode Target -&gt; Build Settings -&gt; Enable Bitcode</code> 中打开 bitcode 选项</p>
+<p>Bitcode可以作为中间产物一起提交AppStore。包含Bitcode配置的程序将会在AppStore上被编译和链接。Bitcode允许苹果在后期重新优化我们程序的二进制文件，而不需要我们重新提交一个新的版本到AppStore上。</p>
+<p>在打包时，如果一些三方的依赖库没有开启 bitcode，或者开启了但是没有在最终引用的链接库中带有 bitcode，那么整个工程就无法用 bitcode 来编译了。</p>
+<h3 id="Part03-参考"><a href="#Part03-参考" class="headerlink" title="Part03- 参考"></a>Part03- 参考</h3><p><span class="exturl" data-url="aHR0cHM6Ly9qdWVqaW4uaW0vcG9zdC81Y2JiM2Y5MTUxODgyNTI5ZTU2MjdlY2U=">App瘦身小记<i class="fa fa-external-link-alt"></i></span><br><span class="exturl" data-url="aHR0cDovL3d3dy5jb2NvYWNoaW5hLmNvbS9hcnRpY2xlcy84NTkwMzI=">京东商城iOS App瘦身实践<i class="fa fa-external-link-alt"></i></span><br><span class="exturl" data-url="aHR0cHM6Ly93d3cuamlhbnNodS5jb20vcC9jOTRkZWRlZjkwYjc=">APP安装包瘦身实践<i class="fa fa-external-link-alt"></i></span><br><span class="exturl" data-url="aHR0cHM6Ly96aHVhbmxhbi56aGlodS5jb20vcC84NjMxNzY4OQ==">iOS开发：Archive、ipa 和 App 包瘦身<i class="fa fa-external-link-alt"></i></span><br><span class="exturl" data-url="aHR0cHM6Ly9qdWVqaW4uaW0vcG9zdC81ZTk2OWQ4MTZmYjlhMDNjNjAxODgyMjk/dXRtX3NvdXJjZT1nb2xkX2Jyb3dzZXJfZXh0ZW5zaW9u">APP体积优化<i class="fa fa-external-link-alt"></i></span></p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="reward-container">
+  <div>如果觉得我的文章对您有用，请随意打赏。您的支持将鼓励我继续创作！</div>
+  <button>
+    赞赏
+  </button>
+  <div class="post-reward">
+      <div>
+        <img src="/images/wechatpay.png" alt="Ray 微信">
+        <span>微信</span>
+      </div>
+
+  </div>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/%E5%8E%9F%E5%88%9B/" rel="tag"># 原创</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/post/week16/" rel="prev" title="以技术之名周报04#Sign in with Apple 设计原则| 2020-04-19">
+                  <i class="fa fa-chevron-left"></i> 以技术之名周报04#Sign in with Apple 设计原则| 2020-04-19
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/post/week19/" rel="next" title="以技术之名周报06#| ReactiveCocoa入门篇| 2020-05-10">
+                  以技术之名周报06#| ReactiveCocoa入门篇| 2020-05-10 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    <div class="comments gitalk-container"></div>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2025</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Ray</span>
+</div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+  <div class="powered-by">由 <span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlv">Hexo</span> & <span class="exturl" data-url="aHR0cHM6Ly90aGVtZS1uZXh0LmpzLm9yZw==">NexT.Gemini</span> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+<script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.0/search.js" integrity="sha256-vXZMYLEqsROAXkEw93GGIvaB2ab+QW6w3+1ahD9nXXA=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.8.0/gitalk.css" integrity="sha256-AJnUHL7dBv6PGaeyPQJcgQPDjt/Hn/PvYZde1iqfp8U=" crossorigin="anonymous">
+
+<script class="next-config" data-name="gitalk" type="application/json">{"enable":true,"github_id":"iamlay","repo":"gitalk","client_id":"798848f6f91162435156","client_secret":"d9b621213c7353cfa8b2286491f877ef4507da1e","admin_user":"iamlay","distraction_free_mode":true,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token","language":"zh-CN","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.8.0/gitalk.min.js","integrity":"sha256-MVK9MGD/XJaGyIghSVrONSnoXoGh3IFxLw0zfvzpxR4="},"path_md5":"039e7652b2d96a3e37ed42f95a20e11e"}</script>
+<script src="/js/third-party/comments/gitalk.js"></script>
+
+</body>
+</html>

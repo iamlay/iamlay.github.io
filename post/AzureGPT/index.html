@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.3.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+  <meta name="google-site-verification" content="bdLSZKDAikc4SOPIlDwwuSFBawDGQU3GmqUWTzUM-rE">
+  <meta name="baidu-site-verification" content="codeva-lCWvLLHuj5">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3825645052664031"
+     crossorigin="anonymous"></script>
+  <meta name="baidu-site-verification" content="true">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha256-AbA177XfpSnFEvgpYu1jMygiLabzPCJCRIBtR5jGc0k=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"www.iamlay.com","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.13.1","exturl":true,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"gitalk","storage":true,"lazyload":false,"nav":{"gitalk":{"ordcer":-1}},"activeClass":"gitalk"},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="目前，大部分朋友使用 ChatGPT 还是挺麻烦的，需要原生 IP 代理注册、扫码、搭建代理服务让国内可以访问等等（详细可以看之前的文章：ChatGPT 从注册到自建应用），还要小心翼翼防止被封，确实比较麻烦。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="基于 Azure OpenAI 免费注册使用 ChatGPT 教程">
+<meta property="og:url" content="https://www.iamlay.com/post/AzureGPT/index.html">
+<meta property="og:site_name" content="以技术之名">
+<meta property="og:description" content="目前，大部分朋友使用 ChatGPT 还是挺麻烦的，需要原生 IP 代理注册、扫码、搭建代理服务让国内可以访问等等（详细可以看之前的文章：ChatGPT 从注册到自建应用），还要小心翼翼防止被封，确实比较麻烦。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://testingcf.jsdelivr.net/gh/iamlay/BlogResources@main/imgs/azure/Azure01.png">
+<meta property="og:image" content="https://testingcf.jsdelivr.net/gh/iamlay/BlogResources@main/imgs/azure/Azure02.png">
+<meta property="og:image" content="https://testingcf.jsdelivr.net/gh/iamlay/BlogResources@main/imgs/azure/Azure03.png">
+<meta property="og:image" content="https://testingcf.jsdelivr.net/gh/iamlay/BlogResources@main/imgs/azure/Azure04.png">
+<meta property="og:image" content="https://testingcf.jsdelivr.net/gh/iamlay/BlogResources@main/imgs/azure/Azure05.png">
+<meta property="og:image" content="https://testingcf.jsdelivr.net/gh/iamlay/BlogResources@main/imgs/azure/Azure06.png">
+<meta property="og:image" content="https://testingcf.jsdelivr.net/gh/iamlay/BlogResources@main/imgs/azure/Azure07.png">
+<meta property="og:image" content="https://testingcf.jsdelivr.net/gh/iamlay/BlogResources@main/imgs/azure/Azure08.png">
+<meta property="og:image" content="https://testingcf.jsdelivr.net/gh/iamlay/BlogResources@main/imgs/azure/Azure09.png">
+<meta property="og:image" content="https://testingcf.jsdelivr.net/gh/iamlay/BlogResources@main/imgs/azure/Azure10.png">
+<meta property="og:image" content="https://testingcf.jsdelivr.net/gh/iamlay/BlogResources@main/imgs/azure/Azure11.png">
+<meta property="og:image" content="https://testingcf.jsdelivr.net/gh/iamlay/BlogResources@main/imgs/azure/Azure12.png">
+<meta property="og:image" content="https://testingcf.jsdelivr.net/gh/iamlay/BlogResources@main/imgs/azure/Azure13.png">
+<meta property="og:image" content="https://testingcf.jsdelivr.net/gh/iamlay/BlogResources@main/imgs/azure/Azure14.png">
+<meta property="og:image" content="https://testingcf.jsdelivr.net/gh/iamlay/BlogResources@main/imgs/azure/Azure15.png">
+<meta property="og:image" content="https://testingcf.jsdelivr.net/gh/iamlay/BlogResources@main/imgs/azure/Azure16.png">
+<meta property="og:image" content="https://testingcf.jsdelivr.net/gh/iamlay/BlogResources@main/imgs/azure/Azure17.png">
+<meta property="og:image" content="https://testingcf.jsdelivr.net/gh/iamlay/BlogResources@main/imgs/azure/Azure18.png">
+<meta property="article:published_time" content="2023-06-23T09:39:32.000Z">
+<meta property="article:modified_time" content="2024-01-24T10:16:37.226Z">
+<meta property="article:author" content="Ray">
+<meta property="article:tag" content="ChatGPT">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://testingcf.jsdelivr.net/gh/iamlay/BlogResources@main/imgs/azure/Azure01.png">
+
+
+<link rel="canonical" href="https://www.iamlay.com/post/AzureGPT/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://www.iamlay.com/post/AzureGPT/","path":"post/AzureGPT/","title":"基于 Azure OpenAI 免费注册使用 ChatGPT 教程"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>基于 Azure OpenAI 免费注册使用 ChatGPT 教程 | 以技术之名</title>
+  <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-170943611-2"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-170943611-2');
+</script>
+  <script src="/js/third-party/analytics/baidu-analytics.js"></script>
+  <script async src="https://hm.baidu.com/hm.js?2fdaf8ee633a188c5649eefea79b28b3"></script>
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<!-- hexo injector head_end start --><script async defer data-website-id="fad553b1-b94d-4311-8d52-913dc067e883" src="https://tongji.iamlay.com/script.js"></script><!-- hexo injector head_end end --></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">以技术之名</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">以技术之名</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-chatgpt"><a href="/chatgpt" rel="section"><i class="fa fa-comment-dots fa-fw"></i>AI体验</a></li><li class="menu-item menu-item-sitemap"><a href="/sitemap.xml" rel="section"><i class="fa fa-sitemap fa-fw"></i>站点地图</a></li><li class="menu-item menu-item-links"><a href="/links/" rel="section"><i class="fa fa-link fa-fw"></i>友情链接</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%80%E3%80%81%E6%B3%A8%E5%86%8C"><span class="nav-number">1.</span> <span class="nav-text">一、注册</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BA%8C%E3%80%81%E7%94%B3%E8%AF%B7-OpenAI"><span class="nav-number">2.</span> <span class="nav-text">二、申请 OpenAI</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%89%E3%80%81%E9%85%8D%E7%BD%AE-OpenAI"><span class="nav-number">3.</span> <span class="nav-text">三、配置 OpenAI</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%9B%9B%E3%80%81%E7%94%B3%E8%AF%B7-API-Key"><span class="nav-number">4.</span> <span class="nav-text">四、申请 API Key</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BA%94%E3%80%81%E5%85%B3%E4%BA%8E%E4%BB%A3%E7%90%86"><span class="nav-number">5.</span> <span class="nav-text">五、关于代理</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%85%AD%E3%80%81%E9%85%8D%E7%BD%AE%E5%AE%A2%E6%88%B7%E7%AB%AF"><span class="nav-number">6.</span> <span class="nav-text">六、配置客户端</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1%E3%80%81%E8%8E%B7%E5%8F%96-API-KEY-%E5%92%8C-API-URL"><span class="nav-number">6.1.</span> <span class="nav-text">1、获取 API KEY 和 API URL</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2%E3%80%81%E9%85%8D%E7%BD%AE-Azure-OpenAI-Service-API"><span class="nav-number">6.2.</span> <span class="nav-text">2、配置 Azure OpenAI Service API</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3%E3%80%81-Cloudflare-%E8%BD%AC%E6%8D%A2-Azure-OpenAI-Service-API"><span class="nav-number">6.3.</span> <span class="nav-text">3、 Cloudflare 转换 Azure OpenAI Service API</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#4%E3%80%81-%E5%AE%A2%E6%88%B7%E7%AB%AF%E9%85%8D%E7%BD%AE"><span class="nav-number">6.4.</span> <span class="nav-text">4、 客户端配置</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#5%E3%80%81%E6%89%93%E5%AD%97%E6%95%88%E6%9E%9C"><span class="nav-number">6.5.</span> <span class="nav-text">5、打字效果</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%83%E3%80%81FAQ"><span class="nav-number">7.</span> <span class="nav-text">七、FAQ</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%85%AB%E3%80%81%E5%8F%82%E8%80%83%E9%93%BE%E6%8E%A5"><span class="nav-number">8.</span> <span class="nav-text">八、参考链接</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Ray</p>
+  <div class="site-description" itemprop="description">为信仰而生</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">45</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">12</span>
+        <span class="site-state-item-name">分类</span>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">9</span>
+        <span class="site-state-item-name">标签</span>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2lhbWxheQ==" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;iamlay"><i class="fab fa-github fa-fw"></i>GitHub</span>
+      </span>
+      <span class="links-of-author-item">
+        <span class="exturl" data-url="bWFpbHRvOjExODcwNzQ1NDNAcXEuY29t" title="E-Mail → mailto:1187074543@qq.com"><i class="fa fa-envelope fa-fw"></i>E-Mail</span>
+      </span>
+  </div>
+
+
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://www.iamlay.com/post/AzureGPT/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Ray">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="以技术之名">
+      <meta itemprop="description" content="为信仰而生">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="基于 Azure OpenAI 免费注册使用 ChatGPT 教程 | 以技术之名">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          基于 Azure OpenAI 免费注册使用 ChatGPT 教程
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2023-06-23 17:39:32" itemprop="dateCreated datePublished" datetime="2023-06-23T17:39:32+08:00">2023-06-23</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2024-01-24 18:16:37" itemprop="dateModified" datetime="2024-01-24T18:16:37+08:00">2024-01-24</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/AI/" itemprop="url" rel="index"><span itemprop="name">AI</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+</div>
+
+	
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <blockquote>
+<p>目前，大部分朋友使用 ChatGPT 还是挺麻烦的，需要原生 IP 代理注册、扫码、搭建代理服务让国内可以访问等等（详细可以看之前的文章：ChatGPT 从注册到自建应用），还要小心翼翼防止被封，确实比较麻烦。</p>
+</blockquote>
+<span id="more"></span>
+
+<p>今天给大家介绍一种新的ChatGPT 使用方式：基于 <code>Azure OpenAI</code> 免费注册使用 ChatGPT 教程。2023.03.09号，<span class="exturl" data-url="aHR0cHM6Ly9henVyZS5taWNyb3NvZnQuY29tL2VuLXVzL2Jsb2cvY2hhdGdwdC1pcy1ub3ctYXZhaWxhYmxlLWluLWF6dXJlLW9wZW5haS1zZXJ2aWNlLw==">这篇文章<i class="fa fa-external-link-alt"></i></span>中提到， ChatGPT 在 Azure OpenAI 服务中提供预览版，针对中国区一样可以申请试用：</p>
+<ul>
+<li>中国区用户直接访问&amp;申请 ChatGPT 服务</li>
+<li>注册 Azure 即送 200 刀</li>
+<li>一年常用服务的免费使用期</li>
+</ul>
+<p>看下最终自建的 GPT 机器人使用效果图（基于开源项目-ChatGPT-Next-Web）：<br><img src="https://testingcf.jsdelivr.net/gh/iamlay/BlogResources@main/imgs/azure/Azure01.png"></p>
+<h4 id="一、注册"><a href="#一、注册" class="headerlink" title="一、注册"></a>一、注册</h4><p>开始前请做好以下准备：</p>
+<ul>
+<li>一个微软账号</li>
+<li>一张 visa 信用卡，Azure 要求你绑定信用卡</li>
+<li>相关公司信息如：公司邮箱、地址、电话等信息</li>
+</ul>
+<p>先进行注册，打开<span class="exturl" data-url="aHR0cHM6Ly9henVyZS5taWNyb3NvZnQuY29tL3poLWNuLw==">Azure 云平台官网<i class="fa fa-external-link-alt"></i></span> ，点击免费试用：</p>
+<p><img src="https://testingcf.jsdelivr.net/gh/iamlay/BlogResources@main/imgs/azure/Azure02.png"></p>
+<p>点击后你需要绑定微软账户然后填写个人资料：</p>
+<p><img src="https://testingcf.jsdelivr.net/gh/iamlay/BlogResources@main/imgs/azure/Azure03.png"></p>
+<p>填写完资料就是绑定银行卡，这块照着填就行了，然后会告诉你送 200$，进入控制台，右上角可以看到额度：</p>
+<p><img src="https://testingcf.jsdelivr.net/gh/iamlay/BlogResources@main/imgs/azure/Azure04.png"></p>
+<h4 id="二、申请-OpenAI"><a href="#二、申请-OpenAI" class="headerlink" title="二、申请 OpenAI"></a>二、申请 OpenAI</h4><p>先进入 <span class="exturl" data-url="aHR0cHM6Ly9wb3J0YWwuYXp1cmUuY29tLz9xdWlja3N0YXJ0PXRydWUjaG9tZQ==">azure 控制台<i class="fa fa-external-link-alt"></i></span> 搜索订阅：</p>
+<p><img src="https://testingcf.jsdelivr.net/gh/iamlay/BlogResources@main/imgs/azure/Azure05.png"></p>
+<p>点击进入后如果有免费试用，就直接复制免费使用的订阅 ID，如果没有（我就没有，不清楚是现在没有了还是我的账户是老账号）就自己新增一个订阅，如下</p>
+<p><img src="https://testingcf.jsdelivr.net/gh/iamlay/BlogResources@main/imgs/azure/Azure06.png"></p>
+<p>请复制好保存好这个订阅 ID，后面申请需要。接下来让我们申请 <code>OpenAI </code>服务，一样在顶部进行搜索：</p>
+<p><img src="https://testingcf.jsdelivr.net/gh/iamlay/BlogResources@main/imgs/azure/Azure07.png"></p>
+<p>因为这个服务是需要申请的，所以直接点击提示的链接进行申请：</p>
+<p><img src="https://testingcf.jsdelivr.net/gh/iamlay/BlogResources@main/imgs/azure/Azure08.png"></p>
+<p>也就是这个链接：<span class="exturl" data-url="aHR0cHM6Ly9ha2EubXMvb2FpL2FjY2Vzcw==">https://aka.ms/oai/access：<i class="fa fa-external-link-alt"></i></span></p>
+<p><img src="https://testingcf.jsdelivr.net/gh/iamlay/BlogResources@main/imgs/azure/Azure09.png"></p>
+<p>耐心将这 25 个问题回答完毕即可，需要注意的点：</p>
+<ul>
+<li>使用公司邮箱（我使用公司的邮箱，几个小时就申请通过了）</li>
+<li>填公司信息尽量准确</li>
+<li>第四个问题一定要用订阅 ID，我就是填错了导致申请两次<br><img src="https://testingcf.jsdelivr.net/gh/iamlay/BlogResources@main/imgs/azure/Azure10.png"></li>
+</ul>
+<p>填写成功后，一般一两天就会收到验证邮件：</p>
+<p><img src="https://testingcf.jsdelivr.net/gh/iamlay/BlogResources@main/imgs/azure/Azure11.png"></p>
+<p>点击验证邮箱即可，验证成功后再等两三天就能收到 <code>Onboarding </code>邮件，代表申请通过，然后就可以使用<code> Chatgpt3.5&amp; Dalle-2</code>：</p>
+<p><img src="https://testingcf.jsdelivr.net/gh/iamlay/BlogResources@main/imgs/azure/Azure12.png"></p>
+<p>至此，成功申请了微软的 OpenAI 服务资格。</p>
+<h4 id="三、配置-OpenAI"><a href="#三、配置-OpenAI" class="headerlink" title="三、配置 OpenAI"></a>三、配置 OpenAI</h4><p>有了资格就可以直接创建 Azure OpenAI 服务了，进入OpenAI <span class="exturl" data-url="aHR0cHM6Ly9wb3J0YWwuYXp1cmUuY29tLz9xdWlja3N0YXJ0PXRydWUjY3JlYXRlL01pY3Jvc29mdC5Db2duaXRpdmVTZXJ2aWNlc09wZW5BSQ==">配置页面<i class="fa fa-external-link-alt"></i></span>：</p>
+<p><img src="https://testingcf.jsdelivr.net/gh/iamlay/BlogResources@main/imgs/azure/Azure13.png"></p>
+<p>一路确认往下就开启成功了，然后在控制台主页就能看到开启的服务：</p>
+<p><img src="https://testingcf.jsdelivr.net/gh/iamlay/BlogResources@main/imgs/azure/Azure14.png"></p>
+<p>点击进入 <code>OpenAI</code> 服务，确认服务创建成功之后，选择 <code>模型部署(model deployments)</code>，即可配置要用的模型：<br><img src="https://testingcf.jsdelivr.net/gh/iamlay/BlogResources@main/imgs/azure/Azure15.png"></p>
+<p>申请好了就可以直接点击可以到 <span class="exturl" data-url="aHR0cHM6Ly9vYWkuYXp1cmUuY29tL3BvcnRhbC9jaGF0">ChatGPT 操场(预览版) <i class="fa fa-external-link-alt"></i></span>体验使用了：</p>
+<p><img src="https://testingcf.jsdelivr.net/gh/iamlay/BlogResources@main/imgs/azure/Azure16.png"></p>
+<h4 id="四、申请-API-Key"><a href="#四、申请-API-Key" class="headerlink" title="四、申请 API Key"></a>四、申请 API Key</h4><p>从<code>Azure</code>面板中点击我们的<code>OpenAI</code>资源，点击<code> manage keys</code>：<br><img src="https://testingcf.jsdelivr.net/gh/iamlay/BlogResources@main/imgs/azure/Azure17.png"></p>
+<p>点击即可获取密钥 1，接下来就是利用 API 开发自己的应用了。</p>
+<p>可以通过命令行调用看看能否成功，打开终端：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">curl https://YOUR_RESOURCE_NAME.openai.azure.com/openai/deployments/YOUR_DEPLOYMENT_NAME/chat/completions?api-version=2023-03-15-preview \</span><br><span class="line">  -H &quot;Content-Type: application/json&quot; \</span><br><span class="line">  -H &quot;api-key: YOUR_API_KEY&quot; \</span><br><span class="line">  -d &#x27;&#123;&quot;messages&quot;:[&#123;&quot;role&quot;: &quot;system&quot;, &quot;content&quot;: &quot;You are a helpful assistant.&quot;&#125;,&#123;&quot;role&quot;: &quot;user&quot;, &quot;content&quot;: &quot;hello&quot;&#125;]&#125;&#x27;</span><br></pre></td></tr></table></figure>
+<p>不出意外就可以在终端得到你想要的返回结果了。</p>
+<h4 id="五、关于代理"><a href="#五、关于代理" class="headerlink" title="五、关于代理"></a>五、关于代理</h4><p>目前开源社区基于<code> ChatGPT API</code> 衍生出了很多有意思的项目，但有个问题是大部分的项目是不支持 Azure OpenAI 访问形式的。所以在使用其他应用前，我们需要做一个代理转换，很多乐于助人的朋友已经将这个事情给做了，相关项目如下:</p>
+<ul>
+<li><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3N0dWx6cS9henVyZS1vcGVuYWktcHJveHk=">stulzq&#x2F;azure-openai-proxy:<i class="fa fa-external-link-alt"></i></span> Azure OpenAI 服务代理，将 OpenAI 官方 API 请求转换为 Azure OpenAI API 请求，支持所有型号，支持 GPT-4。</li>
+<li><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2RpZW11cy9henVyZS1vcGVuYWktcHJveHk=">diemus&#x2F;azure-openai-proxy:<i class="fa fa-external-link-alt"></i></span> 一个 Azure OpenAI API 的代理工具，可以将一个 OpenAI 请求转化为 Azure OpenAI 请求，方便作为各类开源 ChatGPT 的后端使用。同时也支持作为单纯的 OpenAI 接口代理使用，用来解决 OpenAI 接口在部分地区的被限制使用的问题。</li>
+<li><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2hhaWJiby9jZi1vcGVuYWktYXp1cmUtcHJveHk=">cf-openai-azure-proxy：<i class="fa fa-external-link-alt"></i></span> 基于 Cloudflare 代理 OpenAI 的请求到 Azure OpenAI Serivce</li>
+</ul>
+<h4 id="六、配置客户端"><a href="#六、配置客户端" class="headerlink" title="六、配置客户端"></a>六、配置客户端</h4><p>我们部署<code>Azure OpenAI Service</code>资源的主要目的是为了能在客户端中使用<code>GPT</code>或其他<code>OpenAI模型</code>的能力，所以接下来我们要将<code>Azure OpenAI Service API</code>配置到流行的 OpenAI 客户端中。</p>
+<h5 id="1、获取-API-KEY-和-API-URL"><a href="#1、获取-API-KEY-和-API-URL" class="headerlink" title="1、获取 API KEY 和 API URL"></a>1、获取 API KEY 和 API URL</h5><p>在配置客户端之前，请先去<code>Azure OpenAI Service</code>的<code>资源详情页</code>面中获取<code>密钥</code>与<code>终结点</code>中。</p>
+<ul>
+<li>密钥：作为客户端中的API KEY使用。</li>
+<li>终结点：作为API URL或者Endpoint使用。</li>
+</ul>
+<h5 id="2、配置-Azure-OpenAI-Service-API"><a href="#2、配置-Azure-OpenAI-Service-API" class="headerlink" title="2、配置 Azure OpenAI Service API"></a>2、配置 Azure OpenAI Service API</h5><p>像<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3lldG9uZS9vcGVuYWktdHJhbnNsYXRvcg==">openai-translator<i class="fa fa-external-link-alt"></i></span>和<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL0Jpbi1IdWFuZy9jaGF0Ym94">ChatBox<i class="fa fa-external-link-alt"></i></span>这样的客户端已经原生支持Azure OpenAI Service的API，这里以<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3lldG9uZS9vcGVuYWktdHJhbnNsYXRvcg==">openai-translator<i class="fa fa-external-link-alt"></i></span>为例介绍一下配置的要点：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">// API URL 或者 终结点</span><br><span class="line">const API_URL = `https://$&#123;resourceName&#125;.openai.azure.com`</span><br><span class="line">// API URL Path 为你的 Azure OpenAI Service API 路径，主要负责调用模型和指定API版本</span><br><span class="line">const API_URL_PATH = `/openai/deployments/$&#123;deployName&#125;/completions?api-version=$&#123;apiVersion&#125;`</span><br></pre></td></tr></table></figure>
+<ul>
+<li>resourceName: 填写你的 Azure OpenAI Service 资源名称。</li>
+<li>deployName: 填写你的 Azure OpenAI Service 模型部署名称，更改部署名称以切换模型。</li>
+<li>api-version: 填写“2023-05-15”，或者更新的版本</li>
+</ul>
+<p>如果你使用<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL0Jpbi1IdWFuZy9jaGF0Ym94">ChatBox<i class="fa fa-external-link-alt"></i></span>，无需构造<code>API_URL_PATH</code>，只需要填写模型部署名称即可。</p>
+<h5 id="3、-Cloudflare-转换-Azure-OpenAI-Service-API"><a href="#3、-Cloudflare-转换-Azure-OpenAI-Service-API" class="headerlink" title="3、 Cloudflare 转换 Azure OpenAI Service API"></a>3、 Cloudflare 转换 Azure OpenAI Service API</h5><p><code>Azure OpenAI Service API</code>和<code>OpenAI Service API</code>的接口不一致。如果你的第三方客户端不支持<code>Azure OpenAI Service API</code>，你可以使用<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2hhaWJiby9jZi1vcGVuYWktYXp1cmUtcHJveHk=">cf-openai-azure-proxy：<i class="fa fa-external-link-alt"></i></span> 这个项目来部署一个<span class="exturl" data-url="aHR0cHM6Ly9kYXNoLmNsb3VkZmxhcmUuY29tL2RjMWFhZTU3NDZiZDc5ZTU3NDFlYjgwZGI0ZDZlOTNmL3dvcmtlcnMtYW5kLXBhZ2VzL2NyZWF0ZQ==">Cloudflare Worker<i class="fa fa-external-link-alt"></i></span>，将<code>Azure OpenAI Service API</code>映射到<code>OpenAI Service</code>。部署Worker时，可参照下面的代码对进行配置：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">// The name of your Azure OpenAI Resource.</span><br><span class="line">const resourceName=&quot;你的Azure OpenAI资源名称&quot;</span><br><span class="line"></span><br><span class="line">// The deployment name you chose when you deployed the model.</span><br><span class="line">const mapper = &#123; // 模型名称与模型部署名称映射</span><br><span class="line">    &#x27;gpt-3.5-turbo&#x27;: &quot;模型部署名称&quot;,</span><br><span class="line">    // &#x27;gpt-4&#x27;: DEPLOY_NAME_GPT4 // 如果没有 GPT-4 服务可先注释掉</span><br><span class="line">&#125;;</span><br><span class="line">const apiVersion=&quot;2023-05-15&quot;; //  Azure OpenAI API 版本</span><br><span class="line">// ...</span><br><span class="line">// 跳过中间代码找到下面这一句</span><br><span class="line">const deployName = mapper[modelName] || &#x27;模型部署名称&#x27; // 设置默认使用已部署的模型，而不是空。</span><br></pre></td></tr></table></figure>
+
+<p>CloudFlare Worker部署完成之后，我们就可以去配置客户端了。</p>
+<h5 id="4、-客户端配置"><a href="#4、-客户端配置" class="headerlink" title="4、 客户端配置"></a>4、 客户端配置</h5><p><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3lldG9uZS9vcGVuYWktdHJhbnNsYXRvcg==">openai-translator<i class="fa fa-external-link-alt"></i></span>配置：</p>
+<ul>
+<li>请在设置中选择<code>OpenAI</code>作为<code>Default Service Provider</code>。</li>
+<li>API KEY：请填写<code>Azure OpenAI Service</code>的<code>密钥</code>。</li>
+<li>API URL：请填写<code>Cloudflare Worker的 URL</code>。</li>
+<li>API Model 选择你已部署的 Model，例如<code>gpt-35-turbo (version 0301)</code>，而这个Model需要你在<code>Cloudflare Worker</code>代码最前面的 mapper 中做好映射。</li>
+</ul>
+<p><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL0Jpbi1IdWFuZy9jaGF0Ym94">ChatBox<i class="fa fa-external-link-alt"></i></span>配置：</p>
+<ul>
+<li>在<code>OpenAI API Key</code>中填写<code>Azure OpenAI Service</code>的<code>密钥</code>。</li>
+<li>展开<code>Proxy</code>，在<code>API Host</code>中填写<code>Cloudflare Worker</code>的 URL。</li>
+<li>展开<code>Model &amp; Token</code>，在<code>Model</code>中选择你已部署的 <code>Model</code>，例如<code>gpt-35-turbo-0301</code>。</li>
+</ul>
+<p><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL1lpZGFkYWEvQ2hhdEdQVC1OZXh0LVdlYg==">ChatGPT-Next-Web <i class="fa fa-external-link-alt"></i></span>配置：</p>
+<blockquote>
+<p>注意: ChatGPT-Next-Web要更新到最新的版本，之前旧的版本是不支持配置的。我的ChatGPT-Next-Web项目是部署在Vercel上的，所以配置直接在Verlcel中修改该项目的环境变量即可</p>
+</blockquote>
+<ul>
+<li>新增<code>PROTOCOL</code>变量，值为<code>https</code></li>
+<li>变量<code>OPENAI_API_KEY</code>，值为<code>Azure OpenAI Service</code>的<code>密钥</code>。</li>
+<li>变量<code>BASE_URL</code>, 值为<code>Cloudflare Worker</code>的 URL。<br><img src="https://testingcf.jsdelivr.net/gh/iamlay/BlogResources@main/imgs/azure/Azure18.png" alt="配置"></li>
+</ul>
+<h5 id="5、打字效果"><a href="#5、打字效果" class="headerlink" title="5、打字效果"></a>5、打字效果</h5><p>直接使用<code>Azure OpenAI Service API</code>可能会看不到打字机的效果，而<code>cf-openai-azure-proxy</code>对它进行了兼容，因此我更喜欢用它，而不是直接使用Azure OpenAI Service API。</p>
+<h4 id="七、FAQ"><a href="#七、FAQ" class="headerlink" title="七、FAQ"></a>七、FAQ</h4><p>🙋 申请 Azure OpenAI Service 通过以后使用 Azure 账号登录还是用申请 Azure OpenAI Service 的企业邮箱登录？</p>
+<pre><code>使用 subscription 相关的 Azure 账号登录，企业邮箱仅用于验证企业身份。
+</code></pre>
+<p>🙋 收到了 GPT-4 模型的回信却不能部署 GPT-4 模型？</p>
+<pre><code>再读一读邮件，是不是告诉你被加入到 GPT-4 的waitlist了？而不是通过了申请。GPT-4 模型连 waitlist 都要申请和审核，审核通过了才进waitlist。
+</code></pre>
+<h4 id="八、参考链接"><a href="#八、参考链接" class="headerlink" title="八、参考链接"></a>八、参考链接</h4><p><span class="exturl" data-url="aHR0cHM6Ly9hdGxhc3NjLm5ldC8yMDIzLzA0LzI1L2F6dXJlLW9wZW5haS1zZXJ2aWNl">1、Azure OpenAI Service 注册申请与配置心得<i class="fa fa-external-link-alt"></i></span><br><span class="exturl" data-url="aHR0cHM6Ly93d3cuaG93aWU2ODc5LmNvbS9wb3N0LzIwMjMvMDZfdXNlX2NoYXRncHRfYmFzZV9vbl9henVyZV9vcGVuYWkv">2、基于 Azure OpenAI 免费注册使用 ChatGPT 教程<i class="fa fa-external-link-alt"></i></span><br><span class="exturl" data-url="aHR0cHM6Ly93d3cuZXZsaXQuY29tLzY1NDc4Lmh0bWw=">3、Azure OpenAI 使用后续：使用 Cloudflare Worker 转换 Azure OpenAI API<i class="fa fa-external-link-alt"></i></span><br><span class="exturl" data-url="aHR0cHM6Ly9kYXNoLmNsb3VkZmxhcmUuY29tL2RjMWFhZTU3NDZiZDc5ZTU3NDFlYjgwZGI0ZDZlOTNmL3NlbGVjdC1wcm9kdWN0P3B0PWY=">4、cloudflare<i class="fa fa-external-link-alt"></i></span><br><span class="exturl" data-url="aHR0cHM6Ly9ibG9nLnN0ZXZlZWUubWUvcG9zdHMvQXp1cmVPcGVuQUkv">5、我的 Azure OpenAI Service 注册申请与配置踩坑心得<i class="fa fa-external-link-alt"></i></span><br><span class="exturl" data-url="aHR0cHM6Ly93d3cuY25ibG9ncy5jb20vc3R1bHpxL3AvMTcyNzE5MzcuaHRtbA==">6、使用 Azure OpenAI 打造自己的 ChatGPT <i class="fa fa-external-link-alt"></i></span><br><span class="exturl" data-url="aHR0cHM6Ly9qdWVqaW4uY24vcG9zdC83MjIzOTQ3NDM5MTI3MTk5ODA1">7、不翻墙完美申请ChatGPT攻略：Azure OpenAI 使用指南！<i class="fa fa-external-link-alt"></i></span></p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="reward-container">
+  <div>如果觉得我的文章对您有用，请随意打赏。您的支持将鼓励我继续创作！</div>
+  <button>
+    赞赏
+  </button>
+  <div class="post-reward">
+      <div>
+        <img src="/images/wechatpay.png" alt="Ray 微信">
+        <span>微信</span>
+      </div>
+
+  </div>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/ChatGPT/" rel="tag"># ChatGPT</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/post/CDN/" rel="prev" title="Hexo静态博客图片CDN加速： GitHub + PicGo + jsDelivr">
+                  <i class="fa fa-chevron-left"></i> Hexo静态博客图片CDN加速： GitHub + PicGo + jsDelivr
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/post/Umami/" rel="next" title="Hexo + Umami + Vercel + Supabase  + 搭建网站分析系统">
+                  Hexo + Umami + Vercel + Supabase  + 搭建网站分析系统 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    <div class="comments gitalk-container"></div>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2025</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Ray</span>
+</div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+  <div class="powered-by">由 <span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlv">Hexo</span> & <span class="exturl" data-url="aHR0cHM6Ly90aGVtZS1uZXh0LmpzLm9yZw==">NexT.Gemini</span> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+<script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.0/search.js" integrity="sha256-vXZMYLEqsROAXkEw93GGIvaB2ab+QW6w3+1ahD9nXXA=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.8.0/gitalk.css" integrity="sha256-AJnUHL7dBv6PGaeyPQJcgQPDjt/Hn/PvYZde1iqfp8U=" crossorigin="anonymous">
+
+<script class="next-config" data-name="gitalk" type="application/json">{"enable":true,"github_id":"iamlay","repo":"gitalk","client_id":"798848f6f91162435156","client_secret":"d9b621213c7353cfa8b2286491f877ef4507da1e","admin_user":"iamlay","distraction_free_mode":true,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token","language":"zh-CN","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.8.0/gitalk.min.js","integrity":"sha256-MVK9MGD/XJaGyIghSVrONSnoXoGh3IFxLw0zfvzpxR4="},"path_md5":"b788ac0a17e5e39ab5d5975f34f5cd90"}</script>
+<script src="/js/third-party/comments/gitalk.js"></script>
+
+</body>
+</html>

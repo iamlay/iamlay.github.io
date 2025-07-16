@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.3.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+  <meta name="google-site-verification" content="bdLSZKDAikc4SOPIlDwwuSFBawDGQU3GmqUWTzUM-rE">
+  <meta name="baidu-site-verification" content="codeva-lCWvLLHuj5">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3825645052664031"
+     crossorigin="anonymous"></script>
+  <meta name="baidu-site-verification" content="true">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha256-AbA177XfpSnFEvgpYu1jMygiLabzPCJCRIBtR5jGc0k=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"www.iamlay.com","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.13.1","exturl":true,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"gitalk","storage":true,"lazyload":false,"nav":{"gitalk":{"ordcer":-1}},"activeClass":"gitalk"},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="ReactiveCocoa是函数响应式编程框架，为程序中各种类型的事件提供了标准的接口来处理，使代码更加清晰。网上关于ReactiveCocoa资料不少，但是很多都含糊不清，对刚学习的人来说不是非常的实用。本片文章是笔者看到的一篇比较优秀的入门文章，原版是英文且需翻墙访问，所以做了翻译，希望对有刚接触ReactiveCocoa的人有些许帮助">
+<meta property="og:type" content="article">
+<meta property="og:title" content="以技术之名周报06#| ReactiveCocoa入门篇| 2020-05-10">
+<meta property="og:url" content="https://www.iamlay.com/post/week19/index.html">
+<meta property="og:site_name" content="以技术之名">
+<meta property="og:description" content="ReactiveCocoa是函数响应式编程框架，为程序中各种类型的事件提供了标准的接口来处理，使代码更加清晰。网上关于ReactiveCocoa资料不少，但是很多都含糊不清，对刚学习的人来说不是非常的实用。本片文章是笔者看到的一篇比较优秀的入门文章，原版是英文且需翻墙访问，所以做了翻译，希望对有刚接触ReactiveCocoa的人有些许帮助">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://www.iamlay.com/week1901.jpg">
+<meta property="og:image" content="https://www.iamlay.com/week1902.png">
+<meta property="og:image" content="https://www.iamlay.com/week1903.png">
+<meta property="og:image" content="https://www.iamlay.com/week1904.png">
+<meta property="og:image" content="https://www.iamlay.com/week1905.png">
+<meta property="og:image" content="https://www.iamlay.com/week1906.png">
+<meta property="og:image" content="https://www.iamlay.com/week1907.jpg">
+<meta property="og:image" content="https://www.iamlay.com/week1908.png">
+<meta property="og:image" content="https://www.iamlay.com/week1909.jpg">
+<meta property="og:image" content="https://www.iamlay.com/week1910.png">
+<meta property="article:published_time" content="2020-05-10T12:58:53.000Z">
+<meta property="article:modified_time" content="2024-01-24T10:22:54.591Z">
+<meta property="article:author" content="Ray">
+<meta property="article:tag" content="翻译">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://www.iamlay.com/week1901.jpg">
+
+
+<link rel="canonical" href="https://www.iamlay.com/post/week19/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://www.iamlay.com/post/week19/","path":"post/week19/","title":"以技术之名周报06#| ReactiveCocoa入门篇| 2020-05-10"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>以技术之名周报06#| ReactiveCocoa入门篇| 2020-05-10 | 以技术之名</title>
+  <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-170943611-2"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-170943611-2');
+</script>
+  <script src="/js/third-party/analytics/baidu-analytics.js"></script>
+  <script async src="https://hm.baidu.com/hm.js?2fdaf8ee633a188c5649eefea79b28b3"></script>
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<!-- hexo injector head_end start --><script async defer data-website-id="fad553b1-b94d-4311-8d52-913dc067e883" src="https://tongji.iamlay.com/script.js"></script><!-- hexo injector head_end end --></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">以技术之名</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">以技术之名</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-chatgpt"><a href="/chatgpt" rel="section"><i class="fa fa-comment-dots fa-fw"></i>AI体验</a></li><li class="menu-item menu-item-sitemap"><a href="/sitemap.xml" rel="section"><i class="fa fa-sitemap fa-fw"></i>站点地图</a></li><li class="menu-item menu-item-links"><a href="/links/" rel="section"><i class="fa fa-link fa-fw"></i>友情链接</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Part-01-%E8%83%8C%E6%99%AF"><span class="nav-number">1.</span> <span class="nav-text">Part-01 背景</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Part-02-%E5%AE%9E%E8%B7%B5"><span class="nav-number">2.</span> <span class="nav-text">Part-02 实践</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#ReactivePlayground"><span class="nav-number">2.1.</span> <span class="nav-text">ReactivePlayground</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%B7%BB%E5%8A%A0ReactiveCocoa%E6%A1%86%E6%9E%B6"><span class="nav-number">2.2.</span> <span class="nav-text">添加ReactiveCocoa框架</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%BC%80%E5%A7%8B%E5%AE%9E%E6%96%BD"><span class="nav-number">2.3.</span> <span class="nav-text">开始实施</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF-%E3%80%90%E4%BA%8B%E4%BB%B6-%E3%80%91%EF%BC%9F"><span class="nav-number">2.4.</span> <span class="nav-text">什么是 【事件 】？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%88%9B%E5%BB%BA-Valid-State-Signals"><span class="nav-number">2.5.</span> <span class="nav-text">创建 Valid State Signals</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Combining-signals-%E7%BB%84%E5%90%88%E4%BF%A1%E5%8F%B7"><span class="nav-number">2.6.</span> <span class="nav-text">Combining signals (组合信号)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Reactice-Sign-In-%EF%BC%88%E5%93%8D%E5%BA%94%E5%BC%8F%E7%99%BB%E5%BD%95%EF%BC%89"><span class="nav-number">2.7.</span> <span class="nav-text">Reactice Sign-In （响应式登录）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Creating-Signals-%E5%88%9B%E5%BB%BA%E4%BF%A1%E5%8F%B7"><span class="nav-number">2.8.</span> <span class="nav-text">Creating Signals (创建信号)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BF%A1%E5%8F%B7%E4%B8%AD%E7%9A%84%E4%BF%A1%E5%8F%B7"><span class="nav-number">2.9.</span> <span class="nav-text">信号中的信号</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Adding-side-effects%EF%BC%88%E6%B7%BB%E5%8A%A0%E5%89%AF%E4%BD%9C%E7%94%A8%EF%BC%89"><span class="nav-number">2.10.</span> <span class="nav-text">Adding side-effects（添加副作用）</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Part-03-%E5%8E%9F%E6%96%87"><span class="nav-number">3.</span> <span class="nav-text">Part-03 原文</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Ray</p>
+  <div class="site-description" itemprop="description">为信仰而生</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">45</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">12</span>
+        <span class="site-state-item-name">分类</span>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">9</span>
+        <span class="site-state-item-name">标签</span>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2lhbWxheQ==" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;iamlay"><i class="fab fa-github fa-fw"></i>GitHub</span>
+      </span>
+      <span class="links-of-author-item">
+        <span class="exturl" data-url="bWFpbHRvOjExODcwNzQ1NDNAcXEuY29t" title="E-Mail → mailto:1187074543@qq.com"><i class="fa fa-envelope fa-fw"></i>E-Mail</span>
+      </span>
+  </div>
+
+
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://www.iamlay.com/post/week19/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Ray">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="以技术之名">
+      <meta itemprop="description" content="为信仰而生">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="以技术之名周报06#| ReactiveCocoa入门篇| 2020-05-10 | 以技术之名">
+      <meta itemprop="description" content="ReactiveCocoa是函数响应式编程框架，为程序中各种类型的事件提供了标准的接口来处理，使代码更加清晰。网上关于ReactiveCocoa资料不少，但是很多都含糊不清，对刚学习的人来说不是非常的实用。本片文章是笔者看到的一篇比较优秀的入门文章，原版是英文且需翻墙访问，所以做了翻译，希望对有刚接触ReactiveCocoa的人有些许帮助">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          以技术之名周报06#| ReactiveCocoa入门篇| 2020-05-10
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2020-05-10 20:58:53" itemprop="dateCreated datePublished" datetime="2020-05-10T20:58:53+08:00">2020-05-10</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2024-01-24 18:22:54" itemprop="dateModified" datetime="2024-01-24T18:22:54+08:00">2024-01-24</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/iOS/" itemprop="url" rel="index"><span itemprop="name">iOS</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+</div>
+
+	
+            <div class="post-description">ReactiveCocoa是函数响应式编程框架，为程序中各种类型的事件提供了标准的接口来处理，使代码更加清晰。网上关于ReactiveCocoa资料不少，但是很多都含糊不清，对刚学习的人来说不是非常的实用。本片文章是笔者看到的一篇比较优秀的入门文章，原版是英文且需翻墙访问，所以做了翻译，希望对有刚接触ReactiveCocoa的人有些许帮助</div>
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h3 id="Part-01-背景"><a href="#Part-01-背景" class="headerlink" title="Part-01 背景"></a>Part-01 背景</h3><p>作为一个iOS开发者，写的每一行代码都是对事件的反馈，像Button点击、网络请求、属性改变（KVO）、用户位置改变等。但是这些事件的处理采用的是Actions、delegate、KVO、回调等不同的方式。<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL1JlYWN0aXZlQ29jb2EvUmVhY3RpdmVDb2NvYQ==">ReactiveCocoa<i class="fa fa-external-link-alt"></i></span>针对不同的事件定义了的标准接口，这样不同的事件可以更容易链式调用、过滤、组合。</p>
+<p>ReactiveCocoa组合了一对编程范式：<span class="exturl" data-url="aHR0cDovL2VuLndpa2lwZWRpYS5vcmcvd2lraS9GdW5jdGlvbmFsX3Byb2dyYW1taW5n">函数式编程<i class="fa fa-external-link-alt"></i></span>：使用更高级别的函数，该函数用其他函数作为他的参数。<span class="exturl" data-url="aHR0cDovL2VuLndpa2lwZWRpYS5vcmcvd2lraS9SZWFjdGl2ZV9wcm9ncmFtbWluZw==">响应式编程<i class="fa fa-external-link-alt"></i></span>:一种面向数据流和变化传播的声明式编程范式。所以，ReactiveCocoa也被称之为函数响应式编程框架。</p>
+<p>ReactiveCocoa教程马上开始，接下来的教程侧重点在实用价值，所以给出的是实操而不是长篇大论。</p>
+<span id="more"></span>
+<h3 id="Part-02-实践"><a href="#Part-02-实践" class="headerlink" title="Part-02 实践"></a>Part-02 实践</h3><h4 id="ReactivePlayground"><a href="#ReactivePlayground" class="headerlink" title="ReactivePlayground"></a>ReactivePlayground</h4><p>在接下来的整个ReactiveCocoa教程中，我们将通过ReactivePlayground这个应用来逐步引入响应式编程。下载<span class="exturl" data-url="aHR0cHM6Ly9rb2VuaWctbWVkaWEucmF5d2VuZGVybGljaC5jb20vdXBsb2Fkcy8yMDE0LzAxL1JlYWN0aXZlUGxheWdyb3VuZC1TdGFydGVyLnppcA==">ReactivePlayground工程<i class="fa fa-external-link-alt"></i></span>，确保可以正常的build和run.</p>
+<p>ReactivePlaygroun是一款非常简单的应用，主要就是给用户展示了一个登录的页面。输入用户的账号和密码，验证通过之后，进入到一个有一只可爱猫咪的页面。</p>
+<p><img src="/./week1901.jpg" alt="Alt text"></p>
+<p>打开工程，找到  <strong>RWViewController.m</strong>文件，你花费多久的时间可以找到<strong>Sign In</strong> Button变成enabing状态所需要的条件？展示&#x2F;隐藏 <strong>signInFaulure</strong> Label的规则是什么？ 也许，你花费两三分钟的时间就可以回答这些问题，但是当你面对更加复杂的项目的时候，你分析同样的问题可能就会花费相当长的时间。</p>
+<p>这就是ReactiveCocoa的优势所在，ReactiveCocoa能够让应用程序的基本意图变得更加清晰。那让我们开始我们的工作吧！！！</p>
+<h4 id="添加ReactiveCocoa框架"><a href="#添加ReactiveCocoa框架" class="headerlink" title="添加ReactiveCocoa框架"></a>添加ReactiveCocoa框架</h4><p>最方便的方式就是通过<span class="exturl" data-url="aHR0cDovL2NvY29hcG9kcy5vcmcv">CocoaPods.<i class="fa fa-external-link-alt"></i></span>的方式导入框架。如果在此之前你没有使用过<span class="exturl" data-url="aHR0cDovL2NvY29hcG9kcy5vcmcv">CocoaPods.<i class="fa fa-external-link-alt"></i></span>，可以按照本网站的<span class="exturl" data-url="aHR0cHM6Ly93d3cucmF5d2VuZGVybGljaC5jb20vP3A9MTIxMzk=">CocoaPods 入门教程<i class="fa fa-external-link-alt"></i></span>进行操作，或者至少通过该教程的初始步骤进行操作，以便安装必备的组件。</p>
+<blockquote>
+<p>如果因为某些原因你不想引入CocoaPods，你仍旧可以通过其他的方式使用ReactiveCocoa。可以参考Github上面的<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL1JlYWN0aXZlQ29jb2EvUmVhY3RpdmVDb2NvYSNpbXBvcnRpbmctcmVhY3RpdmVjb2NvYQ==">引入ReactiveCocoa<i class="fa fa-external-link-alt"></i></span>文档，一步步操作。</p>
+</blockquote>
+<p>打开终端，进入到下载工程的根目录，执行下面的指令创建Podfile文件；</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">touch Podfile</span><br><span class="line">open -e Podfile</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>用文本编辑器打开Podfile文件，复制下面的代码到里面</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">platform :ios, &#x27;7.0&#x27;</span><br><span class="line">pod &#x27;ReactiveCocoa&#x27;, &#x27;2.1.8&#x27;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>这两句代码的意思是设置iOS平台且最小支持的版本是7.0、添加ReactiveCocoa框架作为依赖。保存文件，继续在终端执行下面的命令：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">pod install</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>你会看到终端打印出类似下面的内容：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">Analyzing dependencies</span><br><span class="line">Downloading dependencies</span><br><span class="line">Installing ReactiveCocoa (2.1.8)</span><br><span class="line">Generating Pods project</span><br><span class="line">Integrating client project</span><br><span class="line"></span><br><span class="line">[!] From now on use `RWReactivePlayground.xcworkspace`.</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>这意味着ReactiveCocoa framework已经被下载下来了，CocoaPods创建一个Xcode workspace文件将应用和framework整合起来了</p>
+<p><img src="/./week1902.png" alt="Alt text"></p>
+<h4 id="开始实施"><a href="#开始实施" class="headerlink" title="开始实施"></a>开始实施</h4><p>正如上面介绍中提到的，ReacticeCocoa为应用程序中发生的事件流提供了一个标准的接口。这种接口在ReactiveCocoa中称为信号(Signal),通过<code>RACSignal</code>类来表示。</p>
+<p>打开<code> RWViewController.m</code>文件，引入ReactiveCocoa头文件</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">#import &lt;ReactiveCocoa/ReactiveCocoa.h&gt;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>暂时先不用替换任何现有代码，只需要做一些操作即可。添加下面的代码到<code>viewDidload</code>方法：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[self.usernameTextField.rac_textSignal subscribeNext:^(id x)&#123;</span><br><span class="line">  NSLog(@&quot;%@&quot;, x);</span><br><span class="line">&#125;];</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>运行应用程序，在username textField中输入文字，查看控制台输出的内容：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">2013-12-24 14:48:50.359 RWReactivePlayground[9193:a0b] i</span><br><span class="line">2013-12-24 14:48:50.436 RWReactivePlayground[9193:a0b] is</span><br><span class="line">2013-12-24 14:48:50.541 RWReactivePlayground[9193:a0b] is </span><br><span class="line">2013-12-24 14:48:50.695 RWReactivePlayground[9193:a0b] is t</span><br><span class="line">2013-12-24 14:48:50.831 RWReactivePlayground[9193:a0b] is th</span><br><span class="line">2013-12-24 14:48:50.878 RWReactivePlayground[9193:a0b] is thi</span><br><span class="line">2013-12-24 14:48:50.901 RWReactivePlayground[9193:a0b] is this</span><br><span class="line">2013-12-24 14:48:51.009 RWReactivePlayground[9193:a0b] is this </span><br><span class="line">2013-12-24 14:48:51.142 RWReactivePlayground[9193:a0b] is this m</span><br><span class="line">2013-12-24 14:48:51.236 RWReactivePlayground[9193:a0b] is this ma</span><br><span class="line">2013-12-24 14:48:51.335 RWReactivePlayground[9193:a0b] is this mag</span><br><span class="line">2013-12-24 14:48:51.439 RWReactivePlayground[9193:a0b] is this magi</span><br><span class="line">2013-12-24 14:48:51.535 RWReactivePlayground[9193:a0b] is this magic</span><br><span class="line">2013-12-24 14:48:51.774 RWReactivePlayground[9193:a0b] is this magic?</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>可以看到，每当改变textfield内容的时候，block中的代码都会执行。这里既没有target-action、也没有代理方法，仅仅用到了signals和block，令人激动万分！</p>
+<p>ReactiveCocoa的 <code>信号</code>（通过RACSignal表示）发送事件流给它的订阅者。主要是有三种类型的事件：<code>next</code>、<code>error</code>、<code>completed</code>. 信号会因为<code>error</code>或者<code>complete</code>结束，但在结束之前可以发送任意数量的<code>next</code>事件。</p>
+<p><code>RACSignal</code>有多种方法用于订阅不同的事件类型，每种方法都一个或者多个block，事件发生的时候可以用来执行你想要的逻辑。比如：<code>subscribeNext:</code>方法就提供了这样一个block，每当<code>next</code>事件发生的时候，就会执行该block;</p>
+<p>ReactiveCocoa框架通过<code>类别</code>给标准的UIKit控件添加信号，因此你可以订阅这些控件的事件。这就是你可以在textfield上使用<code>rac_textSignal</code>属性的原因。</p>
+<p>ReactiveCocoa有大量的可以用来操纵事件流的<code>操作符</code>。比如：你只对长度超过三个字符的用户名感兴趣，那么就可以使用    <code>filter</code>操作符。将viewDidload中添加的代码更新为下面的代码：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">[[self.usernameTextField.rac_textSignal</span><br><span class="line">  filter:^BOOL(id value) &#123;</span><br><span class="line">    NSString *text = value;</span><br><span class="line">    return text.length &gt; 3;</span><br><span class="line">  &#125;]</span><br><span class="line">  subscribeNext:^(id x) &#123;</span><br><span class="line">    NSLog(@&quot;%@&quot;, x);</span><br><span class="line">  &#125;];</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>运行程序，然后在文本框继续输入字符，你会发现控制台在textfield的内容长度超过3的时候才打印：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">2013-12-26 08:17:51.335 RWReactivePlayground[9654:a0b] is t</span><br><span class="line">2013-12-26 08:17:51.478 RWReactivePlayground[9654:a0b] is th</span><br><span class="line">2013-12-26 08:17:51.526 RWReactivePlayground[9654:a0b] is thi</span><br><span class="line">2013-12-26 08:17:51.548 RWReactivePlayground[9654:a0b] is this</span><br><span class="line">2013-12-26 08:17:51.676 RWReactivePlayground[9654:a0b] is this </span><br><span class="line">2013-12-26 08:17:51.798 RWReactivePlayground[9654:a0b] is this m</span><br><span class="line">2013-12-26 08:17:51.926 RWReactivePlayground[9654:a0b] is this ma</span><br><span class="line">2013-12-26 08:17:51.987 RWReactivePlayground[9654:a0b] is this mag</span><br><span class="line">2013-12-26 08:17:52.141 RWReactivePlayground[9654:a0b] is this magi</span><br><span class="line">2013-12-26 08:17:52.229 RWReactivePlayground[9654:a0b] is this magic</span><br><span class="line">2013-12-26 08:17:52.486 RWReactivePlayground[9654:a0b] is this magic?</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>其实，在这里你创建了一个非常简单的管道。这就是响应式编程的本质，通过数据流的方式来表达应用程序的功能。下面的图片看起来更为直观：<br><img src="/./week1903.png" alt="Alt text"></p>
+<p>上图可以看到，<code>rac_textSignal</code>是事件的初始来源，数据流通过一个<code>filter</code>过滤,该<code>filter</code>仅允许字符长度大于等于3的事件通过。该管道的最后一步是<code>subscribeNext:</code>,在这一步可以通过block打印事件的值。</p>
+<p>这里需要注意的一点是，<code>filter</code>的返回值也是<code>RACSignal</code>,可以通过下面的方式揭示管道的执行过程：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">RACSignal *usernameSourceSignal = </span><br><span class="line">    self.usernameTextField.rac_textSignal;</span><br><span class="line"></span><br><span class="line">RACSignal *filteredUsername = [usernameSourceSignal  </span><br><span class="line">  filter:^BOOL(id value) &#123;</span><br><span class="line">    NSString *text = value;</span><br><span class="line">    return text.length &gt; 3;</span><br><span class="line">  &#125;];</span><br><span class="line"></span><br><span class="line">[filteredUsername subscribeNext:^(id x) &#123;</span><br><span class="line">  NSLog(@&quot;%@&quot;, x);</span><br><span class="line">&#125;];</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>因为在<code>RACSignal</code>执行的每一种操作符返回还是<code>RACSignal</code>,因此也被称为<span class="exturl" data-url="aHR0cDovL2VuLndpa2lwZWRpYS5vcmcvd2lraS9GbHVlbnRfaW50ZXJmYWNl">fluentinterface<i class="fa fa-external-link-alt"></i></span>。该功能可以使你构造管道，而无需用局部变量引用每个步骤。<br>    &gt; Note: ReacticeCocoa使用了大量的blocks。如果你之前没有接触过block,你应该先看看Apple的<span class="exturl" data-url="aHR0cHM6Ly9kZXZlbG9wZXIuYXBwbGUuY29tL2xpYnJhcnkvaW9zL2RvY3VtZW50YXRpb24vY29jb2EvQ29uY2VwdHVhbC9CbG9ja3MvQXJ0aWNsZXMvMDBfSW50cm9kdWN0aW9uLmh0bWw=">Blocks Programming Topics<i class="fa fa-external-link-alt"></i></span>,如果你像我一样对block很熟悉，但是对语法有点疑惑的话，可以访问<span class="exturl" data-url="aHR0cDovL2Z1Y2tpbmdibG9ja3N5bnRheC5jb20v">http://fuckingblocksyntax.com/<i class="fa fa-external-link-alt"></i></span>来巩固下你的知识。</p>
+<p>####隐式转换</p>
+<p>将之前的拆分的代码恢复成流式语法：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">[[self.usernameTextField.rac_textSignal</span><br><span class="line">  filter:^BOOL(id value) &#123;</span><br><span class="line">    NSString *text = value; // implicit cast</span><br><span class="line">    return text.length &gt; 3;</span><br><span class="line">  &#125;]</span><br><span class="line">  subscribeNext:^(id x) &#123;</span><br><span class="line">    NSLog(@&quot;%@&quot;, x);</span><br><span class="line">  &#125;];</span><br></pre></td></tr></table></figure>
+<p>上面指定位置代码的隐式转换不够优雅，因为传递给该block的值始终是NSString类型，所以可以直接更改参数类型本身，更新代码如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">[[self.usernameTextField.rac_textSignal</span><br><span class="line">  filter:^BOOL(NSString *text) &#123;</span><br><span class="line">    return text.length &gt; 3;</span><br><span class="line">  &#125;]</span><br><span class="line">  subscribeNext:^(id x) &#123;</span><br><span class="line">    NSLog(@&quot;%@&quot;, x);</span><br><span class="line">  &#125;];</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>运行代码，会发现和之前的效果一致。</p>
+<h4 id="什么是-【事件-】？"><a href="#什么是-【事件-】？" class="headerlink" title="什么是 【事件 】？"></a>什么是 【事件 】？</h4><p>到目前为止，本教程已经描述了不同的事件类型，但是没有详细介绍这些事件的结构。有趣的是，事件可以包含任何东西！</p>
+<p>为了证明这一点，向该管道添加另一种操作符，更新代码如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">[[[self.usernameTextField.rac_textSignal</span><br><span class="line">  map:^id(NSString *text) &#123;</span><br><span class="line">    return @(text.length);</span><br><span class="line">  &#125;]</span><br><span class="line">  filter:^BOOL(NSNumber *length) &#123;</span><br><span class="line">    return [length integerValue] &gt; 3;</span><br><span class="line">  &#125;]</span><br><span class="line">  subscribeNext:^(id x) &#123;</span><br><span class="line">    NSLog(@&quot;%@&quot;, x);</span><br><span class="line">  &#125;];</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>运行代码，发现控制台将会打印text field的内容长度而不是内容本身：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">2013-12-26 12:06:54.566 RWReactivePlayground[10079:a0b] 4</span><br><span class="line">2013-12-26 12:06:54.725 RWReactivePlayground[10079:a0b] 5</span><br><span class="line">2013-12-26 12:06:54.853 RWReactivePlayground[10079:a0b] 6</span><br><span class="line">2013-12-26 12:06:55.061 RWReactivePlayground[10079:a0b] 7</span><br><span class="line">2013-12-26 12:06:55.197 RWReactivePlayground[10079:a0b] 8</span><br><span class="line">2013-12-26 12:06:55.300 RWReactivePlayground[10079:a0b] 9</span><br><span class="line">2013-12-26 12:06:55.462 RWReactivePlayground[10079:a0b] 10</span><br><span class="line">2013-12-26 12:06:55.558 RWReactivePlayground[10079:a0b] 11</span><br><span class="line">2013-12-26 12:06:55.646 RWReactivePlayground[10079:a0b] 12</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>新增的<code>map</code>操作通过提供的block来转换事件数据流。对于接收到的每一个<code>next</code>事件，它都会执行该block, 然后发出返回值，该返回值仍旧是一个<code>next</code>事件。上面的代码中，    <code>map</code>操作符拿到<code>NSString</code>类型的值，获得其长度，并将其转换成<code>NSNumber</code>类型返回。</p>
+<p>有关此功能的图形描述，可以看下面的图片：<br><img src="/./week1904.png" alt="Alt text"></p>
+<p>如你所见，<code>map</code>操作符之后的所有的步骤收到的都是<code>NSNumber</code>实例。你可以使用<code>map</code>操作符将收到数据转换成任意类型的对象。</p>
+<blockquote>
+<p>Note: 上面代码中的text.length 返回的是NSInteger类型，它是一种基本类型。为了将其作为事件的内容来使用，必须将其进行包装。Objectice-C提供了一种简洁的字面量语法来进行此此操作@(texr.length)</p>
+</blockquote>
+<p>现在应该使用所学的概念来更新<strong>ReactivePlayground</strong>的代码。</p>
+<h4 id="创建-Valid-State-Signals"><a href="#创建-Valid-State-Signals" class="headerlink" title="创建 Valid State Signals"></a>创建 Valid State Signals</h4><p>首先要做的就是，创建一对信号来指示<code>username</code>和<code>password</code>是否是有效的。在<strong>RWViewController.m</strong>的viewDidload方法中添加如下代码：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">RACSignal *validUsernameSignal =</span><br><span class="line">  [self.usernameTextField.rac_textSignal</span><br><span class="line">    map:^id(NSString *text) &#123;</span><br><span class="line">      return @([self isValidUsername:text]);</span><br><span class="line">    &#125;];</span><br><span class="line"></span><br><span class="line">RACSignal *validPasswordSignal =</span><br><span class="line">  [self.passwordTextField.rac_textSignal</span><br><span class="line">    map:^id(NSString *text) &#123;</span><br><span class="line">      return @([self isValidPassword:text]);</span><br><span class="line">    &#125;];</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>如你所见，上面的代码将<code>map</code>操作符应用到每一个textfield的<code>rac_textSignal</code>，输出由Bool值封装的NSNumber对象。</p>
+<p>接下来继续转换这些信号，以便它们能够为textfield提供合适的背景色。你通过订阅这些信号，拿到相应的值就可以更新textfield的背景色，一个可行的选择如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">[[validPasswordSignal</span><br><span class="line">  map:^id(NSNumber *passwordValid) &#123;</span><br><span class="line">    return [passwordValid boolValue] ? [UIColor clearColor] : [UIColor yellowColor];</span><br><span class="line">  &#125;]</span><br><span class="line">  subscribeNext:^(UIColor *color) &#123;</span><br><span class="line">    self.passwordTextField.backgroundColor = color;</span><br><span class="line">  &#125;];</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>先不要添加上面的代码，因为我们还有更加优雅的方式。</p>
+<p>我们的目的是将信号的输出值赋值给textfield的background属性，但是上面的代码并不具备很好的表达性，赋值语句太过于靠后了。</p>
+<p>幸运的是ReactiveCocoa有一个宏定义，允许你更加优雅的来表达这个功能。将下面的代码直接添加到viewDidload中两个signals的下方。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">RAC(self.passwordTextField, backgroundColor) =</span><br><span class="line">  [validPasswordSignal</span><br><span class="line">    map:^id(NSNumber *passwordValid) &#123;</span><br><span class="line">      return [passwordValid boolValue] ? [UIColor clearColor] : [UIColor yellowColor];</span><br><span class="line">    &#125;];</span><br><span class="line"></span><br><span class="line">RAC(self.usernameTextField, backgroundColor) =</span><br><span class="line">  [validUsernameSignal</span><br><span class="line">    map:^id(NSNumber *passwordValid) &#123;</span><br><span class="line">     return [passwordValid boolValue] ? [UIColor clearColor] : [UIColor yellowColor];</span><br><span class="line">    &#125;];</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p><code>RAC</code>宏定义允许你将信号的输出赋值给对象的属性，它需要两个参数，第一个是包含要设置属性的对象。第二个是参数是属性名称。每次信号发出下一个事件时，传递的值都会赋值给给定的属性。</p>
+<p>是不是非常优雅的解决方案？</p>
+<p>最后一件要做的事情是移除洗面的代码</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">self.usernameTextField.backgroundColor = self.usernameIsValid ? [UIColor clearColor] : [UIColor yellowColor];</span><br><span class="line">self.passwordTextField.backgroundColor = self.passwordIsValid ? [UIColor clearColor] : [UIColor yellowColor];</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>通过下面的图像，可视化当前的逻辑。可以看到，这里有两个简单的管道，它们获取文本信号，然后通过<code>map</code>将它们映射为有指示有效性的Bool值，然后再映射为UIColor,将UIcolor绑定到textfield 的backgroundcolor上。<br><img src="/week1905.png" alt="Alt text"></p>
+<p>你是否好奇，为什么创建了两个分离的信号<code>validPasswordSignal</code>和<code>validUsernameSignal</code>,而不是为每个textfield创建一个单一的流畅管道。保持耐心，这种疯狂背后的方法很快将变得清晰！！！</p>
+<h4 id="Combining-signals-组合信号"><a href="#Combining-signals-组合信号" class="headerlink" title="Combining signals (组合信号)"></a>Combining signals (组合信号)</h4><p>当前情况下， <strong>Sigin  In</strong>Button只有在username和password输入框都有效的情况下才能点击，是时候通过响应式的方式来做这件事情了。</p>
+<p>当前的代码已经有能发出boolean类型值的<strong>信号</strong>，来显示username和password是否是有效的：<code>validUsernameSignal</code>和<code>validPasswordSignal</code>。你要做的就是将这两种信号组合起来，以确定何时是该Button处于enable状态。</p>
+<p>在viewDidload方法中添加下面的代码:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">RACSignal *signUpActiveSignal = [RACSignal combineLatest:@[validUsernameSignal, validPasswordSignal]</span><br><span class="line">   reduce:^id(NSNumber *usernameValid, NSNumber *passwordValid) &#123;</span><br><span class="line">        return @([usernameValid boolValue] &amp;&amp; [passwordValid boolValue]);</span><br><span class="line">    &#125;];</span><br></pre></td></tr></table></figure>
+<p>上面的代码通过<code>combineLatest:reduce:</code>方法组合<code>validUsernameSignal</code>和<code>validPasswordSignal</code>提交的最新值成为一个新的信号。每当两个信号中的任意一个提交了新值<code>reduce</code> block都会执行,其返回值将成为<code>组合信号</code>的下一个值。</p>
+<blockquote>
+<p>RACSignal组合方法可以组合任意数量的信号，reduce block中的参数对应着每个<code>源信号</code>的值。ReacticeCocoa有一个小的实用类<code>RACBlockTrampoline</code>,该类用来处理reduce block中的可变参数列表。</p>
+</blockquote>
+<p>现在你就有了一个合适的信号，继续添加下面的代码到    <code>viewDidload</code>方法的最后：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[signUpActiveSignal subscribeNext:^(NSNumber *signupActive) &#123;</span><br><span class="line">   self.signInButton.enabled = [signupActive boolValue];</span><br><span class="line"> &#125;];</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>在运行程序之前，移除下面的属性和代码</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">@property (nonatomic) BOOL passwordIsValid;</span><br><span class="line">@property (nonatomic) BOOL usernameIsValid;</span><br><span class="line"></span><br><span class="line">----------------------------</span><br><span class="line">// handle text changes for both text fields</span><br><span class="line">[self.usernameTextField addTarget:self</span><br><span class="line">                           action:@selector(usernameTextFieldChanged)</span><br><span class="line">                 forControlEvents:UIControlEventEditingChanged];</span><br><span class="line">[self.passwordTextField addTarget:self </span><br><span class="line">                           action:@selector(passwordTextFieldChanged)</span><br><span class="line">                 forControlEvents:UIControlEventEditingChanged];</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>同时也移除<code>updateUIState</code>、<code>usernameTextFieldChange</code>和<code>passwordTextfieldChange</code>方法。最后确保移除viewDidload中对<code>updateUIState</code>的调用。</p>
+<p>运行程序，测试<strong>Sign In</strong> button，当username和password都是有效的时候，<code>Sign In</code> Button应该也是enabled的。这个逻辑如下图：<br><img src="/./week1906.png" alt="Alt text"></p>
+<p>上图揭示了一对非常重要的概念，这对概念可以让你用ReactiveCocoa执行非常强大的任务</p>
+<ul>
+<li>拆分 - 信号可以有多个订阅者，并充当多个后续管道步骤的源。上图中，指示username和password有效性的boolean信号被拆分，并用于不同的目的。</li>
+<li>组合 - 可以组合多个信号创建新的信号，上图只是组合的boolean信号，实际上你可以组合任意类型的信号。</li>
+</ul>
+<p>这些更改的结果是不再需要指示两个textfield是否有效的私有属性，这是使用响应式的主要特征之一 ： 不再需要实例变量来追踪瞬时状态。</p>
+<h4 id="Reactice-Sign-In-（响应式登录）"><a href="#Reactice-Sign-In-（响应式登录）" class="headerlink" title="Reactice Sign-In （响应式登录）"></a>Reactice Sign-In （响应式登录）</h4><p>目前为止，只有管理textfield和button的状态使用到了响应式编程的方式，但是按钮的点击事件处理仍旧在使用action的方式，接下来要做的就是用响应式的方式来做替代action的方式。</p>
+<p><code>Sign In</code> Button的点击事件通过<code>storyboard action</code>的方式写在了<code>RWViewController.m</code>的<code>signInButtonTouched</code>中。我们要做的就是取代这种方式，所以第一步就是做的就是断开和storyboard action的关联。</p>
+<p>打开<code>Main.storyboard</code>,找到<code>Sign In</code> Button,点击<code>crtl</code>键打开<code>outlet/action</code>连接，点击X移除连接，下图显示在哪里可以找到删除按钮：<br><img src="/./week1907.jpg" alt="Alt text"></p>
+<p>你已经知道ReactiveCocoa 框架如何给UIKit标准控件添加属性和方法。在此之前，你是用的是<code>rac_textSignal</code>，它在text改变的时候提交事件。为了处理事件，你需要另一种方法：    <code>rac_signalForControEvents</code>.</p>
+<p>回到<code>RWViewController.m</code>，在viewDidload方法最后添加如下代码：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">[[self.signInButton</span><br><span class="line">   rac_signalForControlEvents:UIControlEventTouchUpInside]</span><br><span class="line">   subscribeNext:^(id x) &#123;</span><br><span class="line">     NSLog(@&quot;button clicked&quot;);</span><br><span class="line">   &#125;];</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>上面的代码从Button的<code>UIControlEventTouchUpInside</code>事件创建了一个的信号，并添加订阅，以便每次该事件发生的时候都会打印日志。</p>
+<p>运行程序，当username和password有效的时候，点击该button, 查看控制台输出日志:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">2013-12-28 08:05:10.816 RWReactivePlayground[18203:a0b] button clicked</span><br><span class="line">2013-12-28 08:05:11.675 RWReactivePlayground[18203:a0b] button clicked</span><br><span class="line">2013-12-28 08:05:12.605 RWReactivePlayground[18203:a0b] button clicked</span><br><span class="line">2013-12-28 08:05:12.766 RWReactivePlayground[18203:a0b] button clicked</span><br><span class="line">2013-12-28 08:05:12.917 RWReactivePlayground[18203:a0b] button clicked</span><br></pre></td></tr></table></figure>
+<p>现在按钮有了点击事件的信号，下一步是将此与登录过程本身关联起来。这带来一些问题，但是没关系，你并不介意这些问题，对吗？ 打开<code>RWDummySigInService.h</code>:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">typedef void (^RWSignInResponse)(BOOL);</span><br><span class="line"></span><br><span class="line">@interface RWDummySignInService : NSObject</span><br><span class="line"></span><br><span class="line">- (void)signInWithUsername:(NSString *)username</span><br><span class="line">                  password:(NSString *)password </span><br><span class="line">                  complete:(RWSignInResponse)completeBlock;</span><br><span class="line"></span><br><span class="line">@end</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>该接口将<code>username</code>、<code>password</code>和<code>completeBlock</code>作为参数，当登录成功或者失败的时候执行<code>completeBlock</code>。你可以直接在button的<code>subscribeNext:</code>的block中调用该接口，为什么你能这么做呢？因为这种异步的、基于事件的行为，对ReactiveCocoa来说就是家常便饭。</p>
+<blockquote>
+<p>Note: 为了简单期间，本教程使用的简单的虚拟服务，这样就不依赖任何外部的API。但是现在有一个非常现实的问题，怎么使用未用信号表示的API。</p>
+</blockquote>
+<h4 id="Creating-Signals-创建信号"><a href="#Creating-Signals-创建信号" class="headerlink" title="Creating Signals (创建信号)"></a>Creating Signals (创建信号)</h4><p>幸运的是，将现有的异步API调整为信号相当容易。首先移除<code>signInButtonTouched:</code>方法，该方法将被其他逻辑所取代。<br>在<code>RWViewController.m</code>中添加下面的方法：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">-(RACSignal *)signInSignal &#123;</span><br><span class="line">  return [RACSignal createSignal:^RACDisposable *(id&lt;RACSubscriber&gt; subscriber) &#123;</span><br><span class="line">    [self.signInService</span><br><span class="line">     signInWithUsername:self.usernameTextField.text</span><br><span class="line">     password:self.passwordTextField.text</span><br><span class="line">     complete:^(BOOL success) &#123;</span><br><span class="line">       [subscriber sendNext:@(success)];</span><br><span class="line">       [subscriber sendCompleted];</span><br><span class="line">     &#125;];</span><br><span class="line">    return nil;</span><br><span class="line">  &#125;];</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>上面的方法创建了使用当前的username和password登录的信号，现在将其进行拆解：</p>
+<p>上面的代码使用<code>RACSignal</code>中的<code>createSignal:</code>方法创建信号，该方法的参数是一个Block，用来描述该信号，且该Block只有一个参数。当信号有订阅者的时候，该Block中的代码将会执行。</p>
+<p>传递给该Block的是一个<code>subscriber</code>实例，该实例遵守<code>RACSubscriber</code>协议，该协议中有你用来发出事件的方法，你可以发送任意个数的<code>next</code>事件,这些事件会因为<code>error</code>或者<code>complete</code>事件结束。本教程中，将会发送一个<code>next</code>事件来显示是否登录成功或者失败，然后发送    <code>comlete</code>事件结束。</p>
+<p>这个Block的返回值是一个    <code>RACDisposable</code>对象，它允许你执行取消或者取消订阅的时候可能需要的任何清理工作。此信号因为没有任何清理需要，所以直接返回<code>nil</code>;</p>
+<p>正如你所看到的，在信号中包装异步的API非常的简单。</p>
+<p>现在我们来利用这个信号，将下面的代码添加到viewDidload的最后</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">[[[self.signInButton</span><br><span class="line">   rac_signalForControlEvents:UIControlEventTouchUpInside]</span><br><span class="line">   map:^id(id x) &#123;</span><br><span class="line">     return [self signInSignal];</span><br><span class="line">   &#125;]</span><br><span class="line">   subscribeNext:^(id x) &#123;</span><br><span class="line">     NSLog(@&quot;Sign in result: %@&quot;, x);</span><br><span class="line">   &#125;];</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>上面的代码通过<code>map</code>操作符将登录信号转换为登录信号，订阅者只打印结果。</p>
+<p>直接运行该代码，然后点击<code>Sign In</code>Button，查看XCode的控制台打印，将会看到下面的结果,该结果也许和你想象的不太一样：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">2014-01-08 21:00:25.919 RWReactivePlayground[33818:a0b] Sign in result:</span><br><span class="line">                                   &lt;RACDynamicSignal: 0xa068a00&gt; name: +createSignal:</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p><code>subscribeNext:</code>block传递的是整个信号，而不是登录信号的结果。</p>
+<p>来看下这张图：<br><img src="/./week1908.png" alt="Alt text"></p>
+<p>当你点击button的时候，<code>rac_signallForControlEvents</code>发出一个<code>next</code>事件，然后<code>map</code>将创建并返回登录信号，这意味着下面的管道步骤接收的是RACSignal。这就是你在<code>subscribeNext:</code>中观察到的内容。</p>
+<p>上面中情况称为信号中的信号，换言之是包含内部信号的外部信号。如果你想的话，你可以在外部信号的    <code>subscribeNext:</code>中订阅内部信号。但是这样做会导致嵌套混乱！幸运的是，这是一个常见的问题，ReactiveCocoa已经针对这种情况做好了准备;</p>
+<h4 id="信号中的信号"><a href="#信号中的信号" class="headerlink" title="信号中的信号"></a>信号中的信号</h4><p>此问题的解决步骤非常的简单，只需将<code>map</code>函数改成<code>flattenMap</code>:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">[[[self.signInButton</span><br><span class="line">   rac_signalForControlEvents:UIControlEventTouchUpInside]</span><br><span class="line">   flattenMap:^id(id x) &#123;</span><br><span class="line">     return [self signInSignal];</span><br><span class="line">   &#125;]</span><br><span class="line">   subscribeNext:^(id x) &#123;</span><br><span class="line">     NSLog(@&quot;Sign in result: %@&quot;, x);</span><br><span class="line">   &#125;];</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>这段代码同样是将按钮的<code>点击信号</code>映射为<code>登录信号</code>,但是<code>flattens</code>可以将事件从内部信号发送到外部信号。</p>
+<p>运行代码，看一下Xcode的控制台：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">2013-12-28 18:20:08.156 RWReactivePlayground[22993:a0b] Sign in result: 0</span><br><span class="line">2013-12-28 18:25:50.927 RWReactivePlayground[22993:a0b] Sign in result: 1</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>现在这个管道正在做的就是你想要的了，最后一步就是在<code>subscribeNext</code>中添加相关的逻辑，以在登录成功之后执行所需的导航。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">[[[self.signInButton</span><br><span class="line">  rac_signalForControlEvents:UIControlEventTouchUpInside]</span><br><span class="line">  flattenMap:^id(id x) &#123;</span><br><span class="line">    return [self signInSignal];</span><br><span class="line">  &#125;]</span><br><span class="line">  subscribeNext:^(NSNumber *signedIn) &#123;</span><br><span class="line">    BOOL success = [signedIn boolValue];</span><br><span class="line">    self.signInFailureText.hidden = success;</span><br><span class="line">    if (success) &#123;</span><br><span class="line">      [self performSegueWithIdentifier:@&quot;signInSuccess&quot; sender:self];</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;];</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>运行程序：<br><img src="/./week1909.jpg" alt="Alt text"></p>
+<p>你是否注意到当前的应用程序存在一个小的用户体验的问题？ 当登录服务验证提供的凭据时，应禁用登录按钮。这样可以防止用户重复相同的登录。此外，如果出现登录尝试失败，当用户再次尝试登录时，错误消息应隐藏。</p>
+<p>但是，如何将此逻辑添加到当前管道？更改按钮的<code>enable</code>状态不是<code>transformation</code>、<code>filter</code>或到目前为止遇到的任何其他概念。其实，它被称为<code>副作用</code>或<code>管道中next事件发生时执行的逻辑</code>，它实际上不会更改事件本身。</p>
+<h4 id="Adding-side-effects（添加副作用）"><a href="#Adding-side-effects（添加副作用）" class="headerlink" title="Adding side-effects（添加副作用）"></a>Adding side-effects（添加副作用）</h4><p>用下面的代码取代当前的代码：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">[[[[self.signInButton</span><br><span class="line">   rac_signalForControlEvents:UIControlEventTouchUpInside]</span><br><span class="line">   doNext:^(id x) &#123;</span><br><span class="line">     self.signInButton.enabled = NO;</span><br><span class="line">     self.signInFailureText.hidden = YES;</span><br><span class="line">   &#125;]</span><br><span class="line">   flattenMap:^id(id x) &#123;</span><br><span class="line">     return [self signInSignal];</span><br><span class="line">   &#125;]</span><br><span class="line">   subscribeNext:^(NSNumber *signedIn) &#123;</span><br><span class="line">     self.signInButton.enabled = YES;</span><br><span class="line">     BOOL success = [signedIn boolValue];</span><br><span class="line">     self.signInFailureText.hidden = success;</span><br><span class="line">     if (success) &#123;</span><br><span class="line">       [self performSegueWithIdentifier:@&quot;signInSuccess&quot; sender:self];</span><br><span class="line">     &#125;</span><br><span class="line">   &#125;];</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>你可以看到上面如何添加 <code>doNext：</code>,在按钮触摸事件创建后立即向管道添加该步骤。请注意，    <code>doNext：</code> 块没有返回值，因为它是副作用，它使事件本身保持不变。</p>
+<p>上面的 <code>doNext：</code> 块将按钮的属性设置为 NO，并隐藏失败文本。当订阅<code>Next：</code>块的时候重新启用按钮，并根据登录结果显示或隐藏失败文本。</p>
+<p><img src="/./week1910.png" alt="Alt text"></p>
+<p>运行应用程序以确认登录按钮按预期启用和禁用</p>
+<p>现在，你的工作就完成了 – 应用程序现在完全是Reactive状态。</p>
+<blockquote>
+<p>Note: 当异步事件正在进行的时候禁用button是一个常见的问题，如果ReacticeCocoa中遍布这种处理就会显得非常混乱。<code>RACCommand</code> 封装了这个概念，并具有<code>enabled</code>信号，允许您将Button的<code>enable</code>属性连接到信号, 可能你需要尝试该类。</p>
+</blockquote>
+<p>####结论</p>
+<p>希望本教程已经给你一个良好的基础，这将有助于你在自己的应用程序中使用ReactiveCocoa框架。熟悉这些概念可能需要多加练习，但与任何语言或程序一样，一旦你找到它的窍门，它真的很简单。ReactiveCocoa的核心是信号，它们只不过是事件流。还有什么比这更简单的呢？</p>
+<p>对于ReactiveCocoa，我发现的有趣的事情之一是有许多方法可以解决同样的问题。你可以通过这个应用程序练习，通过调整信号和管道，以更改它们拆分和组合的方式。</p>
+<p>ReactiveCocoa的主要目标是使代码更简洁、更易于理解。就个人而言，我发现，如果应用程序的逻辑表示为清晰的管道，使用流畅的语法，则更容易理解应用程序的作用。</p>
+<p>在本教程系列的<span class="exturl" data-url="aHR0cHM6Ly93d3cucmF5d2VuZGVybGljaC5jb20vP3A9NjI3OTY=">第二部分中<i class="fa fa-external-link-alt"></i></span>，你将了解更高级的主题，如错误处理以及如何管理在不同线程上执行的代码。</p>
+<h3 id="Part-03-原文"><a href="#Part-03-原文" class="headerlink" title="Part-03 原文"></a>Part-03 原文</h3><p><span class="exturl" data-url="aHR0cHM6Ly93d3cucmF5d2VuZGVybGljaC5jb20vMjQ5My1yZWFjdGl2ZWNvY29hLXR1dG9yaWFsLXRoZS1kZWZpbml0aXZlLWludHJvZHVjdGlvbi1wYXJ0LTEtMg==">ReactiveCocoa Tutorial – The Definitive Introduction: Part 1&#x2F;2<i class="fa fa-external-link-alt"></i></span></p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="reward-container">
+  <div>如果觉得我的文章对您有用，请随意打赏。您的支持将鼓励我继续创作！</div>
+  <button>
+    赞赏
+  </button>
+  <div class="post-reward">
+      <div>
+        <img src="/images/wechatpay.png" alt="Ray 微信">
+        <span>微信</span>
+      </div>
+
+  </div>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/%E7%BF%BB%E8%AF%91/" rel="tag"># 翻译</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/post/week17/" rel="prev" title="以技术之名周报05#ipa包“瘦身”| 2020-04-26">
+                  <i class="fa fa-chevron-left"></i> 以技术之名周报05#ipa包“瘦身”| 2020-04-26
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/post/HexoGoogleAnalytics/" rel="next" title="Hexo的Next主题中配置Google Analytics之后不生效的问题">
+                  Hexo的Next主题中配置Google Analytics之后不生效的问题 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    <div class="comments gitalk-container"></div>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2025</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Ray</span>
+</div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+  <div class="powered-by">由 <span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlv">Hexo</span> & <span class="exturl" data-url="aHR0cHM6Ly90aGVtZS1uZXh0LmpzLm9yZw==">NexT.Gemini</span> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+<script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.0/search.js" integrity="sha256-vXZMYLEqsROAXkEw93GGIvaB2ab+QW6w3+1ahD9nXXA=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.8.0/gitalk.css" integrity="sha256-AJnUHL7dBv6PGaeyPQJcgQPDjt/Hn/PvYZde1iqfp8U=" crossorigin="anonymous">
+
+<script class="next-config" data-name="gitalk" type="application/json">{"enable":true,"github_id":"iamlay","repo":"gitalk","client_id":"798848f6f91162435156","client_secret":"d9b621213c7353cfa8b2286491f877ef4507da1e","admin_user":"iamlay","distraction_free_mode":true,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token","language":"zh-CN","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.8.0/gitalk.min.js","integrity":"sha256-MVK9MGD/XJaGyIghSVrONSnoXoGh3IFxLw0zfvzpxR4="},"path_md5":"4ecad707e82bb9ce39b90b4260bfa340"}</script>
+<script src="/js/third-party/comments/gitalk.js"></script>
+
+</body>
+</html>

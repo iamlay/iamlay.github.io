@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.3.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+  <meta name="google-site-verification" content="bdLSZKDAikc4SOPIlDwwuSFBawDGQU3GmqUWTzUM-rE">
+  <meta name="baidu-site-verification" content="codeva-lCWvLLHuj5">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3825645052664031"
+     crossorigin="anonymous"></script>
+  <meta name="baidu-site-verification" content="true">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha256-AbA177XfpSnFEvgpYu1jMygiLabzPCJCRIBtR5jGc0k=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"www.iamlay.com","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.13.1","exturl":true,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"gitalk","storage":true,"lazyload":false,"nav":{"gitalk":{"ordcer":-1}},"activeClass":"gitalk"},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="最近一直在做一些基于ChatGPT的大模型进行微调相关的工作，这篇文章主要记录一下搜集到的相关的资料，以及在微调过程中摸索出来的一些经验，希望对有微调需求的伙伴有些许帮助。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="对ChatGPT进行微调(Fine-Turning)的一些总结">
+<meta property="og:url" content="https://www.iamlay.com/post/Fine-Turning/index.html">
+<meta property="og:site_name" content="以技术之名">
+<meta property="og:description" content="最近一直在做一些基于ChatGPT的大模型进行微调相关的工作，这篇文章主要记录一下搜集到的相关的资料，以及在微调过程中摸索出来的一些经验，希望对有微调需求的伙伴有些许帮助。">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2023-10-17T06:48:18.000Z">
+<meta property="article:modified_time" content="2023-10-17T06:53:26.819Z">
+<meta property="article:author" content="Ray">
+<meta property="article:tag" content="原创">
+<meta property="article:tag" content="ChatGPT">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://www.iamlay.com/post/Fine-Turning/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://www.iamlay.com/post/Fine-Turning/","path":"post/Fine-Turning/","title":"对ChatGPT进行微调(Fine-Turning)的一些总结"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>对ChatGPT进行微调(Fine-Turning)的一些总结 | 以技术之名</title>
+  <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-170943611-2"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-170943611-2');
+</script>
+  <script src="/js/third-party/analytics/baidu-analytics.js"></script>
+  <script async src="https://hm.baidu.com/hm.js?2fdaf8ee633a188c5649eefea79b28b3"></script>
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<!-- hexo injector head_end start --><script async defer data-website-id="fad553b1-b94d-4311-8d52-913dc067e883" src="https://tongji.iamlay.com/script.js"></script><!-- hexo injector head_end end --></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">以技术之名</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">以技术之名</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-chatgpt"><a href="/chatgpt" rel="section"><i class="fa fa-comment-dots fa-fw"></i>AI体验</a></li><li class="menu-item menu-item-sitemap"><a href="/sitemap.xml" rel="section"><i class="fa fa-sitemap fa-fw"></i>站点地图</a></li><li class="menu-item menu-item-links"><a href="/links/" rel="section"><i class="fa fa-link fa-fw"></i>友情链接</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%80%E3%80%81%E8%AF%B4%E5%9C%A8%E5%89%8D%E5%A4%B4"><span class="nav-number">1.</span> <span class="nav-text">一、说在前头</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BA%8C%E3%80%81%E5%85%B3%E4%BA%8E%E5%BE%AE%E8%B0%83%E6%95%B0%E6%8D%AE"><span class="nav-number">2.</span> <span class="nav-text">二、关于微调数据</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#2-1%E6%95%B0%E6%8D%AE%E9%9B%86%E5%8F%82%E8%80%83"><span class="nav-number">2.1.</span> <span class="nav-text">2.1数据集参考</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%89%E3%80%81%E7%BB%8F%E9%AA%8C%E6%80%BB%E7%BB%93"><span class="nav-number">3.</span> <span class="nav-text">三、经验总结</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%9B%9B%E3%80%81%E4%B8%80%E4%BA%9B%E7%A4%BA%E4%BE%8B"><span class="nav-number">4.</span> <span class="nav-text">四、一些示例</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#4-1-%E5%BE%AE%E8%B0%83%E4%BB%A3%E7%A0%81"><span class="nav-number">4.1.</span> <span class="nav-text">4.1 微调代码</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#4-2-Promt%E7%A4%BA%E4%BE%8B"><span class="nav-number">4.2.</span> <span class="nav-text">4.2 Promt示例</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BA%94%E3%80%81%E5%8F%82%E8%80%83%E9%93%BE%E6%8E%A5"><span class="nav-number">5.</span> <span class="nav-text">五、参考链接</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Ray</p>
+  <div class="site-description" itemprop="description">为信仰而生</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">45</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">12</span>
+        <span class="site-state-item-name">分类</span>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">9</span>
+        <span class="site-state-item-name">标签</span>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2lhbWxheQ==" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;iamlay"><i class="fab fa-github fa-fw"></i>GitHub</span>
+      </span>
+      <span class="links-of-author-item">
+        <span class="exturl" data-url="bWFpbHRvOjExODcwNzQ1NDNAcXEuY29t" title="E-Mail → mailto:1187074543@qq.com"><i class="fa fa-envelope fa-fw"></i>E-Mail</span>
+      </span>
+  </div>
+
+
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://www.iamlay.com/post/Fine-Turning/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Ray">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="以技术之名">
+      <meta itemprop="description" content="为信仰而生">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="对ChatGPT进行微调(Fine-Turning)的一些总结 | 以技术之名">
+      <meta itemprop="description" content="最近一直在做一些基于ChatGPT的大模型进行微调相关的工作，这篇文章主要记录一下搜集到的相关的资料，以及在微调过程中摸索出来的一些经验，希望对有微调需求的伙伴有些许帮助。">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          对ChatGPT进行微调(Fine-Turning)的一些总结
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2023-10-17 14:48:18 / 修改时间：14:53:26" itemprop="dateCreated datePublished" datetime="2023-10-17T14:48:18+08:00">2023-10-17</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/AI/" itemprop="url" rel="index"><span itemprop="name">AI</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+</div>
+
+	
+            <div class="post-description">最近一直在做一些基于ChatGPT的大模型进行微调相关的工作，这篇文章主要记录一下搜集到的相关的资料，以及在微调过程中摸索出来的一些经验，希望对有微调需求的伙伴有些许帮助。</div>
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <p><span class="exturl" data-url="aHR0cHM6Ly9wbGF0Zm9ybS5vcGVuYWkuY29tL2RvY3MvZ3VpZGVzL2ZpbmUtdHVuaW5nL2NyZWF0ZS1hLWZpbmUtdHVuZWQtbW9kZWw=">Fine-Turning的官方文档<i class="fa fa-external-link-alt"></i></span><br><span class="exturl" data-url="aHR0cHM6Ly9wbGF0Zm9ybS5vcGVuYWkuY29tL2ZpbmV0dW5l">Fine-Turning地址<i class="fa fa-external-link-alt"></i></span></p>
+<h4 id="一、说在前头"><a href="#一、说在前头" class="headerlink" title="一、说在前头"></a>一、说在前头</h4><p>虽然在官方文档中，官方介绍一些微调示例以及微调的技巧，但是我自己感觉，这些都是一些方向性的指导，缺乏细节。对于像我这样非人工智能方向出身的人来说，只看这些示例和技巧，很难将大模型训练出理想中的效果。我的经验是：训练好大模型需要补上一些人工智能相关的知识，同时也需要不断的实操。</p>
+<p>为什么要补一些人工智能的知识呢？我这里举一个例子：我在基于自己的数据对大模型做微调的时候发现，训练中有两个参数<code>Training Loss </code>和 <code>Validation Loss</code>, 这两个参数的值在训练时是在不断变化的，当这两个值最后都不再抖动，趋近于0的时候就会有比较理想的训练效果，但是自己完全不知道这两个参数的作用是什么。</p>
+<p><span class="exturl" data-url="aHR0cHM6Ly9lYXN5YWkudGVjaC8=">参考这个链接学习AI<i class="fa fa-external-link-alt"></i></span></p>
+<h4 id="二、关于微调数据"><a href="#二、关于微调数据" class="headerlink" title="二、关于微调数据"></a>二、关于微调数据</h4><p>从官方文档来看，基于ChatGPT的大模型进行微调，对开发者来说实际上能够控制的变量非常少，一个是训练数据、一个是训练的轮次(epoch)。实际上官方也不推荐自定义训练轮次，在进行微调的时候，系统会根据数据量自己确定一个训练轮次，因此对我们来说，最重要也是唯一重要的事情就是准备	<code>【训练数据集】</code>和<code>【验证数据集】</code>。</p>
+<p>但是如何将企业知识变成<code>【训练数据集】</code>和<code>【测试数据集】</code>真的是非常非常难，自己目前也没有找到好的方法论，因此只能去看一些开源的数据集如何准备的，通过学习这些开源的数据集的数据总结经验。</p>
+<h5 id="2-1数据集参考"><a href="#2-1数据集参考" class="headerlink" title="2.1数据集参考"></a>2.1数据集参考</h5><ol>
+<li><p>斯坦福52K英文指令数据：<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3RhdHN1LWxhYi9zdGFuZm9yZF9hbHBhY2E=">ttps:&#x2F;&#x2F;github.com&#x2F;tatsu-lab&#x2F;stanford_alpaca<i class="fa fa-external-link-alt"></i></span><br>52K 条指令中的每一条都是唯一的,答案由text-davinci-003模型生成得到的。</p>
+</li>
+<li><p>斯坦福52K中文指令数据：<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2NhcmJvbnowL2FscGFjYS1jaGluZXNlLWRhdGFzZXQ=">https://github.com/carbonz0/alpaca-chinese-dataset<i class="fa fa-external-link-alt"></i></span><br>与原始alpaca数据json格式相同,数据生成的方法是机器翻译和self-instruct。</p>
+</li>
+<li><p>斯坦福52K中文指令数据：<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2hpa2FyaW1pbmcvYWxwYWNhX2NoaW5lc2VfZGF0YXNldA==">https://github.com/hikariming/alpaca_chinese_dataset<i class="fa fa-external-link-alt"></i></span><br>经过人工精调的中文对话数据集，加入除了alpaca之外的其他中文聊天对话 人工微调，部分并不中文化的问题，我们将重新询问chatgpt或文心一言，重新获取回答并覆盖掉alpaca的回答.</p>
+</li>
+<li><p>基于GPT4的斯坦福英文数据及中文数据<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL0luc3RydWN0aW9uLVR1bmluZy13aXRoLUdQVC00L0dQVC00LUxMTQ==">https://github.com/Instruction-Tuning-with-GPT-4/GPT-4-LLM<i class="fa fa-external-link-alt"></i></span><br>基于GPT4生成的斯坦福52K指令数据，后用ChatGPT翻译得到的中文数据</p>
+</li>
+<li><p>BELLE Group Dataset：<span class="exturl" data-url="aHR0cHM6Ly9odWdnaW5nZmFjZS5jby9kYXRhc2V0cz9zb3J0PWRvd25sb2FkcyZzZWFyY2g9QkVMTEUrR3JvdXA=">https://huggingface.co/datasets?sort=downloads&search=BELLE+Group<i class="fa fa-external-link-alt"></i></span><br>链家基于ChatGPT用self-instruct生成的中文指令数据集，其中还包括中文数学题数据和多轮对话数据。由于数据是模型生成的，未经过严格校验！</p>
+</li>
+<li><p>BELLE项目生成的中文指令数据：<span class="exturl" data-url="aHR0cHM6Ly9odWdnaW5nZmFjZS5jby9kYXRhc2V0cy9ZZXVuZ05MUC9maXJlZmx5LXRyYWluLTEuMU0=">https://huggingface.co/datasets/YeungNLP/firefly-train-1.1M<i class="fa fa-external-link-alt"></i></span><br>生成方式基于种子prompt，调用openai的api生成中文指令。包含了23个常见的中文数据集，对于每个任务，由人工书写若干种指令模板，保证数据的高质量与丰富度，数据量为115万 。</p>
+</li>
+<li><p>多轮对话数据：<span class="exturl" data-url="aHR0cHM6Ly9odWdnaW5nZmFjZS5jby9kYXRhc2V0cy9CZWxsZUdyb3VwL211bHRpdHVybl9jaGF0XzAuOE0=">https://huggingface.co/datasets/BelleGroup/multiturn_chat_0.8M<i class="fa fa-external-link-alt"></i></span></p>
+</li>
+<li><p>包含约50万条由BELLE项目生成的中文指令数据<span class="exturl" data-url="aHR0cHM6Ly9odWdnaW5nZmFjZS5jby9kYXRhc2V0cy9CZWxsZUdyb3VwL3RyYWluXzAuNU1fQ04=">https://huggingface.co/datasets/BelleGroup/train_0.5M_CN<i class="fa fa-external-link-alt"></i></span></p>
+</li>
+<li><p>chatDoctor：<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL0tlbnQwbi1MaS9DaGF0RG9jdG9y">https://github.com/Kent0n-Li/ChatDoctor<i class="fa fa-external-link-alt"></i></span></p>
+</li>
+<li><p>Med-ChatGLM：<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL1NDSVItSEkvTWVkLUNoYXRHTE0vdHJlZS9tYWluL2RhdGE=">https://github.com/SCIR-HI/Med-ChatGLM/tree/main/data<i class="fa fa-external-link-alt"></i></span><br>通过医学知识图谱和GPT3.5 API构建了中文医学指令数据集。</p>
+</li>
+<li><p>中国法律数据资源，由上海交大收集和整理: <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3Blbmd4aWFvLXNvbmcvYXdlc29tZS1jaGluZXNlLWxlZ2FsLXJlc291cmNlcw==">https://github.com/pengxiao-song/awesome-chinese-legal-resources<i class="fa fa-external-link-alt"></i></span></p>
+</li>
+</ol>
+<h4 id="三、经验总结"><a href="#三、经验总结" class="headerlink" title="三、经验总结"></a>三、经验总结</h4><ul>
+<li>保证足够的训练数据数量：对gpt-3.5-turbo模型，大概需要50到100个效果会比较好，推荐从设计50个高质量的示例开始，不断增加</li>
+<li>收集到的初始数据，要既包含训练集也要包含验证集，可以在初始阶段生成评估模型，提升质量</li>
+<li>重复：在数据样本比较少的情况下(以50条数据为例)，同样的数据多次重复比不重复效果要好，在测试的时候发现，数据重复10次的效果要比单条数据好（50条变成了500条）</li>
+<li>数据格式：如果数据比较复杂，比如答案细分成几点：1、2、3、4，每一点都有换行符，训练的效果不如那种答案只是简单一句话的</li>
+<li>训练轮次： 多轮训练会有好的效果，但是随着多轮的进行，提升会下降，如果轮次过多，会发生遗忘的问题。13条数据第一次回答全错，第二轮训练回答对了五个，第三轮训练回答对了6个。多轮训练有可能会把之前训练对的结果变成错误的，四轮训练把第三轮训练的正确结果给修改了。</li>
+</ul>
+<h4 id="四、一些示例"><a href="#四、一些示例" class="headerlink" title="四、一些示例"></a>四、一些示例</h4><h5 id="4-1-微调代码"><a href="#4-1-微调代码" class="headerlink" title="4.1 微调代码"></a>4.1 微调代码</h5><p><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2lhbWxheS9MTE0=">代码地址<i class="fa fa-external-link-alt"></i></span></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><span class="line">import openai</span><br><span class="line">import time</span><br><span class="line">import logging</span><br><span class="line"></span><br><span class="line">openai.api_key = &quot;sk-xxxxxx&quot;</span><br><span class="line"></span><br><span class="line"># 删除已经训练好的模型</span><br><span class="line"># FINE_TUNED_MODEL = &quot;ft:gpt-3.5-turbo-0613:landz::87IN0I8U&quot;</span><br><span class="line"># openai.Model.delete(FINE_TUNED_MODEL)</span><br><span class="line"></span><br><span class="line">def configure_logging():</span><br><span class="line">    &quot;&quot;&quot;</span><br><span class="line">    Configures logging settings.</span><br><span class="line">    &quot;&quot;&quot;</span><br><span class="line">    logging.basicConfig(filename=&#x27;output.log&#x27;, level=logging.INFO,</span><br><span class="line">                        format=&#x27;%(asctime)s [%(levelname)s]: %(message)s&#x27;)</span><br><span class="line">    return logging.getLogger()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">def upload_file(file_name):</span><br><span class="line">    &quot;&quot;&quot;</span><br><span class="line">    Uploads a file to OpenAI for fine-tuning.</span><br><span class="line"></span><br><span class="line">    :param file_name: Path to the file to be uploaded.</span><br><span class="line">    :return: Uploaded file object.</span><br><span class="line">    &quot;&quot;&quot;</span><br><span class="line">    # Note: For a 400KB train_file, it takes about 1 minute to upload.</span><br><span class="line">    file_upload = openai.File.create(file=open(file_name, &quot;rb&quot;), purpose=&quot;fine-tune&quot;)</span><br><span class="line">    logger.info(f&quot;Uploaded file with id: &#123;file_upload.id&#125;&quot;)</span><br><span class="line"></span><br><span class="line">    while True:</span><br><span class="line">        logger.info(&quot;Waiting for file to process...&quot;)</span><br><span class="line">        file_handle = openai.File.retrieve(id=file_upload.id)</span><br><span class="line"></span><br><span class="line">        if len(file_handle) and file_handle.status == &quot;processed&quot;:</span><br><span class="line">            logger.info(&quot;File processed&quot;)</span><br><span class="line">            break</span><br><span class="line">        time.sleep(60)</span><br><span class="line"></span><br><span class="line">    return file_upload</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">if __name__ == &#x27;__main__&#x27;:</span><br><span class="line">    # Configure logger</span><br><span class="line">    logger = configure_logging()</span><br><span class="line"></span><br><span class="line">    file_name = &quot;train_data.jsonl&quot;</span><br><span class="line">    uploaded_file = upload_file(file_name)</span><br><span class="line"></span><br><span class="line">    logger.info(uploaded_file)</span><br><span class="line">    job = openai.FineTuningJob.create(training_file=uploaded_file.id, model=&quot;gpt-3.5-turbo&quot;)</span><br><span class="line">    logger.info(f&quot;Job created with id: &#123;job.id&#125;&quot;)</span><br></pre></td></tr></table></figure>
+
+
+<h5 id="4-2-Promt示例"><a href="#4-2-Promt示例" class="headerlink" title="4.2 Promt示例"></a>4.2 Promt示例</h5><p>在微调大模型的基础之上，有时候你还是需要设计一些Prompt，可以参考下面的示例来写自己的Prompt</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"># Role:  xx公司交易机器人</span><br><span class="line">## Profile</span><br><span class="line">- Author: lands</span><br><span class="line">- Version: 0.1</span><br><span class="line">- Language:  中文 </span><br><span class="line">- Description: 你是一个豪宅房产中介公司的交易机器人，负责回答房产交易相关的知识</span><br><span class="line">### Skill-1</span><br><span class="line">1.具有强大的知识获取和整合能力</span><br><span class="line">2.拥有广泛的知识库, 掌握提问和回答的技巧</span><br><span class="line">### Skill-2</span><br><span class="line">1.拥有排版审美, 会利用序号, 缩进, 分隔线和换行符等等来美化信息排版, 在询问是否有其他问题时候，换行输出</span><br><span class="line">## Rules</span><br><span class="line">1.你必须要遵守一个原则：你的回答必须直接使用三引号引用的内容，不能做任何修改。</span><br><span class="line">2. 你只能解答房地产交易相关的知识，对于不在你知识库中的信息, 明确告知用户你不知道,</span><br><span class="line">3. 你回答完每一个问题即结束对话, 并询问客户 “是否还有其他问题要问”</span><br><span class="line">## Workflow</span><br><span class="line">1.首先, 理解客户的问题</span><br><span class="line">2. 然后，基于给你的信息回答客户问题</span><br><span class="line">3.最终,  询问客户是否还有其他问题</span><br><span class="line">## Initialization</span><br><span class="line">作为一个&lt;Role&gt;, 你必须遵守 &lt;Rules&gt;, 你必须使用语言 &lt;Language&gt;，你必须问候用户. 然后介绍你自己，并遵循 &lt;Workflow&gt;.做问题回答</span><br></pre></td></tr></table></figure>
+
+<h4 id="五、参考链接"><a href="#五、参考链接" class="headerlink" title="五、参考链接"></a>五、参考链接</h4><p><span class="exturl" data-url="aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2R6eXN1bnNoaW5lL2FydGljbGUvZGV0YWlscy8xMzA4NzAzOTg=">指令微调数据集整理<i class="fa fa-external-link-alt"></i></span></p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="reward-container">
+  <div>如果觉得我的文章对您有用，请随意打赏。您的支持将鼓励我继续创作！</div>
+  <button>
+    赞赏
+  </button>
+  <div class="post-reward">
+      <div>
+        <img src="/images/wechatpay.png" alt="Ray 微信">
+        <span>微信</span>
+      </div>
+
+  </div>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/%E5%8E%9F%E5%88%9B/" rel="tag"># 原创</a>
+              <a href="/tags/ChatGPT/" rel="tag"># ChatGPT</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/post/timeManager/" rel="prev" title="十大顶级时间管理法">
+                  <i class="fa fa-chevron-left"></i> 十大顶级时间管理法
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/post/MacOSReinstall/" rel="next" title="如何将MacOS系统从 Sonoma 降级成 Ventura或更低版本系统">
+                  如何将MacOS系统从 Sonoma 降级成 Ventura或更低版本系统 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    <div class="comments gitalk-container"></div>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2025</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Ray</span>
+</div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+  <div class="powered-by">由 <span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlv">Hexo</span> & <span class="exturl" data-url="aHR0cHM6Ly90aGVtZS1uZXh0LmpzLm9yZw==">NexT.Gemini</span> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+<script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.0/search.js" integrity="sha256-vXZMYLEqsROAXkEw93GGIvaB2ab+QW6w3+1ahD9nXXA=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.8.0/gitalk.css" integrity="sha256-AJnUHL7dBv6PGaeyPQJcgQPDjt/Hn/PvYZde1iqfp8U=" crossorigin="anonymous">
+
+<script class="next-config" data-name="gitalk" type="application/json">{"enable":true,"github_id":"iamlay","repo":"gitalk","client_id":"798848f6f91162435156","client_secret":"d9b621213c7353cfa8b2286491f877ef4507da1e","admin_user":"iamlay","distraction_free_mode":true,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token","language":"zh-CN","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.8.0/gitalk.min.js","integrity":"sha256-MVK9MGD/XJaGyIghSVrONSnoXoGh3IFxLw0zfvzpxR4="},"path_md5":"f8d288e0e0d77d0f701c092082526c9f"}</script>
+<script src="/js/third-party/comments/gitalk.js"></script>
+
+</body>
+</html>

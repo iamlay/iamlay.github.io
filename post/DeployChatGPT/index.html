@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.3.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+  <meta name="google-site-verification" content="bdLSZKDAikc4SOPIlDwwuSFBawDGQU3GmqUWTzUM-rE">
+  <meta name="baidu-site-verification" content="codeva-lCWvLLHuj5">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3825645052664031"
+     crossorigin="anonymous"></script>
+  <meta name="baidu-site-verification" content="true">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha256-AbA177XfpSnFEvgpYu1jMygiLabzPCJCRIBtR5jGc0k=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"www.iamlay.com","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.13.1","exturl":true,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"gitalk","storage":true,"lazyload":false,"nav":{"gitalk":{"ordcer":-1}},"activeClass":"gitalk"},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="在官网使用ChatGPT的时候，还是比较麻烦的，每次都需要翻墙，而且速度比较慢，极大的影响了我们的使用效率。在我们拥有了ChatGPT官网的账号之后，怎么更加便捷的使用呢？我们可以一键部署一个属于自己的ChatGPT应用，即便不翻墙也可以正常使用，用户体验更好。这篇教程就是一篇保姆级教程，教给你如何一键部署自己的ChatGPT应用。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="一键部署自己的ChatGPT应用">
+<meta property="og:url" content="https://www.iamlay.com/post/DeployChatGPT/index.html">
+<meta property="og:site_name" content="以技术之名">
+<meta property="og:description" content="在官网使用ChatGPT的时候，还是比较麻烦的，每次都需要翻墙，而且速度比较慢，极大的影响了我们的使用效率。在我们拥有了ChatGPT官网的账号之后，怎么更加便捷的使用呢？我们可以一键部署一个属于自己的ChatGPT应用，即便不翻墙也可以正常使用，用户体验更好。这篇教程就是一篇保姆级教程，教给你如何一键部署自己的ChatGPT应用。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://testingcf.jsdelivr.net/gh/iamlay/BlogResources@main/imgs/deploychatgpt/PicturesChatGPTTest.gif">
+<meta property="og:image" content="https://testingcf.jsdelivr.net/gh/iamlay/BlogResources@main/imgs/deploychatgpt/DeployGPT03.png">
+<meta property="og:image" content="https://testingcf.jsdelivr.net/gh/iamlay/BlogResources@main/imgs/deploychatgpt/DeployGPT04.png">
+<meta property="og:image" content="https://testingcf.jsdelivr.net/gh/iamlay/BlogResources@main/imgs/deploychatgpt/DeployGPT05.png">
+<meta property="og:image" content="https://testingcf.jsdelivr.net/gh/iamlay/BlogResources@main/imgs/deploychatgpt/DeployGPT06.png">
+<meta property="og:image" content="https://testingcf.jsdelivr.net/gh/iamlay/BlogResources@main/imgs/deploychatgpt/DeployGPT09.png">
+<meta property="og:image" content="https://testingcf.jsdelivr.net/gh/iamlay/BlogResources@main/imgs/deploychatgpt/DeployGPT07.png">
+<meta property="og:image" content="https://testingcf.jsdelivr.net/gh/iamlay/BlogResources@main/imgs/deploychatgpt/DeployGPT08.png">
+<meta property="og:image" content="https://testingcf.jsdelivr.net/gh/iamlay/BlogResources@main/imgs/deploychatgpt/DeployGPT10.png">
+<meta property="og:image" content="https://testingcf.jsdelivr.net/gh/iamlay/BlogResources@main/imgs/deploychatgpt/DeployGPT11.png">
+<meta property="og:image" content="https://testingcf.jsdelivr.net/gh/iamlay/BlogResources@main/imgs/deploychatgpt/DeployGPT15.png">
+<meta property="og:image" content="https://testingcf.jsdelivr.net/gh/iamlay/BlogResources@main/imgs/deploychatgpt/DeployGPT12.png">
+<meta property="og:image" content="https://testingcf.jsdelivr.net/gh/iamlay/BlogResources@main/imgs/deploychatgpt/DeployGPT13.png">
+<meta property="og:image" content="https://testingcf.jsdelivr.net/gh/iamlay/BlogResources@main/imgs/deploychatgpt/DeployGPT16.png">
+<meta property="og:image" content="https://testingcf.jsdelivr.net/gh/iamlay/BlogResources@main/imgs/deploychatgpt/DeployGPT14.png">
+<meta property="og:image" content="https://testingcf.jsdelivr.net/gh/iamlay/BlogResources@main/imgs/deploychatgpt/DeployGPT17.png">
+<meta property="og:image" content="https://testingcf.jsdelivr.net/gh/iamlay/BlogResources@main/imgs/deploychatgpt/DeployGPT18.png">
+<meta property="og:image" content="https://testingcf.jsdelivr.net/gh/iamlay/BlogResources@main/imgs/deploychatgpt/DeployGPT19.png">
+<meta property="og:image" content="https://testingcf.jsdelivr.net/gh/iamlay/BlogResources@main/imgs/deploychatgpt/DeployGPT20.png">
+<meta property="og:image" content="https://testingcf.jsdelivr.net/gh/iamlay/BlogResources@main/imgs/deploychatgpt/DeployGPT21.png">
+<meta property="og:image" content="https://testingcf.jsdelivr.net/gh/iamlay/BlogResources@main/imgs/deploychatgpt/DeployGPT22.png">
+<meta property="og:image" content="https://testingcf.jsdelivr.net/gh/iamlay/BlogResources@main/imgs/deploychatgpt/DeployGPT23.png">
+<meta property="og:image" content="https://testingcf.jsdelivr.net/gh/iamlay/BlogResources@main/imgs/deploychatgpt/DeployGPT24.png">
+<meta property="og:image" content="https://testingcf.jsdelivr.net/gh/iamlay/BlogResources@main/imgs/deploychatgpt/DeployGPT25.png">
+<meta property="og:image" content="https://testingcf.jsdelivr.net/gh/iamlay/BlogResources@main/imgs/deploychatgpt/DeployGPT26.png">
+<meta property="og:image" content="https://testingcf.jsdelivr.net/gh/iamlay/BlogResources@main/imgs/deploychatgpt/DeployGPT27.png">
+<meta property="og:image" content="https://testingcf.jsdelivr.net/gh/iamlay/BlogResources@main/imgs/deploychatgpt/DeployGPT28.png">
+<meta property="og:image" content="https://testingcf.jsdelivr.net/gh/iamlay/BlogResources@main/imgs/deploychatgpt/DeployGPT29.png">
+<meta property="og:image" content="https://testingcf.jsdelivr.net/gh/iamlay/BlogResources@main/imgs/deploychatgpt/DeployGPT30.png">
+<meta property="og:image" content="https://testingcf.jsdelivr.net/gh/iamlay/BlogResources@main/imgs/deploychatgpt/DeployGPT31.png">
+<meta property="article:published_time" content="2023-03-29T06:40:40.000Z">
+<meta property="article:modified_time" content="2024-01-24T10:17:30.143Z">
+<meta property="article:author" content="Ray">
+<meta property="article:tag" content="ChatGPT">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://testingcf.jsdelivr.net/gh/iamlay/BlogResources@main/imgs/deploychatgpt/PicturesChatGPTTest.gif">
+
+
+<link rel="canonical" href="https://www.iamlay.com/post/DeployChatGPT/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://www.iamlay.com/post/DeployChatGPT/","path":"post/DeployChatGPT/","title":"一键部署自己的ChatGPT应用"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>一键部署自己的ChatGPT应用 | 以技术之名</title>
+  <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-170943611-2"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-170943611-2');
+</script>
+  <script src="/js/third-party/analytics/baidu-analytics.js"></script>
+  <script async src="https://hm.baidu.com/hm.js?2fdaf8ee633a188c5649eefea79b28b3"></script>
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<!-- hexo injector head_end start --><script async defer data-website-id="fad553b1-b94d-4311-8d52-913dc067e883" src="https://tongji.iamlay.com/script.js"></script><!-- hexo injector head_end end --></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">以技术之名</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">以技术之名</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-chatgpt"><a href="/chatgpt" rel="section"><i class="fa fa-comment-dots fa-fw"></i>AI体验</a></li><li class="menu-item menu-item-sitemap"><a href="/sitemap.xml" rel="section"><i class="fa fa-sitemap fa-fw"></i>站点地图</a></li><li class="menu-item menu-item-links"><a href="/links/" rel="section"><i class="fa fa-link fa-fw"></i>友情链接</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#Part01-%E6%9C%80%E7%BB%88%E6%95%88%E6%9E%9C"><span class="nav-number">1.</span> <span class="nav-text">Part01 -  最终效果</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Part02-%E5%BF%85%E5%A4%87%E6%9D%A1%E4%BB%B6"><span class="nav-number">2.</span> <span class="nav-text">Part02 - 必备条件</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#ChatGPT%E5%AE%98%E6%96%B9%E8%B4%A6%E5%8F%B7"><span class="nav-number">2.1.</span> <span class="nav-text">ChatGPT官方账号</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Github%E8%B4%A6%E5%8F%B7"><span class="nav-number">2.2.</span> <span class="nav-text">Github账号</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Vercel%E8%B4%A6%E5%8F%B7%E6%B3%A8%E5%86%8C"><span class="nav-number">2.3.</span> <span class="nav-text">Vercel账号注册</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Part03-%E5%BC%80%E5%A7%8B%E9%83%A8%E7%BD%B2"><span class="nav-number">3.</span> <span class="nav-text">Part03 - 开始部署</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Part04-%E9%85%8D%E7%BD%AE%E8%87%AA%E5%AE%9A%E4%B9%89%E5%9F%9F%E5%90%8D"><span class="nav-number">4.</span> <span class="nav-text">Part04 - 配置自定义域名</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E8%B4%AD%E4%B9%B0%E5%9F%9F%E5%90%8D"><span class="nav-number">4.1.</span> <span class="nav-text">购买域名</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#ChatGPT%E5%9F%9F%E5%90%8D%E9%85%8D%E7%BD%AE"><span class="nav-number">4.2.</span> <span class="nav-text">ChatGPT域名配置</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Part06-%E9%83%A8%E7%BD%B2%E8%BF%87%E7%A8%8B%E4%B8%AD%E9%81%87%E5%88%B0%E9%97%AE%E9%A2%98%E8%A7%A3%E8%A7%A3%E9%87%8A%EF%BC%9A"><span class="nav-number">5.</span> <span class="nav-text">Part06 - 部署过程中遇到问题解解释：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Part05-%E5%AE%8C%E7%BB%93"><span class="nav-number">6.</span> <span class="nav-text">Part05 - 完结</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Ray</p>
+  <div class="site-description" itemprop="description">为信仰而生</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">45</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">12</span>
+        <span class="site-state-item-name">分类</span>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">9</span>
+        <span class="site-state-item-name">标签</span>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2lhbWxheQ==" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;iamlay"><i class="fab fa-github fa-fw"></i>GitHub</span>
+      </span>
+      <span class="links-of-author-item">
+        <span class="exturl" data-url="bWFpbHRvOjExODcwNzQ1NDNAcXEuY29t" title="E-Mail → mailto:1187074543@qq.com"><i class="fa fa-envelope fa-fw"></i>E-Mail</span>
+      </span>
+  </div>
+
+
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://www.iamlay.com/post/DeployChatGPT/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Ray">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="以技术之名">
+      <meta itemprop="description" content="为信仰而生">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="一键部署自己的ChatGPT应用 | 以技术之名">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          一键部署自己的ChatGPT应用
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2023-03-29 14:40:40" itemprop="dateCreated datePublished" datetime="2023-03-29T14:40:40+08:00">2023-03-29</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2024-01-24 18:17:30" itemprop="dateModified" datetime="2024-01-24T18:17:30+08:00">2024-01-24</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/AI/" itemprop="url" rel="index"><span itemprop="name">AI</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+</div>
+
+	
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <blockquote>
+<p>在官网使用ChatGPT的时候，还是比较麻烦的，每次都需要翻墙，而且速度比较慢，极大的影响了我们的使用效率。在我们拥有了ChatGPT官网的账号之后，怎么更加便捷的使用呢？我们可以一键部署一个属于自己的ChatGPT应用，即便不翻墙也可以正常使用，用户体验更好。这篇教程就是一篇保姆级教程，教给你如何一键部署自己的ChatGPT应用。</p>
+</blockquote>
+<span id="more"></span>
+<h4 id="Part01-最终效果"><a href="#Part01-最终效果" class="headerlink" title="Part01 -  最终效果"></a>Part01 -  最终效果</h4><p><img src="https://testingcf.jsdelivr.net/gh/iamlay/BlogResources@main/imgs/deploychatgpt/PicturesChatGPTTest.gif"></p>
+<h4 id="Part02-必备条件"><a href="#Part02-必备条件" class="headerlink" title="Part02 - 必备条件"></a>Part02 - 必备条件</h4><h5 id="ChatGPT官方账号"><a href="#ChatGPT官方账号" class="headerlink" title="ChatGPT官方账号"></a>ChatGPT官方账号</h5><p>关于如何注册ChatGPT官方账号，可以参考之前的 -&gt; <span class="exturl" data-url="aHR0cHM6Ly9pYW1sYXkuY29tL3Bvc3QvR1BUUmVnaXN0ZXIv">ChatGPT保姆级教程<i class="fa fa-external-link-alt"></i></span> 这里就不再展开篇幅介绍。</p>
+<h5 id="Github账号"><a href="#Github账号" class="headerlink" title="Github账号"></a>Github账号</h5><blockquote>
+<p>Github账号注册不需要翻墙，点击下面的注册链接，一步一步注册就可以，非常简单</p>
+</blockquote>
+<p><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3NpZ251cD9yZWZfY3RhPVNpZ24rdXAmcmVmX2xvYz1oZWFkZXIrbG9nZ2VkK291dCZyZWZfcGFnZT0vJnNvdXJjZT1oZWFkZXItaG9tZQ==">点击Github注册页面<i class="fa fa-external-link-alt"></i></span></p>
+<p>1 .<code>输入邮箱</code> ，点击Continue  -&gt;  <code>输入密码</code>，点击Continue -&gt; <code>输入用户名</code>，点击Continue -&gt;  输入是否接收邮件 ， 点击Continue-&gt; ‘<code>点击图片</code>，验证账户 -&gt;  <code>创建账户</code><br><img src="https://testingcf.jsdelivr.net/gh/iamlay/BlogResources@main/imgs/deploychatgpt/DeployGPT03.png"></p>
+<ol start="2">
+<li>邮箱接收验证码，输入验证码</li>
+</ol>
+<p><img src="https://testingcf.jsdelivr.net/gh/iamlay/BlogResources@main/imgs/deploychatgpt/DeployGPT04.png"></p>
+<ol start="3">
+<li>注册成功，初始化一些个人信息</li>
+</ol>
+<p><img src="https://testingcf.jsdelivr.net/gh/iamlay/BlogResources@main/imgs/deploychatgpt/DeployGPT05.png"></p>
+<p>Github账号注册流程结束。</p>
+<h5 id="Vercel账号注册"><a href="#Vercel账号注册" class="headerlink" title="Vercel账号注册"></a>Vercel账号注册</h5><blockquote>
+<p> 第一种注册方式：Vercel账号登录页面，可以直接选择github登录，如果能够认证成功，直接用github账号登录就可以，中间需要手机号进行验证，用自己的手机号就可以，不需要国外的接码平台。<br> 第二种注册方式：也可以先注册Vercel账号，登录成功后，后面再绑定Github账号。<br> 这里我们选择第二种注册方式</p>
+</blockquote>
+<p><span class="exturl" data-url="aHR0cHM6Ly92ZXJjZWwuY29tL2xvZ2lu">点击Vercel账号登录页面<i class="fa fa-external-link-alt"></i></span></p>
+<ol>
+<li>选择<code>使用Email邮箱</code>的方式注册<br><img src="https://testingcf.jsdelivr.net/gh/iamlay/BlogResources@main/imgs/deploychatgpt/DeployGPT06.png"></li>
+</ol>
+<p><img src="https://testingcf.jsdelivr.net/gh/iamlay/BlogResources@main/imgs/deploychatgpt/DeployGPT09.png"></p>
+<ol start="2">
+<li>选择账户类型，填写<code>用户名</code><br><img src="https://testingcf.jsdelivr.net/gh/iamlay/BlogResources@main/imgs/deploychatgpt/DeployGPT07.png"></li>
+<li>验证手机号<br><img src="https://testingcf.jsdelivr.net/gh/iamlay/BlogResources@main/imgs/deploychatgpt/DeployGPT08.png"></li>
+</ol>
+<p>Vercel账号注册完成</p>
+<h4 id="Part03-开始部署"><a href="#Part03-开始部署" class="headerlink" title="Part03 - 开始部署"></a>Part03 - 开始部署</h4><p><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL1lpZGFkYWEvQ2hhdEdQVC1OZXh0LVdlYg==">打开ChatGPT开源项目地址<i class="fa fa-external-link-alt"></i></span></p>
+<p>1.点击<code>[Deploy]</code>按钮<br><img src="https://testingcf.jsdelivr.net/gh/iamlay/BlogResources@main/imgs/deploychatgpt/DeployGPT10.png"></p>
+<p>2.点击<code>[Creat]</code>按钮创建项目<br><img src="https://testingcf.jsdelivr.net/gh/iamlay/BlogResources@main/imgs/deploychatgpt/DeployGPT11.png"></p>
+<p>3.配置<code>[API Key]</code><br><span class="exturl" data-url="aHR0cHM6Ly9wbGF0Zm9ybS5vcGVuYWkuY29tL2FjY291bnQvYXBpLWtleXM=">API Key 获取地址<i class="fa fa-external-link-alt"></i></span><br><img src="https://testingcf.jsdelivr.net/gh/iamlay/BlogResources@main/imgs/deploychatgpt/DeployGPT15.png"></p>
+<p>4.点击<code>[Deploy]</code>按钮</p>
+<p><img src="https://testingcf.jsdelivr.net/gh/iamlay/BlogResources@main/imgs/deploychatgpt/DeployGPT12.png"></p>
+<p>5.等待部署，大约一分钟多左右</p>
+<p><img src="https://testingcf.jsdelivr.net/gh/iamlay/BlogResources@main/imgs/deploychatgpt/DeployGPT13.png"></p>
+<p>6.部署成功，可以点击<code>[Visit]</code>按钮访问</p>
+<p><img src="https://testingcf.jsdelivr.net/gh/iamlay/BlogResources@main/imgs/deploychatgpt/DeployGPT16.png"></p>
+<ol start="7">
+<li>查看效果<br><img src="https://testingcf.jsdelivr.net/gh/iamlay/BlogResources@main/imgs/deploychatgpt/DeployGPT14.png"></li>
+</ol>
+<h4 id="Part04-配置自定义域名"><a href="#Part04-配置自定义域名" class="headerlink" title="Part04 - 配置自定义域名"></a>Part04 - 配置自定义域名</h4><blockquote>
+<p>Vecel生成的链接访问是需要翻墙的，如果以后想不翻墙使用就需要配置自己的域名。<br><span class="exturl" data-url="aHR0cHM6Ly93YW53YW5nLmFsaXl1bi5jb20vZG9tYWluL3RsZD9zcG09NTE3Ni4yNzkwNjI1OC5KXzEzMzQxNzk0MzAuMTQuNDdlNTNlYzZkaTcxTzcjLmNvbQ==">阿里云域名购买入口<i class="fa fa-external-link-alt"></i></span></p>
+</blockquote>
+<h5 id="购买域名"><a href="#购买域名" class="headerlink" title="购买域名"></a>购买域名</h5><ol>
+<li><p>域名购买入口<br><img src="https://testingcf.jsdelivr.net/gh/iamlay/BlogResources@main/imgs/deploychatgpt/DeployGPT17.png"></p>
+</li>
+<li><p><code>填写自己想要的域名</code>  -&gt; 选择域名<code>后缀</code> -&gt; 查询域名<code>是否可购买</code></p>
+<blockquote>
+<p>注:</p>
+<ol>
+<li>不同后缀价格的域名不一样，可以根据自己的喜好选择喜欢的后缀。</li>
+<li>因为填写的域名可能已经被别人使用,  所以需要查询是否可购买</li>
+</ol>
+</blockquote>
+</li>
+</ol>
+<p><img src="https://testingcf.jsdelivr.net/gh/iamlay/BlogResources@main/imgs/deploychatgpt/DeployGPT18.png"></p>
+<ol start="3">
+<li>选择合适的域名，<code>加入购物清单</code></li>
+</ol>
+<p><img src="https://testingcf.jsdelivr.net/gh/iamlay/BlogResources@main/imgs/deploychatgpt/DeployGPT19.png"></p>
+<ol start="4">
+<li>在购物清单，点击<code>购买按钮</code></li>
+</ol>
+<p><img src="https://testingcf.jsdelivr.net/gh/iamlay/BlogResources@main/imgs/deploychatgpt/DeployGPT20.png"></p>
+<ol start="5">
+<li>选择<code>信息模版</code>，点击<code>购买按钮</code><blockquote>
+<p>因为现在购买域名需要实名认证，所以需要先填写信息模版，填上个人真实信息，填写完成之后大概会审核两个小时的时间，审核通过够才能完成购买</p>
+</blockquote>
+</li>
+</ol>
+<p><img src="https://testingcf.jsdelivr.net/gh/iamlay/BlogResources@main/imgs/deploychatgpt/DeployGPT21.png"></p>
+<ol start="6">
+<li>完成域名购买 ，可以在<span class="exturl" data-url="aHR0cHM6Ly90ZXN0aW5nY2YuanNkZWxpdnIubmV0Lz9zcG09NTE3Ni4xMjgxODA5My5Qcm9kdWN0QW5kUmVzb3VyY2UtLWFsaS0td2lkZ2V0LXByb2R1Y3QtcmVjZW50LmRyZTEuM2JlOTE2ZDBzSWxPNGsjL2Rucy9kb21haW5MaXN0">域名解析页面<i class="fa fa-external-link-alt"></i></span>看到自己购买的域名<br><img src="https://testingcf.jsdelivr.net/gh/iamlay/BlogResources@main/imgs/deploychatgpt/DeployGPT22.png"></li>
+</ol>
+<h5 id="ChatGPT域名配置"><a href="#ChatGPT域名配置" class="headerlink" title="ChatGPT域名配置"></a>ChatGPT域名配置</h5><ol>
+<li><p>点击<span class="exturl" data-url="aHR0cHM6Ly92ZXJjZWwuY29tL2Rhc2hib2FyZA==">Vercel官网<i class="fa fa-external-link-alt"></i></span>，选择添加域名<br><img src="https://testingcf.jsdelivr.net/gh/iamlay/BlogResources@main/imgs/deploychatgpt/DeployGPT23.png"></p>
+</li>
+<li><p>点击<span class="exturl" data-url="aHR0cHM6Ly92ZXJjZWwuY29tL2Rhc2hib2FyZA==">Vercel官网<i class="fa fa-external-link-alt"></i></span>，选择添加域名</p>
+</li>
+</ol>
+<p><img src="https://testingcf.jsdelivr.net/gh/iamlay/BlogResources@main/imgs/deploychatgpt/DeployGPT24.png"></p>
+<ol start="3">
+<li>生成域名解析相关的信息</li>
+</ol>
+<p><img src="https://testingcf.jsdelivr.net/gh/iamlay/BlogResources@main/imgs/deploychatgpt/DeployGPT25.png"></p>
+<ol start="4">
+<li><p>在阿里云域名解析页面，选中自己的域名，点击<code>解析设置</code>按钮<br><img src="https://testingcf.jsdelivr.net/gh/iamlay/BlogResources@main/imgs/deploychatgpt/DeployGPT26.png"></p>
+</li>
+<li><p>点击<code>添加记录</code>按钮<br><img src="https://testingcf.jsdelivr.net/gh/iamlay/BlogResources@main/imgs/deploychatgpt/DeployGPT27.png"></p>
+</li>
+<li><p>将<code>第3步</code>获取的相关的域名信息填写到指定的位置</p>
+<blockquote>
+<p>注: 例子中类型是Text , 你的也有可能是CNAME 或者A类型，根据自己的具体情况填写即可，填写完成之后点击确定按钮，等待解析。<br><code>DNS解析大概</code>需要十分钟左右的时间，可以等10分钟以后再看是否解析成功</p>
+</blockquote>
+</li>
+</ol>
+<p><img src="https://testingcf.jsdelivr.net/gh/iamlay/BlogResources@main/imgs/deploychatgpt/DeployGPT28.png"></p>
+<ol start="7">
+<li>解析成功后，可以在Velcel的项目的setting页面看到，域名解析已经成功，可以使用自己的域名正常访问</li>
+</ol>
+<p><img src="https://testingcf.jsdelivr.net/gh/iamlay/BlogResources@main/imgs/deploychatgpt/DeployGPT29.png"></p>
+<h4 id="Part06-部署过程中遇到问题解解释："><a href="#Part06-部署过程中遇到问题解解释：" class="headerlink" title="Part06 - 部署过程中遇到问题解解释："></a>Part06 - 部署过程中遇到问题解解释：</h4><ol>
+<li>问题一：不知道Code这个字段对应的值填写什么</li>
+</ol>
+<blockquote>
+<p>解释一下: 有伙伴可能发现，在填写API Key的时候，下面还有一个Code的选项，不知道填写什么。Code实际上相当于是自己设置了一个访问权限，在使用的时候只有输入设置的Code值才能正常使用，自己想设置成什么都可以，我建议尽量填写的不要太复杂，自己输入也麻烦。</p>
+</blockquote>
+<ol start="2">
+<li>问题二：想删除Code或者修改Code的值，但是不知道在哪里修改</li>
+</ol>
+<blockquote>
+<p>可能你开始的时候设置了一个Code，但是你现在不想要了，希望别人能够随便访问。或者之前设置的Code太复杂了，想修改一下，但是不知道在哪里修改,可以在vercel中点击你的项目，然后按照下面的截图修改就可以</p>
+</blockquote>
+<p><img src="https://testingcf.jsdelivr.net/gh/iamlay/BlogResources@main/imgs/deploychatgpt/DeployGPT30.png"></p>
+<ol start="3">
+<li>问题三: 修改或者删除了Code了，但是没有生效，在聊天的时候依然要求输入Code</li>
+</ol>
+<blockquote>
+<p>在Vercel的控制台修改完成之后，需要重新部署一下项目才能够生效，可以按照下面的图示，找到<code>ReDeploy</code>按钮，重新部署</p>
+</blockquote>
+<p><img src="https://testingcf.jsdelivr.net/gh/iamlay/BlogResources@main/imgs/deploychatgpt/DeployGPT31.png"></p>
+<h4 id="Part05-完结"><a href="#Part05-完结" class="headerlink" title="Part05 - 完结"></a>Part05 - 完结</h4><p> 完结，撒花，希望每个人用的开心🎉🎉🎉</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="reward-container">
+  <div>如果觉得我的文章对您有用，请随意打赏。您的支持将鼓励我继续创作！</div>
+  <button>
+    赞赏
+  </button>
+  <div class="post-reward">
+      <div>
+        <img src="/images/wechatpay.png" alt="Ray 微信">
+        <span>微信</span>
+      </div>
+
+  </div>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/ChatGPT/" rel="tag"># ChatGPT</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/post/GPTRegister/" rel="prev" title="ChatGPT保姆级注册教程">
+                  <i class="fa fa-chevron-left"></i> ChatGPT保姆级注册教程
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/post/ChatGPTPlus/" rel="next" title="ChatGPT Plus 会员开通保姆级教程">
+                  ChatGPT Plus 会员开通保姆级教程 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    <div class="comments gitalk-container"></div>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2025</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Ray</span>
+</div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+  <div class="powered-by">由 <span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlv">Hexo</span> & <span class="exturl" data-url="aHR0cHM6Ly90aGVtZS1uZXh0LmpzLm9yZw==">NexT.Gemini</span> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+<script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.0/search.js" integrity="sha256-vXZMYLEqsROAXkEw93GGIvaB2ab+QW6w3+1ahD9nXXA=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.8.0/gitalk.css" integrity="sha256-AJnUHL7dBv6PGaeyPQJcgQPDjt/Hn/PvYZde1iqfp8U=" crossorigin="anonymous">
+
+<script class="next-config" data-name="gitalk" type="application/json">{"enable":true,"github_id":"iamlay","repo":"gitalk","client_id":"798848f6f91162435156","client_secret":"d9b621213c7353cfa8b2286491f877ef4507da1e","admin_user":"iamlay","distraction_free_mode":true,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token","language":"zh-CN","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.8.0/gitalk.min.js","integrity":"sha256-MVK9MGD/XJaGyIghSVrONSnoXoGh3IFxLw0zfvzpxR4="},"path_md5":"f60ef0d2b716f94a0415aadbd1b23872"}</script>
+<script src="/js/third-party/comments/gitalk.js"></script>
+
+</body>
+</html>

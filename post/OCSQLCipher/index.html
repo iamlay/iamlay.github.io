@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.3.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+  <meta name="google-site-verification" content="bdLSZKDAikc4SOPIlDwwuSFBawDGQU3GmqUWTzUM-rE">
+  <meta name="baidu-site-verification" content="codeva-lCWvLLHuj5">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3825645052664031"
+     crossorigin="anonymous"></script>
+  <meta name="baidu-site-verification" content="true">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha256-AbA177XfpSnFEvgpYu1jMygiLabzPCJCRIBtR5jGc0k=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"www.iamlay.com","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.13.1","exturl":true,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"gitalk","storage":true,"lazyload":false,"nav":{"gitalk":{"ordcer":-1}},"activeClass":"gitalk"},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="背景数据安全越来越成为生活中非常重要的问题，用户隐私泄露的问题时有发生，如何保护用户数据的安全，越来越成为一个负责公司有限考虑的问题。本篇文章不涉及接口安全、传输安全等方面，只是对App使用的sqlite数据库安全做分析。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="OCSQLCipher">
+<meta property="og:url" content="https://www.iamlay.com/post/OCSQLCipher/index.html">
+<meta property="og:site_name" content="以技术之名">
+<meta property="og:description" content="背景数据安全越来越成为生活中非常重要的问题，用户隐私泄露的问题时有发生，如何保护用户数据的安全，越来越成为一个负责公司有限考虑的问题。本篇文章不涉及接口安全、传输安全等方面，只是对App使用的sqlite数据库安全做分析。">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2018-03-20T16:00:00.000Z">
+<meta property="article:modified_time" content="2023-11-10T03:47:50.949Z">
+<meta property="article:author" content="Ray">
+<meta property="article:tag" content="原创">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://www.iamlay.com/post/OCSQLCipher/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://www.iamlay.com/post/OCSQLCipher/","path":"post/OCSQLCipher/","title":"OCSQLCipher"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>OCSQLCipher | 以技术之名</title>
+  <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-170943611-2"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-170943611-2');
+</script>
+  <script src="/js/third-party/analytics/baidu-analytics.js"></script>
+  <script async src="https://hm.baidu.com/hm.js?2fdaf8ee633a188c5649eefea79b28b3"></script>
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<!-- hexo injector head_end start --><script async defer data-website-id="fad553b1-b94d-4311-8d52-913dc067e883" src="https://tongji.iamlay.com/script.js"></script><!-- hexo injector head_end end --></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">以技术之名</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">以技术之名</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-chatgpt"><a href="/chatgpt" rel="section"><i class="fa fa-comment-dots fa-fw"></i>AI体验</a></li><li class="menu-item menu-item-sitemap"><a href="/sitemap.xml" rel="section"><i class="fa fa-sitemap fa-fw"></i>站点地图</a></li><li class="menu-item menu-item-links"><a href="/links/" rel="section"><i class="fa fa-link fa-fw"></i>友情链接</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%83%8C%E6%99%AF"><span class="nav-number">1.</span> <span class="nav-text">背景</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BB%8B%E7%BB%8D"><span class="nav-number">2.</span> <span class="nav-text">介绍</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%9B%86%E6%88%90"><span class="nav-number">3.</span> <span class="nav-text">集成</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8A%A0%E5%AF%86"><span class="nav-number">4.</span> <span class="nav-text">加密</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%A7%A3%E5%AF%86"><span class="nav-number">5.</span> <span class="nav-text">解密</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BB%A3%E7%A0%81%E6%93%8D%E4%BD%9C"><span class="nav-number">6.</span> <span class="nav-text">代码操作</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BB%93%E5%B0%BE"><span class="nav-number">7.</span> <span class="nav-text">结尾</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Ray</p>
+  <div class="site-description" itemprop="description">为信仰而生</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">45</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">12</span>
+        <span class="site-state-item-name">分类</span>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">9</span>
+        <span class="site-state-item-name">标签</span>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2lhbWxheQ==" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;iamlay"><i class="fab fa-github fa-fw"></i>GitHub</span>
+      </span>
+      <span class="links-of-author-item">
+        <span class="exturl" data-url="bWFpbHRvOjExODcwNzQ1NDNAcXEuY29t" title="E-Mail → mailto:1187074543@qq.com"><i class="fa fa-envelope fa-fw"></i>E-Mail</span>
+      </span>
+  </div>
+
+
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://www.iamlay.com/post/OCSQLCipher/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Ray">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="以技术之名">
+      <meta itemprop="description" content="为信仰而生">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="OCSQLCipher | 以技术之名">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          OCSQLCipher
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2018-03-21 00:00:00" itemprop="dateCreated datePublished" datetime="2018-03-21T00:00:00+08:00">2018-03-21</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2023-11-10 11:47:50" itemprop="dateModified" datetime="2023-11-10T11:47:50+08:00">2023-11-10</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/iOS/" itemprop="url" rel="index"><span itemprop="name">iOS</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+</div>
+
+	
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><p>数据安全越来越成为生活中非常重要的问题，用户隐私泄露的问题时有发生，如何保护用户数据的安全，越来越成为一个负责公司有限考虑的问题。本篇文章不涉及接口安全、传输安全等方面，只是对App使用的sqlite数据库安全做分析。</p>
+<span id="more"></span>
+<h3 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h3><p>使用SQLite数据库的时候，有时候对于数据库要求比较高，特别是在iOS8.3之前，未越狱的系统也可以通过工具拿到应用程序沙盒里面的文件，这个时候我们就可以考虑对SQLite数据库进行加密，这样就不用担心sqlite文件泄露了</p>
+<p>通常数据库加密一般有两种方式</p>
+<p>对所有数据进行加密<br>对数据库文件加密<br>第一种方式虽然加密了数据，但是并不完全，还是可以通过数据库查看到表结构等信息，并且对于数据库的数据，数据都是分散的，要对所有数据都进行加解密操作会严重影响性能，通常的做法是采取对文件加密的方式</p>
+<h3 id="集成"><a href="#集成" class="headerlink" title="集成"></a>集成</h3><p>LZ接手的项目原来使用cocoapod导入过FMDB,因为项目本身SVN管理的问题，原本不打算使用cocoapod导入SQLCipher,但是尝试过网上的解决方案但是没有加密成功，最后还是使用cocoapod导入的。</p>
+<p><code>pod ‘FMDB/SQLCipher’, ‘~&gt; 2.6.2’</code></p>
+<p>确保自己的cocoapod版本号可以导入该库,LZ的cocoapod库原本是0.0.39版本的，老是报错，最后只得升级,如果原来的版本低于1.0.0，要注意修改podfile文件的格式</p>
+<p>导入成功后，打开<code>FMDatabase.m</code>文件，找到下面的一段代码</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><span class="line">- (BOOL)open &#123;</span><br><span class="line">  if (_db) &#123;</span><br><span class="line">  return YES;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">int err = sqlite3_open([self sqlitePath], (sqlite3**)&amp;_db );</span><br><span class="line">if(err != SQLITE_OK) &#123;</span><br><span class="line">NSLog(@&quot;error opening!: %d&quot;, err);</span><br><span class="line">return NO;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">if (_maxBusyRetryTimeInterval &gt; 0.0) &#123;</span><br><span class="line">// set the handler</span><br><span class="line">[self setMaxBusyRetryTimeInterval:_maxBusyRetryTimeInterval];</span><br><span class="line">&#125;else&#123;</span><br><span class="line">//数据库open后设置加密key</span><br><span class="line">[self setKey:encryptKey_];</span><br><span class="line">&#125;   </span><br><span class="line">return YES;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">- (BOOL)openWithFlags:(int)flags vfs:(NSString *)vfsName &#123;</span><br><span class="line"></span><br><span class="line"># if SQLITE_VERSION_NUMBER &gt;= 3005000</span><br><span class="line"></span><br><span class="line">if (_db) &#123;</span><br><span class="line">return YES;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">int err = sqlite3_open_v2([self sqlitePath], (sqlite3**)&amp;_db, flags, [vfsName UTF8String]);</span><br><span class="line">if(err != SQLITE_OK) &#123;</span><br><span class="line">NSLog(@&quot;error opening!: %d&quot;, err);</span><br><span class="line">return NO;</span><br><span class="line">&#125;else &#123;</span><br><span class="line">//数据库open后设置加密key</span><br><span class="line">[self setKey:encryptKey_];</span><br><span class="line">&#125;</span><br><span class="line">if (_maxBusyRetryTimeInterval &gt; 0.0) &#123;</span><br><span class="line">// set the handler</span><br><span class="line">[self setMaxBusyRetryTimeInterval:_maxBusyRetryTimeInterval];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">return YES;</span><br><span class="line"></span><br><span class="line"># else</span><br><span class="line"></span><br><span class="line">NSLog(@&quot;openWithFlags requires SQLite 3.5&quot;);</span><br><span class="line">return NO;</span><br><span class="line"></span><br><span class="line"># endif</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>到这一步就可以在初始化数据库时对数据库进行加密</p>
+<p>通过客户端验证是否可以读取数据库信息<br>取到app中的数据库<br>真机连接<code>xcode-&gt;window-&gt;Devices</code></p>
+<p>将会得到下面的文件，然后右键显示包含内容，找到自己创建的数据库</p>
+<p>打开数据库的工具,笔者使用的是<span class="exturl" data-url="aHR0cHM6Ly93d3cud2FpdHN1bi5jb20vbmF2aWNhdC1wcmVtaXVtLTExLTEtMTUuaHRtbA==">Navicat Premium<i class="fa fa-external-link-alt"></i></span></p>
+<p>打开Navicat Premium,链接数据库，选择sqlite</p>
+<p>选中本地保存的数据库文件，点击ok打开</p>
+<p>将会提示</p>
+<p>提醒</p>
+<p>注意:笔者这里修改的是源码，是因为接手的工程FMDB又被封装，更改起来比较困难，为了不修改FMDB的源代码，可以继承自FMDatabase类重写需要setKey的几个方法，具体写法可见demo,到这一步就可以在初始化数据库时对数据库进行加密，不过很多情况下，我们可能会遇到对已经存在的数据库进行加密</p>
+<p>SQLite数据库加解密</p>
+<p>SQLCipher提供了几个命令用于加解密操作</p>
+<h3 id="加密"><a href="#加密" class="headerlink" title="加密"></a>加密</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ ./sqlcipher plaintext.db  </span><br><span class="line">sqlite&gt; ATTACH DATABASE &#x27;encrypted.db&#x27; AS encrypted KEY &#x27;testkey&#x27;;  </span><br><span class="line">sqlite&gt; SELECT sqlcipher_export(&#x27;encrypted&#x27;);  </span><br><span class="line">sqlite&gt; DETACH DATABASE encrypted;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>打开非加密数据库</li>
+<li>创建一个新的加密的数据库附加到原数据库上</li>
+<li>导出数据到新数据库上</li>
+<li>卸载新数据库</li>
+</ul>
+<h3 id="解密"><a href="#解密" class="headerlink" title="解密"></a>解密</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">sqlite&gt; PRAGMA key = &#x27;testkey&#x27;;  </span><br><span class="line">sqlite&gt; ATTACH DATABASE &#x27;plaintext.db&#x27; AS plaintext KEY &#x27;&#x27;;  -- empty key will disable encryption</span><br><span class="line">sqlite&gt; SELECT sqlcipher_export(&#x27;plaintext&#x27;);  </span><br><span class="line">sqlite&gt; DETACH DATABASE plaintext;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>打开加密数据库</li>
+<li>创建一个新的不加密的数据库附加到原数据库上</li>
+<li>导出数据到新数据库上</li>
+<li>卸载新数据库</li>
+</ul>
+<h3 id="代码操作"><a href="#代码操作" class="headerlink" title="代码操作"></a>代码操作</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br></pre></td><td class="code"><pre><span class="line">/** encrypt sqlite database to new file */</span><br><span class="line"></span><br><span class="line">+ (BOOL)encryptDatabase:(NSString *)sourcePath targetPath:(NSString *)targetPath encryptKey:(NSString *)encryptKey</span><br><span class="line">&#123;</span><br><span class="line">const char* sqlQ = [[NSString stringWithFormat:@&quot;ATTACH DATABASE &#x27;%@&#x27; AS encrypted KEY &#x27;%@&#x27;;&quot;, targetPath, encryptKey] UTF8String];</span><br><span class="line">sqlite3 *unencrypted_DB;</span><br><span class="line">if (sqlite3_open([sourcePath UTF8String], &amp;unencrypted_DB) == SQLITE_OK) &#123;</span><br><span class="line">char *errmsg;</span><br><span class="line">// Attach empty encrypted database to unencrypted database</span><br><span class="line">sqlite3_exec(unencrypted_DB, sqlQ, NULL, NULL, &amp;errmsg);</span><br><span class="line">if (errmsg) &#123;</span><br><span class="line">NSLog(@&quot;%@&quot;, [NSString stringWithUTF8String:errmsg]);</span><br><span class="line">sqlite3_close(unencrypted_DB);</span><br><span class="line">return NO;</span><br><span class="line">&#125;</span><br><span class="line">// export database</span><br><span class="line">sqlite3_exec(unencrypted_DB, &quot;SELECT sqlcipher_export(&#x27;encrypted&#x27;);&quot;, NULL, NULL, &amp;errmsg);</span><br><span class="line">if (errmsg) &#123;</span><br><span class="line">NSLog(@&quot;%@&quot;, [NSString stringWithUTF8String:errmsg]);</span><br><span class="line">sqlite3_close(unencrypted_DB);</span><br><span class="line">return NO;</span><br><span class="line">&#125;</span><br><span class="line">// Detach encrypted database</span><br><span class="line">sqlite3_exec(unencrypted_DB, &quot;DETACH DATABASE encrypted;&quot;, NULL, NULL, &amp;errmsg);</span><br><span class="line">if (errmsg) &#123;</span><br><span class="line">NSLog(@&quot;%@&quot;, [NSString stringWithUTF8String:errmsg]);</span><br><span class="line">sqlite3_close(unencrypted_DB);</span><br><span class="line">return NO;</span><br><span class="line">&#125;</span><br><span class="line">sqlite3_close(unencrypted_DB);</span><br><span class="line">return YES;</span><br><span class="line">&#125;</span><br><span class="line">else &#123;</span><br><span class="line">sqlite3_close(unencrypted_DB);</span><br><span class="line">NSAssert1(NO, @&quot;Failed to open database with message &#x27;%s&#x27;.&quot;, sqlite3_errmsg(unencrypted_DB));</span><br><span class="line">return NO;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line">/** decrypt sqlite database to new file */</span><br><span class="line">+ (BOOL)unEncryptDatabase:(NSString *)sourcePath targetPath:(NSString *)targetPath encryptKey:(NSString *)encryptKey</span><br><span class="line">&#123;</span><br><span class="line">const char* sqlQ = [[NSString stringWithFormat:@&quot;ATTACH DATABASE &#x27;%@&#x27; AS plaintext KEY &#x27;&#x27;;&quot;, targetPath] UTF8String];</span><br><span class="line">sqlite3 *encrypted_DB;</span><br><span class="line">if (sqlite3_open([sourcePath UTF8String], &amp;encrypted_DB) == SQLITE_OK) &#123;</span><br><span class="line">char* errmsg;</span><br><span class="line">sqlite3_exec(encrypted_DB, [[NSString stringWithFormat:@&quot;PRAGMA key = &#x27;%@&#x27;;&quot;, encryptKey] UTF8String], NULL, NULL, &amp;errmsg);</span><br><span class="line">// Attach empty unencrypted database to encrypted database</span><br><span class="line">sqlite3_exec(encrypted_DB, sqlQ, NULL, NULL, &amp;errmsg);</span><br><span class="line">if (errmsg) &#123;</span><br><span class="line">NSLog(@&quot;%@&quot;, [NSString stringWithUTF8String:errmsg]);</span><br><span class="line">sqlite3_close(encrypted_DB);</span><br><span class="line">return NO;</span><br><span class="line">&#125;</span><br><span class="line">// export database</span><br><span class="line">sqlite3_exec(encrypted_DB, &quot;SELECT sqlcipher_export(&#x27;plaintext&#x27;);&quot;, NULL, NULL, &amp;errmsg);</span><br><span class="line">if (errmsg) &#123;</span><br><span class="line">NSLog(@&quot;%@&quot;, [NSString stringWithUTF8String:errmsg]);</span><br><span class="line">sqlite3_close(encrypted_DB);</span><br><span class="line">return NO;</span><br><span class="line">&#125;</span><br><span class="line">// Detach unencrypted database</span><br><span class="line">sqlite3_exec(encrypted_DB, &quot;DETACH DATABASE plaintext;&quot;, NULL, NULL, &amp;errmsg);</span><br><span class="line">if (errmsg) &#123;</span><br><span class="line">NSLog(@&quot;%@&quot;, [NSString stringWithUTF8String:errmsg]);</span><br><span class="line">sqlite3_close(encrypted_DB);</span><br><span class="line">return NO;</span><br><span class="line">&#125;</span><br><span class="line">sqlite3_close(encrypted_DB);</span><br><span class="line">return YES;</span><br><span class="line">&#125;</span><br><span class="line">else &#123;</span><br><span class="line">sqlite3_close(encrypted_DB);</span><br><span class="line">NSAssert1(NO, @&quot;Failed to open database with message &#x27;%s&#x27;.&quot;, sqlite3_errmsg(encrypted_DB));</span><br><span class="line">return NO;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line">/** change secretKey for sqlite database */</span><br><span class="line">+ (BOOL)changeKey:(NSString *)dbPath originKey:(NSString *)originKey newKey:(NSString *)newKey</span><br><span class="line">&#123;</span><br><span class="line">sqlite3 *encrypted_DB;</span><br><span class="line">if (sqlite3_open([dbPath UTF8String], &amp;encrypted_DB) == SQLITE_OK) &#123;</span><br><span class="line">sqlite3_exec(encrypted_DB, [[NSString stringWithFormat:@&quot;PRAGMA key = &#x27;%@&#x27;;&quot;, originKey] UTF8String], NULL, NULL, NULL);</span><br><span class="line">sqlite3_exec(encrypted_DB, [[NSString stringWithFormat:@&quot;PRAGMA rekey = &#x27;%@&#x27;;&quot;, newKey] UTF8String], NULL, NULL, NULL);</span><br><span class="line">sqlite3_close(encrypted_DB);</span><br><span class="line">return YES;</span><br><span class="line">&#125;</span><br><span class="line">else &#123;</span><br><span class="line">sqlite3_close(encrypted_DB);</span><br><span class="line">NSAssert1(NO, @&quot;Failed to open database with message &#x27;%s&#x27;.&quot;, sqlite3_errmsg(encrypted_DB));</span><br><span class="line">return NO;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="结尾"><a href="#结尾" class="headerlink" title="结尾"></a>结尾</h3><p>SQLCipher使用起来还是很方便的，基本上不需要怎么配置，需要注意的是，尽量不要在操作过程中修改secretKey，否则，可能导致读不了数据，在使用第三方库的时候尽量不去修改源代码，可以通过扩展或继承的方式修改原来的行为，这样第三方库代码可以与官方保持一致，可以跟随官方版本升级，具体代码可以到<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3poZW5nYm9tby9zcWxjaXBoZXJEZW1v">github上下载<i class="fa fa-external-link-alt"></i></span></p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="reward-container">
+  <div>如果觉得我的文章对您有用，请随意打赏。您的支持将鼓励我继续创作！</div>
+  <button>
+    赞赏
+  </button>
+  <div class="post-reward">
+      <div>
+        <img src="/images/wechatpay.png" alt="Ray 微信">
+        <span>微信</span>
+      </div>
+
+  </div>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/%E5%8E%9F%E5%88%9B/" rel="tag"># 原创</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/post/26Birthday/" rel="prev" title="嗨，26岁！">
+                  <i class="fa fa-chevron-left"></i> 嗨，26岁！
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/post/Jenkins/" rel="next" title="Jenkins自动打包搭建之路">
+                  Jenkins自动打包搭建之路 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    <div class="comments gitalk-container"></div>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2025</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Ray</span>
+</div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+  <div class="powered-by">由 <span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlv">Hexo</span> & <span class="exturl" data-url="aHR0cHM6Ly90aGVtZS1uZXh0LmpzLm9yZw==">NexT.Gemini</span> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+<script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.0/search.js" integrity="sha256-vXZMYLEqsROAXkEw93GGIvaB2ab+QW6w3+1ahD9nXXA=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.8.0/gitalk.css" integrity="sha256-AJnUHL7dBv6PGaeyPQJcgQPDjt/Hn/PvYZde1iqfp8U=" crossorigin="anonymous">
+
+<script class="next-config" data-name="gitalk" type="application/json">{"enable":true,"github_id":"iamlay","repo":"gitalk","client_id":"798848f6f91162435156","client_secret":"d9b621213c7353cfa8b2286491f877ef4507da1e","admin_user":"iamlay","distraction_free_mode":true,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token","language":"zh-CN","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.8.0/gitalk.min.js","integrity":"sha256-MVK9MGD/XJaGyIghSVrONSnoXoGh3IFxLw0zfvzpxR4="},"path_md5":"f58842bb6284d864f202a6cf9050c0ca"}</script>
+<script src="/js/third-party/comments/gitalk.js"></script>
+
+</body>
+</html>

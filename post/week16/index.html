@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.3.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+  <meta name="google-site-verification" content="bdLSZKDAikc4SOPIlDwwuSFBawDGQU3GmqUWTzUM-rE">
+  <meta name="baidu-site-verification" content="codeva-lCWvLLHuj5">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3825645052664031"
+     crossorigin="anonymous"></script>
+  <meta name="baidu-site-verification" content="true">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha256-AbA177XfpSnFEvgpYu1jMygiLabzPCJCRIBtR5jGc0k=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"www.iamlay.com","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.13.1","exturl":true,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"gitalk","storage":true,"lazyload":false,"nav":{"gitalk":{"ordcer":-1}},"activeClass":"gitalk"},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="根据最新的苹果审核规范，2020年4月之后，凡是可以使用第三方软件登录的App，必须接入Sign in with Apple。最新一段时间，主流的App基本都已经接入此功能。在UI设计阶段，Sign in with Apple必须严格遵守苹果的设计原则，否则审核被拒。本篇周报的主要内容是对Sign in with Apple 设计规范的翻译，希望可以帮助到有需要的人。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="以技术之名周报04#Sign in with Apple 设计原则| 2020-04-19">
+<meta property="og:url" content="https://www.iamlay.com/post/week16/index.html">
+<meta property="og:site_name" content="以技术之名">
+<meta property="og:description" content="根据最新的苹果审核规范，2020年4月之后，凡是可以使用第三方软件登录的App，必须接入Sign in with Apple。最新一段时间，主流的App基本都已经接入此功能。在UI设计阶段，Sign in with Apple必须严格遵守苹果的设计原则，否则审核被拒。本篇周报的主要内容是对Sign in with Apple 设计规范的翻译，希望可以帮助到有需要的人。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://www.iamlay.com/SignWithApple01.png">
+<meta property="og:image" content="https://www.iamlay.com/SignWithApple02.png">
+<meta property="og:image" content="https://www.iamlay.com/SignWithApple03.png">
+<meta property="og:image" content="https://www.iamlay.com/SignWithApple04.png">
+<meta property="og:image" content="https://www.iamlay.com/SignWithApple05.png">
+<meta property="og:image" content="https://www.iamlay.com/SignWithApple06.png">
+<meta property="og:image" content="https://www.iamlay.com/SignWithApple07.png">
+<meta property="og:image" content="https://www.iamlay.com/SignWithApple08.png">
+<meta property="og:image" content="https://www.iamlay.com/SignWithApple09.png">
+<meta property="og:image" content="https://www.iamlay.com/SignWithApple10.png">
+<meta property="og:image" content="https://www.iamlay.com/SignWithApple11.png">
+<meta property="article:published_time" content="2020-04-19T12:45:27.000Z">
+<meta property="article:modified_time" content="2024-01-24T10:22:32.341Z">
+<meta property="article:author" content="Ray">
+<meta property="article:tag" content="原创">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://www.iamlay.com/SignWithApple01.png">
+
+
+<link rel="canonical" href="https://www.iamlay.com/post/week16/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://www.iamlay.com/post/week16/","path":"post/week16/","title":"以技术之名周报04#Sign in with Apple 设计原则| 2020-04-19"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>以技术之名周报04#Sign in with Apple 设计原则| 2020-04-19 | 以技术之名</title>
+  <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-170943611-2"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-170943611-2');
+</script>
+  <script src="/js/third-party/analytics/baidu-analytics.js"></script>
+  <script async src="https://hm.baidu.com/hm.js?2fdaf8ee633a188c5649eefea79b28b3"></script>
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<!-- hexo injector head_end start --><script async defer data-website-id="fad553b1-b94d-4311-8d52-913dc067e883" src="https://tongji.iamlay.com/script.js"></script><!-- hexo injector head_end end --></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">以技术之名</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">以技术之名</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-chatgpt"><a href="/chatgpt" rel="section"><i class="fa fa-comment-dots fa-fw"></i>AI体验</a></li><li class="menu-item menu-item-sitemap"><a href="/sitemap.xml" rel="section"><i class="fa fa-sitemap fa-fw"></i>站点地图</a></li><li class="menu-item menu-item-links"><a href="/links/" rel="section"><i class="fa fa-link fa-fw"></i>友情链接</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8Apple%E6%8F%90%E4%BE%9B%E7%9A%84Button"><span class="nav-number">1.</span> <span class="nav-text">使用Apple提供的Button</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%99%BD%E8%89%B2"><span class="nav-number">1.1.</span> <span class="nav-text">白色</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%99%BD%E8%89%B2%E5%B8%A6%E8%BE%B9%E6%A1%86"><span class="nav-number">1.2.</span> <span class="nav-text">白色带边框</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%BB%91%E8%89%B2"><span class="nav-number">1.3.</span> <span class="nav-text">黑色</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Button%E7%9A%84%E5%A4%A7%E5%B0%8F%E5%92%8C%E5%9C%86%E8%A7%92"><span class="nav-number">1.4.</span> <span class="nav-text">Button的大小和圆角</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%9B%E5%BB%BA%E4%B8%80%E4%B8%AA%E8%87%AA%E5%AE%9A%E4%B9%89%E7%9A%84-Sign-in-with-Apple-Button"><span class="nav-number">2.</span> <span class="nav-text">创建一个自定义的 Sign in with Apple Button</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Left-Aligned-Logo-Buttons"><span class="nav-number">2.1.</span> <span class="nav-text">Left-Aligned Logo Buttons</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Logo-Only-Buttons"><span class="nav-number">2.2.</span> <span class="nav-text">Logo-Only Buttons</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Ray</p>
+  <div class="site-description" itemprop="description">为信仰而生</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">45</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">12</span>
+        <span class="site-state-item-name">分类</span>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">9</span>
+        <span class="site-state-item-name">标签</span>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2lhbWxheQ==" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;iamlay"><i class="fab fa-github fa-fw"></i>GitHub</span>
+      </span>
+      <span class="links-of-author-item">
+        <span class="exturl" data-url="bWFpbHRvOjExODcwNzQ1NDNAcXEuY29t" title="E-Mail → mailto:1187074543@qq.com"><i class="fa fa-envelope fa-fw"></i>E-Mail</span>
+      </span>
+  </div>
+
+
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://www.iamlay.com/post/week16/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Ray">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="以技术之名">
+      <meta itemprop="description" content="为信仰而生">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="以技术之名周报04#Sign in with Apple 设计原则| 2020-04-19 | 以技术之名">
+      <meta itemprop="description" content="根据最新的苹果审核规范，2020年4月之后，凡是可以使用第三方软件登录的App，必须接入Sign in with Apple。最新一段时间，主流的App基本都已经接入此功能。在UI设计阶段，Sign in with Apple必须严格遵守苹果的设计原则，否则审核被拒。本篇周报的主要内容是对Sign in with Apple 设计规范的翻译，希望可以帮助到有需要的人。">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          以技术之名周报04#Sign in with Apple 设计原则| 2020-04-19
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2020-04-19 20:45:27" itemprop="dateCreated datePublished" datetime="2020-04-19T20:45:27+08:00">2020-04-19</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2024-01-24 18:22:32" itemprop="dateModified" datetime="2024-01-24T18:22:32+08:00">2024-01-24</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/iOS/" itemprop="url" rel="index"><span itemprop="name">iOS</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+</div>
+
+	
+            <div class="post-description">根据最新的苹果审核规范，2020年4月之后，凡是可以使用第三方软件登录的App，必须接入Sign in with Apple。最新一段时间，主流的App基本都已经接入此功能。在UI设计阶段，Sign in with Apple必须严格遵守苹果的设计原则，否则审核被拒。本篇周报的主要内容是对Sign in with Apple 设计规范的翻译，希望可以帮助到有需要的人。</div>
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h3 id="使用Apple提供的Button"><a href="#使用Apple提供的Button" class="headerlink" title="使用Apple提供的Button"></a>使用Apple提供的Button</h3><p>当你使用系统提供的API创建Button的时候，能够获得以下优势：</p>
+<ol>
+<li>能够确保Button使用了苹果认可的title、font、color 和 style</li>
+<li>能够确保在你修改Button的Style的时候，Button的Content有一个理想的位置</li>
+<li>Button的title能够跟自动转换成设备手机选择的Language</li>
+<li>支持配置圆角以满足你自己UI的风格（iOS、MacOS、Web）</li>
+</ol>
+<span id="more"></span>
+<p>对开发者而言，可以看这些使用引导<span class="exturl" data-url="aHR0cHM6Ly9kZXZlbG9wZXIuYXBwbGUuY29tL2RvY3VtZW50YXRpb24vYXV0aGVudGljYXRpb25zZXJ2aWNlcy9hc2F1dGhvcml6YXRpb25hcHBsZWlkYnV0dG9u">ASAuthorizationAppleIDButton<i class="fa fa-external-link-alt"></i></span> (iOS, macOS, and tvOS), <span class="exturl" data-url="aHR0cHM6Ly9kZXZlbG9wZXIuYXBwbGUuY29tL2RvY3VtZW50YXRpb24vd2F0Y2hraXQvd2tpbnRlcmZhY2VhdXRob3JpemF0aW9uYXBwbGVpZGJ1dHRvbg==">WKInterfaceAuthorizationAppleIDButton<i class="fa fa-external-link-alt"></i></span> (watchOS), and <span class="exturl" data-url="aHR0cHM6Ly9kZXZlbG9wZXIuYXBwbGUuY29tL2RvY3VtZW50YXRpb24vc2lnbmlud2l0aGFwcGxlanMvZGlzcGxheWluZ19hbmRfY29uZmlndXJpbmdfc2lnbl9pbl93aXRoX2FwcGxlX2J1dHRvbnM=">Displaying and Configuring Sign in with Apple Buttons<i class="fa fa-external-link-alt"></i></span> (web).</p>
+<p>系统提供的Button 的Title有几种文案。根据你使用的平台，选择最合适的文案。</p>
+<p>下面几种Button Title都可以在iOS、macOS、和tvOS中使用，但是只有Sign in with Apple 和 Continue with Apple 可以在Web中使用</p>
+<p><img src="/SignWithApple01.png"></p>
+<p>对watchOS，系统提供的Title只有一个 <code> Sign in</code></p>
+<p><img src="/SignWithApple02.png"></p>
+<p>依赖于不同的平台，系统提供了三种外观的Button，分别是白色（white）、有边框的白色（white with an outline）、黑色（black）。根据放置Button的背景颜色，选择最合Button样式。</p>
+<h4 id="白色"><a href="#白色" class="headerlink" title="白色"></a>白色</h4><p>白色可以在任何平台使用（包括Web）,当背景是黑色或者其他深色时，选择白色会有更好的表现力</p>
+<p><img src="/SignWithApple03.png"></p>
+<h4 id="白色带边框"><a href="#白色带边框" class="headerlink" title="白色带边框"></a>白色带边框</h4><p>白色带边框的Button可以在iOS、macOS、和Web上面使用，当背景是白色或浅色背景的时候，背景和Button的填充色对比是不够强烈的，通过添加边框可以提升表现力。当背景是深色的时候，不要使用这种风格，深色会使得这种风格变得混乱。</p>
+<p><img src="/SignWithApple04.png"></p>
+<h4 id="黑色"><a href="#黑色" class="headerlink" title="黑色"></a>黑色</h4><p>黑色可以在任何平台使用（包括Web）,当背景是白色或者其他浅色时，选择黑色会有更好的表现力</p>
+<p><img src="/SignWithApple05.png"><br>不像其他平台上的黑色风格的Button，在watchOS上，黑色风格的Button是非全黑的填充色，和watchOS全黑色的背景做对比。watchOS上Button用系统定义的黑灰样式。</p>
+<p><img src="/SignWithApple06.png"></p>
+<h4 id="Button的大小和圆角"><a href="#Button的大小和圆角" class="headerlink" title="Button的大小和圆角"></a>Button的大小和圆角</h4><p>调整Button的圆角以匹配App中其他登录Button的风格。默认情况下， Sign in with Apple的Button是没有圆角的。在iOS、macOS、Web中，可以通过修改圆角的半径，生成直角或者药丸状的Button。</p>
+<p><img src="/SignWithApple07.png"></p>
+<p><strong>iOS、macOS 、Web中使用的Button，必须有一个最小的的Size和外边距</strong>。值得注意的是，依赖于文本的本地化，Button的长度或许很长。下面的值可以做作为设计原则：</p>
+<table>
+<thead>
+<tr>
+<th>Minimum width</th>
+<th>Minimum height</th>
+<th>Minimum margin</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>140pt (140px @1x, 280px @2x)</td>
+<td>30pt (30px @1x, 60px @2x)</td>
+<td>1&#x2F;10 of the button’s height</td>
+</tr>
+</tbody></table>
+<h3 id="创建一个自定义的-Sign-in-with-Apple-Button"><a href="#创建一个自定义的-Sign-in-with-Apple-Button" class="headerlink" title="创建一个自定义的 Sign in with Apple Button"></a>创建一个自定义的 Sign in with Apple Button</h3><p>如果你有需要的话，可以在iOS、macOS、或者Web平台上自己创建一个自定义的Sign in with Apple Button 。比如：或许你支持多种登录方式，你想展示<code>Left-Aligned Logo</code> Button或者<code>Logo-Only</code> Button。</p>
+<p><img src="/SignWithApple08.png"></p>
+<p><span class="exturl" data-url="aHR0cHM6Ly9kZXZlbG9wZXIuYXBwbGUuY29tL2Rlc2lnbi9yZXNvdXJjZXMv">Apple Design Resources <i class="fa fa-external-link-alt"></i></span>提供了一些美术资源，你可以使用这些美术资源自定义Sign in with Apple Button。这些资源包括PNG、SVG和PDF三种格式，并且包含黑白两种表现形式。下面是<code>Logo-Only</code> Button的两个例子，每个Logo都添加了富有表现力的背景色</p>
+<p><img src="/SignWithApple09.png"></p>
+<p>所有下载的Logo文件都包含一个内边距，这样在Button中放置logo更加容易</p>
+<ol>
+<li><code>Left-Aligned Logo</code>文件包含一个垂直方向上的内边距，能够确保Logo在Button中有一个合适的占比，水平方向上的内边距也为Logo和Button的左边距、Logo和Button的title之间提供了一个最小边距。</li>
+<li><code>Logo-Only</code>文件包含一个水平和垂直方向上的内边距，确保了Logo在Button中有一个合适的占比</li>
+</ol>
+<p>使用<code>Logo-Only</code>文件的时候,需要遵循以下原则：</p>
+<ol>
+<li>不要仅仅使用 Apple Logo  自己作为一个Button</li>
+<li>Logo文件的高度要和Button的高度保持一致</li>
+<li>不要剪切Logo文件</li>
+<li>不要添加垂直方向的内边距</li>
+<li>Logo文件不要使用自己定义的颜色</li>
+</ol>
+<h4 id="Left-Aligned-Logo-Buttons"><a href="#Left-Aligned-Logo-Buttons" class="headerlink" title="Left-Aligned Logo Buttons"></a>Left-Aligned Logo Buttons</h4><p>根据你的Button的高度选择合适的Logo文件。因为PDF和SVG是矢量图，你可以在任何高度的Button中使用这两种文件。而PNG文件只能在高度为44的Button中使用，这是iOS中Button的默认高度。</p>
+<p>Title要使用系统字体(Sign in with Apple、Sign up with Apple、 Continue with Apple)：为了统一，你自定义的Button的高度和Title应该和系统使用的<code>保持一样的比例</code>。Title应该占据Button高度的43%，换言之Button的高度应该是Title Font大小的233%。下面两个例子展示了这种比例：</p>
+<p><img src="/SignWithApple10.png"></p>
+<p><strong>保持Title的大写的风格</strong>所有Title的首字母都是大写的（Sign or Continue — and Apple），其他的字母是小写的。切不可改变这种风格。</p>
+<p><strong>保持Title和Logo和Button在垂直方向上对齐</strong>：为了做到这一点，Title和Button的中部在垂直方向上对齐，然后添加Logo图片，确保图片的高度和Button的高度一致。因为Logo图片本身具有顶部和底部的内边距，垂直对齐Button的Title能够确保Title和Logo在Button中占据合适的比例。</p>
+<p><strong>如果有需要可以嵌入Logo</strong> 如果你需要将苹果的Logo和其他的认证的logo对齐，可以将Logo左侧嵌入</p>
+<p><strong>Title和Button的右边有一个最小内边距</strong>  边距至少占据Button宽度的8%</p>
+<p><strong>Button有一个最小的size，且Button有一个内边距</strong> ：因为文本的本地化，Button的长度可能很长。参考下面的设计原则：</p>
+<table>
+<thead>
+<tr>
+<th>Minimum width</th>
+<th>Minimum height</th>
+<th>Minimum margin</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>140pt (140px @1x, 280px @2x)</td>
+<td>30pt (30px @1x, 60px @2x)</td>
+<td>1&#x2F;10 of the button’s height</td>
+</tr>
+</tbody></table>
+<h4 id="Logo-Only-Buttons"><a href="#Logo-Only-Buttons" class="headerlink" title="Logo-Only Buttons"></a>Logo-Only Buttons</h4><p><strong>根据你的Button的高度选择合适的Logo文件</strong>。因为PDF和SVG是矢量图，你可以在任何高度的Button中使用这两种文件。而PNG文件只能在高度为44的Button中使用。</p>
+<p><strong>不要为Logo-Only图片添加水平方向上的内边距</strong>   Logo-only的Button是1:1的比例，下载的Logo-Only文件已经有了合适的内边距</p>
+<p><strong>用mask(遮罩)改变Logo-only图片的形状</strong>  例如 Sign in with Apple使用用圆形或者椭圆矩形的Button。不要为了减小内边距剪切Apple提供的美术资源，也不要只使用Apple Logo。</p>
+<p><img src="/SignWithApple11.png"></p>
+<p><strong>Button有一个最小的内边距</strong>  内边距至少为Button高度的1&#x2F;10</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="reward-container">
+  <div>如果觉得我的文章对您有用，请随意打赏。您的支持将鼓励我继续创作！</div>
+  <button>
+    赞赏
+  </button>
+  <div class="post-reward">
+      <div>
+        <img src="/images/wechatpay.png" alt="Ray 微信">
+        <span>微信</span>
+      </div>
+
+  </div>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/%E5%8E%9F%E5%88%9B/" rel="tag"># 原创</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/post/OCCodeAnalysis/" rel="prev" title="如何在OC中进行源码分析">
+                  <i class="fa fa-chevron-left"></i> 如何在OC中进行源码分析
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/post/week17/" rel="next" title="以技术之名周报05#ipa包“瘦身”| 2020-04-26">
+                  以技术之名周报05#ipa包“瘦身”| 2020-04-26 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    <div class="comments gitalk-container"></div>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2025</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Ray</span>
+</div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+  <div class="powered-by">由 <span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlv">Hexo</span> & <span class="exturl" data-url="aHR0cHM6Ly90aGVtZS1uZXh0LmpzLm9yZw==">NexT.Gemini</span> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+<script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.0/search.js" integrity="sha256-vXZMYLEqsROAXkEw93GGIvaB2ab+QW6w3+1ahD9nXXA=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.8.0/gitalk.css" integrity="sha256-AJnUHL7dBv6PGaeyPQJcgQPDjt/Hn/PvYZde1iqfp8U=" crossorigin="anonymous">
+
+<script class="next-config" data-name="gitalk" type="application/json">{"enable":true,"github_id":"iamlay","repo":"gitalk","client_id":"798848f6f91162435156","client_secret":"d9b621213c7353cfa8b2286491f877ef4507da1e","admin_user":"iamlay","distraction_free_mode":true,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token","language":"zh-CN","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.8.0/gitalk.min.js","integrity":"sha256-MVK9MGD/XJaGyIghSVrONSnoXoGh3IFxLw0zfvzpxR4="},"path_md5":"f5f7d894ace99ffc95d61dccc308a175"}</script>
+<script src="/js/third-party/comments/gitalk.js"></script>
+
+</body>
+</html>

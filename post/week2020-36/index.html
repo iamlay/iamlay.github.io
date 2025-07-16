@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.3.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+  <meta name="google-site-verification" content="bdLSZKDAikc4SOPIlDwwuSFBawDGQU3GmqUWTzUM-rE">
+  <meta name="baidu-site-verification" content="codeva-lCWvLLHuj5">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3825645052664031"
+     crossorigin="anonymous"></script>
+  <meta name="baidu-site-verification" content="true">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha256-AbA177XfpSnFEvgpYu1jMygiLabzPCJCRIBtR5jGc0k=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"www.iamlay.com","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.13.1","exturl":true,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"gitalk","storage":true,"lazyload":false,"nav":{"gitalk":{"ordcer":-1}},"activeClass":"gitalk"},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="本周周报主要是对iOS开发过程中Swift的编码规范进行的总结，主要从代码格式、命名规范、编码风格、文档注释四个方面展开。对一个成熟的团队来讲，保证统一合理的代码风格，对后期项目的维护非常的重要，代码风格的统一越早开始越好。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="以技术之名周报08#| Swift代码规范| 2020-08-28">
+<meta property="og:url" content="https://www.iamlay.com/post/week2020-36/index.html">
+<meta property="og:site_name" content="以技术之名">
+<meta property="og:description" content="本周周报主要是对iOS开发过程中Swift的编码规范进行的总结，主要从代码格式、命名规范、编码风格、文档注释四个方面展开。对一个成熟的团队来讲，保证统一合理的代码风格，对后期项目的维护非常的重要，代码风格的统一越早开始越好。">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2020-08-28T06:36:38.000Z">
+<meta property="article:modified_time" content="2023-03-22T05:29:04.162Z">
+<meta property="article:author" content="Ray">
+<meta property="article:tag" content="转载">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://www.iamlay.com/post/week2020-36/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://www.iamlay.com/post/week2020-36/","path":"post/week2020-36/","title":"以技术之名周报08#| Swift代码规范| 2020-08-28"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>以技术之名周报08#| Swift代码规范| 2020-08-28 | 以技术之名</title>
+  <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-170943611-2"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-170943611-2');
+</script>
+  <script src="/js/third-party/analytics/baidu-analytics.js"></script>
+  <script async src="https://hm.baidu.com/hm.js?2fdaf8ee633a188c5649eefea79b28b3"></script>
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<!-- hexo injector head_end start --><script async defer data-website-id="fad553b1-b94d-4311-8d52-913dc067e883" src="https://tongji.iamlay.com/script.js"></script><!-- hexo injector head_end end --></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">以技术之名</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">以技术之名</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-chatgpt"><a href="/chatgpt" rel="section"><i class="fa fa-comment-dots fa-fw"></i>AI体验</a></li><li class="menu-item menu-item-sitemap"><a href="/sitemap.xml" rel="section"><i class="fa fa-sitemap fa-fw"></i>站点地图</a></li><li class="menu-item menu-item-links"><a href="/links/" rel="section"><i class="fa fa-link fa-fw"></i>友情链接</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#Part-01-%E4%BB%A3%E7%A0%81%E6%A0%BC%E5%BC%8F"><span class="nav-number">1.</span> <span class="nav-text">Part-01:  代码格式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Part-02-%E5%91%BD%E5%90%8D%E8%A7%84%E8%8C%83"><span class="nav-number">2.</span> <span class="nav-text">Part-02:  命名规范</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Part-03-%E7%BC%96%E7%A0%81%E9%A3%8E%E6%A0%BC"><span class="nav-number">3.</span> <span class="nav-text">Part-03:  编码风格</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#3-1-%E9%80%9A%E7%94%A8"><span class="nav-number">3.1.</span> <span class="nav-text">3.1 通用#</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E8%AE%BF%E9%97%AE%E4%BF%AE%E9%A5%B0%E7%AC%A6"><span class="nav-number">3.2.</span> <span class="nav-text">访问修饰符</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E8%87%AA%E5%AE%9A%E4%B9%89%E8%BF%90%E7%AE%97%E7%AC%A6"><span class="nav-number">3.3.</span> <span class="nav-text">自定义运算符</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Switch-%E8%AF%AD%E5%8F%A5%E5%92%8C%E6%9E%9A%E4%B8%BE"><span class="nav-number">3.4.</span> <span class="nav-text">Switch 语句和枚举</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%8F%AF%E9%80%89%E7%B1%BB%E5%9E%8B"><span class="nav-number">3.5.</span> <span class="nav-text">可选类型</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-6-%E5%8D%8F%E8%AE%AE"><span class="nav-number">3.6.</span> <span class="nav-text">3.6 协议</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-7-%E5%B1%9E%E6%80%A7"><span class="nav-number">3.7.</span> <span class="nav-text">3.7 属性</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-8-%E9%97%AD%E5%8C%85"><span class="nav-number">3.8.</span> <span class="nav-text">3.8 闭包</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-9-%E6%95%B0%E7%BB%84"><span class="nav-number">3.9.</span> <span class="nav-text">3.9 数组</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-10-%E9%94%99%E8%AF%AF%E5%A4%84%E7%90%86"><span class="nav-number">3.10.</span> <span class="nav-text">3.10 错误处理</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-11-%E4%BD%BF%E7%94%A8-guard-%E8%AF%AD%E5%8F%A5"><span class="nav-number">3.11.</span> <span class="nav-text">3.11 使用 guard 语句</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Part-04-%E6%96%87%E6%A1%A3-x2F-%E6%B3%A8%E9%87%8A"><span class="nav-number">4.</span> <span class="nav-text">Part-04: 文档 &#x2F; 注释</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#4-1-%E6%96%87%E6%A1%A3"><span class="nav-number">4.1.</span> <span class="nav-text">4.1 文档</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#4-2-%E5%85%B6%E4%BB%96%E6%B3%A8%E9%87%8A%E5%8E%9F%E5%88%99"><span class="nav-number">4.2.</span> <span class="nav-text">4.2 其他注释原则</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Part-05-%E8%BD%AC%E8%BD%BD"><span class="nav-number">5.</span> <span class="nav-text">Part-05:转载</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Ray</p>
+  <div class="site-description" itemprop="description">为信仰而生</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">45</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">12</span>
+        <span class="site-state-item-name">分类</span>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">9</span>
+        <span class="site-state-item-name">标签</span>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2lhbWxheQ==" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;iamlay"><i class="fab fa-github fa-fw"></i>GitHub</span>
+      </span>
+      <span class="links-of-author-item">
+        <span class="exturl" data-url="bWFpbHRvOjExODcwNzQ1NDNAcXEuY29t" title="E-Mail → mailto:1187074543@qq.com"><i class="fa fa-envelope fa-fw"></i>E-Mail</span>
+      </span>
+  </div>
+
+
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://www.iamlay.com/post/week2020-36/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Ray">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="以技术之名">
+      <meta itemprop="description" content="为信仰而生">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="以技术之名周报08#| Swift代码规范| 2020-08-28 | 以技术之名">
+      <meta itemprop="description" content="本周周报主要是对iOS开发过程中Swift的编码规范进行的总结，主要从代码格式、命名规范、编码风格、文档注释四个方面展开。对一个成熟的团队来讲，保证统一合理的代码风格，对后期项目的维护非常的重要，代码风格的统一越早开始越好。">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          以技术之名周报08#| Swift代码规范| 2020-08-28
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2020-08-28 14:36:38" itemprop="dateCreated datePublished" datetime="2020-08-28T14:36:38+08:00">2020-08-28</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2023-03-22 13:29:04" itemprop="dateModified" datetime="2023-03-22T13:29:04+08:00">2023-03-22</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/iOS/" itemprop="url" rel="index"><span itemprop="name">iOS</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+</div>
+
+	
+            <div class="post-description">本周周报主要是对iOS开发过程中Swift的编码规范进行的总结，主要从代码格式、命名规范、编码风格、文档注释四个方面展开。对一个成熟的团队来讲，保证统一合理的代码风格，对后期项目的维护非常的重要，代码风格的统一越早开始越好。</div>
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h4 id="Part-01-代码格式"><a href="#Part-01-代码格式" class="headerlink" title="Part-01:  代码格式"></a>Part-01:  代码格式</h4><ul>
+<li>1.1使用4个空格替代一个<code>Tabs</code></li>
+<li>1.2 单行过长会引起阅读不适，每行代码尽量限制在 160 字符内 （<code>Xcode -&gt; Preferences -&gt; Text Editing -&gt; Page guide at column</code>设置为 160 将会很有帮助</li>
+<li>1.3 确保每个文件末尾都有一个新行</li>
+<li>1.4 确保任何地方都没有尾随的空格（ <code>Xcode -&gt; Preferences -&gt; Text Editing -&gt; Automatically trim trailing whitespace 加上 Including whitespace-only lines </code>）</li>
+<li>不要把左大括号放在新行 — 我们使用 <span class="exturl" data-url="aHR0cHM6Ly9lbi5tLndpa2lwZWRpYS5vcmcvd2lraS9JbmRlbnRhdGlvbl9zdHlsZSMxVEJT">1TBS 风格<i class="fa fa-external-link-alt"></i></span></li>
+</ul>
+<span id="more"></span>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">class SomeClass &#123;</span><br><span class="line">    func someMethod() &#123;</span><br><span class="line">        if x == y &#123;</span><br><span class="line">            /* ... */</span><br><span class="line">        &#125; else if x == z &#123;</span><br><span class="line">            /* ... */</span><br><span class="line">        &#125; else &#123;</span><br><span class="line">            /* ... */</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    /* ... */</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>1.6 当为属性、常量、变量、字典的键、函数参数、协议实现或父类书写类型时，不要在冒号<code>:</code>前面加上空格<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">// 指明类型</span><br><span class="line">let pirateViewController: PirateViewController</span><br><span class="line"></span><br><span class="line">// 字典语法（注意我们左对齐而不是对齐冒号）</span><br><span class="line">let ninjaDictionary: [String: AnyObject] = [</span><br><span class="line">    &quot;fightLikeDairyFarmer&quot;: false,</span><br><span class="line">    &quot;disgusting&quot;: true</span><br><span class="line">]</span><br><span class="line"></span><br><span class="line">// 声明函数</span><br><span class="line">func myFunction&lt;T, U: SomeProtocol&gt;(firstArgument: U, secondArgument: T) where T.RelatedType == U &#123;</span><br><span class="line">    /* ... */</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// 调用函数</span><br><span class="line">someFunction(someArgument: &quot;Kitten&quot;)</span><br><span class="line"></span><br><span class="line">// 父类</span><br><span class="line">class PirateViewController: UIViewController &#123;</span><br><span class="line">    /* ... */</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// 协议</span><br><span class="line">extension PirateViewController: UITableViewDataSource &#123;</span><br><span class="line">    /* ... */</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li>1.7 通常， , 逗号后面应该有一个空格。<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">let myArray = [1, 2, 3, 4, 5]</span><br></pre></td></tr></table></figure></li>
+<li>1.8 二元运算符前后都应该有一个空格，比如 + 、 &#x3D;&#x3D; 或 -&gt;。当然， ( 后面和 ) 前面就不要有空格了<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">let myValue = 20 + (30 / 2) * 3</span><br><span class="line">if 1 + 1 == 3 &#123;</span><br><span class="line">    fatalError(&quot;The universe is broken.&quot;)</span><br><span class="line">&#125;</span><br><span class="line">func pancake(with syrup: Syrup) -&gt; Pancake &#123;</span><br><span class="line">    /* ... */</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li>1.9 我们遵循 Xcode 推荐的缩进风格（即按住 CTRL-I 时，代码不再发生变化）。当声明的函数跨越多行时，推荐使用 Xcode 7.3 默认的语法风格<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">// 针对跨行函数声明，Xcode 添加了缩进</span><br><span class="line">func myFunctionWithManyParameters(parameterOne: String,</span><br><span class="line">                                  parameterTwo: String,</span><br><span class="line">                                  parameterThree: String) &#123;</span><br><span class="line">    // 对于这种语句，Xcode 缩进到这</span><br><span class="line">    print(&quot;\(parameterOne) \(parameterTwo) \(parameterThree)&quot;)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// 针对多行的 `if` 语句增加换行缩进</span><br><span class="line">if myFirstValue &gt; (mySecondValue + myThirdValue)</span><br><span class="line">    &amp;&amp; myFourthValue == .someEnumValue &#123;</span><br><span class="line"></span><br><span class="line">    // 这行语句缩进到这</span><br><span class="line">    print(&quot;Hello, World!&quot;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li>1.10 当调用一个多参数函数时，将每个参数放置有额外缩进的单独行中<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">someFunctionWithManyArguments(</span><br><span class="line">    firstArgument: &quot;Hello, I am a string&quot;,</span><br><span class="line">    secondArgument: resultFromSomeFunction(),</span><br><span class="line">    thirdArgument: someOtherLocalProperty)</span><br></pre></td></tr></table></figure></li>
+<li>1.11 处理大到足以分成多行的隐式数组或字典时，按照方法、if 语句等语法中大括号的风格使用 <code>[</code> 和<code>]</code>方法中的闭包也应该用类似的风格处理<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">someFunctionWithABunchOfArguments(</span><br><span class="line">    someStringArgument: &quot;hello I am a string&quot;,</span><br><span class="line">    someArrayArgument: [</span><br><span class="line">        &quot;dadada daaaa daaaa dadada daaaa daaaa dadada daaaa daaaa&quot;,</span><br><span class="line">        &quot;string one is crazy - what is it thinking?&quot;</span><br><span class="line">    ],</span><br><span class="line">    someDictionaryArgument: [</span><br><span class="line">        &quot;dictionary key 1&quot;: &quot;some value 1, but also some more text here&quot;,</span><br><span class="line">        &quot;dictionary key 2&quot;: &quot;some value 2&quot;</span><br><span class="line">    ],</span><br><span class="line">    someClosure: &#123; parameter1 in</span><br><span class="line">        print(parameter1)</span><br><span class="line">    &#125;)</span><br></pre></td></tr></table></figure></li>
+<li>1.12 尽可能避免多行语句，推荐使用局部常量或其他方法。<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">// 推荐</span><br><span class="line">let firstCondition = x == firstReallyReallyLongPredicateFunction()</span><br><span class="line">let secondCondition = y == secondReallyReallyLongPredicateFunction()</span><br><span class="line">let thirdCondition = z == thirdReallyReallyLongPredicateFunction()</span><br><span class="line">if firstCondition &amp;&amp; secondCondition &amp;&amp; thirdCondition &#123;</span><br><span class="line">    // 做某事</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// 不推荐</span><br><span class="line">if x == firstReallyReallyLongPredicateFunction()</span><br><span class="line">    &amp;&amp; y == secondReallyReallyLongPredicateFunction()</span><br><span class="line">    &amp;&amp; z == thirdReallyReallyLongPredicateFunction() &#123;</span><br><span class="line">    // 做某事</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h4 id="Part-02-命名规范"><a href="#Part-02-命名规范" class="headerlink" title="Part-02:  命名规范"></a>Part-02:  命名规范</h4><ul>
+<li><p>2.1 在 Swift 中不需要 Objective-C 风格的前缀（比如用 <code>GuybrushThreepwood</code> 代替 <code>LIGuybrushThreepwood</code>)</p>
+</li>
+<li><p>2.2 使用<code> PascalCase</code> 为类型命名（比如 <code>struct</code> 、 <code>enum </code>、<code>class</code>、 <code>typedef</code> 、 <code>associatedtype </code>等等）。</p>
+</li>
+<li><p>2.3 对于函数、方法、属性、常量、变量、参数名称、枚举选项，使用 <code>camelCase </code>（首字母小写）。</p>
+</li>
+<li><p>2.4 实际上，当处理通常全部大写的缩写或其他名称时，代码里用到的任何名称都使用大写。例外情况是，如果这个单词位于以需要用小写开头的名称的开头 —— 在这种情况下，请使用全部小写字母作为首字母缩写词</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">// 「HTML」是常量名称的开头，所以我们使用小写「html」 </span><br><span class="line">let htmlBodyContent: String = &quot;&lt;p&gt;Hello, World!&lt;/p&gt;&quot;</span><br><span class="line">// 推荐使用 ID 而不是 Id</span><br><span class="line">let profileID: Int = 1</span><br><span class="line">// 推荐 URLFinder 而不是 UrlFinder</span><br><span class="line">class URLFinder &#123;</span><br><span class="line">    /* ... */</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li><p>2.5 所有与实例无关的常量都应该用 static 修饰。所有这些 static 常量都应该放置在他们的 class 、 struct 或 enum 标记过的部分中。 对于有很多常量的类，你应该将拥有类似或相同前缀、后缀 和 &#x2F; 或者使用情况的常量进行分组</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">// 推荐    </span><br><span class="line">class MyClassName &#123;</span><br><span class="line">    // MARK: - 常量</span><br><span class="line">    static let buttonPadding: CGFloat = 20.0</span><br><span class="line">    static let indianaPi = 3</span><br><span class="line">    static let shared = MyClassName()</span><br><span class="line">&#125;</span><br><span class="line">// 不推荐</span><br><span class="line">class MyClassName &#123;</span><br><span class="line">    // 不要使用 `k` 前缀</span><br><span class="line">    static let kButtonPadding: CGFloat = 20.0</span><br><span class="line"></span><br><span class="line">    // 不用为常量使用命名空间</span><br><span class="line">    enum Constant &#123;</span><br><span class="line">        static let indianaPi = 3</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li><p>2.6 对于泛型和关联类型，使用 PascalCase 描述泛型。如果这个单词和它遵循的协议或者它继承的父类冲突，你可以在关联类型或泛型名称后面追加 Type 后缀。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">class SomeClass&lt;Model&gt; &#123; /* ... */ &#125;</span><br><span class="line">protocol Modelable &#123;</span><br><span class="line">    associatedtype Model</span><br><span class="line">&#125;</span><br><span class="line">protocol Sequence &#123;</span><br><span class="line">    associatedtype IteratorType: Iterator</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li><p>2.7 名称应具有描述性的和明确性</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">// 推荐</span><br><span class="line">class RoundAnimatingButton: UIButton &#123; /* ... */ &#125;</span><br><span class="line"></span><br><span class="line">// 不推荐</span><br><span class="line">class CustomButton: UIButton &#123; /* ... */ &#125;</span><br></pre></td></tr></table></figure></li>
+<li><p>2.8 不要缩写、使用缩写名称或单字母名称</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">// 推荐</span><br><span class="line">class RoundAnimatingButton: UIButton &#123;</span><br><span class="line">    let animationDuration: NSTimeInterval</span><br><span class="line"></span><br><span class="line">    func startAnimating() &#123;</span><br><span class="line">        let firstSubview = subviews.first</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// 不推荐</span><br><span class="line">class RoundAnimating: UIButton &#123;</span><br><span class="line">    let aniDur: NSTimeInterval</span><br><span class="line"></span><br><span class="line">    func srtAnmating() &#123;</span><br><span class="line">        let v = subviews.first</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li><p>2.9 如果不明显，请在常量或变量名称中包含类型信息</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br></pre></td><td class="code"><pre><span class="line">// 推荐</span><br><span class="line">class ConnectionTableViewCell: UITableViewCell &#123;</span><br><span class="line">    let personImageView: UIImageView</span><br><span class="line"></span><br><span class="line">    let animationDuration: TimeInterval</span><br><span class="line"></span><br><span class="line">    // 由于属性名称明显可以看出它是字符串，在实例变量名称中就可以不包含字符串了。</span><br><span class="line">    let firstName: String</span><br><span class="line"></span><br><span class="line">    // 虽然不推荐，但使用 `Controller` 代替 `ViewController` 也是可以的。</span><br><span class="line">    let popupController: UIViewController</span><br><span class="line">    let popupViewController: UIViewController</span><br><span class="line"></span><br><span class="line">    // 当使用 `UIViewController` 的子类时，例如 table view controller、    </span><br><span class="line">        // collection view controller 、 split view controller 等，</span><br><span class="line">    // 在名称中完整表明其类型</span><br><span class="line">    let popupTableViewController: UITableViewController</span><br><span class="line"></span><br><span class="line">    // 当使用 outlet 时，确保在属性名称中指明 outlet 的类型。</span><br><span class="line">    @IBOutlet weak var submitButton: UIButton!</span><br><span class="line">    @IBOutlet weak var emailTextField: UITextField!</span><br><span class="line">    @IBOutlet weak var nameLabel: UILabel!</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// 不推荐</span><br><span class="line">class ConnectionTableViewCell: UITableViewCell &#123;</span><br><span class="line">    // 这不是 `UIImage` 所以不应该被叫做 image 而应该使用 </span><br><span class="line">        // personImageView</span><br><span class="line">    let personImage: UIImageView</span><br><span class="line"></span><br><span class="line">    // 这不是 `String`，所以它应该叫做 `textLabel`</span><br><span class="line">    let text: UILabel</span><br><span class="line"></span><br><span class="line">    // `animation` 没有很清晰地表明是时间间隔</span><br><span class="line">    // 使用 `animationDuration` 或 `animationTimeInterval` 代替它</span><br><span class="line">    let animation: TimeInterval</span><br><span class="line"></span><br><span class="line">    // `transition` 没有很明显地表明是 `String`</span><br><span class="line">    // 使用 `transitionText` 或 `transitionString` 代替它</span><br><span class="line">    let transition: String</span><br><span class="line"></span><br><span class="line">    // 这是 view controller — 而不是 view</span><br><span class="line">    let popupView: UIViewController</span><br><span class="line"></span><br><span class="line">    // 如前所述，我们不想使用缩写，所以不要用 `VC` 代替 `ViewController`</span><br><span class="line">    let popupVC: UIViewController</span><br><span class="line"></span><br><span class="line">    // 虽然在技术上这仍然是 `UIViewController`，但这个属性应该表明我们正在使用 *Table* View Controller</span><br><span class="line">    let popupViewController: UITableViewController</span><br><span class="line"></span><br><span class="line">    // 为了一致性，你应该把类型名称放在属性名称的结尾而不是开头。</span><br><span class="line">    @IBOutlet weak var btnSubmit: UIButton!</span><br><span class="line">    @IBOutlet weak var buttonSubmit: UIButton!</span><br><span class="line"></span><br><span class="line">    // 当处理 outlet 时，我们应该总是在属性名称中含有类型。</span><br><span class="line">    // 例如，我们应该用 `firstNameLabel` 代替。</span><br><span class="line">    @IBOutlet weak var firstName: UILabel!</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li><p>2.10 命名函数参数时，请确保函数可以被轻易地阅读并理解每个参数的目的</p>
+</li>
+<li><p>2.11 按照 Apple 的 API 设计规范，如果<code>protocol</code>描述「某事物在做什么」，那么应被命名为名词（比如 <code>Collection</code> ）。 如果<code>protocol</code>描述「一种能力」，使用后缀 <code>able</code> 、<code> ible</code> 或<code> ing</code>（比如 <code>Equatable</code> 、<code>ProgressReporting</code> ）。如果两种选项都不适用你的用例，你也可以在协议名称后加一个 <code>Protocol</code> 后缀。一些<code>protocol</code>的例子如下。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">// 这里的名称是描述「协议在做什么」的名词。</span><br><span class="line">protocol TableViewSectionProvider &#123;</span><br><span class="line">    func rowHeight(at row: Int) -&gt; CGFloat</span><br><span class="line">    var numberOfRows: Int &#123; get &#125;</span><br><span class="line">    /* ... */</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// 这里的协议是一种能力，我们恰当地命名它。</span><br><span class="line">protocol Loggable &#123;</span><br><span class="line">    func logCurrentState()</span><br><span class="line">    /* ... */</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// 假设有个 `InputTextView` 类，但我们也想让协议概括一些能力—使用 `Protocol` 后缀非常恰当。</span><br><span class="line">protocol InputTextViewProtocol &#123;</span><br><span class="line">    func sendTrackingEvent()</span><br><span class="line">    func inputText() -&gt; String</span><br><span class="line">    /* ... */</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h4 id="Part-03-编码风格"><a href="#Part-03-编码风格" class="headerlink" title="Part-03:  编码风格"></a>Part-03:  编码风格</h4><h5 id="3-1-通用"><a href="#3-1-通用" class="headerlink" title="3.1 通用#"></a>3.1 通用#</h5><ul>
+<li><p>3.1.1 尽可能选择<code>let</code>而非<code>var</code></p>
+</li>
+<li><p>3.1.2 当从一个集合转换到另一个集合时，建议首选<code>map</code>，<code>filter</code>，<code> reduce</code> 等高阶函数。在使用这些方法时，请确保使用的闭包没有任何副作用</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">// 推荐</span><br><span class="line">let stringOfInts = [1, 2, 3].flatMap &#123; String($0) &#125;</span><br><span class="line">// [&quot;1&quot;, &quot;2&quot;, &quot;3&quot;]</span><br><span class="line"></span><br><span class="line">// 不推荐</span><br><span class="line">var stringOfInts: [String] = []</span><br><span class="line">for integer in [1, 2, 3] &#123;</span><br><span class="line">    stringOfInts.append(String(integer))</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// 推荐</span><br><span class="line">let evenNumbers = [4, 8, 15, 16, 23, 42].filter &#123; $0 % 2 == 0 &#125;</span><br><span class="line">// [4, 8, 16, 42]</span><br><span class="line"></span><br><span class="line">// 不推荐</span><br><span class="line">var evenNumbers: [Int] = []</span><br><span class="line">for integer in [4, 8, 15, 16, 23, 42] &#123;</span><br><span class="line">    if integer % 2 == 0 &#123;</span><br><span class="line">        evenNumbers.append(integer)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li><p>3.1.3 如果常量或变量的类型可以被推导，则不去主动声明它的类型</p>
+</li>
+<li><p>3.1.4 如果一个方法返回多个值，那么推荐使用<code>inout</code>修饰的元组类型作为返回值类型 （如果类型不够一目了然，最好使用命名元组来表明你要返回的内容） 。 如果你会多次使用到某个特定的元组，那么可以考虑使用 <code>typealias</code> 。 如果你的元组里返回了 3 个及以上的元素，那么使用 <code>struct </code>或者<code>class</code>可能比元组更合适。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">func pirateName() -&gt; (firstName: String, lastName: String) &#123;</span><br><span class="line">    return (&quot;Guybrush&quot;, &quot;Threepwood&quot;)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">let name = pirateName()</span><br><span class="line">let firstName = name.firstName</span><br><span class="line">let lastName = name.lastName</span><br></pre></td></tr></table></figure></li>
+<li><p>3.1.5 在为类声明代理或者协议的时候，要注意循环引用，通常这些属性在声明时要用 weak 修饰。</p>
+</li>
+<li><p>3.1.6 在逃逸闭包中直接调用 self 的时候，要注意是否会引起循环引用。 - 当可能发生循环引用时尝试使用 <span class="exturl" data-url="aHR0cHM6Ly9kZXZlbG9wZXIuYXBwbGUuY29tL2xpYnJhcnkvaW9zL2RvY3VtZW50YXRpb24vc3dpZnQvY29uY2VwdHVhbC9Td2lmdF9Qcm9ncmFtbWluZ19MYW5ndWFnZS9DbG9zdXJlcy5odG1sIy8vYXBwbGVfcmVmL2RvYy91aWQvVFA0MDAxNDA5Ny1DSDExLVhJRF8xNjM=">capture list<i class="fa fa-external-link-alt"></i></span></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">myFunctionWithEscapingClosure() &#123; [weak self] (error) -&gt; Void in</span><br><span class="line">    // 你可以这么做</span><br><span class="line"></span><br><span class="line">    self?.doSomething()</span><br><span class="line"></span><br><span class="line">    // 你也可以这么做</span><br><span class="line"></span><br><span class="line">    guard let strongSelf = self else &#123;</span><br><span class="line">        return</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    strongSelf.doSomething()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li><p>3.1.7 不要使用 labeled breaks</p>
+</li>
+<li><p>3.1.8 流程控制语句的条件语句不需要加括弧。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">// 推荐</span><br><span class="line">if x == y &#123;</span><br><span class="line">    /* ... */</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// 不推荐</span><br><span class="line">if (x == y) &#123;</span><br><span class="line">    /* ... */</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li><p>3.1.9 可以使用点语法直接写出枚举值，前面不需要写出枚举类型</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">// 推荐</span><br><span class="line">imageView.setImageWithURL(url, type: .person)</span><br><span class="line"></span><br><span class="line">// 不推荐</span><br><span class="line">imageView.setImageWithURL(url, type: AsyncImageView.Type.person)</span><br></pre></td></tr></table></figure></li>
+<li><p>3.1.10 在声明类方法的时候不要使用缩写，因为和 enum 相比，推导类的上下文会更难</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">// 推荐</span><br><span class="line">imageView.backgroundColor = UIColor.white</span><br><span class="line"></span><br><span class="line">// 不推荐</span><br><span class="line">imageView.backgroundColor = .white</span><br></pre></td></tr></table></figure></li>
+<li><p>3.1.11 除非必要，否则尽量不使用<code>self.</code></p>
+</li>
+<li><p>3.1.12 写方法时，要考虑这个方法是否会被重载。如果不会，标记为<code> final</code>，但请记住，这是为了防止以测试为目的而重载方法。通常，<code>final</code>方法会将编译时间缩短，所以适时使用它是非常棒的。 但是，在库中应用 <code>final </code>关键词要非常小心。因为相对于在本地项目中将某些内容改为非 <code>final</code> ，在库中将某些内容改为非 <code>final </code>可不是小事</p>
+</li>
+<li><p>3.1.13 使用诸如 <code>else</code> 、<code> catch</code> 等后面跟随代码块的语句，将关键字 和代码块放在同一行。强调一下，我们遵循 <code>1TBS </code>风格 。<code>if / else </code>和<code> do / catch</code> 的示例如下</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">if someBoolean &#123;</span><br><span class="line">    // 做某些事</span><br><span class="line">&#125; else &#123;</span><br><span class="line">    // 做另一些事</span><br><span class="line">&#125;</span><br><span class="line">do &#123;</span><br><span class="line">    let fileContents = try readFile(&quot;filename.txt&quot;)</span><br><span class="line">&#125; catch &#123;</span><br><span class="line">    print(error)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>3.1.14 在定义与类相关的函数或属性而不是定义类的实例变量时时，推荐<code>static</code>，而不是 <code>class</code>。如果你特别需要在子类中重载这个函数的功能时，请使用<code>class</code>。但是，你应该考虑使用<code>protocol</code>来达到这个目的</li>
+</ul>
+</li>
+<li><p>3.1.15 如果有一个函数是无参数的、无副作用的而且返回某个对象或值，更推荐使用计算属性来代替它</p>
+</li>
+</ul>
+<h5 id="访问修饰符"><a href="#访问修饰符" class="headerlink" title="访问修饰符"></a>访问修饰符</h5><ul>
+<li>3.2.1 如果需要写访问修饰符关键字的话，请将它写在开头<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">// 推荐</span><br><span class="line">private static let myPrivateNumber: Int</span><br><span class="line"></span><br><span class="line">// 不推荐</span><br><span class="line">static private let myPrivateNumber: Int</span><br></pre></td></tr></table></figure></li>
+<li>3.2.2 访问修饰符关键字不应该独占一行，而是将它和其描述的东西放在一行<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">// 推荐</span><br><span class="line">open class Pirate &#123;</span><br><span class="line">    /* ... */</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// 不推荐</span><br><span class="line">open</span><br><span class="line">class Pirate &#123;</span><br><span class="line">    /* ... */</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li>3.2.3 通常情况下，访问修饰符关键字默认是 internal ，所以不用写出来</li>
+<li>3.2.4 如果属性需要被单元测试访问，则需要将它标记为 internal ，以便于使用 @testable import ModuleName 。如果属性 应该 是私有的，但是出于单元测试的目的将它声明为 internal，一定要添加适当的文档注释来解释这一点。 为了更加简明，你可以使用 - warning: 标记语法，如下所示<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> 这个属性定义海盗的名字。</span><br><span class="line"> - warning: 不要为 `@testable` 添加 `private` 访问修饰符 </span><br><span class="line"> */</span><br><span class="line">let pirateName = &quot;LeChuck&quot;</span><br></pre></td></tr></table></figure></li>
+<li>3.2.5 尽可能使用<code> private</code> 而不是<code> fileprivate</code></li>
+<li>3.2.6 当在<code>public</code>和 <code>open </code>两者之间选择一个时，如果你打算让某些内容在模块外也可以被继承，推荐使用<code>open</code>，否则请使用 <code>public</code>。注意，任何 <code>internal </code>或更高访问权限的内容，都可以通过使用 <code>@testable import</code> 在测试中被继承。所以这不应该成为使用 <code>open</code> 的理由。通常，在涉及到库的时候，更倾向于自由地使用<code>open</code>。但是， <code>open </code>可以轻易地同时改变应用程序中多个模块的内容。当涉及到这类代码库中的模块时，更倾向于保守地使用 <code>open </code></li>
+</ul>
+<h5 id="自定义运算符"><a href="#自定义运算符" class="headerlink" title="自定义运算符"></a>自定义运算符</h5><p>推荐创建自定义运算符。<br>如果要引入自定义运算符，确保你有一个很好的理由，为什么你想把一个新的运算符引入全局范围，而不是使用其他现有的运算符。<br>可以重写现有的运算符以支持新类型 (特别是 &#x3D;&#x3D; ) 然而，你新定义的必须保存运算符的语义。例如， &#x3D;&#x3D; 必须是检测是否相等并返回检测结果的布尔值</p>
+<h5 id="Switch-语句和枚举"><a href="#Switch-语句和枚举" class="headerlink" title="Switch 语句和枚举"></a>Switch 语句和枚举</h5><ul>
+<li>3.4.1 当使用具有有限可能性的 <code>switch </code>语句 <code>( enum )</code>，不包括 <code>default </code>的其他情况。将未处理的情况放置在 <code>default </code>里，并使用 break 来结束执行</li>
+<li>3.4.2 在 Swift 中由于 <code>switch </code>的各种情况中默认有<code>break</code>，如果不需要，可以省略<code>break</code>关键字</li>
+<li>3.4.3 <code>case </code>和 <code>switch </code>的声明要按照 Swift 的规范独占一行</li>
+<li>3.4.4 当定义具有关联值的情况时，确保这个值被适当的标记，例如：<code>case hunger(hungerLevel: Int) </code>而不是<code>case hunger(Int)</code><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">enum Problem &#123;</span><br><span class="line">    case attitude</span><br><span class="line">    case hair</span><br><span class="line">    case hunger(hungerLevel: Int)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">func handleProblem(problem: Problem) &#123;</span><br><span class="line">    switch problem &#123;</span><br><span class="line">    case .attitude:</span><br><span class="line">        print(&quot;At least I don&#x27;t have a hair problem.&quot;)</span><br><span class="line">    case .hair:</span><br><span class="line">        print(&quot;Your barber didn&#x27;t know when to stop.&quot;)</span><br><span class="line">    case .hunger(let hungerLevel):</span><br><span class="line">        print(&quot;The hunger level is \(hungerLevel).&quot;)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li>3.4.5 更推荐使用<code>fallthrough</code>关键字来处理一系列的<code> cases （例如: case 1, 2, 3: ）</code></li>
+<li>3.4.6 如果您有一个不应该达到的默认情况，最好抛出一个错误（或处理其他类似的方法，如断言<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">func handleDigit(_ digit: Int) throws &#123;</span><br><span class="line">    switch digit &#123;</span><br><span class="line">    case 0, 1, 2, 3, 4, 5, 6, 7, 8, 9:</span><br><span class="line">        print(&quot;Yes, \(digit) is a digit!&quot;)</span><br><span class="line">    default:</span><br><span class="line">        throw Error(message: &quot;The given number was not a digit.&quot;)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h5 id="可选类型"><a href="#可选类型" class="headerlink" title="可选类型"></a>可选类型</h5><ul>
+<li>3.5.1 使用隐式解包可选类型的唯一机会是使用 <code>@IBOutlet</code> 的时候。在其他情况下，使用非可选或常规可选的属性会更好。是的，有某些情况下，你可以「保证」使用时属性不会为 nil ，但是安全和一致会更好。同样，不要使用强制解包</li>
+<li>3.5.2 不要使用 <code>as! </code>或 <code>try!</code></li>
+<li>3.5.3 如果你不打算真正地使用存在可选类型中的值，但需要判断这个值是否为 <code>nil </code>，显式地检查这个值是不是<code> nil</code> ，而不是使用 <code>if let </code>语法<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">// 推荐</span><br><span class="line">if someOptional != nil &#123;</span><br><span class="line">    // 做某件事</span><br><span class="line">&#125;</span><br><span class="line">// 不推荐</span><br><span class="line">if let _ = someOptional &#123;</span><br><span class="line">    // 做某件事</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li>3.5.4 不要使用 <code>unowned </code>你可以将<code>unowned</code>视为被隐式解包的 <code>weak </code>属性的等价物（虽然 <code>unowned </code>因为完全忽略引用计数而略有性能上的提升）。因为我们不想有隐式解包，所以我们同样也不想要 <code>unowned </code>属性<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">// 推荐</span><br><span class="line">weak var parentViewController: UIViewController?</span><br><span class="line"></span><br><span class="line">// 不推荐</span><br><span class="line">weak var parentViewController: UIViewController!</span><br><span class="line">unowned var parentViewController: UIViewController</span><br></pre></td></tr></table></figure></li>
+<li>3.5.5 在解包可选类型时，在恰当的地方使用相同名称来命名解包的常量或变量<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">guard let myValue = myValue else &#123;</span><br><span class="line">    return</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h5 id="3-6-协议"><a href="#3-6-协议" class="headerlink" title="3.6 协议"></a>3.6 协议</h5><p>在实现协议时，有两种方式组织代码：</p>
+<p>1、使用 <code>// MARK: </code>注释将协议实现和其他部分的代码隔开。<br>2、在同一资源文件中 <code>class/struct </code>实现代码以外的地方，使用扩展。</p>
+<p>记住使用扩展时，无论怎样，扩展中的方法不要被子类重载，这会使测试变麻烦。如果这是一个通用的使用场景，为了一致性使用方法 <code>1 </code>可能会更好。否则，<code>2 </code>可以使关系的拆分更清楚。<br>即使使用方法<code> 2</code> ，也要添加<code>// MARK:</code>语句，以便在 <code>Xcode </code>的方法 &#x2F; 属性 &#x2F; 类等的列表 UI 中更加易读</p>
+<h5 id="3-7-属性"><a href="#3-7-属性" class="headerlink" title="3.7 属性"></a>3.7 属性</h5><ul>
+<li>3.7.1 如果创建只读的计算属性，提供不带 get {} 的获取方法<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">var computedProperty: String &#123;</span><br><span class="line">    if someBool &#123;</span><br><span class="line">        return &quot;I&#x27;m a mighty pirate!&quot;</span><br><span class="line">    &#125;</span><br><span class="line">    return &quot;I&#x27;m selling these fine leather jackets.&quot;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li>3.7.2 使用 <code>get &#123;&#125; </code>、 <code>set &#123;&#125; </code>、 <code>willSet</code> 和<code>didSet</code>时，缩进这些块</li>
+<li>3.7.3 虽然你可以为 <code>willSet/didSet </code>和<code>set</code>自定义新值或旧值的名称，但请使用默认提供的标准标识符 <code>newValue / oldValue </code><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">var storedProperty: String = &quot;I&#x27;m selling these fine leather jackets.&quot; &#123;</span><br><span class="line">    willSet &#123;</span><br><span class="line">        print(&quot;will set to \(newValue)&quot;)</span><br><span class="line">    &#125;</span><br><span class="line">    didSet &#123;</span><br><span class="line">        print(&quot;did set from \(oldValue) to \(storedProperty)&quot;)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">var computedProperty: String  &#123;</span><br><span class="line">    get &#123;</span><br><span class="line">        if someBool &#123;</span><br><span class="line">            return &quot;I&#x27;m a mighty pirate!&quot;</span><br><span class="line">        &#125;</span><br><span class="line">        return storedProperty</span><br><span class="line">    &#125;</span><br><span class="line">    set &#123;</span><br><span class="line">        storedProperty = newValue</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li>3.7.4 你可以按如下方式声明一个单例属性：<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">class PirateManager &#123;</span><br><span class="line">    static let shared = PirateManager()</span><br><span class="line"></span><br><span class="line">    /* ... */</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h5 id="3-8-闭包"><a href="#3-8-闭包" class="headerlink" title="3.8 闭包"></a>3.8 闭包</h5><ul>
+<li>3.8.1 如果可以明确参数类型，即可以省略参数类型也可以显示参数类型。你可以根据场景决定是否添加一些说明来提高代码的可读性，或者是省略一些无关紧要的部分<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">// 省略参数类型</span><br><span class="line">doSomethingWithClosure() &#123; response in</span><br><span class="line">    print(response)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// 明确参数类型</span><br><span class="line">doSomethingWithClosure() &#123; response: NSURLResponse in</span><br><span class="line">    print(response)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// 参数名缩写</span><br><span class="line">[1, 2, 3].flatMap &#123; String($0) &#125;</span><br></pre></td></tr></table></figure></li>
+<li>3.8.2 声明了一个闭包，不需要用括号括起来，除非需要（例如，闭包类型是可选的，或者这个闭包在另一个闭包内）。闭包的参数都是是放在圆括号里，如果用 <code>() </code>就表示没有参数，用<code>Void</code>表示无返回值<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">let completionBlock: (Bool) -&gt; Void = &#123; (success) in</span><br><span class="line">    print(&quot;Success? \(success)&quot;)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">let completionBlock: () -&gt; Void = &#123;</span><br><span class="line">    print(&quot;Completed!&quot;)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">let completionBlock: (() -&gt; Void)? = nil</span><br></pre></td></tr></table></figure></li>
+<li>3.8.3 在闭包中尽可能的让参数保持在同一行，避免过多换行。（确保每行小于 160 个字符)</li>
+<li>3.8.4 如果闭包的含义不太明确可以使用尾随闭包（如果一个方法同时含有成功和失败的两个闭包就不建议使用尾随闭包）。<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">// 尾随闭包</span><br><span class="line">doSomething(1.0) &#123; (parameter1) in</span><br><span class="line">    print(&quot;Parameter 1 is \(parameter1)&quot;)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// 无尾随闭包</span><br><span class="line">doSomething(1.0, success: &#123; (parameter1) in</span><br><span class="line">    print(&quot;Success with \(parameter1)&quot;)</span><br><span class="line">&#125;, failure: &#123; (parameter1) in</span><br><span class="line">    print(&quot;Failure with \(parameter1)&quot;)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h5 id="3-9-数组"><a href="#3-9-数组" class="headerlink" title="3.9 数组"></a>3.9 数组</h5><ul>
+<li>3.9.1 通常要避免直接用下标的方式访问数组。尽可能使用访问器，比如<code> .first</code> 或<code> .last</code>。它们是可选类型并且不会导致崩溃。推荐尽可能地使用 <code>for item in items </code>语法而不是类似与 <code>for i in 0 ..&lt; items.count </code>的语法。如果你需要直接用下标访问数组，一定要做适当的边界检查。你可以使用<code>for (index, value) in items.enumerated()</code>来一并得到索引和值</li>
+<li>3.9.2 不要使用 <code>+=</code> 或<code>+</code>操作符来追加或串联到数组。而是使用 <code>.append() </code>或<code> .append(contentsOf:)</code>，因为在 Swift 当前的状况下它们（至少在编译方面）拥有更高的性能。如果基于其他数组声明数组而且想让它保持不变，使用<code> let myNewArray = [arr1, arr2].joined()</code>，而不是<code> let myNewArray = arr1 + arr2</code></li>
+</ul>
+<h5 id="3-10-错误处理"><a href="#3-10-错误处理" class="headerlink" title="3.10 错误处理"></a>3.10 错误处理</h5><p>假设函数 myFunction 应该返回 String，但是，某些时候它会运行错误。在出错时返回 nil 的情况下，通用的处理方式是让函数返回可选类型 String?。</p>
+<p>例如：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">func readFile(named filename: String) -&gt; String? &#123;</span><br><span class="line">    guard let file = openFile(named: filename) else &#123;</span><br><span class="line">        return nil</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    let fileContents = file.read()</span><br><span class="line">    file.close()</span><br><span class="line">    return fileContents</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">func printSomeFile() &#123;</span><br><span class="line">    let filename = &quot;somefile.txt&quot;</span><br><span class="line">    guard let fileContents = readFile(named: filename) else &#123;</span><br><span class="line">        print(&quot;Unable to open file \(filename).&quot;)</span><br><span class="line">        return</span><br><span class="line">    &#125;</span><br><span class="line">    print(fileContents)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>相反，在适当的时候，我们应该使用 Swift 的 <code>try/catch </code>操作来了解失败原因。</p>
+<p>你可以使用<code> struct</code>，如下所示：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">struct Error: Swift.Error &#123;</span><br><span class="line">    public let file: StaticString</span><br><span class="line">    public let function: StaticString</span><br><span class="line">    public let line: UInt</span><br><span class="line">    public let message: String</span><br><span class="line"></span><br><span class="line">    public init(message: String, file: StaticString = #file, function: StaticString = #function, line: UInt = #line) &#123;</span><br><span class="line">        self.file = file</span><br><span class="line">        self.function = function</span><br><span class="line">        self.line = line</span><br><span class="line">        self.message = message</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>用法示例：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">func readFile(named filename: String) throws -&gt; String &#123;</span><br><span class="line">    guard let file = openFile(named: filename) else &#123;</span><br><span class="line">        throw Error(message: &quot;Unable to open file named \(filename).&quot;)</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    let fileContents = file.read()</span><br><span class="line">    file.close()</span><br><span class="line">    return fileContents</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">func printSomeFile() &#123;</span><br><span class="line">    do &#123;</span><br><span class="line">        let fileContents = try readFile(named: filename)</span><br><span class="line">        print(fileContents)</span><br><span class="line">    &#125; catch &#123;</span><br><span class="line">        print(error)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>有一些例外情况，使用可选类型比使用错误处理更有意义。当返回结果语义上可能是<code> nil</code>，而不是取回结果时的错误值时，返回可选类型比使用错误处理更有意义。</p>
+<p>通常，如果方法可能「失败」，并且返回值为可选类型，失败的原因就不是很明显了，那么方法抛出错误可能会更有意义。</p>
+<h5 id="3-11-使用-guard-语句"><a href="#3-11-使用-guard-语句" class="headerlink" title="3.11 使用 guard 语句"></a>3.11 使用<code> guard</code> 语句</h5><ul>
+<li>3.11.1 一般情况下，我们推荐在适用的地方使用「尽早返回」的策略 而不是在 if 语句里嵌套代码。在这种使用场景下，使用 guard 语句通常很有用，而且可以提升代码的可读性。<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">// 推荐</span><br><span class="line">func eatDoughnut(at index: Int) &#123;</span><br><span class="line">    guard index &gt;= 0 &amp;&amp; index &lt; doughnuts.count else &#123;</span><br><span class="line">        // 尽早返回因为索引越界了</span><br><span class="line">        return</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    let doughnut = doughnuts[index]</span><br><span class="line">    eat(doughnut)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// 不推荐</span><br><span class="line">func eatDoughnut(at index: Int) &#123;</span><br><span class="line">    if index &gt;= 0 &amp;&amp; index &lt; doughnuts.count &#123;</span><br><span class="line">        let doughnut = doughnuts[index]</span><br><span class="line">        eat(doughnut)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li>3.11.2 当解包可选类型时，推荐 guard 语句而不是 if 语句来减少代码中嵌套缩进的数量<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">// 推荐</span><br><span class="line">guard let monkeyIsland = monkeyIsland else &#123;</span><br><span class="line">    return</span><br><span class="line">&#125;</span><br><span class="line">bookVacation(on: monkeyIsland)</span><br><span class="line">bragAboutVacation(at: monkeyIsland)</span><br><span class="line"></span><br><span class="line">// 不推荐</span><br><span class="line">if let monkeyIsland = monkeyIsland &#123;</span><br><span class="line">    bookVacation(on: monkeyIsland)</span><br><span class="line">    bragAboutVacation(at: monkeyIsland)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// 甚至更不推荐</span><br><span class="line">if monkeyIsland == nil &#123;</span><br><span class="line">    return</span><br><span class="line">&#125;</span><br><span class="line">bookVacation(on: monkeyIsland!)</span><br><span class="line">bragAboutVacation(at: monkeyIsland!)</span><br></pre></td></tr></table></figure></li>
+<li>3.11.3 在解包类型不复杂，需要在使用 <code>if </code>还是 <code>guard </code>之间做抉择时，要记住最重要的是代码的可读性。会有很多可能的情况，例如依赖于两个不同的布尔值、复杂逻辑语句涉及到多个判断等，所以通常使用您的最佳的判断来写出可读且一致的代码。如果你不确定 <code>guard </code>或 <code>if </code>哪个更具可读性或者它们看起来同样可读，推荐使用 <code>guard</code><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">// 这里 `if` 语句的可读性很高</span><br><span class="line">if operationFailed &#123;</span><br><span class="line">    return</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// 这里 `guard` 语句的可读性很高</span><br><span class="line">guard isSuccessful else &#123;</span><br><span class="line">    return</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// 像这种双重否定逻辑很难读懂—即不要这样做</span><br><span class="line">guard !operationFailed else &#123;</span><br><span class="line">    return</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li>3.11.4 如果在两种语句之间做选择，使用 <code>if </code>语句比使用 <code>guard </code>语句更有意义<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">// 推荐</span><br><span class="line">if isFriendly &#123;</span><br><span class="line">    print(&quot;Hello, nice to meet you!&quot;)</span><br><span class="line">&#125; else &#123;</span><br><span class="line">    print(&quot;You have the manners of a beggar.&quot;)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// 不推荐</span><br><span class="line">guard isFriendly else &#123;</span><br><span class="line">    print(&quot;You have the manners of a beggar.&quot;)</span><br><span class="line">    return</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">print(&quot;Hello, nice to meet you!&quot;)</span><br></pre></td></tr></table></figure></li>
+<li>3.11.5 只有在失败会导致退出当前上下文的情况下，才应该使用 <code>guard</code>。 下面是一个例子，在其中使用两个 if 语句而不是使用两个 <code>guard</code> 语句更有意义 — 有两个不相互阻塞的无关条件<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">if let monkeyIsland = monkeyIsland &#123;</span><br><span class="line">    bookVacation(onIsland: monkeyIsland)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">if let woodchuck = woodchuck, canChuckWood(woodchuck) &#123;</span><br><span class="line">    woodchuck.chuckWood()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li>3.11.6 通常，我们可能遇到需要使用 guard 语句解包多个可选类型的情况。一般情况下，如果处理每个解包的失败是相同的（例如，<code>return</code>、<code>break</code>、<code>continue</code>、<code>throw </code>或一些其他的 <code>@noescape</code>），将解包合入一个 <code>guard </code>语句<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">// 因为只是返回，所以合并为一个。</span><br><span class="line">guard let thingOne = thingOne,</span><br><span class="line">    let thingTwo = thingTwo,</span><br><span class="line">    let thingThree = thingThree else &#123;</span><br><span class="line">    return</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// 因为在每种情况下处理特定的错误，所以拆分成单独的语句。</span><br><span class="line">guard let thingOne = thingOne else &#123;</span><br><span class="line">    throw Error(message: &quot;Unwrapping thingOne failed.&quot;)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">guard let thingTwo = thingTwo else &#123;</span><br><span class="line">    throw Error(message: &quot;Unwrapping thingTwo failed.&quot;)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">guard let thingThree = thingThree else &#123;</span><br><span class="line">    throw Error(message: &quot;Unwrapping thingThree failed.&quot;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li>3.11.7 不要将 guard 语句写成只有一行<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">// 推荐</span><br><span class="line">guard let thingOne = thingOne else &#123;</span><br><span class="line">    return</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// 不推荐</span><br><span class="line">guard let thingOne = thingOne else &#123; return &#125;</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h4 id="Part-04-文档-x2F-注释"><a href="#Part-04-文档-x2F-注释" class="headerlink" title="Part-04: 文档 &#x2F; 注释"></a>Part-04: 文档 &#x2F; 注释</h4><h5 id="4-1-文档"><a href="#4-1-文档" class="headerlink" title="4.1 文档"></a>4.1 文档</h5><p>如果函数比简单的 O (1) 操作负责，通常应该考虑为函数加个文档。因为方法签名的一些信息可能不是那么明显。如果实现方式有任何怪癖，无论在技术上有趣、棘手、不明显等等，都应该被文档化。应该为复杂的类 &#x2F; 结构体 &#x2F; 枚举 &#x2F; 协议和属性添加文档。所有的<code> public</code> <code>函数 / 类 / 属性 / 常量 / 结构体 / 枚举 / 协议</code>等也应该被文档化。（如果，他们的签名 &#x2F; 名称不能使他们含义 &#x2F; 功能很明显）。</p>
+<p>写完文档注释之后，你应该按住<code> option</code> 键并单击函数 &#x2F; 属性 &#x2F; 类等等来确认文档注释被正确地格式化了。</p>
+<p>务必查看 Swift 注释标记中提供的全套功能，详见 <span class="exturl" data-url="aHR0cHM6Ly9kZXZlbG9wZXIuYXBwbGUuY29tL2xpYnJhcnkvdHZvcy9kb2N1bWVudGF0aW9uL1hjb2RlL1JlZmVyZW5jZS94Y29kZV9tYXJrdXBfZm9ybWF0dGluZ19yZWYvQXR0ZW50aW9uLmh0bWwjLy9hcHBsZV9yZWYvZG9jL3VpZC9UUDQwMDE2NDk3LUNIMjktU1cx">Apple 的文档<i class="fa fa-external-link-alt"></i></span></p>
+<p>原则:</p>
+<ul>
+<li>4.1.1 160 个字符列的限制（和代码的部分一样</li>
+<li>4.1.2 如果文档注释在一行内，使用（ <code>/** */ </code>）</li>
+<li>4.1.3 不要在每一个附加行前面加<code> *</code></li>
+<li>4.1.4 使用新的 <code>- parameter </code>语法而不是旧的 <code>:param: </code>语法（务必使用小写的 <code>parameter </code>而并不是 <code>Parameter </code>）。 按住 <code>Option </code>键并单击你写的方法以确保快速帮助看起来是正确的<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">class Human &#123;</span><br><span class="line">    /**</span><br><span class="line">     这个方法向某人喂某种事物。</span><br><span class="line"></span><br><span class="line">     - parameter food: 你想被他吃的食物</span><br><span class="line">     - parameter person: 应该吃食物的人</span><br><span class="line">     - returns: 如果食物被那个人吃了，为 True；否则为 false。 </span><br><span class="line">    */</span><br><span class="line">    func feed(_ food: Food, to person: Human) -&gt; Bool &#123;</span><br><span class="line">        // ...</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li>4.1.5 如果你要给方法的参数 &#x2F; 返回值 &#x2F; 抛出的异常写文档，即使某些文档最终会有重复，也请将它们都写入文档（这比文档看起来不完整更可取）。有时，如果仅有一个参数需要写文档，在描述中提及它更好一些</li>
+<li>4.1.6 对于复杂的类，请使用一些看起来合适的示例来描述类的用法。记住在 <code>Swift </code>注释文档中可以使用 <code>markdown </code>语法。因此，换行符、列表等等都是适用的<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> ## 功能支持</span><br><span class="line"></span><br><span class="line"> 这个类做了一些很棒的事情。它支持：</span><br><span class="line"></span><br><span class="line"> - 功能 1</span><br><span class="line"> - 功能 2</span><br><span class="line"> - 功能 3</span><br><span class="line"></span><br><span class="line"> ## 示例</span><br><span class="line"></span><br><span class="line"> 这有一个用例，由于它表示一个代码块，所以使用四个空格缩进：</span><br><span class="line"></span><br><span class="line">     let myAwesomeThing = MyAwesomeClass()</span><br><span class="line">     myAwesomeThing.makeMoney()</span><br><span class="line"></span><br><span class="line"> ## 警告</span><br><span class="line"></span><br><span class="line"> 有一些你需要注意的事项：</span><br><span class="line"></span><br><span class="line"> 1. 事项一</span><br><span class="line"> 2. 事项二</span><br><span class="line"> 3. 事项三</span><br><span class="line"> */</span><br><span class="line">class MyAwesomeClass &#123;</span><br><span class="line">    /* ... */</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li>4.1.7 提及代码时，请使用代码提示<code>-</code><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> 或许这里使用 `UIViewController` 做了某事</span><br><span class="line"> - warning: 在运行这个函数之前，请确保 `someValue` 为 `true`。</span><br><span class="line"> */</span><br><span class="line">func myFunction() &#123;</span><br><span class="line">    /* ... */</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li>4.1.8 写文档注释时，尽可能保持简洁</li>
+</ul>
+<h5 id="4-2-其他注释原则"><a href="#4-2-其他注释原则" class="headerlink" title="4.2 其他注释原则"></a>4.2 其他注释原则</h5><ul>
+<li>4.2.1 始终在<code>//</code>后面加个空格</li>
+<li>4.2.2 始终在自己的行中写注释</li>
+<li>4.2.3 使用 <code>// MARK: - </code>无论是什么 时，在注释后加个空行<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">class Pirate &#123;</span><br><span class="line"></span><br><span class="line">    // MARK: - 实例属性</span><br><span class="line"></span><br><span class="line">    private let pirateName: String</span><br><span class="line"></span><br><span class="line">    // MARK: - 构造函数</span><br><span class="line"></span><br><span class="line">    init() &#123;</span><br><span class="line">        /* ... */</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h4 id="Part-05-转载"><a href="#Part-05-转载" class="headerlink" title="Part-05:转载"></a>Part-05:转载</h4><p><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2xpbmtlZGluL3N3aWZ0LXN0eWxlLWd1aWRlLw==">原文地址<i class="fa fa-external-link-alt"></i></span><br><span class="exturl" data-url="aHR0cHM6Ly9sZWFybmt1LmNvbS9pb3MvdC8yMzIzMC9saW5rZWRpbi1vZmZpY2lhbC1zd2lmdC1zdHlsZS1ndWlkZQ==">译文地址<i class="fa fa-external-link-alt"></i></span></p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="reward-container">
+  <div>如果觉得我的文章对您有用，请随意打赏。您的支持将鼓励我继续创作！</div>
+  <button>
+    赞赏
+  </button>
+  <div class="post-reward">
+      <div>
+        <img src="/images/wechatpay.png" alt="Ray 微信">
+        <span>微信</span>
+      </div>
+
+  </div>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/%E8%BD%AC%E8%BD%BD/" rel="tag"># 转载</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/post/iOSCodeSpecification/" rel="prev" title="iOS代码规范 - OC版">
+                  <i class="fa fa-chevron-left"></i> iOS代码规范 - OC版
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/post/EBookFind/" rel="next" title="以技术之名周报09#｜如何高效的查找一本电子书｜2022-04-11">
+                  以技术之名周报09#｜如何高效的查找一本电子书｜2022-04-11 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    <div class="comments gitalk-container"></div>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2025</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Ray</span>
+</div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+  <div class="powered-by">由 <span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlv">Hexo</span> & <span class="exturl" data-url="aHR0cHM6Ly90aGVtZS1uZXh0LmpzLm9yZw==">NexT.Gemini</span> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+<script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.0/search.js" integrity="sha256-vXZMYLEqsROAXkEw93GGIvaB2ab+QW6w3+1ahD9nXXA=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.8.0/gitalk.css" integrity="sha256-AJnUHL7dBv6PGaeyPQJcgQPDjt/Hn/PvYZde1iqfp8U=" crossorigin="anonymous">
+
+<script class="next-config" data-name="gitalk" type="application/json">{"enable":true,"github_id":"iamlay","repo":"gitalk","client_id":"798848f6f91162435156","client_secret":"d9b621213c7353cfa8b2286491f877ef4507da1e","admin_user":"iamlay","distraction_free_mode":true,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token","language":"zh-CN","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.8.0/gitalk.min.js","integrity":"sha256-MVK9MGD/XJaGyIghSVrONSnoXoGh3IFxLw0zfvzpxR4="},"path_md5":"9fc1f83af63601a597797d95b9947f5f"}</script>
+<script src="/js/third-party/comments/gitalk.js"></script>
+
+</body>
+</html>
