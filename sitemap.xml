@@ -504,14 +504,14 @@
   </url>
   
   <url>
-    <loc>https://www.iamlay.com/tags/Hexo/</loc>
+    <loc>https://www.iamlay.com/tags/ChatGPT/</loc>
     <lastmod>2025-07-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://www.iamlay.com/tags/ChatGPT/</loc>
+    <loc>https://www.iamlay.com/tags/Hexo/</loc>
     <lastmod>2025-07-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -539,14 +539,14 @@
   </url>
   
   <url>
-    <loc>https://www.iamlay.com/tags/MacOS/</loc>
+    <loc>https://www.iamlay.com/tags/Mac/</loc>
     <lastmod>2025-07-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://www.iamlay.com/tags/Mac/</loc>
+    <loc>https://www.iamlay.com/tags/MacOS/</loc>
     <lastmod>2025-07-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -576,6 +576,13 @@
   </url>
   
   <url>
+    <loc>https://www.iamlay.com/categories/iOS/</loc>
+    <lastmod>2025-07-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
     <loc>https://www.iamlay.com/categories/HarmonyOS/</loc>
     <lastmod>2025-07-16</lastmod>
     <changefreq>weekly</changefreq>
@@ -584,13 +591,6 @@
   
   <url>
     <loc>https://www.iamlay.com/categories/%E5%91%A8%E6%8A%A5/</loc>
-    <lastmod>2025-07-16</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://www.iamlay.com/categories/iOS/</loc>
     <lastmod>2025-07-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
