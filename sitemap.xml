@@ -618,14 +618,14 @@
   </url>
   
   <url>
-    <loc>https://www.iamlay.com/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/</loc>
+    <loc>https://www.iamlay.com/categories/Hexo/</loc>
     <lastmod>2025-07-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://www.iamlay.com/categories/Hexo/</loc>
+    <loc>https://www.iamlay.com/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/</loc>
     <lastmod>2025-07-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
