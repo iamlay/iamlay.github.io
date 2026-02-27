@@ -1,6 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>https://www.iamlay.com/post/obsidian-note-management/</loc>
+    <lastmod>2026-02-27</lastmod>
+  </url>
+  <url>
+    <loc>https://www.iamlay.com/post/26Birthday/</loc>
+    <lastmod>2026-02-12</lastmod>
+  </url>
+  <url>
     <loc>https://www.iamlay.com/post/CokeCloud/</loc>
     <lastmod>2026-01-02</lastmod>
   </url>
@@ -175,10 +183,6 @@
   <url>
     <loc>https://www.iamlay.com/post/week2020-36/</loc>
     <lastmod>2023-03-22</lastmod>
-  </url>
-  <url>
-    <loc>https://www.iamlay.com/post/26Birthday/</loc>
-    <lastmod>2020-04-22</lastmod>
   </url>
   <url>
     <loc>https://www.iamlay.com/post/cocoapodsVisual/</loc>
