@@ -25,31 +25,62 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"www.iamlay.com","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.13.1","exturl":true,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"gitalk","storage":true,"lazyload":false,"nav":{"gitalk":{"ordcer":-1}},"activeClass":"gitalk"},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
 
-    <meta name="description" content="记录通过土耳其区 Apple ID、App Store 礼品卡余额订阅 ChatGPT Plus 的完整流程，以及常见报错和处理办法。">
+    <meta name="description" content="先注册一个中国大陆区 Apple ID，然后把账号国家&#x2F;地区改成土耳其区，用于通过土区 App Store 礼品卡余额订阅 ChatGPT Plus。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="土耳其区 Apple ID 订阅 ChatGPT Plus 完整教程">
+<meta property="og:title" content="注册土耳其区 Apple ID 订阅 ChatGPT Plus 教程">
 <meta property="og:url" content="https://www.iamlay.com/post/TurkeyAppleIDChatGPTPlus/index.html">
 <meta property="og:site_name" content="以技术之名">
-<meta property="og:description" content="记录通过土耳其区 Apple ID、App Store 礼品卡余额订阅 ChatGPT Plus 的完整流程，以及常见报错和处理办法。">
+<meta property="og:description" content="先注册一个中国大陆区 Apple ID，然后把账号国家&#x2F;地区改成土耳其区，用于通过土区 App Store 礼品卡余额订阅 ChatGPT Plus。">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://www.iamlay.com/post/TurkeyAppleIDChatGPTPlus/account-region-selector.png">
+<meta property="og:image" content="https://www.iamlay.com/post/TurkeyAppleIDChatGPTPlus/account-country-selector-example.png">
+<meta property="og:image" content="https://www.iamlay.com/post/TurkeyAppleIDChatGPTPlus/apple-personal-info-country-region.jpg">
+<meta property="og:image" content="https://www.iamlay.com/post/TurkeyAppleIDChatGPTPlus/apple-country-region-edit.jpg">
+<meta property="og:image" content="https://www.iamlay.com/post/TurkeyAppleIDChatGPTPlus/apple-region-change-prompt.jpg">
+<meta property="og:image" content="https://www.iamlay.com/post/TurkeyAppleIDChatGPTPlus/apple-terms-confirmation.jpg">
+<meta property="og:image" content="https://www.iamlay.com/post/TurkeyAppleIDChatGPTPlus/turkey-address-generator-example.png">
+<meta property="og:image" content="https://www.iamlay.com/post/TurkeyAppleIDChatGPTPlus/apple-payment-none.jpg">
+<meta property="og:image" content="https://www.iamlay.com/post/TurkeyAppleIDChatGPTPlus/apple-country-region-turkey-confirm.jpg">
+<meta property="og:image" content="https://www.iamlay.com/post/TurkeyAppleIDChatGPTPlus/apple-web-personal-info-turkey.png">
+<meta property="og:image" content="https://www.iamlay.com/post/TurkeyAppleIDChatGPTPlus/mac-app-store-sign-out.jpeg">
+<meta property="og:image" content="https://www.iamlay.com/post/TurkeyAppleIDChatGPTPlus/app-store-cannot-connect-cn.png">
+<meta property="og:image" content="https://www.iamlay.com/post/TurkeyAppleIDChatGPTPlus/app-store-cannot-connect-en.png">
+<meta property="og:image" content="https://www.iamlay.com/post/TurkeyAppleIDChatGPTPlus/app-store-country-region-turkiye.jpeg">
+<meta property="og:image" content="https://www.iamlay.com/post/TurkeyAppleIDChatGPTPlus/iphone-country-region-example.png">
+<meta property="og:image" content="https://www.iamlay.com/post/TurkeyAppleIDChatGPTPlus/oyunfor-language-register.jpg">
+<meta property="og:image" content="https://www.iamlay.com/post/TurkeyAppleIDChatGPTPlus/oyunfor-register-example.jpg">
+<meta property="og:image" content="https://www.iamlay.com/post/TurkeyAppleIDChatGPTPlus/oyunfor-app-store-card-entry.jpg">
+<meta property="og:image" content="https://www.iamlay.com/post/TurkeyAppleIDChatGPTPlus/oyunfor-01-add-gift-card.png">
+<meta property="og:image" content="https://www.iamlay.com/post/TurkeyAppleIDChatGPTPlus/oyunfor-02-invoice-info.png">
+<meta property="og:image" content="https://www.iamlay.com/post/TurkeyAppleIDChatGPTPlus/oyunfor-03-cart-pay.png">
+<meta property="og:image" content="https://www.iamlay.com/post/TurkeyAppleIDChatGPTPlus/oyunfor-04-iyzico-pay.png">
+<meta property="og:image" content="https://www.iamlay.com/post/TurkeyAppleIDChatGPTPlus/oyunfor-05-iyzico-card-form.png">
+<meta property="og:image" content="https://www.iamlay.com/post/TurkeyAppleIDChatGPTPlus/oyunfor-06-iyzico-payment-failed.png">
+<meta property="og:image" content="https://www.iamlay.com/post/TurkeyAppleIDChatGPTPlus/oyunfor-purchased-products-entry.jpg">
+<meta property="og:image" content="https://www.iamlay.com/post/TurkeyAppleIDChatGPTPlus/oyunfor-gift-card-code.jpg">
+<meta property="og:image" content="https://www.iamlay.com/post/TurkeyAppleIDChatGPTPlus/apple-gift-card-redeem-success.png">
+<meta property="og:image" content="https://www.iamlay.com/post/TurkeyAppleIDChatGPTPlus/chatgpt-subscription-page.png">
+<meta property="og:image" content="https://www.iamlay.com/post/TurkeyAppleIDChatGPTPlus/subscription-success.jpeg">
+<meta property="og:image" content="https://www.iamlay.com/post/TurkeyAppleIDChatGPTPlus/turkey-lira-cny-cost-example.png">
 <meta property="article:published_time" content="2026-06-01T12:30:00.000Z">
-<meta property="article:modified_time" content="2026-06-01T03:10:53.445Z">
+<meta property="article:modified_time" content="2026-06-01T03:21:18.403Z">
 <meta property="article:author" content="Ray">
 <meta property="article:tag" content="Apple ID">
 <meta property="article:tag" content="ChatGPT">
-<meta property="article:tag" content="土耳其区">
 <meta property="article:tag" content="教程">
+<meta property="article:tag" content="非技术">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://www.iamlay.com/post/TurkeyAppleIDChatGPTPlus/account-region-selector.png">
 
 
 <link rel="canonical" href="https://www.iamlay.com/post/TurkeyAppleIDChatGPTPlus/">
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://www.iamlay.com/post/TurkeyAppleIDChatGPTPlus/","path":"post/TurkeyAppleIDChatGPTPlus/","title":"土耳其区 Apple ID 订阅 ChatGPT Plus 完整教程"}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://www.iamlay.com/post/TurkeyAppleIDChatGPTPlus/","path":"post/TurkeyAppleIDChatGPTPlus/","title":"注册土耳其区 Apple ID 订阅 ChatGPT Plus 教程"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>土耳其区 Apple ID 订阅 ChatGPT Plus 完整教程 | 以技术之名</title>
+<title>注册土耳其区 Apple ID 订阅 ChatGPT Plus 教程 | 以技术之名</title>
   <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-170943611-2"></script>
 <script>
@@ -162,7 +193,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%80%BB%E4%BD%93%E6%B5%81%E7%A8%8B"><span class="nav-number">1.</span> <span class="nav-text">总体流程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BC%80%E5%A7%8B%E5%89%8D%E5%87%86%E5%A4%87"><span class="nav-number">2.</span> <span class="nav-text">开始前准备</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%88%E6%B3%A8%E5%86%8C%E4%B8%80%E4%B8%AA%E5%9B%BD%E5%8C%BA-Apple-ID"><span class="nav-number">3.</span> <span class="nav-text">先注册一个国区 Apple ID</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BD%91%E9%A1%B5%E7%AB%AF%E6%94%B9%E5%88%B0%E5%9C%9F%E8%80%B3%E5%85%B6%E5%8C%BA"><span class="nav-number">4.</span> <span class="nav-text">网页端改到土耳其区</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%88%E5%88%87-App-Store-%E5%BA%97%E9%9D%A2%EF%BC%8C%E5%86%8D%E7%99%BB%E5%BD%95%E8%B4%A6%E5%8F%B7"><span class="nav-number">5.</span> <span class="nav-text">先切 App Store 店面，再登录账号</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%8B%E8%BD%BD%E4%B8%80%E4%B8%AA%E5%85%8D%E8%B4%B9-App-%E5%9B%BA%E5%AE%9A%E5%BA%97%E9%9D%A2"><span class="nav-number">6.</span> <span class="nav-text">下载一个免费 App 固定店面</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%B4%AD%E4%B9%B0%E5%9C%9F%E5%8C%BA-Apple-%E7%A4%BC%E5%93%81%E5%8D%A1"><span class="nav-number">7.</span> <span class="nav-text">购买土区 Apple 礼品卡</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B3%A8%E5%86%8C%E5%B9%B6%E7%99%BB%E5%BD%95-Oyunfor"><span class="nav-number">7.1.</span> <span class="nav-text">注册并登录 Oyunfor</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%80%89%E6%8B%A9%E7%A4%BC%E5%93%81%E5%8D%A1%E9%87%91%E9%A2%9D"><span class="nav-number">7.2.</span> <span class="nav-text">选择礼品卡金额</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B7%BB%E5%8A%A0%E5%8F%91%E7%A5%A8%E4%BF%A1%E6%81%AF"><span class="nav-number">7.3.</span> <span class="nav-text">添加发票信息</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%80%89%E6%8B%A9%E6%94%AF%E4%BB%98%E9%80%9A%E9%81%93"><span class="nav-number">7.4.</span> <span class="nav-text">选择支付通道</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9F%A5%E7%9C%8B%E7%A4%BC%E5%93%81%E5%8D%A1%E4%BB%A3%E7%A0%81"><span class="nav-number">7.5.</span> <span class="nav-text">查看礼品卡代码</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%91%E6%8D%A2%E7%A4%BC%E5%93%81%E5%8D%A1%E4%BD%99%E9%A2%9D"><span class="nav-number">8.</span> <span class="nav-text">兑换礼品卡余额</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%94%A8%E4%BD%99%E9%A2%9D%E8%AE%A2%E9%98%85-ChatGPT-Plus"><span class="nav-number">9.</span> <span class="nav-text">用余额订阅 ChatGPT Plus</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98"><span class="nav-number">10.</span> <span class="nav-text">常见问题</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BD%AC%E5%8C%BA%E6%8F%90%E7%A4%BA-There-was-an-error-Please-try-later"><span class="nav-number">10.1.</span> <span class="nav-text">转区提示 There was an error. Please try later</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BB%98%E6%AC%BE%E6%96%B9%E5%BC%8F%E6%B2%A1%E6%9C%89-None-x2F-%E6%97%A0"><span class="nav-number">10.2.</span> <span class="nav-text">付款方式没有 None &#x2F; 无</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%86%85%E8%B4%AD%E6%8F%90%E7%A4%BA-your-purchase-could-not-be-completed"><span class="nav-number">10.3.</span> <span class="nav-text">内购提示 your purchase could not be completed</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Mac-%E4%B8%8A%E6%90%9C%E7%B4%A2%E4%B8%8D%E5%88%B0-ChatGPT-%E6%88%96%E6%97%A0%E6%B3%95%E8%AE%A2%E9%98%85"><span class="nav-number">10.4.</span> <span class="nav-text">Mac 上搜索不到 ChatGPT 或无法订阅</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%89%8B%E6%9C%BA%E6%97%B6%E5%8C%BA%E5%92%8C%E8%8A%82%E7%82%B9%E8%A6%81%E4%B8%8D%E8%A6%81%E6%94%B9%E5%88%B0%E5%9C%9F%E8%80%B3%E5%85%B6"><span class="nav-number">10.5.</span> <span class="nav-text">手机时区和节点要不要改到土耳其</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9B%BD%E5%86%85%E6%89%8B%E6%9C%BA%E5%8F%B7%E8%83%BD%E4%B8%8D%E8%83%BD%E7%94%A8"><span class="nav-number">10.6.</span> <span class="nav-text">国内手机号能不能用</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%B4%B9%E7%94%A8%E5%8F%82%E8%80%83"><span class="nav-number">11.</span> <span class="nav-text">费用参考</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%82%E8%80%83%E9%93%BE%E6%8E%A5"><span class="nav-number">12.</span> <span class="nav-text">参考链接</span></a></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BC%80%E5%A7%8B%E5%89%8D%E5%87%86%E5%A4%87"><span class="nav-number">1.</span> <span class="nav-text">开始前准备</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%88%E6%B3%A8%E5%86%8C%E4%B8%80%E4%B8%AA%E5%9B%BD%E5%8C%BA-Apple-ID"><span class="nav-number">2.</span> <span class="nav-text">先注册一个国区 Apple ID</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BD%91%E9%A1%B5%E7%AB%AF%E6%8A%8A%E8%B4%A6%E5%8F%B7%E5%8C%BA%E5%9F%9F%E6%94%B9%E6%88%90%E5%9C%9F%E8%80%B3%E5%85%B6"><span class="nav-number">3.</span> <span class="nav-text">网页端把账号区域改成土耳其</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%87%8D%E7%82%B9%EF%BC%9A%E5%85%88%E5%88%87-App-Store-%E5%BA%97%E9%9D%A2%EF%BC%8C%E5%86%8D%E7%99%BB%E5%BD%95%E8%B4%A6%E5%8F%B7"><span class="nav-number">4.</span> <span class="nav-text">重点：先切 App Store 店面，再登录账号</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%99%BB%E5%BD%95%E5%90%8E%E4%B8%8B%E8%BD%BD%E4%B8%80%E4%B8%AA%E5%85%8D%E8%B4%B9-App-%E5%9B%BA%E5%AE%9A%E5%BA%97%E9%9D%A2"><span class="nav-number">5.</span> <span class="nav-text">登录后下载一个免费 App 固定店面</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%B4%AD%E4%B9%B0%E5%9C%9F%E5%8C%BA-Apple-%E7%A4%BC%E5%93%81%E5%8D%A1%E5%B9%B6%E5%85%85%E5%80%BC"><span class="nav-number">6.</span> <span class="nav-text">购买土区 Apple 礼品卡并充值</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B3%A8%E5%86%8C%E5%B9%B6%E7%99%BB%E5%BD%95-Oyunfor"><span class="nav-number">6.1.</span> <span class="nav-text">注册并登录 Oyunfor</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%80%89%E6%8B%A9%E7%A4%BC%E5%93%81%E5%8D%A1%E9%87%91%E9%A2%9D%E5%B9%B6%E5%8A%A0%E5%85%A5%E8%B4%AD%E7%89%A9%E8%BD%A6"><span class="nav-number">6.2.</span> <span class="nav-text">选择礼品卡金额并加入购物车</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AC%AC%E4%B8%80%E6%AC%A1%E8%B4%AD%E4%B9%B0%E6%97%B6%E6%B7%BB%E5%8A%A0%E5%8F%91%E7%A5%A8%E4%BF%A1%E6%81%AF"><span class="nav-number">6.3.</span> <span class="nav-text">第一次购买时添加发票信息</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9C%A8%E8%B4%AD%E7%89%A9%E8%BD%A6%E9%A1%B5%E9%9D%A2%E7%82%B9%E5%87%BB%E4%BB%98%E6%AC%BE"><span class="nav-number">6.4.</span> <span class="nav-text">在购物车页面点击付款</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%80%89%E6%8B%A9%E4%BF%A1%E7%94%A8%E5%8D%A1%E6%94%AF%E4%BB%98%EF%BC%8C%E5%B9%B6%E4%BC%98%E5%85%88%E8%B5%B0-Iyzico"><span class="nav-number">6.5.</span> <span class="nav-text">选择信用卡支付，并优先走 Iyzico</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9C%A8-Iyzico-%E9%A1%B5%E9%9D%A2%E5%A1%AB%E5%86%99%E9%93%B6%E8%A1%8C%E5%8D%A1%E5%B9%B6%E5%AE%8C%E6%88%90%E9%AA%8C%E8%AF%81"><span class="nav-number">6.6.</span> <span class="nav-text">在 Iyzico 页面填写银行卡并完成验证</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BB%98%E6%AC%BE%E6%88%90%E5%8A%9F%E5%90%8E%E6%9F%A5%E7%9C%8B%E7%A4%BC%E5%93%81%E5%8D%A1%E4%BB%A3%E7%A0%81"><span class="nav-number">6.7.</span> <span class="nav-text">付款成功后查看礼品卡代码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9C%A8%E5%9C%9F%E5%8C%BA-Apple-ID-%E9%87%8C%E5%85%91%E6%8D%A2%E7%A4%BC%E5%93%81%E5%8D%A1"><span class="nav-number">6.8.</span> <span class="nav-text">在土区 Apple ID 里兑换礼品卡</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%94%A8%E4%BD%99%E9%A2%9D%E8%AE%A2%E9%98%85%E6%9C%8D%E5%8A%A1"><span class="nav-number">6.9.</span> <span class="nav-text">用余额订阅服务</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98%E4%B8%8E%E5%A4%84%E7%90%86%E5%8A%9E%E6%B3%95"><span class="nav-number">7.</span> <span class="nav-text">常见问题与处理办法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BD%AC%E5%8C%BA%E6%97%B6%E6%8F%90%E7%A4%BA-%E2%80%9CThere-was-an-error-Please-try-later%E2%80%9D"><span class="nav-number">7.1.</span> <span class="nav-text">转区时提示 “There was an error. Please try later”</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BB%98%E6%AC%BE%E6%96%B9%E5%BC%8F%E6%B2%A1%E6%9C%89-None-%E6%97%A0"><span class="nav-number">7.2.</span> <span class="nav-text">付款方式没有 None &#x2F; 无</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%86%85%E8%B4%AD%E6%8F%90%E7%A4%BA-%E2%80%9Cyour-purchase-could-not-be-completed%E2%80%9D"><span class="nav-number">7.3.</span> <span class="nav-text">内购提示 “your purchase could not be completed”</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Mac-%E4%B8%8A%E4%B8%8D%E8%83%BD%E8%AE%A2%E9%98%85%E6%88%96%E6%90%9C%E7%B4%A2%E4%B8%8D%E5%88%B0-App"><span class="nav-number">7.4.</span> <span class="nav-text">Mac 上不能订阅或搜索不到 App</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%89%8B%E6%9C%BA%E6%97%B6%E5%8C%BA%E5%92%8C%E8%8A%82%E7%82%B9%E8%A6%81%E4%B8%8D%E8%A6%81%E6%94%B9%EF%BC%9F"><span class="nav-number">7.5.</span> <span class="nav-text">手机时区和节点要不要改？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%89%8B%E6%9C%BA%E5%8F%B7%E8%83%BD%E4%B8%8D%E8%83%BD%E7%94%A8-86%EF%BC%9F"><span class="nav-number">7.6.</span> <span class="nav-text">手机号能不能用 +86？</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%9E%E9%99%85%E8%B4%B9%E7%94%A8%E5%8F%82%E8%80%83"><span class="nav-number">8.</span> <span class="nav-text">实际费用参考</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -244,12 +275,12 @@
     </span>
 
     <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="土耳其区 Apple ID 订阅 ChatGPT Plus 完整教程 | 以技术之名">
-      <meta itemprop="description" content="记录通过土耳其区 Apple ID、App Store 礼品卡余额订阅 ChatGPT Plus 的完整流程，以及常见报错和处理办法。">
+      <meta itemprop="name" content="注册土耳其区 Apple ID 订阅 ChatGPT Plus 教程 | 以技术之名">
+      <meta itemprop="description" content="先注册一个中国大陆区 Apple ID，然后把账号国家/地区改成土耳其区，用于通过土区 App Store 礼品卡余额订阅 ChatGPT Plus。">
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          土耳其区 Apple ID 订阅 ChatGPT Plus 完整教程
+          注册土耳其区 Apple ID 订阅 ChatGPT Plus 教程
         </h1>
 
         <div class="post-meta-container">
@@ -261,7 +292,7 @@
       <span class="post-meta-item-text">发表于</span>
       
 
-      <time title="创建时间：2026-06-01 20:30:00 / 修改时间：11:10:53" itemprop="dateCreated datePublished" datetime="2026-06-01T20:30:00+08:00">2026-06-01</time>
+      <time title="创建时间：2026-06-01 20:30:00 / 修改时间：11:21:18" itemprop="dateCreated datePublished" datetime="2026-06-01T20:30:00+08:00">2026-06-01</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -284,7 +315,7 @@
 </div>
 
 	
-            <div class="post-description">记录通过土耳其区 Apple ID、App Store 礼品卡余额订阅 ChatGPT Plus 的完整流程，以及常见报错和处理办法。</div>
+            <div class="post-description">先注册一个中国大陆区 Apple ID，然后把账号国家/地区改成土耳其区，用于通过土区 App Store 礼品卡余额订阅 ChatGPT Plus。</div>
         </div>
       </header>
 
@@ -293,162 +324,250 @@
     
     <div class="post-body" itemprop="articleBody">
         <blockquote>
-<p>本文整理的是一种通过土耳其区 App Store 余额订阅 ChatGPT Plus 的操作思路：先准备一个独立 Apple ID，把账号地区改到土耳其，再购买并兑换土区 Apple 礼品卡，最后在 ChatGPT iOS App 内使用 Apple 余额完成订阅。</p>
-<p>需要提醒：跨区、礼品卡、支付风控都存在不确定性，也可能受到 Apple、OpenAI、支付通道政策变化影响。不要使用主力 iCloud 账号，不要大额充值，不要购买来路不明的兑换码。</p>
+<p><strong>2026-05-04 更新：</strong> 很多人反馈在付款方式页面看不到 <strong>None &#x2F; 无</strong>。这个问题优先按<strong>网络环境</strong>处理：从「网页端把账号区域改成土耳其」这一步开始，就必须使用<strong>稳定的非大陆代理 IP</strong>，并开启<strong>全局代理 &#x2F; 全局模式</strong>。<strong>不要只给浏览器开代理，也不要使用规则分流</strong>。否则 Apple 可能会按<strong>当前出口或分流后的请求</strong>判断区域，导致 <code>None / 无</code> 不显示，或转区流程异常。</p>
+<p>如果网页端始终看不到 <code>None / 无</code>，可以尝试改用 <strong>Mac App Store -&gt; 账户设置 -&gt; Country&#x2F;Region</strong> 修改地区。部分用户反馈 Mac App Store 更容易出现 <code>None / 无</code>，但它仍然依赖<strong>稳定、干净的非大陆出口 IP</strong>，不是替代<strong>全局代理</strong>的万能办法。参考：<span class="exturl" data-url="aHR0cHM6Ly9saW51eC5kby90L3RvcGljLzE4Mzc5NTU/dGw9ZW4=">LINUX DO 土区教程<i class="fa fa-external-link-alt"></i></span>、<span class="exturl" data-url="aHR0cHM6Ly9saW51eC5kby90L3RvcGljLzE4NzYwODU=">LINUX DO 老号换区经验<i class="fa fa-external-link-alt"></i></span>、<span class="exturl" data-url="aHR0cHM6Ly9saW51eC5kby90L3RvcGljLzIwOTA5MDM=">LINUX DO 踩坑记录<i class="fa fa-external-link-alt"></i></span>，以及 <span class="exturl" data-url="aHR0cHM6Ly9zdXBwb3J0LmFwcGxlLmNvbS9lbi1say9ndWlkZS9hcHAtc3RvcmUvZmlyMjMwZTQ5YTA2L21hYw==">Apple 官方 Mac App Store 修改国家或地区说明<i class="fa fa-external-link-alt"></i></span>。</p>
+</blockquote>
+<blockquote>
+<p>适用场景：先注册一个中国大陆区 Apple ID，然后把账号国家&#x2F;地区改成土耳其区，用于通过土区 App Store 礼品卡余额订阅 ChatGPT Plus。<br>核心思路：<strong>注册国区账号 -&gt; 网页端转区到土耳其 -&gt; 手机端切 App Store 店面 -&gt; 登录并下载免费 App 固定店面 -&gt; 购买土区礼品卡 -&gt; 兑换余额 -&gt; 再订阅。</strong></p>
 </blockquote>
 <span id="more"></span>
 
-<h2 id="总体流程"><a href="#总体流程" class="headerlink" title="总体流程"></a>总体流程</h2><p>完整路径可以拆成 7 步：</p>
-<ol>
-<li>准备邮箱、手机号、iPhone &#x2F; iPad、稳定网络和可在线支付的银行卡。</li>
-<li>先注册一个中国大陆区 Apple ID。</li>
-<li>在网页端把 Apple ID 的国家或地区改成 Türkiye &#x2F; Turkey &#x2F; 土耳其。</li>
-<li>在设备上退出当前 App Store 账号，用土区 Scheme 先切换 App Store 店面。</li>
-<li>登录转区后的 Apple ID，并下载一个免费 App 固定店面。</li>
-<li>购买土耳其区 Apple &#x2F; App Store 礼品卡，兑换到 Apple Account Balance。</li>
-<li>打开官方 ChatGPT iOS App，用账户余额订阅 Plus。</li>
-</ol>
-<p>苹果官方说明里也写到，修改 Apple Account 国家或地区前，需要处理余额、订阅、预购、家庭共享等限制；网页端也可以从 <code>account.apple.com</code> 的 Personal Information 里进入 Country&#x2F;Region 修改流程。参考：<span class="exturl" data-url="aHR0cHM6Ly9zdXBwb3J0LmFwcGxlLmNvbS9lbi1sYW1yLzExODI4Mw==">Change your Apple Account country or region<i class="fa fa-external-link-alt"></i></span>。</p>
-<h2 id="开始前准备"><a href="#开始前准备" class="headerlink" title="开始前准备"></a>开始前准备</h2><p>建议提前准备这些东西：</p>
+<p>这套流程的目标是准备一个可以稳定走土区 App Store 内购的 Apple ID，然后在 ChatGPT App 里用 Apple 账户余额订阅 ChatGPT Plus。土耳其区只需要把目标国家、账号入口和 App Store Scheme 换成土耳其即可。</p>
+<p>不建议拿主力 iCloud 账号操作。更推荐单独注册一个只用于 App Store、礼品卡充值和订阅的 Apple ID。</p>
+<hr>
+<h2 id="开始前准备"><a href="#开始前准备" class="headerlink" title="开始前准备"></a>开始前准备</h2><p>正式开始前，建议准备好这些东西：</p>
 <ul>
-<li>一个新邮箱，最好没有注册过 Apple ID。</li>
-<li>一个可接收验证码的手机号，国内 <code>+86</code> 手机号通常可以尝试。</li>
-<li>一台 iPhone 或 iPad。注册和转区可以在电脑上完成，但固定 App Store 店面、兑换礼品卡、订阅 ChatGPT Plus 更建议用移动端。</li>
-<li>稳定的非大陆网络环境。建议从转区开始就使用全局模式，不要只给浏览器开代理，也不要频繁切换节点。</li>
-<li>一张可在线支付的银行卡。购买礼品卡时可以尝试 Visa、MasterCard 或银联，是否成功取决于支付通道和发卡行风控。</li>
+<li>一个全新邮箱，尽量不要用已经注册过 Apple ID 的邮箱。</li>
+<li>一个手机号，国内 <code>+86</code> 手机号通常可以使用。</li>
+<li>一台 iPhone 或 iPad。网页注册和转区可以在电脑完成，但固定 App Store 区域、兑换礼品卡和订阅更建议用移动端。</li>
+<li>一个<strong>稳定的非大陆网络环境</strong>。转区、显示 <code>None / 无</code> 付款方式、内购等步骤都可能受<strong>网络环境</strong>影响，建议使用<strong>全局模式</strong>，<strong>不要规则分流</strong>。</li>
+<li>一张可在线支付的银行卡。购买土区礼品卡时可以尝试 Visa、MasterCard 或银联；是否成功取决于银行风控和支付通道。</li>
 </ul>
-<h2 id="先注册一个国区-Apple-ID"><a href="#先注册一个国区-Apple-ID" class="headerlink" title="先注册一个国区 Apple ID"></a>先注册一个国区 Apple ID</h2><p>打开 Apple 账号管理页面：</p>
+<hr>
+<h2 id="先注册一个国区-Apple-ID"><a href="#先注册一个国区-Apple-ID" class="headerlink" title="先注册一个国区 Apple ID"></a>先注册一个国区 Apple ID</h2><p>第一步不需要直接注册土耳其区账号，先按正常流程注册中国大陆区 Apple ID 即可。</p>
+<p>打开 Apple 账号页面：</p>
 <figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https://account.apple.com/</span><br></pre></td></tr></table></figure>
 
-<p>创建新账号时，国家或地区先选择“中国大陆”，手机号选择 <code>+86</code>，出生日期填写成年日期，然后按提示完成邮箱验证码和短信验证码。</p>
-<p>注册完成后不要马上去 App Store 登录。后面要先完成网页端转区，再处理 App Store 店面，否则设备可能沿用旧店面信息，导致账号又被带回国区。</p>
-<h2 id="网页端改到土耳其区"><a href="#网页端改到土耳其区" class="headerlink" title="网页端改到土耳其区"></a>网页端改到土耳其区</h2><p>打开土耳其区域的 Apple 账号入口：</p>
+<p>创建新账号时，国家或地区先选择 <strong>中国大陆</strong>，手机号选择 <code>+86</code>，出生日期填写成年日期，然后完成邮箱验证码和短信验证码。</p>
+<p>注册完成后，先不要急着去 App Store 登录这个账号。后面要先在网页端完成转区，再处理 App Store 店面，否则容易被设备当前的 App Store 区域带回国区。</p>
+<hr>
+<h2 id="网页端把账号区域改成土耳其"><a href="#网页端把账号区域改成土耳其" class="headerlink" title="网页端把账号区域改成土耳其"></a>网页端把账号区域改成土耳其</h2><p>注册完国区账号后，建议直接从土耳其区域入口进入账号管理页：</p>
+<blockquote>
+<p>这一步有两个地方特别容易误操作：</p>
+<ul>
+<li>从这里开始，先确认已经开启<strong>全局代理 &#x2F; 全局模式</strong>，并且<strong>出口 IP 是稳定的非大陆 IP</strong>。<strong>不要只让浏览器走代理，也不要使用规则分流</strong>，否则后面的土耳其区入口、Country&#x2F;Region 修改和付款方式 <code>None / 无</code> 都可能异常。</li>
+<li>下面部分截图是当时转尼日利亚区时留下的示例，图里可能会出现 Nigeria。实际操作土耳其区时，国家或地区都要选择 <strong>Türkiye &#x2F; Turkey &#x2F; 土耳其</strong>，不要照着截图选择尼日利亚。</li>
+</ul>
+</blockquote>
 <figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https://account.apple.com/tr/</span><br></pre></td></tr></table></figure>
 
-<p>登录刚注册好的 Apple ID，进入 Personal Information &#x2F; 个人信息，找到 Country&#x2F;Region &#x2F; 国家或地区，然后开始修改国家或地区。</p>
-<p>这里有几个关键点：</p>
-<ul>
-<li>从这一步开始就保持稳定的非大陆全局网络。</li>
-<li>目标国家或地区选择 Türkiye &#x2F; Turkey &#x2F; 土耳其。</li>
-<li>付款方式优先选择 <code>None / 无</code>。</li>
-<li>账单地址填写土耳其地址，电话可以继续使用自己的手机号。</li>
-</ul>
-<p>如果不知道账单地址怎么填，可以用土耳其地址生成器生成一组街道、城市、省份、邮政编码等信息：</p>
+<p>进入页面后，登录刚注册好的国区 Apple ID。</p>
+<p>如果页面右下角有国家或地区选择入口，可以先确认当前站点区域。这里示例图里是区域选择入口，实际操作土耳其区时选择土耳其即可。</p>
+<img src="/post/TurkeyAppleIDChatGPTPlus/account-region-selector.png" class title="账号页右下角选择国家或地区">
+
+<p>选择目标国家或地区时，示例截图中可能显示的是 Nigeria。土耳其区操作时，把目标区域改成 <strong>Türkiye &#x2F; Turkey &#x2F; 土耳其</strong> 即可。</p>
+<img src="/post/TurkeyAppleIDChatGPTPlus/account-country-selector-example.png" class title="选择目标国家或地区示例">
+
+<p>登录账号后，进入 <strong>Personal Information &#x2F; 个人信息</strong>，找到 <strong>Country&#x2F;Region &#x2F; 国家或地区</strong>。</p>
+<img src="/post/TurkeyAppleIDChatGPTPlus/apple-personal-info-country-region.jpg" class title="个人信息页查看当前 Country&#x2F;Region">
+
+<p>点击 Country&#x2F;Region，开始修改国家或地区。</p>
+<img src="/post/TurkeyAppleIDChatGPTPlus/apple-country-region-edit.jpg" class title="修改 Country&#x2F;Region 示例">
+
+<p>系统会提示转区前需要确认一些信息，例如订阅、余额或条款变更。确认无误后继续。</p>
+<img src="/post/TurkeyAppleIDChatGPTPlus/apple-region-change-prompt.jpg" class title="转区前提示">
+
+<p>接着同意新的条款。</p>
+<img src="/post/TurkeyAppleIDChatGPTPlus/apple-terms-confirmation.jpg" class title="条款确认页">
+
+<p>到付款方式页面时，优先选择 <strong>None &#x2F; 无</strong>。账单地址需要填写土耳其地址，电话可以继续使用国内手机号。</p>
+<p>填写账单地址前，可以先打开土耳其地址生成器生成一组地址信息：</p>
 <figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https://1ktools.com/zh-cn/tools/developer/turkey-address-generator</span><br></pre></td></tr></table></figure>
 
-<p>保存后回到个人信息页，确认 Country&#x2F;Region 已经显示为土耳其。注意：这一步只表示账号资料转区成功，不等于 App Store 店面已经固定到土区。</p>
-<p>如果看不到 <code>None / 无</code>，优先检查：</p>
+<p>生成结果里重点看这几项：<strong>街道、城市、省份、邮政编码、国家</strong>。这些字段分别对应 Apple 账单地址里的街道地址、城市、省&#x2F;州、邮编和国家。生成器里的土耳其手机号可以作为参考，但 Apple 账号验证和账单电话一般继续使用自己的国内手机号即可。</p>
+<img src="/post/TurkeyAppleIDChatGPTPlus/turkey-address-generator-example.png" class title="土耳其地址生成器示例">
+
+<p>然后回到 Apple 的付款方式页面，把付款方式选为 <strong>None &#x2F; 无</strong>，再把刚才生成的土耳其地址填进去。</p>
+<img src="/post/TurkeyAppleIDChatGPTPlus/apple-payment-none.jpg" class title="付款方式选择 None 示例">
+
+<p>保存后回到个人信息页，确认国家或地区已经变成土耳其。</p>
+<img src="/post/TurkeyAppleIDChatGPTPlus/apple-country-region-turkey-confirm.jpg" class title="转区完成后查看 Country&#x2F;Region 示例">
+
+<p>有时网页端也会直接显示账号已经是土耳其区。这一步只代表账号资料层面已经转区成功，还不代表 App Store 店面已经固定到土区。</p>
+<img src="/post/TurkeyAppleIDChatGPTPlus/apple-web-personal-info-turkey.png" class title="网页个人信息显示土耳其">
+
+<p>如果在付款方式页面看不到 <code>None / 无</code>，优先检查这些点：</p>
 <ul>
-<li>是否从 <code>https://account.apple.com/tr/</code> 进入；</li>
-<li>是否使用稳定的非大陆出口；</li>
-<li>是否开启全局代理，而不是规则分流；</li>
-<li>是否完整走到了 Country&#x2F;Region 修改流程；</li>
-<li>账号是否还有余额、订阅、家庭共享、预购或退款处理中的项目。</li>
+<li>是否通过 <code>https://account.apple.com/tr/</code> 进入，而不是普通首页。</li>
+<li>是否使用了<strong>稳定的非大陆网络</strong>。</li>
+<li>是否开启了<strong>全局模式</strong>，而不是<strong>规则分流</strong>。</li>
+<li>是否已经进入了完整的 Country&#x2F;Region 修改流程。</li>
 </ul>
-<h2 id="先切-App-Store-店面，再登录账号"><a href="#先切-App-Store-店面，再登录账号" class="headerlink" title="先切 App Store 店面，再登录账号"></a>先切 App Store 店面，再登录账号</h2><p>这是最容易出错的一步。</p>
-<p>即使网页端已经显示土耳其区，也不要直接打开 App Store 登录。正确顺序是：</p>
-<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">网页端完成土耳其转区</span><br><span class="line">↓</span><br><span class="line">退出当前“媒体与购买项目”账号</span><br><span class="line">↓</span><br><span class="line">用 Scheme 切换 App Store 店面到土耳其</span><br><span class="line">↓</span><br><span class="line">再登录刚刚转区后的 Apple ID</span><br></pre></td></tr></table></figure>
+<hr>
+<h2 id="重点：先切-App-Store-店面，再登录账号"><a href="#重点：先切-App-Store-店面，再登录账号" class="headerlink" title="重点：先切 App Store 店面，再登录账号"></a>重点：先切 App Store 店面，再登录账号</h2><p>这是最容易翻车的一步。</p>
+<p>即使网页端显示账号已经是土耳其区，也不要马上打开 App Store 登录。因为设备之前可能登录过国区或其他区账号，App Store 会沿用旧的店面信息，导致新账号登录后又被“送回国区”。</p>
+<p>正确顺序是：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">网页端完成土耳其转区</span><br><span class="line">↓</span><br><span class="line">退出当前 App Store 的“媒体与购买项目”账号</span><br><span class="line">↓</span><br><span class="line">用 Scheme 先切换 App Store 店面到土耳其</span><br><span class="line">↓</span><br><span class="line">再登录刚刚转区后的 Apple ID</span><br></pre></td></tr></table></figure>
 
-<p>在 iPhone &#x2F; iPad 上进入：</p>
-<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">设置</span><br><span class="line">↓</span><br><span class="line">Apple 账户</span><br><span class="line">↓</span><br><span class="line">媒体与购买项目</span><br><span class="line">↓</span><br><span class="line">退出登录</span><br></pre></td></tr></table></figure>
+<p>在 iPhone &#x2F; iPad 上，打开 <strong>设置</strong>，点最上方的 Apple 账户，进入 <strong>媒体与购买项目</strong>，然后选择 <strong>退出登录</strong>。</p>
+<p>如果是在 Mac App Store，也可以在账户位置退出当前登录账号。移动端更推荐用于后续固定店面和订阅。</p>
+<img src="/post/TurkeyAppleIDChatGPTPlus/mac-app-store-sign-out.jpeg" class title="Mac App Store 退出登录位置">
 
-<p>退出后，用 Safari 打开下面的土区 App Store Scheme：</p>
+<p>退出当前 App Store 账号后，打开 Safari，把下面这段土区 App Store Scheme 复制到地址栏并打开：</p>
 <figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">itms-apps://itunes.apple.com/WebObjects/MZStore.woa/wa/resetAndRedirect?dsf=143480&amp;cc=tr</span><br></pre></td></tr></table></figure>
 
-<p>打开后如果出现“无法连接 App Store”或 <code>Cannot Connect to App Store</code>，通常是正常现象。这个动作的目的不是打开某个页面，而是触发 App Store 店面切换。</p>
-<p>完成后再回到 App Store，登录刚刚转成土区的 Apple ID。登录后可以进入账户设置，确认 Country&#x2F;Region 是否为 Türkiye &#x2F; Turkey。</p>
-<h2 id="下载一个免费-App-固定店面"><a href="#下载一个免费-App-固定店面" class="headerlink" title="下载一个免费 App 固定店面"></a>下载一个免费 App 固定店面</h2><p>登录土区 App Store 后，建议先搜索并下载一个免费 App。</p>
-<p>这一步的作用是让 App Store 店面状态更稳定，降低下次登录后又回到旧区域的概率。不要刚登录就马上退出，也不要一上来就大额充值或直接购买高价订阅。</p>
-<p>建议顺序：</p>
-<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">登录土区 Apple ID</span><br><span class="line">↓</span><br><span class="line">确认 App Store 是土区</span><br><span class="line">↓</span><br><span class="line">下载任意免费 App</span><br><span class="line">↓</span><br><span class="line">再进行礼品卡充值或订阅</span><br></pre></td></tr></table></figure>
+<p>打开后如果出现“无法连接 App Store”，这是正常现象，不代表失败。这个动作的重点是触发 App Store 店面切换。</p>
+<img src="/post/TurkeyAppleIDChatGPTPlus/app-store-cannot-connect-cn.png" class title="打开 Scheme 后显示无法连接 App Store 是正常现象">
 
-<h2 id="购买土区-Apple-礼品卡"><a href="#购买土区-Apple-礼品卡" class="headerlink" title="购买土区 Apple 礼品卡"></a>购买土区 Apple 礼品卡</h2><p>土区 Apple ID 后续通常用 Apple Account Balance 支付，也就是先购买土耳其区 Apple &#x2F; App Store 礼品卡，再兑换到账户余额里。</p>
-<p>可以优先考虑土耳其本地的虚拟卡平台 Oyunfor：</p>
+<p>英文环境下可能显示为 <code>Cannot Connect to App Store</code>，同样属于正常现象。</p>
+<img src="/post/TurkeyAppleIDChatGPTPlus/app-store-cannot-connect-en.png" class title="英文环境下的 Cannot Connect to App Store">
+
+<p>完成 Scheme 切换后，再回到 App Store 登录刚才已经转成土区的 Apple ID。登录后进入账户设置，确认 Country&#x2F;Region 显示为 <strong>Türkiye &#x2F; Turkey</strong>。</p>
+<img src="/post/TurkeyAppleIDChatGPTPlus/app-store-country-region-turkiye.jpeg" class title="App Store 账户设置中显示 Türkiye">
+
+<p>手机端也可以在账户设置里查看当前 Country&#x2F;Region。</p>
+<img src="/post/TurkeyAppleIDChatGPTPlus/iphone-country-region-example.png" class title="手机端查看 Country&#x2F;Region 示例">
+
+<hr>
+<h2 id="登录后下载一个免费-App-固定店面"><a href="#登录后下载一个免费-App-固定店面" class="headerlink" title="登录后下载一个免费 App 固定店面"></a>登录后下载一个免费 App 固定店面</h2><p>登录土区 App Store 后，建议先下载一个免费 App，再退出或切换账号。</p>
+<p>这样做的目的是固定 App Store 店面，降低下次登录又回到国区的概率。</p>
+<p>简单流程如下：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">登录土区 Apple ID</span><br><span class="line">↓</span><br><span class="line">确认 App Store 是土区</span><br><span class="line">↓</span><br><span class="line">搜索任意免费 App</span><br><span class="line">↓</span><br><span class="line">点击获取并完成下载</span><br><span class="line">↓</span><br><span class="line">再进行充值或订阅</span><br></pre></td></tr></table></figure>
+
+<p>这一步看起来可有可无，但实际很重要。不要刚登录就立刻退出，也不要直接跳去大额充值或高价订阅。</p>
+<hr>
+<h2 id="购买土区-Apple-礼品卡并充值"><a href="#购买土区-Apple-礼品卡并充值" class="headerlink" title="购买土区 Apple 礼品卡并充值"></a>购买土区 Apple 礼品卡并充值</h2><p>土区账号后续订阅通常走 <strong>Apple 账户余额</strong>，也就是先买土耳其区 Apple &#x2F; App Store 礼品卡，再兑换到土区 Apple ID 里。</p>
+<p>在常见方案里，优先推荐使用土耳其本地的礼品卡销售网站 <strong>Oyunfor</strong>：</p>
 <figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https://www.oyunfor.com/apple-store/apple-store-itunes-gift-card</span><br></pre></td></tr></table></figure>
 
-<p>相比陌生人代充、低价二手兑换码、来路不明的卡密，正规虚拟卡平台的风险更低一些。但这不代表零风险，第一次一定小额测试，例如 100 TL 或更低金额。</p>
-<h3 id="注册并登录-Oyunfor"><a href="#注册并登录-Oyunfor" class="headerlink" title="注册并登录 Oyunfor"></a>注册并登录 Oyunfor</h3><p>打开 Oyunfor 后，可以先把语言切到中文或英文，然后注册账号。注册时填写邮箱、姓名、手机号即可，手机号可以选择中国区号 <code>+86</code>。</p>
-<p>邮箱要能正常收信，后续可能需要验证。手机号建议填自己常用的号码，支付或风控验证时会更稳。</p>
-<h3 id="选择礼品卡金额"><a href="#选择礼品卡金额" class="headerlink" title="选择礼品卡金额"></a>选择礼品卡金额</h3><p>进入 App Store 礼品卡页面后，选择合适面额并加入购物车。第一次不要大额充值，先用小额跑通流程。</p>
-<p>付款前确认两件事：</p>
+<p>相比来路不明的代充、二手平台低价码或陌生人代购，Oyunfor 这类正规虚拟卡平台的风险更低，充值来源更清晰，也更不容易因为黑卡码、盗刷码、异常来源兑换码触发 Apple 账号风控。它不是“绝对零风险”，但属于更稳妥的优先选择。</p>
+<h3 id="注册并登录-Oyunfor"><a href="#注册并登录-Oyunfor" class="headerlink" title="注册并登录 Oyunfor"></a>注册并登录 Oyunfor</h3><p>打开 Oyunfor 后，可以先把右上角语言切成中文或英文，然后注册账号。注册时填写邮箱、姓名、手机号即可；手机号可以选择中国区号 <code>+86</code>。</p>
+<img src="/post/TurkeyAppleIDChatGPTPlus/oyunfor-language-register.jpg" class title="Oyunfor 语言切换与注册入口">
+
+<p>注册页面里，邮箱要能正常收邮件，后面需要完成邮箱验证。手机号建议填自己常用手机号，后续支付或风控验证时更稳。</p>
+<img src="/post/TurkeyAppleIDChatGPTPlus/oyunfor-register-example.jpg" class title="Oyunfor 注册页面示例">
+
+<p>登录后，进入 App Store 礼品卡页面：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https://www.oyunfor.com/apple-store/apple-store-itunes-gift-card</span><br></pre></td></tr></table></figure>
+
+<p>也可以从首页的 App Store 礼品卡入口进入。</p>
+<img src="/post/TurkeyAppleIDChatGPTPlus/oyunfor-app-store-card-entry.jpg" class title="从首页进入 App Store 礼品卡入口">
+
+<h3 id="选择礼品卡金额并加入购物车"><a href="#选择礼品卡金额并加入购物车" class="headerlink" title="选择礼品卡金额并加入购物车"></a>选择礼品卡金额并加入购物车</h3><p>在礼品卡页面选择合适金额。第一次建议买小额，比如 100 TL 或更低金额先测试，不建议一上来就大额充值。</p>
+<img src="/post/TurkeyAppleIDChatGPTPlus/oyunfor-01-add-gift-card.png" class title="选择 100 TL App Store 礼品卡并加入购物车">
+
+<p>有些页面会有自定义金额入口，也会有固定面额的礼品卡。核心原则是：<strong>先小额试通流程，再按订阅需求补余额</strong>。</p>
+<h3 id="第一次购买时添加发票信息"><a href="#第一次购买时添加发票信息" class="headerlink" title="第一次购买时添加发票信息"></a>第一次购买时添加发票信息</h3><p>第一次在 Oyunfor 下单时，通常会要求添加发票信息。这个信息是 Oyunfor 用来生成发票的，不是 Apple ID 的账单地址。</p>
+<p>弹窗里一般这样填：</p>
 <ul>
-<li>商品是 Apple &#x2F; App Store &#x2F; iTunes Gift Card；</li>
-<li>地区和币种是土耳其区、TL &#x2F; 土耳其里拉。</li>
+<li>类型选择 <strong>个人 &#x2F; Bireysel</strong>。</li>
+<li>名和姓用英文或拼音填写。</li>
+<li>电话号码选择中国区号 <code>+86</code>，填自己的国内手机号。</li>
+<li>国家或地区选择 <strong>China &#x2F; 中国</strong>。</li>
+<li>如果页面出现 <strong>“TC Vatandaşı Değilim”</strong> 或类似“我不是土耳其公民 &#x2F; 非土耳其人”的选项，要勾选。不要去乱填土耳其身份证号。</li>
 </ul>
-<h3 id="添加发票信息"><a href="#添加发票信息" class="headerlink" title="添加发票信息"></a>添加发票信息</h3><p>第一次下单时，Oyunfor 通常会要求填写发票信息。这个信息是平台开票用的，不是 Apple ID 的账单地址。</p>
-<p>常见填写方式：</p>
+<img src="/post/TurkeyAppleIDChatGPTPlus/oyunfor-02-invoice-info.png" class title="首次购买时添加发票信息">
+
+<p>保存后，回到购物车页面。</p>
+<h3 id="在购物车页面点击付款"><a href="#在购物车页面点击付款" class="headerlink" title="在购物车页面点击付款"></a>在购物车页面点击付款</h3><p>确认商品、数量和金额无误后，点击右侧绿色 <strong>付款</strong> 按钮。</p>
+<img src="/post/TurkeyAppleIDChatGPTPlus/oyunfor-03-cart-pay.png" class title="购物车页面点击付款">
+
+<p>这里建议再次确认金额和单位是 <strong>TL &#x2F; 土耳其里拉</strong>，不要买错其他地区的礼品卡。</p>
+<h3 id="选择信用卡支付，并优先走-Iyzico"><a href="#选择信用卡支付，并优先走-Iyzico" class="headerlink" title="选择信用卡支付，并优先走 Iyzico"></a>选择信用卡支付，并优先走 Iyzico</h3><p>进入支付方式页面后，左侧选择 <strong>信用卡支付 &#x2F; Kredi Kartı</strong>。</p>
+<p>右侧支付通道里，优先选择 <strong>Iyzico ile Öde</strong>。当前页面里这个通道显示约 <strong>2.49% 手续费</strong>，是几个选项里较低的，并且现在可以尝试使用银联卡。部分旧教程说 Iyzico 不支持银联，这个信息已经过时；实际以当前支付页和发卡行结果为准。</p>
+<img src="/post/TurkeyAppleIDChatGPTPlus/oyunfor-04-iyzico-pay.png" class title="选择信用卡支付，并选择 Iyzico 通道">
+
+<h3 id="在-Iyzico-页面填写银行卡并完成验证"><a href="#在-Iyzico-页面填写银行卡并完成验证" class="headerlink" title="在 Iyzico 页面填写银行卡并完成验证"></a>在 Iyzico 页面填写银行卡并完成验证</h3><p>选择 Iyzico 后，会跳转到 Iyzico 的银行卡支付页面。这里填写银行卡信息：</p>
 <ul>
-<li>类型选择个人 &#x2F; Bireysel。</li>
-<li>姓名用英文或拼音。</li>
-<li>电话选择中国区号 <code>+86</code>，填写自己的手机号。</li>
-<li>国家或地区选择 China &#x2F; 中国。</li>
-<li>如果有 “TC Vatandaşı Değilim” 或“我不是土耳其公民”之类选项，勾选它，不要乱填土耳其身份证号。</li>
+<li><code>Kart Üzerindeki Ad Soyad</code>：填写卡面姓名，例如 <code>Zhang San</code>。</li>
+<li><code>Kart Numarası</code>：填写银行卡号。Iyzico 可尝试 Visa、MasterCard，也支持银联卡。</li>
+<li><code>Ay / Yıl</code>：填写卡片有效期。</li>
+<li><code>CVC</code>：填写卡片安全码。</li>
+<li>页面里的“保存银行卡”选项不建议勾选，勾选代表同意网站记录你的卡号信息。</li>
 </ul>
-<h3 id="选择支付通道"><a href="#选择支付通道" class="headerlink" title="选择支付通道"></a>选择支付通道</h3><p>在支付方式页选择信用卡支付 &#x2F; Kredi Kartı。支付通道可优先尝试 Iyzico，一般会跳转到银行卡支付页面，填写卡面姓名、卡号、有效期和 CVC。</p>
+<img src="/post/TurkeyAppleIDChatGPTPlus/oyunfor-05-iyzico-card-form.png" class title="Iyzico 银行卡支付页面填写示例">
+
+<p>使用银联卡时，输入卡号信息后通常会跳转到银联在线支付验证；输入银联付款验证码后，还可能继续跳转到 3D Secure 安全验证。只要最终验证通过，订单才会继续完成。</p>
+<p>如果验证失败，会出现类似下面的失败提示。Iyzico 支付验证失败一般不会扣款；遇到失败不要连续反复重试，可以换卡、换支付通道，或者稍后再试。</p>
+<img src="/post/TurkeyAppleIDChatGPTPlus/oyunfor-06-iyzico-payment-failed.png" class title="Iyzico 支付验证失败提示">
+
 <p>几点注意：</p>
 <ul>
-<li>尽量使用自己名下的银行卡。</li>
-<li>不要勾选保存银行卡。</li>
-<li>银联、Visa、MasterCard 是否可用，以当前支付页面和发卡行结果为准。</li>
-<li>如果支付失败，不要短时间连续重试，可以换卡、换通道或稍后再试。</li>
-<li>支付失败一般不会立即扣款，但具体仍以银行账单为准。</li>
+<li>优先用自己名下的银行卡，不要用来源不明的卡或代付。</li>
+<li>如果 PAYTR 通道风控较严，或者你只有 Visa &#x2F; MasterCard，又不想走额外安全检测，可以尝试 Iyzico 通道。</li>
+<li>如果银联失败，可以换 Visa &#x2F; MasterCard，或换另一张银行卡。</li>
+<li>不要短时间连续失败多次，容易触发支付风控。</li>
+<li>页面上如果有“保存银行卡”之类选项，不建议勾选。</li>
 </ul>
-<h3 id="查看礼品卡代码"><a href="#查看礼品卡代码" class="headerlink" title="查看礼品卡代码"></a>查看礼品卡代码</h3><p>付款成功后，在 Oyunfor 的账户菜单里找到“我购买的产品”或 <code>Aldığım Ürünler</code>，进入订单详情查看礼品卡代码。</p>
-<p>兑换码一定要保密，不要把完整卡密截图发给别人，也不要公开订单页面。兑换码一旦被他人使用，通常很难追回。</p>
-<h2 id="兑换礼品卡余额"><a href="#兑换礼品卡余额" class="headerlink" title="兑换礼品卡余额"></a>兑换礼品卡余额</h2><p>确认 iPhone &#x2F; iPad 当前 App Store 登录的是土区 Apple ID，然后打开 App Store：</p>
-<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">App Store</span><br><span class="line">↓</span><br><span class="line">右上角头像</span><br><span class="line">↓</span><br><span class="line">Redeem Gift Card or Code / 兑换礼品卡或代码</span><br><span class="line">↓</span><br><span class="line">输入 Oyunfor 订单里的兑换码</span><br><span class="line">↓</span><br><span class="line">兑换到 Apple Account Balance</span><br></pre></td></tr></table></figure>
+<h3 id="付款成功后查看礼品卡代码"><a href="#付款成功后查看礼品卡代码" class="headerlink" title="付款成功后查看礼品卡代码"></a>付款成功后查看礼品卡代码</h3><p>付款成功后，进入右上角头像菜单，找到 <strong>Aldığım Ürünler &#x2F; 我购买的产品</strong>。</p>
+<img src="/post/TurkeyAppleIDChatGPTPlus/oyunfor-purchased-products-entry.jpg" class title="进入我购买的产品页面">
 
-<p>Apple 官方也说明，兑换 Apple Gift Card 或向账户加钱后，资金会进入 Apple Account Balance，可用于 App Store、订阅和 Apple 相关服务。参考：<span class="exturl" data-url="aHR0cHM6Ly93d3cuYXBwbGUuY29tL3Nob3AvZ2lmdC1jYXJkcw==">Apple Gift Card<i class="fa fa-external-link-alt"></i></span>。</p>
-<h2 id="用余额订阅-ChatGPT-Plus"><a href="#用余额订阅-ChatGPT-Plus" class="headerlink" title="用余额订阅 ChatGPT Plus"></a>用余额订阅 ChatGPT Plus</h2><p>兑换成功后，打开官方 ChatGPT iOS App，在订阅页面选择 Plus，并通过 Apple 内购完成支付。OpenAI 官方也提醒，下载 iOS App 时要确认发布者是 OpenAI，避免下载到仿冒应用。参考：<span class="exturl" data-url="aHR0cHM6Ly9oZWxwLm9wZW5haS5jb20vZW4vYXJ0aWNsZXMvNzkwODM3OA==">OpenAI Help Center - ChatGPT iOS App<i class="fa fa-external-link-alt"></i></span>。</p>
-<p>更稳妥的节奏是：</p>
+<p>在已购买产品详情里展开订单，可以看到礼品卡代码。这个代码就是后面要在 App Store 里兑换的内容。</p>
+<img src="/post/TurkeyAppleIDChatGPTPlus/oyunfor-gift-card-code.jpg" class title="查看已购买礼品卡代码">
+
+<p>礼品卡代码一定要保密。不要把完整代码截图发给别人，也不要把订单页公开到社交平台。兑换码一旦被别人使用，基本无法追回。</p>
+<h3 id="在土区-Apple-ID-里兑换礼品卡"><a href="#在土区-Apple-ID-里兑换礼品卡" class="headerlink" title="在土区 Apple ID 里兑换礼品卡"></a>在土区 Apple ID 里兑换礼品卡</h3><p>在 iPhone &#x2F; iPad 上确认当前 App Store 登录的是土区 Apple ID，然后打开 App Store：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">App Store</span><br><span class="line">↓</span><br><span class="line">右上角头像</span><br><span class="line">↓</span><br><span class="line">Redeem Gift Card or Code / 兑换礼品卡或代码</span><br><span class="line">↓</span><br><span class="line">输入 Oyunfor 订单里的礼品卡代码</span><br><span class="line">↓</span><br><span class="line">兑换到 Apple Account Balance</span><br></pre></td></tr></table></figure>
+
+<p>兑换成功后，余额会进入这个土区 Apple ID 的账户余额。后续 App Store 内购、iCloud+、Apple Music 等订阅会优先从余额里扣款。</p>
+<img src="/post/TurkeyAppleIDChatGPTPlus/apple-gift-card-redeem-success.png" class title="土区礼品卡兑换成功示例">
+
+<h3 id="用余额订阅服务"><a href="#用余额订阅服务" class="headerlink" title="用余额订阅服务"></a>用余额订阅服务</h3><p>兑换成功后，打开 ChatGPT App 的订阅页面购买 ChatGPT Plus。建议不要刚注册、刚转区、刚充值就立刻购买大额订阅；可以先小额测试，或者等一段时间再订阅。</p>
+<img src="/post/TurkeyAppleIDChatGPTPlus/chatgpt-subscription-page.png" class title="订阅页面示例">
+
+<p>如果顺利，订阅会正常完成。</p>
+<img src="/post/TurkeyAppleIDChatGPTPlus/subscription-success.jpeg" class title="订阅成功示例">
+
+<p>建议顺序：</p>
 <ol>
-<li>先买小额土区礼品卡。</li>
-<li>兑换后确认余额到账。</li>
-<li>不要刚注册、刚转区、刚充值就连续购买高价订阅。</li>
-<li>如果担心新号风控，可以等一段时间再订阅。</li>
-<li>订阅成功后，账户里最好留出下次续费所需余额，避免自动扣费失败。</li>
+<li>Oyunfor 先买小额土区礼品卡。</li>
+<li>在土区 Apple ID 兑换，确认余额到账。</li>
+<li>先不要连续尝试高价订阅。</li>
+<li>等一段时间后，用 iPhone 或 iPad 在 ChatGPT App 里完成 Plus 订阅。</li>
+<li>账号里最好一直保留足够余额，避免下次自动扣费失败后触发付款方式绑定弹窗。</li>
 </ol>
-<h2 id="常见问题"><a href="#常见问题" class="headerlink" title="常见问题"></a>常见问题</h2><h3 id="转区提示-There-was-an-error-Please-try-later"><a href="#转区提示-There-was-an-error-Please-try-later" class="headerlink" title="转区提示 There was an error. Please try later"></a>转区提示 There was an error. Please try later</h3><p>常见原因是网络环境、账号状态或 App Store 店面状态不一致。</p>
-<p>可以尝试：</p>
+<hr>
+<h2 id="常见问题与处理办法"><a href="#常见问题与处理办法" class="headerlink" title="常见问题与处理办法"></a>常见问题与处理办法</h2><h3 id="转区时提示-“There-was-an-error-Please-try-later”"><a href="#转区时提示-“There-was-an-error-Please-try-later”" class="headerlink" title="转区时提示 “There was an error. Please try later”"></a>转区时提示 “There was an error. Please try later”</h3><p>常见原因是先登录了 App Store，导致 App Store 店面仍然是国区或旧区域，再尝试转区时就报错。</p>
+<p>处理办法：</p>
 <ul>
-<li>退出“媒体与购买项目”；</li>
-<li>使用土区 Scheme 先切 App Store 店面；</li>
-<li>换稳定网络或换设备；</li>
-<li>等一段时间再试；</li>
-<li>检查是否还有订阅、余额、家庭共享、预购或未完成退款。</li>
+<li>退出“媒体与购买项目”。</li>
+<li>先用土区 Scheme 切 App Store 店面。</li>
+<li>再登录已经转成土区的 Apple ID。</li>
+<li>如果已经报错，可以换网络、换设备，或等一段时间再试。</li>
 </ul>
 <p>土区 Scheme：</p>
 <figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">itms-apps://itunes.apple.com/WebObjects/MZStore.woa/wa/resetAndRedirect?dsf=143480&amp;cc=tr</span><br></pre></td></tr></table></figure>
 
-<h3 id="付款方式没有-None-x2F-无"><a href="#付款方式没有-None-x2F-无" class="headerlink" title="付款方式没有 None &#x2F; 无"></a>付款方式没有 None &#x2F; 无</h3><p>优先检查网络和入口：</p>
+<h3 id="付款方式没有-None-无"><a href="#付款方式没有-None-无" class="headerlink" title="付款方式没有 None / 无"></a>付款方式没有 <code>None / 无</code></h3><p>可以逐项检查：</p>
 <ul>
-<li>是否从土耳其入口 <code>https://account.apple.com/tr/</code> 进入；</li>
-<li>是否保持全局代理；</li>
-<li>出口 IP 是否稳定；</li>
-<li>是否完整进入 Country&#x2F;Region 修改流程；</li>
-<li>账号是否存在 Apple 官方限制的转区前置条件。</li>
+<li>是否从 <code>https://account.apple.com/tr/</code> 进入。</li>
+<li>是否是<strong>非大陆网络</strong>。</li>
+<li>是否开启<strong>全局代理</strong>。</li>
+<li>是否在网页端完整走了 Country&#x2F;Region 修改流程。</li>
+<li>是否存在未完成的订阅、余额、家庭共享等影响转区的因素。</li>
 </ul>
-<p>如果网页端一直没有 <code>None / 无</code>，可以尝试在 Mac App Store 或 Apple Music &#x2F; Apple TV 的账户设置里修改地区。但这仍然依赖稳定网络，不是万能解决办法。</p>
-<h3 id="内购提示-your-purchase-could-not-be-completed"><a href="#内购提示-your-purchase-could-not-be-completed" class="headerlink" title="内购提示 your purchase could not be completed"></a>内购提示 your purchase could not be completed</h3><p>这通常和风控有关，尤其是新注册、新转区、刚充值、马上购买较高金额订阅时更容易出现。</p>
-<p>建议：</p>
+<p>如果仍没有 <code>None / 无</code>，也可以先继续完成转区，再尝试用礼品卡余额支付。不过这一步存在不确定性，建议小额测试。</p>
+<h3 id="内购提示-“your-purchase-could-not-be-completed”"><a href="#内购提示-“your-purchase-could-not-be-completed”" class="headerlink" title="内购提示 “your purchase could not be completed”"></a>内购提示 “your purchase could not be completed”</h3><p>这通常像是新号风控，尤其是：</p>
 <ul>
-<li>不要连续反复点击购买；</li>
-<li>等 24 到 48 小时后再试；</li>
-<li>优先用 iPhone &#x2F; iPad 完成订阅；</li>
-<li>必要时联系 Apple Support；</li>
-<li>下次充值和订阅都先小额测试。</li>
+<li>新注册账号；</li>
+<li>刚转区；</li>
+<li>刚充值；</li>
+<li>立刻购买金额较大的订阅。</li>
 </ul>
-<h3 id="Mac-上搜索不到-ChatGPT-或无法订阅"><a href="#Mac-上搜索不到-ChatGPT-或无法订阅" class="headerlink" title="Mac 上搜索不到 ChatGPT 或无法订阅"></a>Mac 上搜索不到 ChatGPT 或无法订阅</h3><p>更建议用 iPhone &#x2F; iPad 操作。部分 App 在 Mac App Store 上不可用，或者 Mac 端内购流程更容易失败。</p>
-<h3 id="手机时区和节点要不要改到土耳其"><a href="#手机时区和节点要不要改到土耳其" class="headerlink" title="手机时区和节点要不要改到土耳其"></a>手机时区和节点要不要改到土耳其</h3><p>节点不一定非要土耳其，重点是非大陆、稳定、全局、不要频繁切换。时区可以改到目标地区，至少避免设备环境过于冲突。</p>
-<h3 id="国内手机号能不能用"><a href="#国内手机号能不能用" class="headerlink" title="国内手机号能不能用"></a>国内手机号能不能用</h3><p>可以尝试 <code>+86</code> 手机号。注册 Apple ID、Oyunfor 账号、发票信息都有人成功使用国内手机号。如果遇到验证码或风控问题，再换邮箱、设备、网络或手机号。</p>
-<h2 id="费用参考"><a href="#费用参考" class="headerlink" title="费用参考"></a>费用参考</h2><p>最终人民币成本会随着土耳其里拉汇率、礼品卡面额、平台手续费、支付通道费和发卡行汇率变化。付款前建议临时用汇率工具估算一次。</p>
-<p>再次强调：不要把这类流程当成长期稳定方案。政策、价格、风控都会变，真正要紧的是小额试错、保留余量、避免主力账号承担风险。</p>
-<h2 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h2><ul>
-<li><span class="exturl" data-url="aHR0cHM6Ly93ZWFreW9uLmNvbS8yMDI2LzA0LzI1L0hvdy10by1SZWdpc3Rlci1hLVR1cmtleS1BcHBsZS1JRC1hbmQtU3Vic2NyaWJlLXRvLUNoYXRHUFQtUGx1cy5odG1s">原始参考文章：注册土耳其区 Apple ID 订阅 ChatGPT Plus 教程<i class="fa fa-external-link-alt"></i></span></li>
-<li><span class="exturl" data-url="aHR0cHM6Ly9zdXBwb3J0LmFwcGxlLmNvbS9lbi1sYW1yLzExODI4Mw==">Apple Support：Change your Apple Account country or region<i class="fa fa-external-link-alt"></i></span></li>
-<li><span class="exturl" data-url="aHR0cHM6Ly93d3cuYXBwbGUuY29tL3Nob3AvZ2lmdC1jYXJkcw==">Apple Gift Card<i class="fa fa-external-link-alt"></i></span></li>
-<li><span class="exturl" data-url="aHR0cHM6Ly9oZWxwLm9wZW5haS5jb20vZW4vYXJ0aWNsZXMvNzkwODM3OA==">OpenAI Help Center：Where can I download the OpenAI ChatGPT iOS app<i class="fa fa-external-link-alt"></i></span></li>
-</ul>
+<p>建议先不要连续重试，等 24-48 小时后再试。可以先用小额充值或小额订阅测试，实在不行再联系 Apple Support。</p>
+<h3 id="Mac-上不能订阅或搜索不到-App"><a href="#Mac-上不能订阅或搜索不到-App" class="headerlink" title="Mac 上不能订阅或搜索不到 App"></a>Mac 上不能订阅或搜索不到 App</h3><p>更建议使用 iPhone 或 iPad 完成订阅。部分 App 在 Mac App Store 上不可用，或者 Mac 端内购流程更容易失败。</p>
+<p>推荐顺序：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">iPhone / iPad &gt; Mac</span><br></pre></td></tr></table></figure>
+
+<h3 id="手机时区和节点要不要改？"><a href="#手机时区和节点要不要改？" class="headerlink" title="手机时区和节点要不要改？"></a>手机时区和节点要不要改？</h3><p>可以把手机时区改到目标地区，至少不要让设备环境显得过于冲突。</p>
+<p>网络节点不一定必须是土耳其，通常<strong>非大陆节点</strong>即可。实际操作里，日本、美国等节点也有人成功。关键是<strong>稳定、全局、不要频繁切换</strong>。</p>
+<h3 id="手机号能不能用-86？"><a href="#手机号能不能用-86？" class="headerlink" title="手机号能不能用 +86？"></a>手机号能不能用 <code>+86</code>？</h3><p>可以尝试用国内手机号。一个手机号绑定多个不同区域 Apple ID 也有人成功过，但如果遇到注册或验证码异常，可以换设备、换网络或换邮箱再试。</p>
+<hr>
+<h2 id="实际费用参考"><a href="#实际费用参考" class="headerlink" title="实际费用参考"></a>实际费用参考</h2><p>实际人民币花费会随汇率、礼品卡面额、支付通道手续费和发卡行汇率波动而变化。可以在付款前用搜索引擎或汇率工具临时换算一下。下面是一次示例：<code>512.45 TL</code> 约合 <code>77.85 RMB</code>，仅作为当时汇率参考。</p>
+<img src="/post/TurkeyAppleIDChatGPTPlus/turkey-lira-cny-cost-example.png" class title="土耳其里拉兑人民币实际费用换算示例">
+
+<hr>
+<p>参考原文：<span class="exturl" data-url="aHR0cHM6Ly93ZWFreW9uLmNvbS8yMDI2LzA0LzI1L0hvdy10by1SZWdpc3Rlci1hLVR1cmtleS1BcHBsZS1JRC1hbmQtU3Vic2NyaWJlLXRvLUNoYXRHUFQtUGx1cy5odG1s">注册土耳其区 Apple ID 订阅 ChatGPT Plus 教程<i class="fa fa-external-link-alt"></i></span></p>
 
     </div>
 
@@ -475,7 +594,7 @@
               <a href="/tags/ChatGPT/" rel="tag"># ChatGPT</a>
               <a href="/tags/%E6%95%99%E7%A8%8B/" rel="tag"># 教程</a>
               <a href="/tags/Apple-ID/" rel="tag"># Apple ID</a>
-              <a href="/tags/%E5%9C%9F%E8%80%B3%E5%85%B6%E5%8C%BA/" rel="tag"># 土耳其区</a>
+              <a href="/tags/%E9%9D%9E%E6%8A%80%E6%9C%AF/" rel="tag"># 非技术</a>
           </div>
 
         
