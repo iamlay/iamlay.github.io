@@ -1,0 +1,38 @@
+archives/2026/11/index.html
+  h_523b24c2ba7179 247
+archives/2026/index.html
+  h_523b24c2ba7179 247
+archives/index.html
+  h_523b24c2ba7179 247
+categories/AI/index.html
+  h_523b24c2ba7179 248
+index.html
+  h_523b24c2ba7179 345,357
+leancloud_counter_security_urls.json
+  h_523b24c2ba7179 1
+post/NigeriaTimonClaudeCode/index.html
+  h_523b24c2ba7179 708-709
+post/RoogooAISubscription/index.html
+  h_523b24c2ba7179 30,36,50,53,166,248,253,265,350-425,434-447,449-470,473-604,612-613
+tags/ChatGPT/index.html
+  h_523b24c2ba7179 248
+tags/Claude/index.html
+  h_523b24c2ba7179 248
+tags/Roogoo/index.html
+  h_523b24c2ba7179 248
+tags/教程/index.html
+  h_523b24c2ba7179 248
+tags/虚拟卡/index.html
+  h_523b24c2ba7179 248
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "d9c787a87ccac620b2b3986564cd2e54b7a909b2",
+  "prompts": {},
+  "humans": {
+    "h_523b24c2ba7179": {
+      "author": "Ray <1187074543@qq.com>"
+    }
+  }
+}
