@@ -1,0 +1,16 @@
+leancloud_counter_security_urls.json
+  h_523b24c2ba7179 1
+post/RoogooAISubscription/index.html
+  h_523b24c2ba7179 419-420
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "286ee1c2e3a14fa47f6c5688f11d7192db77b965",
+  "prompts": {},
+  "humans": {
+    "h_523b24c2ba7179": {
+      "author": "Ray <1187074543@qq.com>"
+    }
+  }
+}
