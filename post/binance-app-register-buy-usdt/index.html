@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 8.1.1">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+  <meta name="google-site-verification" content="bdLSZKDAikc4SOPIlDwwuSFBawDGQU3GmqUWTzUM-rE">
+  <meta name="baidu-site-verification" content="codeva-lCWvLLHuj5">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3825645052664031"
+     crossorigin="anonymous"></script>
+  <meta name="baidu-site-verification" content="true">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha256-AbA177XfpSnFEvgpYu1jMygiLabzPCJCRIBtR5jGc0k=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"www.iamlay.com","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.13.1","exturl":true,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"gitalk","storage":true,"lazyload":false,"nav":{"gitalk":{"ordcer":-1}},"activeClass":"gitalk"},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="想从零开始使用币安，通常需要依次完成下载 App、注册个人账户、身份认证，再选择可用的买币方式。本文以币安 App 的 C2C 买币为例，演示购买 USDT 的完整流程。文中图片直接引用币安帮助中心的官方配图；App 版本更新后，按钮名称和页面位置可能变化，请以当前 App 显示为准。  开始前先确认：币安及 USDT&#x2F;C2C 服务是否在你的居住地开放，所选支付方式是否可用，并遵守所在地">
+<meta property="og:type" content="article">
+<meta property="og:title" content="币安新手教程：下载 App、注册账号并购买 USDT">
+<meta property="og:url" content="https://www.iamlay.com/post/binance-app-register-buy-usdt/index.html">
+<meta property="og:site_name" content="以技术之名">
+<meta property="og:description" content="想从零开始使用币安，通常需要依次完成下载 App、注册个人账户、身份认证，再选择可用的买币方式。本文以币安 App 的 C2C 买币为例，演示购买 USDT 的完整流程。文中图片直接引用币安帮助中心的官方配图；App 版本更新后，按钮名称和页面位置可能变化，请以当前 App 显示为准。  开始前先确认：币安及 USDT&#x2F;C2C 服务是否在你的居住地开放，所选支付方式是否可用，并遵守所在地">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://public.bnbstatic.com/image/cms/content/body/202511/bfa301b86c4dca6bbcd4b5187e6bee08.png">
+<meta property="og:image" content="https://public.bnbstatic.com/image/cms/article/body/202409/0a0fb14cba8aba16167439212e6c8764.png">
+<meta property="og:image" content="https://public.bnbstatic.com/image/cms/content/body/202511/a5932f1b7bcddf5c01e665a87a85bf39.png">
+<meta property="og:image" content="https://public.bnbstatic.com/image/cms/content/body/202603/f9ddd50cb52363924d9823c877d30c39.png">
+<meta property="og:image" content="https://public.bnbstatic.com/image/cms/content/body/202603/c29af578a503baa673f25594218dd16f.png">
+<meta property="og:image" content="https://public.bnbstatic.com/image/cms/content/body/202603/1642456831c801164eef043b21249198.jpeg">
+<meta property="og:image" content="https://public.bnbstatic.com/image/cms/content/body/202603/6f4515ccf14973a89ce603e4fb25d759.jpeg">
+<meta property="og:image" content="https://public.bnbstatic.com/image/cms/content/body/202603/0e43975068bd07fea81f5494c2819d14.jpeg">
+<meta property="og:image" content="https://public.bnbstatic.com/image/cms/content/body/202603/18798a1b7b564f10eefa083742c2999b.jpeg">
+<meta property="article:published_time" content="2026-11-12T04:00:00.000Z">
+<meta property="article:modified_time" content="2026-11-12T08:56:14.612Z">
+<meta property="article:author" content="Ray">
+<meta property="article:tag" content="C2C">
+<meta property="article:tag" content="USDT">
+<meta property="article:tag" content="币安">
+<meta property="article:tag" content="教程">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://public.bnbstatic.com/image/cms/content/body/202511/bfa301b86c4dca6bbcd4b5187e6bee08.png">
+
+
+<link rel="canonical" href="https://www.iamlay.com/post/binance-app-register-buy-usdt/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://www.iamlay.com/post/binance-app-register-buy-usdt/","path":"post/binance-app-register-buy-usdt/","title":"币安新手教程：下载 App、注册账号并购买 USDT"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>币安新手教程：下载 App、注册账号并购买 USDT | 以技术之名</title>
+  <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-170943611-2"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-170943611-2');
+</script>
+  <script src="/js/third-party/analytics/baidu-analytics.js"></script>
+  <script async src="https://hm.baidu.com/hm.js?2fdaf8ee633a188c5649eefea79b28b3"></script>
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<!-- hexo injector head_end start --><script async defer data-website-id="fad553b1-b94d-4311-8d52-913dc067e883" src="https://tongji.iamlay.com/script.js"></script><!-- hexo injector head_end end --></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">以技术之名</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">以技术之名</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-chatgpt"><a href="/chatgpt" rel="section"><i class="fa fa-comment-dots fa-fw"></i>AI体验</a></li><li class="menu-item menu-item-sitemap"><a href="/sitemap.xml" rel="section"><i class="fa fa-sitemap fa-fw"></i>站点地图</a></li><li class="menu-item menu-item-links"><a href="/links/" rel="section"><i class="fa fa-link fa-fw"></i>友情链接</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80%E3%80%81%E4%BB%8E%E5%AE%98%E6%96%B9%E6%B8%A0%E9%81%93%E4%B8%8B%E8%BD%BD%E5%B8%81%E5%AE%89-App"><span class="nav-number">1.</span> <span class="nav-text">一、从官方渠道下载币安 App</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%8C%E3%80%81%E6%B3%A8%E5%86%8C%E4%B8%AA%E4%BA%BA%E8%B4%A6%E6%88%B7"><span class="nav-number">2.</span> <span class="nav-text">二、注册个人账户</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%89%E3%80%81%E5%AE%8C%E6%88%90%E8%BA%AB%E4%BB%BD%E8%AE%A4%E8%AF%81"><span class="nav-number">3.</span> <span class="nav-text">三、完成身份认证</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9B%9B%E3%80%81%E9%80%9A%E8%BF%87-C2C-%E8%B4%AD%E4%B9%B0-USDT"><span class="nav-number">4.</span> <span class="nav-text">四、通过 C2C 购买 USDT</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BB%98%E6%AC%BE%E6%97%B6%E7%89%B9%E5%88%AB%E6%B3%A8%E6%84%8F"><span class="nav-number">4.1.</span> <span class="nav-text">付款时特别注意</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%98%E6%96%B9%E8%B5%84%E6%96%99"><span class="nav-number">5.</span> <span class="nav-text">官方资料</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Ray</p>
+  <div class="site-description" itemprop="description">为信仰而生</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">53</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">14</span>
+        <span class="site-state-item-name">分类</span>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">27</span>
+        <span class="site-state-item-name">标签</span>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="/" title="GitHub → ">GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <span class="exturl" data-url="bWFpbHRvOmlhbWxheXNoYXJlQGdtYWlsLmNvbQ==" title="E-Mail → mailto:iamlayshare@gmail.com"><i class="fa fa-envelope fa-fw"></i>E-Mail</span>
+      </span>
+  </div>
+
+
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://www.iamlay.com/post/binance-app-register-buy-usdt/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Ray">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="以技术之名">
+      <meta itemprop="description" content="为信仰而生">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="币安新手教程：下载 App、注册账号并购买 USDT | 以技术之名">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          币安新手教程：下载 App、注册账号并购买 USDT
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2026-11-12 12:00:00 / 修改时间：16:56:14" itemprop="dateCreated datePublished" datetime="2026-11-12T12:00:00+08:00">2026-11-12</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E6%95%99%E7%A8%8B/" itemprop="url" rel="index"><span itemprop="name">教程</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+</div>
+
+	
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <p>想从零开始使用币安，通常需要依次完成下载 App、注册个人账户、身份认证，再选择可用的买币方式。本文以币安 App 的 <strong>C2C 买币</strong>为例，演示购买 USDT 的完整流程。文中图片直接引用币安帮助中心的官方配图；App 版本更新后，按钮名称和页面位置可能变化，请以当前 App 显示为准。</p>
+<blockquote>
+<p><strong>开始前先确认：</strong>币安及 USDT&#x2F;C2C 服务是否在你的居住地开放，所选支付方式是否可用，并遵守所在地规定。本文仅说明操作流程，不构成投资建议，也不保证交易没有风险。</p>
+</blockquote>
+<p><strong>我的币安邀请活动链接：</strong><span class="exturl" data-url="aHR0cHM6Ly93d3cuYmluYW5jZS5jb20vcmVmZXJyYWwvZWFybi10b2dldGhlci9yZWZlcjJlYXJuLXVzZGMvY2xhaW0/aGw9emgtQ04mcmVmPUdST18yODUwMl9NRVpQQiZ1dG1fc291cmNlPXJlZmVycmFsX2VudHJhbmNl">点击查看邀请活动<i class="fa fa-external-link-alt"></i></span>。此链接指向邀请活动领取页，活动资格和奖励以币安页面实时显示为准。下载与注册仍请按下文使用官方入口。</p>
+<span id="more"></span>
+
+<h2 id="一、从官方渠道下载币安-App"><a href="#一、从官方渠道下载币安-App" class="headerlink" title="一、从官方渠道下载币安 App"></a>一、从官方渠道下载币安 App</h2><p>在手机浏览器打开<span class="exturl" data-url="aHR0cHM6Ly93d3cuYmluYW5jZS5jb20vemgtQ04vZG93bmxvYWQ=">币安官方下载页<i class="fa fa-external-link-alt"></i></span>，核对网址为 <code>www.binance.com</code>。iPhone 用户从该页面进入对应的 App Store 下载入口；Android 用户使用该页面提供的下载入口。安装后打开 App。不要使用群聊、网盘或陌生人发来的安装包，也不要扫描来源不明的“下载二维码”。</p>
+<p>下载页提供 Android 和 iOS 入口。下载前请再次核对页面域名和应用商店中的应用信息；若所在地区的应用商店没有对应应用，不要借用陌生账号或安装来源不明的文件。</p>
+<h2 id="二、注册个人账户"><a href="#二、注册个人账户" class="headerlink" title="二、注册个人账户"></a>二、注册个人账户</h2><ol>
+<li>打开 App，点击 <strong>注册</strong>，再点 <strong>创建币安账户</strong>。</li>
+<li>选择邮箱或手机号注册，输入常用邮箱地址或手机号码，阅读服务条款和隐私政策后按页面提示继续。也可选择 Apple 或 Google 账户注册。</li>
+<li>输入收到的 <strong>6 位验证码</strong>。币安官方教程要求在 30 分钟内完成验证。</li>
+<li>设置密码：至少 <strong>8 个字符</strong>，包含至少 <strong>1 个大写字母和 1 个数字</strong>。</li>
+<li>注册成功后继续身份认证。若没有邀请码，可以跳过邀请码步骤；上方的邀请活动链接并非注册页面，也不需要为了完成注册填写陌生人提供的邀请码。</li>
+</ol>
+<p><img src="https://public.bnbstatic.com/image/cms/content/body/202511/bfa301b86c4dca6bbcd4b5187e6bee08.png" alt="币安 App 注册页面，图片来源：币安帮助中心"></p>
+<p><img src="https://public.bnbstatic.com/image/cms/article/body/202409/0a0fb14cba8aba16167439212e6c8764.png" alt="输入邮箱或手机号，图片来源：币安帮助中心"></p>
+<p><img src="https://public.bnbstatic.com/image/cms/content/body/202511/a5932f1b7bcddf5c01e665a87a85bf39.png" alt="输入邮箱验证码，图片来源：币安帮助中心"></p>
+<p>完整截图与 Apple&#x2F;Google 注册方法见<span class="exturl" data-url="aHR0cHM6Ly93d3cuYmluYW5jZS5jb20vemgtQ04vc3VwcG9ydC9mYXEvZGV0YWlsLzM2MDA0MjcxODM3Mg==">币安官方注册图文教程<i class="fa fa-external-link-alt"></i></span>。注册后建议在账户安全设置中启用至少一种双重身份验证（2FA），不要向任何人透露密码或验证码。</p>
+<h2 id="三、完成身份认证"><a href="#三、完成身份认证" class="headerlink" title="三、完成身份认证"></a>三、完成身份认证</h2><p>币安要求新用户完成标准身份认证后才能使用包括交易在内的产品与服务。注册完成后，点击首页的 <strong>立即认证</strong>；也可以进入 <strong>账户中心 → 未认证</strong>。</p>
+<ol>
+<li>按页面要求选择居住地、证件签发国家或地区、证件类型。</li>
+<li>按提示提交本人有效身份证明文件。可用证件及上传方式因地区而异。</li>
+<li>完成人脸验证，确认个人信息与证件一致，提交审核。</li>
+<li>等待认证结果通知。只有认证通过且 App 显示相关功能可用后，再继续买币。</li>
+</ol>
+<p><img src="https://public.bnbstatic.com/image/cms/content/body/202603/f9ddd50cb52363924d9823c877d30c39.png" alt="币安 App 身份认证入口，图片来源：币安帮助中心"></p>
+<p><img src="https://public.bnbstatic.com/image/cms/content/body/202603/c29af578a503baa673f25594218dd16f.png" alt="选择证件类型，图片来源：币安帮助中心"></p>
+<p>更多截图见<span class="exturl" data-url="aHR0cHM6Ly93d3cuYmluYW5jZS5jb20vemgtQ04vc3VwcG9ydC9mYXEvZGV0YWlsLzM2MDAyNzI4NzExMQ==">币安官方身份认证图文教程<i class="fa fa-external-link-alt"></i></span>的“App 端”部分。请只在币安 App 内提交证件，不要把证件照片发给自称“客服”的私人账号。</p>
+<h2 id="四、通过-C2C-购买-USDT"><a href="#四、通过-C2C-购买-USDT" class="headerlink" title="四、通过 C2C 购买 USDT"></a>四、通过 C2C 购买 USDT</h2><p>C2C 是用户之间的点对点交易。下面以币安官方教程中的<strong>自选区</strong>为例；页面会根据地区和账户条件显示可用法币及支付方式。</p>
+<ol>
+<li>登录 App，在首页点击 <strong>添加资金 → C2C 买币</strong>。</li>
+<li>进入 <strong>自选区</strong>，选择 <strong>买入</strong>和 <strong>USDT</strong>，再按金额及支付方式筛选广告。比较卖家的报价、限额和订单条款，确认后点击 <strong>买入</strong>。</li>
+<li>输入希望购买的 USDT 数量或页面允许的付款金额，仔细阅读订单详情、实际应付金额及卖家条款，然后点击 <strong>下单</strong>。</li>
+<li>打开订单内的 <strong>查看支付详情</strong>，只按该笔订单展示的收款信息，通过页面允许的支付方式付款。付款账户应为本人实名账户；不要接受对方引导到站外交易或临时更换收款账户。</li>
+<li><strong>实际完成转账后</strong>，返回币安订单点击 <strong>我已完成付款，通知卖家</strong>。等待卖家核实收款并放币。</li>
+<li>订单显示完成后，到 <strong>资金账户</strong>查看到账的 USDT。</li>
+</ol>
+<p><img src="https://public.bnbstatic.com/image/cms/content/body/202603/1642456831c801164eef043b21249198.jpeg" alt="进入 C2C 买币，图片来源：币安帮助中心"></p>
+<p><img src="https://public.bnbstatic.com/image/cms/content/body/202603/6f4515ccf14973a89ce603e4fb25d759.jpeg" alt="选择广告并下单，图片来源：币安帮助中心"></p>
+<p><img src="https://public.bnbstatic.com/image/cms/content/body/202603/0e43975068bd07fea81f5494c2819d14.jpeg" alt="查看订单付款详情，图片来源：币安帮助中心"></p>
+<p><img src="https://public.bnbstatic.com/image/cms/content/body/202603/18798a1b7b564f10eefa083742c2999b.jpeg" alt="订单完成后查看资金账户，图片来源：币安帮助中心"></p>
+<p>如果使用<strong>快捷区</strong>，选择法币、USDT、金额及支付方式后，系统会自动匹配广告；仍须核对订单详情后再付款。完整步骤与更多截图见<span class="exturl" data-url="aHR0cHM6Ly93d3cuYmluYW5jZS5jb20vemgtQ04vc3VwcG9ydC9mYXEvZGV0YWlsLzM2MDAzOTM4NDk1MQ==">币安官方 C2C 买币图文教程<i class="fa fa-external-link-alt"></i></span>。</p>
+<h3 id="付款时特别注意"><a href="#付款时特别注意" class="headerlink" title="付款时特别注意"></a>付款时特别注意</h3><ul>
+<li><strong>没付款，不点“我已完成付款”。</strong>币安官方明确要求先实际转账，再点击付款完成按钮。</li>
+<li><strong>已经付款，不自行取消订单。</strong>若发生争议，保留订单号和付款凭证，使用订单内的聊天或申诉入口处理；仅在已收到退款并确认资金到账后再按实际情况操作。</li>
+<li><strong>核对收款信息。</strong>只使用订单页面显示的信息，警惕聊天中要求站外付款、转到另一账户或索取验证码的人。</li>
+<li><strong>确认最终成本。</strong>下单前查看报价、支付金额和可能的费用；USDT 价格及汇率会变化，买入后也可能发生价值波动。</li>
+</ul>
+<h2 id="官方资料"><a href="#官方资料" class="headerlink" title="官方资料"></a>官方资料</h2><ul>
+<li><span class="exturl" data-url="aHR0cHM6Ly93d3cuYmluYW5jZS5jb20vemgtQ04vZG93bmxvYWQ=">币安 App 下载<i class="fa fa-external-link-alt"></i></span></li>
+<li><span class="exturl" data-url="aHR0cHM6Ly93d3cuYmluYW5jZS5jb20vemgtQ04vc3VwcG9ydC9mYXEvZGV0YWlsLzM2MDA0MjcxODM3Mg==">币安 App 注册账户：官方图文<i class="fa fa-external-link-alt"></i></span></li>
+<li><span class="exturl" data-url="aHR0cHM6Ly93d3cuYmluYW5jZS5jb20vemgtQ04vc3VwcG9ydC9mYXEvZGV0YWlsLzM2MDAyNzI4NzExMQ==">个人账户身份认证：官方图文<i class="fa fa-external-link-alt"></i></span></li>
+<li><span class="exturl" data-url="aHR0cHM6Ly93d3cuYmluYW5jZS5jb20vemgtQ04vc3VwcG9ydC9mYXEvZGV0YWlsLzM2MDAzOTM4NDk1MQ==">币安 App C2C 买币：官方图文<i class="fa fa-external-link-alt"></i></span></li>
+<li><span class="exturl" data-url="aHR0cHM6Ly93d3cuYmluYW5jZS5jb20vemgtQ04vc3VwcG9ydC9mYXEvZGV0YWlsLzM2MDAzODAzODk3Mg==">币安 C2C 交易介绍及安全要求<i class="fa fa-external-link-alt"></i></span></li>
+</ul>
+<p><em>本文核对日期：2026 年 11 月 12 日。图片版权归币安所有，图片由币安官方域名 <code>public.bnbstatic.com</code> 提供。</em></p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="reward-container">
+  <div>如果觉得我的文章对您有用，请随意打赏。您的支持将鼓励我继续创作！</div>
+  <button>
+    赞赏
+  </button>
+  <div class="post-reward">
+      <div>
+        <img src="/images/wechatpay.png" alt="Ray 微信">
+        <span>微信</span>
+      </div>
+
+  </div>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/%E6%95%99%E7%A8%8B/" rel="tag"># 教程</a>
+              <a href="/tags/%E5%B8%81%E5%AE%89/" rel="tag"># 币安</a>
+              <a href="/tags/USDT/" rel="tag"># USDT</a>
+              <a href="/tags/C2C/" rel="tag"># C2C</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/post/RoogooAISubscription/" rel="prev" title="Roogoo 虚拟卡详细教程：免费开卡、USDT 充值与 ChatGPT、Claude 订阅">
+                  <i class="fa fa-chevron-left"></i> Roogoo 虚拟卡详细教程：免费开卡、USDT 充值与 ChatGPT、Claude 订阅
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    <div class="comments gitalk-container"></div>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2026</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Ray</span>
+</div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+  <div class="powered-by">由 <span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlv">Hexo</span> & <span class="exturl" data-url="aHR0cHM6Ly90aGVtZS1uZXh0LmpzLm9yZw==">NexT.Gemini</span> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+<script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.0/search.js" integrity="sha256-vXZMYLEqsROAXkEw93GGIvaB2ab+QW6w3+1ahD9nXXA=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.8.0/gitalk.css" integrity="sha256-AJnUHL7dBv6PGaeyPQJcgQPDjt/Hn/PvYZde1iqfp8U=" crossorigin="anonymous">
+
+<script class="next-config" data-name="gitalk" type="application/json">{"enable":true,"github_id":"iamlay","repo":"gitalk","client_id":"798848f6f91162435156","client_secret":"d9b621213c7353cfa8b2286491f877ef4507da1e","admin_user":"iamlay","distraction_free_mode":true,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token","language":"zh-CN","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.8.0/gitalk.min.js","integrity":"sha256-MVK9MGD/XJaGyIghSVrONSnoXoGh3IFxLw0zfvzpxR4="},"path_md5":"ed98883d3bf2acef360943933a5f8da5"}</script>
+<script src="/js/third-party/comments/gitalk.js"></script>
+
+</body>
+</html>
