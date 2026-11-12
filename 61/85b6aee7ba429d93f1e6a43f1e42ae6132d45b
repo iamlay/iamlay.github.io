@@ -1,0 +1,36 @@
+archives/2026/11/index.html
+  h_523b24c2ba7179 247
+archives/2026/index.html
+  h_523b24c2ba7179 247
+archives/index.html
+  h_523b24c2ba7179 247
+categories/教程/index.html
+  h_523b24c2ba7179 248
+index.html
+  h_523b24c2ba7179 345,357,384
+leancloud_counter_security_urls.json
+  h_523b24c2ba7179 1
+post/binance-app-register-buy-usdt/index.html
+  h_523b24c2ba7179 403-404
+post/binance-deposit-methods-guide/index.html
+  h_523b24c2ba7179 30,35-39,41,48,55,58,171,253,258,270,304,356-359,362-363,366-367,369-370,373-378
+tags/USDT/index.html
+  h_523b24c2ba7179 248
+tags/充值/index.html
+  h_523b24c2ba7179 248
+tags/币安/index.html
+  h_523b24c2ba7179 248
+tags/教程/index.html
+  h_523b24c2ba7179 248
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "6185b6aee7ba429d93f1e6a43f1e42ae6132d45b",
+  "prompts": {},
+  "humans": {
+    "h_523b24c2ba7179": {
+      "author": "Ray <1187074543@qq.com>"
+    }
+  }
+}
