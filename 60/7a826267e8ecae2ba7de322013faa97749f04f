@@ -1,0 +1,20 @@
+baidusitemap.xml
+  h_523b24c2ba7179 3-6
+index.html
+  h_523b24c2ba7179 539-546
+post/RoogooAISubscription/index.html
+  h_523b24c2ba7179 35-40,42,50,173,271-278,419-455
+sitemap.xml
+  h_523b24c2ba7179 5,14,23,25,32,34
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "607a826267e8ecae2ba7de322013faa97749f04f",
+  "prompts": {},
+  "humans": {
+    "h_523b24c2ba7179": {
+      "author": "Ray <1187074543@qq.com>"
+    }
+  }
+}
