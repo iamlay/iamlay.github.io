@@ -1,0 +1,29 @@
+categories/支付工具/index.html
+  s_b409ebe2b6d659::t_59b8b7764298af 248
+index.html
+  s_b409ebe2b6d659::t_6a5bc5177dd32d 245
+post/ucard-mainland-kyc-fees-2026/index.html
+  s_b409ebe2b6d659::t_d2cb9f2ba975d2 28,30,33,49,52,165,247-248,252,286,295,298,307,318-321,349-350,402-421,458-477,483,485-486,514,567-586,613-614,667-686,693-694
+tags/KYC/index.html
+  s_b409ebe2b6d659::t_fee5d02dccb069 248
+tags/U卡/index.html
+  s_b409ebe2b6d659::t_85f4d4665c5281 248
+tags/加密货币支付/index.html
+  s_b409ebe2b6d659::t_3a38d05dc1d3f1 248
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "90ce1e8c3f0284f407f0222dff1bd29e48ab0707",
+  "prompts": {},
+  "sessions": {
+    "s_b409ebe2b6d659": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "01a1ed8a-0ef0-7621-afc1-331e3aa33c1e",
+        "model": "unknown"
+      },
+      "human_author": "Ray <1187074543@qq.com>"
+    }
+  }
+}
