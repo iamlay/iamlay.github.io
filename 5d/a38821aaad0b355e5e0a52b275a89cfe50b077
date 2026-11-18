@@ -1,0 +1,19 @@
+post/ucard-mainland-kyc-fees-2026/index.html
+  s_4a67f345837d92::t_a06b5607f9feed 310-311,317-335
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "5da38821aaad0b355e5e0a52b275a89cfe50b077",
+  "prompts": {},
+  "sessions": {
+    "s_4a67f345837d92": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a1ed8a-0ef0-7621-afc1-331e3aa33c1e",
+        "model": "gpt-6.1-sol"
+      },
+      "human_author": "Ray <1187074543@qq.com>"
+    }
+  }
+}
