@@ -1,0 +1,41 @@
+categories/支付工具/index.html
+  s_4a67f345837d92::t_e9e3ce2ef32962 1-325
+downloads/ucard-guide-2026-11-18.pdf
+  s_4a67f345837d92::t_3a5d0a41e3992f 1-696
+index.html
+  s_b409ebe2b6d659::t_27526041b5ed6c 222-308
+post/ucard-mainland-kyc-fees-2026/index.html
+  s_4a67f345837d92::t_0de784a3f7c79d 1-579
+sitemap.xml
+  s_4a67f345837d92::t_dd7b33a30175bb 3-9
+tags/KYC/index.html
+  s_4a67f345837d92::t_891927c778de42 1-325
+tags/U卡/index.html
+  s_4a67f345837d92::t_d68968bc370356 1-325
+tags/加密货币支付/index.html
+  s_4a67f345837d92::t_81df3403d25a64 1-325
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "1c0f9f386b89505fa1b2383b9ad040b0bccf1738",
+  "prompts": {},
+  "sessions": {
+    "s_4a67f345837d92": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a1ed8a-0ef0-7621-afc1-331e3aa33c1e",
+        "model": "gpt-6-sol"
+      },
+      "human_author": "Ray <1187074543@qq.com>"
+    },
+    "s_b409ebe2b6d659": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "01a1ed8a-0ef0-7621-afc1-331e3aa33c1e",
+        "model": "unknown"
+      },
+      "human_author": "Ray <1187074543@qq.com>"
+    }
+  }
+}
