@@ -1,0 +1,39 @@
+archives/2025/06/index.html
+  s_b409ebe2b6d659::t_4f61ba4269a1d0 247
+archives/2025/index.html
+  s_b409ebe2b6d659::t_5cbd50fa9f2771 287
+archives/index.html
+  s_b409ebe2b6d659::t_67701ad973c4d5 430
+categories/AI/index.html
+  s_b409ebe2b6d659::t_4f6d38a35c2faa 311
+index.html
+  s_b409ebe2b6d659::t_238dcf36eb1920 332,378
+post/CokeCloud/index.html
+  s_b409ebe2b6d659::t_7918ff07e1dd9c 28,30,33,39,50,53,166,179,184,188,248-249,253,271,298,306-308,311-321,325,327-329
+post/GithubPushError/index.html
+  s_b409ebe2b6d659::t_ba68c74a0abcc8 344-345
+post/MacRemoveGoogle/index.html
+  s_b409ebe2b6d659::t_1c17c66b041fb2 339-340
+robots.txt
+  s_b409ebe2b6d659::t_4fb524b3c51637 4-5
+sitemap.xml
+  s_b409ebe2b6d659::t_11a2c0b99f09d8 50
+tags/VPN/index.html
+  s_b409ebe2b6d659::t_77796c1e0dd000 248
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "d469af6dc9697c9a8a86643c943ba21c8db92cb3",
+  "prompts": {},
+  "sessions": {
+    "s_b409ebe2b6d659": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "01a1ed8a-0ef0-7621-afc1-331e3aa33c1e",
+        "model": "unknown"
+      },
+      "human_author": "Ray <1187074543@qq.com>"
+    }
+  }
+}
