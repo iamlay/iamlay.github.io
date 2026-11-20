@@ -1,0 +1,35 @@
+archives/2025/06/index.html
+  s_b409ebe2b6d659::t_a34ac30e3904df 247
+archives/2025/index.html
+  s_b409ebe2b6d659::t_b48ec933ab4d42 287
+archives/index.html
+  s_b409ebe2b6d659::t_0fda0729bd5c6c 430
+categories/AI/index.html
+  s_b409ebe2b6d659::t_4d6f14321c72d6 311
+index.html
+  s_b409ebe2b6d659::t_74b4522ee9ce25 332
+post/CokeCloud/index.html
+  s_b409ebe2b6d659::t_49afd86038ed46 30,50,53,248,253
+post/GithubPushError/index.html
+  s_b409ebe2b6d659::t_e35159e95e80a9 344-345
+post/MacRemoveGoogle/index.html
+  s_b409ebe2b6d659::t_d905c046e67569 339-340
+tags/VPN/index.html
+  s_b409ebe2b6d659::t_f51b769c117693 248
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "2de401c5a36b4ee4b4d4331e64576a755662deeb",
+  "prompts": {},
+  "sessions": {
+    "s_b409ebe2b6d659": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "01a1ed8a-0ef0-7621-afc1-331e3aa33c1e",
+        "model": "unknown"
+      },
+      "human_author": "Ray <1187074543@qq.com>"
+    }
+  }
+}
