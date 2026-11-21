@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 8.1.1">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+  <meta name="google-site-verification" content="bdLSZKDAikc4SOPIlDwwuSFBawDGQU3GmqUWTzUM-rE">
+  <meta name="baidu-site-verification" content="codeva-lCWvLLHuj5">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3825645052664031"
+     crossorigin="anonymous"></script>
+  <meta name="baidu-site-verification" content="true">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha256-AbA177XfpSnFEvgpYu1jMygiLabzPCJCRIBtR5jGc0k=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"www.iamlay.com","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.13.1","exturl":true,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"gitalk","storage":true,"lazyload":false,"nav":{"gitalk":{"ordcer":-1}},"activeClass":"gitalk"},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="打开 Google Antigravity 后，可能遇到电脑显示二维码、手机扫码后要求发短信、短信发送失败，或验证完成后应用仍无响应。本文从扫码验证入手，依次说明身份确认、短信验证、地区资格和授权回跳的排查步骤。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Google Antigravity 登录与扫码验证完整排查教程">
+<meta property="og:url" content="https://www.iamlay.com/post/antigravity-login-verification-guide/index.html">
+<meta property="og:site_name" content="以技术之名">
+<meta property="og:description" content="打开 Google Antigravity 后，可能遇到电脑显示二维码、手机扫码后要求发短信、短信发送失败，或验证完成后应用仍无响应。本文从扫码验证入手，依次说明身份确认、短信验证、地区资格和授权回跳的排查步骤。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://www.iamlay.com/images/antigravity-login-verification/comment-scan-flow.png">
+<meta property="og:image" content="https://www.iamlay.com/images/antigravity-login-verification/verification-decision.png">
+<meta property="article:published_time" content="2026-11-20T16:00:00.000Z">
+<meta property="article:modified_time" content="2026-11-21T07:24:13.959Z">
+<meta property="article:author" content="Ray">
+<meta property="article:tag" content="Google Antigravity">
+<meta property="article:tag" content="Google 账号">
+<meta property="article:tag" content="登录验证">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://www.iamlay.com/images/antigravity-login-verification/comment-scan-flow.png">
+
+
+<link rel="canonical" href="https://www.iamlay.com/post/antigravity-login-verification-guide/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://www.iamlay.com/post/antigravity-login-verification-guide/","path":"post/antigravity-login-verification-guide/","title":"Google Antigravity 登录与扫码验证完整排查教程"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>Google Antigravity 登录与扫码验证完整排查教程 | 以技术之名</title>
+  <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-170943611-2"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-170943611-2');
+</script>
+  <script src="/js/third-party/analytics/baidu-analytics.js"></script>
+  <script async src="https://hm.baidu.com/hm.js?2fdaf8ee633a188c5649eefea79b28b3"></script>
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<!-- hexo injector head_end start --><script async defer data-website-id="fad553b1-b94d-4311-8d52-913dc067e883" src="https://tongji.iamlay.com/script.js"></script><!-- hexo injector head_end end --></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">以技术之名</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">以技术之名</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-chatgpt"><a href="/chatgpt" rel="section"><i class="fa fa-comment-dots fa-fw"></i>AI体验</a></li><li class="menu-item menu-item-sitemap"><a href="/sitemap.xml" rel="section"><i class="fa fa-sitemap fa-fw"></i>站点地图</a></li><li class="menu-item menu-item-links"><a href="/links/" rel="section"><i class="fa fa-link fa-fw"></i>友情链接</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%88%E7%9C%8B%E6%89%AB%E7%A0%81%E9%AA%8C%E8%AF%81%E7%9A%84%E4%B8%A4%E7%A7%8D%E7%BB%93%E6%9E%9C"><span class="nav-number">1.</span> <span class="nav-text">先看扫码验证的两种结果</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80%E3%80%81%E5%85%88%E7%A1%AE%E5%AE%9A%E5%8D%A1%E5%9C%A8%E5%93%AA%E4%B8%80%E6%AD%A5"><span class="nav-number">2.</span> <span class="nav-text">一、先确定卡在哪一步</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%8C%E3%80%81%E4%BB%8E%E5%AE%98%E6%96%B9%E5%85%A5%E5%8F%A3%E9%87%8D%E6%96%B0%E8%B5%B0%E4%B8%80%E6%AC%A1%E7%99%BB%E5%BD%95"><span class="nav-number">3.</span> <span class="nav-text">二、从官方入口重新走一次登录</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%89%E3%80%81%E6%8E%92%E6%9F%A5%E2%80%9C%E6%89%80%E5%9C%A8%E5%9C%B0%E5%8C%BA%E4%B8%8D%E5%8F%AF%E7%94%A8%E2%80%9D"><span class="nav-number">4.</span> <span class="nav-text">三、排查“所在地区不可用”</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E5%AF%B9%E7%85%A7%E5%AE%98%E6%96%B9%E6%94%AF%E6%8C%81%E5%9C%B0%E5%8C%BA"><span class="nav-number">4.1.</span> <span class="nav-text">1. 对照官方支持地区</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E6%9F%A5%E7%9C%8B%E8%B4%A6%E5%8F%B7%E5%85%B3%E8%81%94%E5%9C%B0%E5%8C%BA"><span class="nav-number">4.2.</span> <span class="nav-text">2. 查看账号关联地区</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-%E6%A0%B8%E5%AF%B9%E5%B9%B4%E9%BE%84%E5%92%8C%E8%B4%A6%E5%8F%B7%E7%B1%BB%E5%9E%8B"><span class="nav-number">4.3.</span> <span class="nav-text">3. 核对年龄和账号类型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-%E6%9C%80%E5%90%8E%E6%A3%80%E6%9F%A5%E8%BF%9E%E6%8E%A5%E6%98%AF%E5%90%A6%E7%A8%B3%E5%AE%9A"><span class="nav-number">4.4.</span> <span class="nav-text">4. 最后检查连接是否稳定</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9B%9B%E3%80%81%E9%81%87%E5%88%B0%E4%BA%8C%E7%BB%B4%E7%A0%81%E5%92%8C%E6%89%8B%E6%9C%BA%E9%AA%8C%E8%AF%81%E6%80%8E%E4%B9%88%E5%8A%9E"><span class="nav-number">5.</span> <span class="nav-text">四、遇到二维码和手机验证怎么办</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%94%A8-Google-App-%E6%89%AB%E7%A0%81%E5%B9%B6%E7%A1%AE%E8%AE%A4%E8%BA%AB%E4%BB%BD"><span class="nav-number">5.1.</span> <span class="nav-text">用 Google App 扫码并确认身份</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A6%82%E6%9E%9C%E9%A1%B5%E9%9D%A2%E6%8F%90%E4%BE%9B%E5%85%B6%E4%BB%96%E9%AA%8C%E8%AF%81%E6%96%B9%E5%BC%8F"><span class="nav-number">5.2.</span> <span class="nav-text">如果页面提供其他验证方式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%83%85%E5%86%B5-B%EF%BC%9A%E6%89%AB%E7%A0%81%E5%90%8E%E8%A6%81%E6%B1%82%E5%8F%91%E9%80%81%E7%9F%AD%E4%BF%A1%E9%AA%8C%E8%AF%81%E5%8F%B7%E7%A0%81"><span class="nav-number">5.3.</span> <span class="nav-text">情况 B：扫码后要求发送短信验证号码</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%94%E3%80%81%E4%BB%8D%E6%97%A0%E6%B3%95%E9%80%9A%E8%BF%87%E6%97%B6%E7%9A%84%E6%94%B6%E5%B0%BE%E6%8E%92%E6%9F%A5"><span class="nav-number">6.</span> <span class="nav-text">五、仍无法通过时的收尾排查</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BB%93%E8%AF%AD"><span class="nav-number">7.</span> <span class="nav-text">结语</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Google-%E5%AE%98%E6%96%B9%E8%B5%84%E6%96%99"><span class="nav-number">7.1.</span> <span class="nav-text">Google 官方资料</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Ray</p>
+  <div class="site-description" itemprop="description">为信仰而生</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">58</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">15</span>
+        <span class="site-state-item-name">分类</span>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">39</span>
+        <span class="site-state-item-name">标签</span>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="/" title="GitHub → ">GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <span class="exturl" data-url="bWFpbHRvOmlhbWxheXNoYXJlQGdtYWlsLmNvbQ==" title="E-Mail → mailto:iamlayshare@gmail.com"><i class="fa fa-envelope fa-fw"></i>E-Mail</span>
+      </span>
+  </div>
+
+
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://www.iamlay.com/post/antigravity-login-verification-guide/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Ray">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="以技术之名">
+      <meta itemprop="description" content="为信仰而生">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="Google Antigravity 登录与扫码验证完整排查教程 | 以技术之名">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Google Antigravity 登录与扫码验证完整排查教程
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2026-11-21 00:00:00 / 修改时间：15:24:13" itemprop="dateCreated datePublished" datetime="2026-11-21T00:00:00+08:00">2026-11-21</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index"><span itemprop="name">技术</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+</div>
+
+	
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <p>打开 Google Antigravity 后，可能遇到电脑显示二维码、手机扫码后要求发短信、短信发送失败，或验证完成后应用仍无响应。本文从扫码验证入手，依次说明身份确认、短信验证、地区资格和授权回跳的排查步骤。</p>
+<span id="more"></span>
+
+<blockquote>
+<p>本文适用于使用<strong>本人 Google 账号</strong>验证的情况。不同账号可能出现不同验证页面，具体步骤以当前 Google 页面提示为准。</p>
+</blockquote>
+<h2 id="先看扫码验证的两种结果"><a href="#先看扫码验证的两种结果" class="headerlink" title="先看扫码验证的两种结果"></a>先看扫码验证的两种结果</h2><p><img src="/images/antigravity-login-verification/comment-scan-flow.png" alt="Google App 扫码确认流程"></p>
+<p>可以先尝试<strong>用手机上的 Google App 扫描电脑二维码</strong>。这里的 Google App 指名为“Google”的应用及其中的 Google Lens 扫码入口。扫码后可能进入 YouTube 等 Google 应用的身份确认页面，也可能进入短信验证页面；应以手机实际显示的内容为准。</p>
+<p>不同页面对应的处理方式如下：</p>
+<table>
+<thead>
+<tr>
+<th>扫码后的情况</th>
+<th>处理方式</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>跳转到已登录设备的身份确认页</td>
+<td>核对账号与登录请求，在手机确认后返回电脑</td>
+</tr>
+<tr>
+<td>进入发送短信页面</td>
+<td>检查手机短信能力，并查看是否有其他验证方式</td>
+</tr>
+<tr>
+<td>扫码后页面过期或报错</td>
+<td>从电脑重新发起验证，记录完整错误提示</td>
+</tr>
+<tr>
+<td>手机显示成功，电脑仍未解锁</td>
+<td>返回原电脑页面查看状态，必要时重新发起登录</td>
+</tr>
+</tbody></table>
+<p><strong>建议的尝试顺序：</strong>确认手机 Google App 已登录目标账号；从电脑当前的官方验证页面获取二维码；用 Google App 扫码并按提示操作；最后返回电脑查看验证结果。若跳转到 YouTube，也要核对其中登录的是同一账号。</p>
+<h2 id="一、先确定卡在哪一步"><a href="#一、先确定卡在哪一步" class="headerlink" title="一、先确定卡在哪一步"></a>一、先确定卡在哪一步</h2><table>
+<thead>
+<tr>
+<th>看到的现象</th>
+<th>优先排查方向</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>浏览器完成授权，却没有返回 Antigravity</td>
+<td>浏览器到应用的授权回跳、应用状态</td>
+</tr>
+<tr>
+<td><code>Your current account is not eligible ... not currently available in your location</code></td>
+<td>账号关联地区、实际所在地、年龄和账号类型</td>
+</tr>
+<tr>
+<td>停在 <code>Setting Up Your Account</code></td>
+<td>先确认上述资格，再检查连接与应用状态</td>
+</tr>
+<tr>
+<td>出现二维码，要求用手机验证</td>
+<td>按 Google 页面提示完成额外身份验证</td>
+</tr>
+<tr>
+<td>手机短信发送失败，或发送后电脑没有继续</td>
+<td>手机短信能力、页面是否过期、是否有其他验证方式</td>
+</tr>
+</tbody></table>
+<p>先记下<strong>完整错误原文</strong>和发生时间。不要一边更换账号、一边切换网络或设备，否则很难判断是哪一步起了作用。</p>
+<h2 id="二、从官方入口重新走一次登录"><a href="#二、从官方入口重新走一次登录" class="headerlink" title="二、从官方入口重新走一次登录"></a>二、从官方入口重新走一次登录</h2><ol>
+<li>从<span class="exturl" data-url="aHR0cHM6Ly9hbnRpZ3Jhdml0eS5nb29nbGUvZG93bmxvYWQ=">Antigravity 官方下载页<i class="fa fa-external-link-alt"></i></span>安装或更新适合自己系统的版本。</li>
+<li>启动应用，点击 <strong>Sign in</strong>。Antigravity 会在浏览器中发起 Google 授权；完成后，浏览器应返回应用。<span class="exturl" data-url="aHR0cHM6Ly9hbnRpZ3Jhdml0eS5nb29nbGUvZG9jcy9pbnN0YWxsP3RhYj1jbGk=">官方认证说明<i class="fa fa-external-link-alt"></i></span>描述了这一流程。</li>
+<li>如果浏览器显示授权完成，但应用没有继续，先回到已经打开的 Antigravity 查看是否出现登录状态；没有的话，关闭授权页，在应用中重新发起一次登录。检查浏览器是否弹出了“打开 Antigravity”之类的外部应用提示，并仅在确认来源是 Google 官方登录流程后允许打开。</li>
+<li>如果仍无法回跳，更新应用并重启浏览器和应用，再试一次。记录停留页面、浏览器名称和版本、应用版本，以及是否出现外部应用提示，供后续求助使用。</li>
+</ol>
+<p>“浏览器授权完成”与“账号具有 Antigravity 使用资格”是两回事。若回跳后出现地区错误，继续看下一节。</p>
+<h2 id="三、排查“所在地区不可用”"><a href="#三、排查“所在地区不可用”" class="headerlink" title="三、排查“所在地区不可用”"></a>三、排查“所在地区不可用”</h2><p>Google 的<span class="exturl" data-url="aHR0cHM6Ly9hbnRpZ3Jhdml0eS5nb29nbGUvZG9jcy9mYXE=">Antigravity FAQ<i class="fa fa-external-link-alt"></i></span>列出了个人账号登录时要检查的三项：<strong>账号关联地区、年龄、账号类型</strong>。其中地区必须在当前支持列表内，用户也需满足年龄要求；组织管理的 Workspace 账号有单独的使用条件。</p>
+<h3 id="1-对照官方支持地区"><a href="#1-对照官方支持地区" class="headerlink" title="1. 对照官方支持地区"></a>1. 对照官方支持地区</h3><p>打开<span class="exturl" data-url="aHR0cHM6Ly9hbnRpZ3Jhdml0eS5nb29nbGUvZG9jcy9mYXE=">官方 FAQ 的地理可用性章节<i class="fa fa-external-link-alt"></i></span>，搜索自己所在的国家或地区。支持地区不只有美国，因此“必须使用美国 IP”并非官方规则。若实际所在地不在列表内，当前就不能使用该服务；单纯把网络出口显示成美国，不会改变这一点。</p>
+<h3 id="2-查看账号关联地区"><a href="#2-查看账号关联地区" class="headerlink" title="2. 查看账号关联地区"></a>2. 查看账号关联地区</h3><p>登录本人账号后，打开 <span class="exturl" data-url="aHR0cHM6Ly9wb2xpY2llcy5nb29nbGUuY29tL3Rlcm1z">Google 服务条款页面<i class="fa fa-external-link-alt"></i></span>，查看页面显示的账号关联国家或地区。<strong>它与当前 IP 所在地不是同一个信息。</strong>如果关联地区错误，Google 官方允许通过<span class="exturl" data-url="aHR0cHM6Ly9wb2xpY2llcy5nb29nbGUuY29tL2NvdW50cnktYXNzb2NpYXRpb24tZm9ybQ==">地区关联更正表单<i class="fa fa-external-link-alt"></i></span>提出申请。<span class="exturl" data-url="aHR0cHM6Ly9zdXBwb3J0Lmdvb2dsZS5jb20vYWNjb3VudHMvY29tbXVuaXR5LWd1aWRlLzM4OTk2MDkyMQ==">Google 账号帮助说明<i class="fa fa-external-link-alt"></i></span>也指出，这个申请用于纠正与实际居住地不符的关联地区。</p>
+<p>提交时如实填写本人情况及更正原因，等待 Google 审核。处理时间和结果由 Google 决定，提交后留意账号邮箱中的通知。</p>
+<h3 id="3-核对年龄和账号类型"><a href="#3-核对年龄和账号类型" class="headerlink" title="3. 核对年龄和账号类型"></a>3. 核对年龄和账号类型</h3><p>如果地区正确且受支持，继续确认账号已达到 Google 所要求的年龄，并按页面指引完成必要的年龄验证。使用公司或学校账号时，不要把它当作普通 <code>@gmail.com</code> 个人账号处理；查看<span class="exturl" data-url="aHR0cHM6Ly9hbnRpZ3Jhdml0eS5nb29nbGUvZG9jcy9pbnN0YWxsP3RhYj1jbGk=">官方认证文档<i class="fa fa-external-link-alt"></i></span>中相应的企业登录方式，或联系组织管理员。</p>
+<h3 id="4-最后检查连接是否稳定"><a href="#4-最后检查连接是否稳定" class="headerlink" title="4. 最后检查连接是否稳定"></a>4. 最后检查连接是否稳定</h3><p>若资格条件都满足，再检查本机能否稳定打开 Google 登录页和 Antigravity 官方网站。浏览器与应用可能走不同网络路径，所以“网页能打开”并不必然代表应用连接正常。先排除频繁断线、临时网络切换或系统时间错误等基础问题。特定美国州份、全局代理或 TUN 模式都不是 Google 公布的账号资格条件。</p>
+<h2 id="四、遇到二维码和手机验证怎么办"><a href="#四、遇到二维码和手机验证怎么办" class="headerlink" title="四、遇到二维码和手机验证怎么办"></a>四、遇到二维码和手机验证怎么办</h2><p><img src="/images/antigravity-login-verification/verification-decision.png" alt="扫码后按手机页面类型继续排查"></p>
+<p>扫码验证属于 <strong>Google 账号安全流程</strong>。Google 的<span class="exturl" data-url="aHR0cHM6Ly9zdXBwb3J0Lmdvb2dsZS5jb20vYWNjb3VudHMvYW5zd2VyLzE4NTgzOQ==">两步验证说明<i class="fa fa-external-link-alt"></i></span>确认，部分情况下会要求使用手机扫描电脑上的二维码，完成后再返回电脑。扫码后可能进入已登录设备确认页面，也可能进入短信验证页面，因此第一步是认清<strong>自己眼前的页面</strong>。</p>
+<h3 id="用-Google-App-扫码并确认身份"><a href="#用-Google-App-扫码并确认身份" class="headerlink" title="用 Google App 扫码并确认身份"></a>用 Google App 扫码并确认身份</h3><ol>
+<li>在手机安装官方 <strong>Google App</strong>，登录与电脑 Antigravity 验证页面相同的 Google 账号。若手机随后打开 YouTube，也确认 YouTube 登录的是同一账号。</li>
+<li>在电脑上保留当前由 Google 登录流程打开的二维码页面。打开手机 Google App 的扫码入口或 Google Lens，对准二维码，等识别出的链接出现后再打开。</li>
+<li>查看手机打开的页面。如果进入 YouTube 等 Google 应用的身份确认页，核对登录请求后按提示确认。<strong>仅在确认这是自己刚发起的登录操作、且页面来自 Google 官方应用或域名时确认。</strong></li>
+<li>返回电脑，等待原页面显示验证结果，再回到 Antigravity 试一次。若正在使用 Antigravity App 和 Antigravity IDE，分别查看各自的登录状态。</li>
+</ol>
+<p>使用 Google App 扫码也可能继续跳到短信页，或在确认后报错。这说明当前账号仍需完成页面指定的验证步骤；继续按实际提示排查即可。</p>
+<h3 id="如果页面提供其他验证方式"><a href="#如果页面提供其他验证方式" class="headerlink" title="如果页面提供其他验证方式"></a>如果页面提供其他验证方式</h3><p>查看二维码下方是否有 <strong>Try another way（试试其他方式）</strong>。Google 的<span class="exturl" data-url="aHR0cHM6Ly9zdXBwb3J0Lmdvb2dsZS5jb20vYWNjb3VudHMvYW5zd2VyLzkyODMzNjg=">二维码登录帮助<i class="fa fa-external-link-alt"></i></span>还介绍了在已登录设备浏览器访问 <code>g.co/verifyaccount</code> 的方法；仅在当前登录流程适用时使用。完成后回到原电脑页面等待结果。若二维码已过期，从登录页重新发起。</p>
+<h3 id="情况-B：扫码后要求发送短信验证号码"><a href="#情况-B：扫码后要求发送短信验证号码" class="headerlink" title="情况 B：扫码后要求发送短信验证号码"></a>情况 B：扫码后要求发送短信验证号码</h3><ol>
+<li>核对手机屏幕上的收件号码、短信内容和发送按钮是否由 Google 官方流程显示。不要手动改写号码或短信正文。</li>
+<li>检查手机 SIM 卡是否能发短信、是否有足够余额或套餐、是否开通所需的国际短信能力，以及运营商是否拦截了该号码。短信资费可能由运营商收取；<span class="exturl" data-url="aHR0cHM6Ly9zdXBwb3J0Lmdvb2dsZS5jb20vYWNjb3VudHMvYW5zd2VyLzExNDEyOQ==">Google 账号验证帮助<i class="fa fa-external-link-alt"></i></span>也提示短信或电话费用取决于套餐。</li>
+<li>若手机显示发送成功但电脑没有变化，先回到电脑查看是否提示完成、失败或超时；页面过期时重新发起验证。避免短时间内连续重复发送。</li>
+<li>如果 Google 页面提供 <strong>Try another way</strong>，优先使用本人账号已有的其他验证方式，例如已登录的可信设备、Google 提示、通行密钥或备用码，具体以页面提供的选项为准。<span class="exturl" data-url="aHR0cHM6Ly9zdXBwb3J0Lmdvb2dsZS5jb20vYWNjb3VudHMvYW5zd2VyLzE4NTgzNA==">Google 常见验证问题说明<i class="fa fa-external-link-alt"></i></span>指出，登录位置等情况发生变化时，短信验证可能不可用。</li>
+</ol>
+<p>Google 官方资料没有把某款手机、某个美国节点或模拟器列为必要条件，也没有保证它们能解决短信失败。不要把账号凭据、二维码、验证短信或备用码交给第三方代操作。</p>
+<h2 id="五、仍无法通过时的收尾排查"><a href="#五、仍无法通过时的收尾排查" class="headerlink" title="五、仍无法通过时的收尾排查"></a>五、仍无法通过时的收尾排查</h2><p>按下列顺序检查，避免重复尝试造成更多混淆：</p>
+<ol>
+<li><strong>确认账号本身能否登录 Google。</strong> 若普通 Google 登录也失败，先按<span class="exturl" data-url="aHR0cHM6Ly9hY2NvdW50cy5nb29nbGUuY29tL3NpZ25pbi9yZWNvdmVyeQ==">账号恢复流程<i class="fa fa-external-link-alt"></i></span>处理；Antigravity 不能代替账号恢复。</li>
+<li><strong>确认资格条件。</strong> 对照支持地区、账号关联地区、年龄和账号类型；若关联地区确实错误，提交官方更正申请并等待结果。</li>
+<li><strong>确认验证方式。</strong> 看清当前是已登录设备扫码，还是扫码后发送短信；使用页面实际提供的替代选项。</li>
+<li><strong>确认应用回跳。</strong> 完成 Google 授权后观察 Antigravity 是否收到登录结果；必要时更新并重启应用。</li>
+<li><strong>收集信息求助。</strong> 保留错误原文、应用和系统版本、发生时间、所在步骤，以及打码后的截图，通过<span class="exturl" data-url="aHR0cHM6Ly9hbnRpZ3Jhdml0eS5nb29nbGUvc3VwcG9ydA==">Antigravity 官方支持入口<i class="fa fa-external-link-alt"></i></span>或 Google 账号帮助社区求助。截图中隐藏邮箱、二维码、手机号、验证码和恢复信息。</li>
+</ol>
+<h2 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h2><p>Antigravity 登录问题最好按“<strong>授权回跳 → 使用资格 → 账号验证 → 应用状态</strong>”分段定位。地区提示先看官方支持列表和账号关联地区；二维码提示先辨认验证类型，再走 Google 页面提供的本人验证或替代方式。这样比反复切换网络、设备和账号更容易找出真正的阻塞点。</p>
+<h3 id="Google-官方资料"><a href="#Google-官方资料" class="headerlink" title="Google 官方资料"></a>Google 官方资料</h3><ul>
+<li><span class="exturl" data-url="aHR0cHM6Ly9hbnRpZ3Jhdml0eS5nb29nbGUvZG9jcy9mYXE=">Google Antigravity FAQ<i class="fa fa-external-link-alt"></i></span> 与<span class="exturl" data-url="aHR0cHM6Ly9hbnRpZ3Jhdml0eS5nb29nbGUvZG9jcy9pbnN0YWxsP3RhYj1jbGk=">认证说明<i class="fa fa-external-link-alt"></i></span></li>
+<li><span class="exturl" data-url="aHR0cHM6Ly9zdXBwb3J0Lmdvb2dsZS5jb20vYWNjb3VudHMvYW5zd2VyLzkyODMzNjg=">Google 账号：二维码登录<i class="fa fa-external-link-alt"></i></span>、<span class="exturl" data-url="aHR0cHM6Ly9zdXBwb3J0Lmdvb2dsZS5jb20vYWNjb3VudHMvYW5zd2VyLzE4NTgzOQ==">两步验证<i class="fa fa-external-link-alt"></i></span>、<span class="exturl" data-url="aHR0cHM6Ly9zdXBwb3J0Lmdvb2dsZS5jb20vYWNjb3VudHMvYW5zd2VyLzE4NTgzNA==">常见问题<i class="fa fa-external-link-alt"></i></span></li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="reward-container">
+  <div>如果觉得我的文章对您有用，请随意打赏。您的支持将鼓励我继续创作！</div>
+  <button>
+    赞赏
+  </button>
+  <div class="post-reward">
+      <div>
+        <img src="/images/wechatpay.png" alt="Ray 微信">
+        <span>微信</span>
+      </div>
+
+  </div>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/Google-Antigravity/" rel="tag"># Google Antigravity</a>
+              <a href="/tags/%E7%99%BB%E5%BD%95%E9%AA%8C%E8%AF%81/" rel="tag"># 登录验证</a>
+              <a href="/tags/Google-%E8%B4%A6%E5%8F%B7/" rel="tag"># Google 账号</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/post/ucard-mainland-kyc-fees-2026/" rel="prev" title="2026 U卡对比：32款虚拟卡大陆申请资格、KYC、费率与邀请优惠">
+                  <i class="fa fa-chevron-left"></i> 2026 U卡对比：32款虚拟卡大陆申请资格、KYC、费率与邀请优惠
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/post/antigravity-manager-guide/" rel="next" title="Antigravity Manager 详细介绍：账号管理、额度监控与本地 API 网关">
+                  Antigravity Manager 详细介绍：账号管理、额度监控与本地 API 网关 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    <div class="comments gitalk-container"></div>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2026</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Ray</span>
+</div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+  <div class="powered-by">由 <span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlv">Hexo</span> & <span class="exturl" data-url="aHR0cHM6Ly90aGVtZS1uZXh0LmpzLm9yZw==">NexT.Gemini</span> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+<script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.0/search.js" integrity="sha256-vXZMYLEqsROAXkEw93GGIvaB2ab+QW6w3+1ahD9nXXA=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.8.0/gitalk.css" integrity="sha256-AJnUHL7dBv6PGaeyPQJcgQPDjt/Hn/PvYZde1iqfp8U=" crossorigin="anonymous">
+
+<script class="next-config" data-name="gitalk" type="application/json">{"enable":true,"github_id":"iamlay","repo":"gitalk","client_id":"798848f6f91162435156","client_secret":"d9b621213c7353cfa8b2286491f877ef4507da1e","admin_user":"iamlay","distraction_free_mode":true,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token","language":"zh-CN","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.8.0/gitalk.min.js","integrity":"sha256-MVK9MGD/XJaGyIghSVrONSnoXoGh3IFxLw0zfvzpxR4="},"path_md5":"da364612e92dba1c019d5ef060081dcd"}</script>
+<script src="/js/third-party/comments/gitalk.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 8.1.1">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+  <meta name="google-site-verification" content="bdLSZKDAikc4SOPIlDwwuSFBawDGQU3GmqUWTzUM-rE">
+  <meta name="baidu-site-verification" content="codeva-lCWvLLHuj5">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3825645052664031"
+     crossorigin="anonymous"></script>
+  <meta name="baidu-site-verification" content="true">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha256-AbA177XfpSnFEvgpYu1jMygiLabzPCJCRIBtR5jGc0k=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"www.iamlay.com","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.13.1","exturl":true,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"gitalk","storage":true,"lazyload":false,"nav":{"gitalk":{"ordcer":-1}},"activeClass":"gitalk"},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="如果同时使用 Antigravity 客户端和多款 AI 编程工具，账号切换、模型额度和工具配置很容易分散在不同地方。Antigravity Manager 把这些操作集中到一个桌面应用中：管理 Google 账号、查看额度、切换 Antigravity 使用的账号，并通过本地 API 网关连接其他编程工具。本文依据项目中文 README及项目文档，介绍它的能力、上手流程和使用边界。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Antigravity Manager 详细介绍：账号管理、额度监控与本地 API 网关">
+<meta property="og:url" content="https://www.iamlay.com/post/antigravity-manager-guide/index.html">
+<meta property="og:site_name" content="以技术之名">
+<meta property="og:description" content="如果同时使用 Antigravity 客户端和多款 AI 编程工具，账号切换、模型额度和工具配置很容易分散在不同地方。Antigravity Manager 把这些操作集中到一个桌面应用中：管理 Google 账号、查看额度、切换 Antigravity 使用的账号，并通过本地 API 网关连接其他编程工具。本文依据项目中文 README及项目文档，介绍它的能力、上手流程和使用边界。">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2026-11-21T04:00:00.000Z">
+<meta property="article:modified_time" content="2026-11-21T03:50:06.430Z">
+<meta property="article:author" content="Ray">
+<meta property="article:tag" content="AI 编程">
+<meta property="article:tag" content="Antigravity Manager">
+<meta property="article:tag" content="Claude Code">
+<meta property="article:tag" content="Codex">
+<meta property="article:tag" content="Gemini">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://www.iamlay.com/post/antigravity-manager-guide/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://www.iamlay.com/post/antigravity-manager-guide/","path":"post/antigravity-manager-guide/","title":"Antigravity Manager 详细介绍：账号管理、额度监控与本地 API 网关"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>Antigravity Manager 详细介绍：账号管理、额度监控与本地 API 网关 | 以技术之名</title>
+  <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-170943611-2"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-170943611-2');
+</script>
+  <script src="/js/third-party/analytics/baidu-analytics.js"></script>
+  <script async src="https://hm.baidu.com/hm.js?2fdaf8ee633a188c5649eefea79b28b3"></script>
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<!-- hexo injector head_end start --><script async defer data-website-id="fad553b1-b94d-4311-8d52-913dc067e883" src="https://tongji.iamlay.com/script.js"></script><!-- hexo injector head_end end --></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">以技术之名</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">以技术之名</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-chatgpt"><a href="/chatgpt" rel="section"><i class="fa fa-comment-dots fa-fw"></i>AI体验</a></li><li class="menu-item menu-item-sitemap"><a href="/sitemap.xml" rel="section"><i class="fa fa-sitemap fa-fw"></i>站点地图</a></li><li class="menu-item menu-item-links"><a href="/links/" rel="section"><i class="fa fa-link fa-fw"></i>友情链接</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Antigravity-Manager-%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9F"><span class="nav-number">1.</span> <span class="nav-text">Antigravity Manager 是什么？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A0%B8%E5%BF%83%E5%8A%9F%E8%83%BD"><span class="nav-number">2.</span> <span class="nav-text">核心功能</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E9%9B%86%E4%B8%AD%E7%AE%A1%E7%90%86-Google-%E8%B4%A6%E5%8F%B7"><span class="nav-number">2.1.</span> <span class="nav-text">1. 集中管理 Google 账号</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E6%9F%A5%E7%9C%8B%E6%A8%A1%E5%9E%8B%E9%A2%9D%E5%BA%A6%E4%B8%8E%E9%87%8D%E7%BD%AE%E6%97%B6%E9%97%B4"><span class="nav-number">2.2.</span> <span class="nav-text">2. 查看模型额度与重置时间</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-%E5%88%87%E6%8D%A2-Antigravity-%E5%AE%A2%E6%88%B7%E7%AB%AF%E8%B4%A6%E5%8F%B7"><span class="nav-number">2.3.</span> <span class="nav-text">3. 切换 Antigravity 客户端账号</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-%E6%8F%90%E4%BE%9B%E6%9C%AC%E5%9C%B0-API-%E7%BD%91%E5%85%B3"><span class="nav-number">2.4.</span> <span class="nav-text">4. 提供本地 API 网关</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-Playground%E3%80%81%E8%AF%8A%E6%96%AD%E4%B8%8E%E6%A1%8C%E9%9D%A2%E4%BD%93%E9%AA%8C"><span class="nav-number">2.5.</span> <span class="nav-text">5. Playground、诊断与桌面体验</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%8B%E8%BD%BD%E4%B8%8E%E5%AE%89%E8%A3%85"><span class="nav-number">3.</span> <span class="nav-text">下载与安装</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%A6%96%E6%AC%A1%E4%BD%BF%E7%94%A8%EF%BC%9A%E4%B8%A4%E6%9D%A1%E5%B8%B8%E8%A7%81%E8%B7%AF%E5%BE%84"><span class="nav-number">4.</span> <span class="nav-text">首次使用：两条常见路径</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%B7%AF%E5%BE%84%E4%B8%80%EF%BC%9A%E5%8F%AA%E7%AE%A1%E7%90%86-Antigravity-%E8%B4%A6%E5%8F%B7"><span class="nav-number">4.1.</span> <span class="nav-text">路径一：只管理 Antigravity 账号</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%B7%AF%E5%BE%84%E4%BA%8C%EF%BC%9A%E8%BF%9E%E6%8E%A5-Claude-Code%E3%80%81Codex-%E6%88%96-OpenCode"><span class="nav-number">4.2.</span> <span class="nav-text">路径二：连接 Claude Code、Codex 或 OpenCode</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BF%85%E9%A1%BB%E4%BA%86%E8%A7%A3%E7%9A%84%E6%95%B0%E6%8D%AE%E4%B8%8E%E8%B4%A6%E5%8F%B7%E9%A3%8E%E9%99%A9"><span class="nav-number">5.</span> <span class="nav-text">必须了解的数据与账号风险</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98%E6%80%8E%E4%B9%88%E6%8E%92%E6%9F%A5%EF%BC%9F"><span class="nav-number">6.</span> <span class="nav-text">常见问题怎么排查？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%80%82%E5%90%88%E8%B0%81%E4%BD%BF%E7%94%A8%EF%BC%9F"><span class="nav-number">7.</span> <span class="nav-text">适合谁使用？</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Ray</p>
+  <div class="site-description" itemprop="description">为信仰而生</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">58</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">15</span>
+        <span class="site-state-item-name">分类</span>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">39</span>
+        <span class="site-state-item-name">标签</span>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="/" title="GitHub → ">GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <span class="exturl" data-url="bWFpbHRvOmlhbWxheXNoYXJlQGdtYWlsLmNvbQ==" title="E-Mail → mailto:iamlayshare@gmail.com"><i class="fa fa-envelope fa-fw"></i>E-Mail</span>
+      </span>
+  </div>
+
+
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://www.iamlay.com/post/antigravity-manager-guide/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Ray">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="以技术之名">
+      <meta itemprop="description" content="为信仰而生">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="Antigravity Manager 详细介绍：账号管理、额度监控与本地 API 网关 | 以技术之名">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Antigravity Manager 详细介绍：账号管理、额度监控与本地 API 网关
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2026-11-21 12:00:00 / 修改时间：11:50:06" itemprop="dateCreated datePublished" datetime="2026-11-21T12:00:00+08:00">2026-11-21</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index"><span itemprop="name">技术</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+</div>
+
+	
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <p>如果同时使用 Antigravity 客户端和多款 AI 编程工具，账号切换、模型额度和工具配置很容易分散在不同地方。Antigravity Manager 把这些操作集中到一个桌面应用中：管理 Google 账号、查看额度、切换 Antigravity 使用的账号，并通过本地 API 网关连接其他编程工具。本文依据<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL0RyYWN1bGFiby9BbnRpZ3Jhdml0eU1hbmFnZXIvYmxvYi9tYWluL1JFQURNRS56aC1DTi5tZA==">项目中文 README<i class="fa fa-external-link-alt"></i></span>及项目文档，介绍它的能力、上手流程和使用边界。</p>
+<span id="more"></span>
+
+<h2 id="Antigravity-Manager-是什么？"><a href="#Antigravity-Manager-是什么？" class="headerlink" title="Antigravity Manager 是什么？"></a>Antigravity Manager 是什么？</h2><p>Antigravity Manager 面向 Antigravity Classic、Antigravity IDE 和 <code>agy</code> CLI 用户。它有两个主要使用方向：一是管理这些客户端所用的 Google 账号，二是启动本地 API 网关，让 Claude Code、Codex、OpenCode 等工具通过网关发起模型请求。</p>
+<p>可以把它理解为<strong>账号与额度控制台，加上本地模型接口适配层</strong>。它不是模型提供方；能看到哪些模型、能否成功调用，仍取决于账号权限、剩余额度、上游服务和具体请求。客户端账号切换与网关的请求调度也是两套独立策略，不能把“切换了客户端账号”理解为“网关此后只使用该账号”。<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL0RyYWN1bGFiby9BbnRpZ3Jhdml0eU1hbmFnZXIvYmxvYi9tYWluL1JFQURNRS56aC1DTi5tZA==">项目 README<i class="fa fa-external-link-alt"></i></span>｜<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL0RyYWN1bGFiby9BbnRpZ3Jhdml0eU1hbmFnZXIvYmxvYi9tYWluL2RvY3MvbW9kdWxlcy9jbG91ZC1hY2NvdW50L292ZXJ2aWV3Lm1k">账号与额度说明<i class="fa fa-external-link-alt"></i></span></p>
+<h2 id="核心功能"><a href="#核心功能" class="headerlink" title="核心功能"></a>核心功能</h2><h3 id="1-集中管理-Google-账号"><a href="#1-集中管理-Google-账号" class="headerlink" title="1. 集中管理 Google 账号"></a>1. 集中管理 Google 账号</h3><p>可以在应用中通过默认浏览器完成授权，添加 Google 账号；如果本机已有相关会话，也可以先预览，再选择导入。账号列表提供状态查看、批量操作及 JSON 导入导出。每个账号的卡片会展示额度信息，并标明哪些 Antigravity 客户端正在使用它。</p>
+<p>这适合需要在多个账号间查看状态的用户。导入前应核对账号来源和预览内容；移除 Manager 中的账号，也不等同于让该账号退出所有官方客户端。<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL0RyYWN1bGFiby9BbnRpZ3Jhdml0eU1hbmFnZXIvYmxvYi9tYWluL2RvY3MvbW9kdWxlcy9jbG91ZC1hY2NvdW50L292ZXJ2aWV3Lm1k">账号模块文档<i class="fa fa-external-link-alt"></i></span></p>
+<h3 id="2-查看模型额度与重置时间"><a href="#2-查看模型额度与重置时间" class="headerlink" title="2. 查看模型额度与重置时间"></a>2. 查看模型额度与重置时间</h3><p>Manager 可以手动刷新或在后台定时刷新额度，展示可用模型、剩余比例和重置时间。额度视图覆盖 <strong>5 小时滚动窗口、每周周期和合并视图</strong>，还能按模型过滤、排序。这样可以先看清账号状态，再决定是否切换客户端账号或让网关接收请求。</p>
+<p>需要注意，界面中的额度数据是基于已取得的上游信息，不等于“下一次请求必定成功”；模型权限、限速和上游状态仍可能变化。项目还提供可选的每周预热功能，但它默认关闭，启用后会发送真实模型请求，可能消耗额度或 AI credits。<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL0RyYWN1bGFiby9BbnRpZ3Jhdml0eU1hbmFnZXIvYmxvYi9tYWluL1JFQURNRS56aC1DTi5tZA==">项目 README<i class="fa fa-external-link-alt"></i></span>｜<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL0RyYWN1bGFiby9BbnRpZ3Jhdml0eU1hbmFnZXIvYmxvYi9tYWluL2RvY3MvbW9kdWxlcy9jbG91ZC1hY2NvdW50L292ZXJ2aWV3Lm1k">账号模块文档<i class="fa fa-external-link-alt"></i></span></p>
+<h3 id="3-切换-Antigravity-客户端账号"><a href="#3-切换-Antigravity-客户端账号" class="headerlink" title="3. 切换 Antigravity 客户端账号"></a>3. 切换 Antigravity 客户端账号</h3><p>顶部工具栏可以选择目标客户端：Classic、IDE 或 <code>agy</code> CLI，再把它切换到指定账号。桌面客户端切换时可能需要重启，因此先保存其中未完成的工作；切换后，最好在官方客户端里核对实际登录身份。若首次启动出现条款确认，也要在官方客户端完成。</p>
+<p>还可以按需启用自动切换。项目文档说明，监控默认每五分钟轮询一次额度；当当前账号遇到限速，或关键模型及适用的共享额度低于 5% 时，可按策略轮换官方客户端使用的账号。它不会直接决定本地 API 网关每次请求使用哪个账号。<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL0RyYWN1bGFiby9BbnRpZ3Jhdml0eU1hbmFnZXIvYmxvYi9tYWluL1JFQURNRS56aC1DTi5tZA==">项目 README<i class="fa fa-external-link-alt"></i></span>｜<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL0RyYWN1bGFiby9BbnRpZ3Jhdml0eU1hbmFnZXIvYmxvYi9tYWluL2RvY3MvbW9kdWxlcy9jbG91ZC1hY2NvdW50L292ZXJ2aWV3Lm1k">账号模块文档<i class="fa fa-external-link-alt"></i></span></p>
+<h3 id="4-提供本地-API-网关"><a href="#4-提供本地-API-网关" class="headerlink" title="4. 提供本地 API 网关"></a>4. 提供本地 API 网关</h3><p>内置网关对外提供兼容 <strong>OpenAI Chat &#x2F; Responses、Anthropic Messages 和原生 Gemini</strong> 的接口，并支持流式传输、思考过程保留及模型映射。它的作用是把不同客户端的请求接到 Manager 管理的账号与上游模型。具体协议能力会受到请求功能、目标模型和上游行为影响，不能把“兼容某协议”理解为完整复刻该服务的所有 API。<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL0RyYWN1bGFiby9BbnRpZ3Jhdml0eU1hbmFnZXIvYmxvYi9tYWluL1JFQURNRS56aC1DTi5tZA==">项目 README<i class="fa fa-external-link-alt"></i></span>｜<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL0RyYWN1bGFiby9BbnRpZ3Jhdml0eU1hbmFnZXIvYmxvYi9tYWluL2RvY3MvbW9kdWxlcy9wcm94eS1nYXRld2F5L2NvbXBhdGliaWxpdHkubWQ=">协议兼容说明<i class="fa fa-external-link-alt"></i></span></p>
+<p>Manager 提供 Claude Code、Codex 和 OpenCode 的配置入口，也可以将页面显示的网关地址与 API Key 填入其他兼容客户端。配置写入成功只表示本地设置已保存；需要重启目标工具，实际发送请求，再到<strong>流量监控</strong>查看请求与结果，才能确认链路打通。<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL0RyYWN1bGFiby9BbnRpZ3Jhdml0eU1hbmFnZXIvYmxvYi9tYWluL2RvY3MvbW9kdWxlcy9wcm94eS1nYXRld2F5L2FnZW50LXRvb2xzLm1k">工具配置说明<i class="fa fa-external-link-alt"></i></span></p>
+<h3 id="5-Playground、诊断与桌面体验"><a href="#5-Playground、诊断与桌面体验" class="headerlink" title="5. Playground、诊断与桌面体验"></a>5. Playground、诊断与桌面体验</h3><p>应用内的 Playground 可调试 Prompt、并排比较两个模型、使用多个账号并行测试，还能查看首字延迟（TTFT）和吞吐量等基准指标。流量监控提供请求耗时、错误详情和诊断编号，便于定位“配置已写入，但调用失败”的问题。</p>
+<p>此外，项目支持本地账号快照备份与恢复、独立的客户端身份配置、系统托盘、额度告警、紧凑布局，以及简体中文、英文和俄语界面。<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL0RyYWN1bGFiby9BbnRpZ3Jhdml0eU1hbmFnZXIvYmxvYi9tYWluL1JFQURNRS56aC1DTi5tZA==">项目 README<i class="fa fa-external-link-alt"></i></span></p>
+<h2 id="下载与安装"><a href="#下载与安装" class="headerlink" title="下载与安装"></a>下载与安装</h2><p>优先从<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL0RyYWN1bGFiby9BbnRpZ3Jhdml0eU1hbmFnZXIvcmVsZWFzZXM=">项目 Releases 页面<i class="fa fa-external-link-alt"></i></span>下载，并以该页面当前提供的文件及变更说明为准。桌面安装包已内置运行时，普通安装无需为了运行应用而另装 Node.js 或 pnpm。</p>
+<table>
+<thead>
+<tr>
+<th>平台</th>
+<th>架构与安装包</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Windows</td>
+<td>x64、ARM64：NSIS <code>.exe</code>；x64 另有 MSI</td>
+</tr>
+<tr>
+<td>macOS</td>
+<td>Apple Silicon <code>arm64</code>、Intel <code>x64</code>：DMG 或免安装 ZIP</td>
+</tr>
+<tr>
+<td>Linux</td>
+<td>x64、ARM64：AppImage、DEB、RPM</td>
+</tr>
+</tbody></table>
+<p>下载时注意区分 <code>arm64</code> &#x2F; <code>aarch64</code> 与 <code>x64</code> &#x2F; <code>amd64</code> &#x2F; <code>x86_64</code>。Windows 升级已有版本时，建议沿用原来的安装包类型；macOS 用户打开前应先将应用拖到 <code>/Applications</code>；Linux 用户按发行版选择包格式，AppImage 还需相应系统运行环境。Arch Linux 有社区维护的 AUR 包；Nix 用户也可参考项目 README 中的 flake 使用方式。<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL0RyYWN1bGFiby9BbnRpZ3Jhdml0eU1hbmFnZXIvYmxvYi9tYWluL1JFQURNRS56aC1DTi5tZCMlRTQlQjglOEIlRTglQkQlQkQlRTQlQjglOEUlRTUlQUUlODklRTglQTMlODU=">安装说明<i class="fa fa-external-link-alt"></i></span></p>
+<h2 id="首次使用：两条常见路径"><a href="#首次使用：两条常见路径" class="headerlink" title="首次使用：两条常见路径"></a>首次使用：两条常见路径</h2><h3 id="路径一：只管理-Antigravity-账号"><a href="#路径一：只管理-Antigravity-账号" class="headerlink" title="路径一：只管理 Antigravity 账号"></a>路径一：只管理 Antigravity 账号</h3><ol>
+<li>打开 Manager，通过浏览器授权添加账号，或预览后导入本机已有会话。</li>
+<li>刷新额度，确认账号状态、可用模型、剩余比例和重置时间。</li>
+<li>在顶部工具栏选择 Classic、IDE 或 <code>agy</code> CLI。</li>
+<li>将目标客户端切换到选定账号，必要时重启客户端，并在官方客户端核验身份。</li>
+<li>如确实需要，再开启自动切换，并了解其触发条件。</li>
+</ol>
+<h3 id="路径二：连接-Claude-Code、Codex-或-OpenCode"><a href="#路径二：连接-Claude-Code、Codex-或-OpenCode" class="headerlink" title="路径二：连接 Claude Code、Codex 或 OpenCode"></a>路径二：连接 Claude Code、Codex 或 OpenCode</h3><ol>
+<li>先完成账号添加和额度刷新，确认目标模型对账号可用。</li>
+<li>打开 <strong>API 反代</strong> 页面，阅读风险提示；首次启动服务时完成确认。</li>
+<li>在编程工具配置卡片中选择目标工具和模型，检查设置后应用；其他客户端则使用页面给出的地址与 API Key。</li>
+<li>重新打开编程工具，发送一条测试请求，并在<strong>流量监控</strong>中核对请求和结果。</li>
+</ol>
+<p>工具配置可能修改本机客户端设置。项目会为 Claude Code 和 Codex 的初次写入保存备份；但“断开连接”与“恢复备份”的效果不同，后者可能覆盖后来对同一设置文件所做的改动。动手前最好阅读<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL0RyYWN1bGFiby9BbnRpZ3Jhdml0eU1hbmFnZXIvYmxvYi9tYWluL2RvY3MvbW9kdWxlcy9wcm94eS1nYXRld2F5L2FnZW50LXRvb2xzLm1k">配置与恢复说明<i class="fa fa-external-link-alt"></i></span>。</p>
+<h2 id="必须了解的数据与账号风险"><a href="#必须了解的数据与账号风险" class="headerlink" title="必须了解的数据与账号风险"></a>必须了解的数据与账号风险</h2><p><strong>本地凭据需要自行保护。</strong> 项目明确说明，云账号 OAuth token 以明文 JSON 形式保存在本地 SQLite 数据库中；能读取数据库的人，也可能读取这些 token。完整账号导出和备份还可能包含 token 与代理凭据。因此要保护应用数据目录、备份文件和网关 API Key，不要把数据库、备份、私人提示词或未经检查的日志上传到公开 Issue。<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL0RyYWN1bGFiby9BbnRpZ3Jhdml0eU1hbmFnZXIvYmxvYi9tYWluL1JFQURNRS56aC1DTi5tZCMlRTYlOTUlQjAlRTYlOEQlQUUlRTQlQjglOEUlRTglQjQlQTYlRTUlOEYlQjclRTklQTMlOEUlRTklOTklQTk=">项目 README<i class="fa fa-external-link-alt"></i></span>｜<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL0RyYWN1bGFiby9BbnRpZ3Jhdml0eU1hbmFnZXIvYmxvYi9tYWluL2RvY3Mvc2VjdXJpdHkubWQ=">安全与数据边界<i class="fa fa-external-link-alt"></i></span></p>
+<p><strong>反代有服务条款和账号风险。</strong> 项目作者提示，反向代理用途可能违反服务提供方条款，导致账号受限或暂停；软件不保证账号安全、模型可用性或持续访问。首次从桌面端启动代理时会显示风险确认；若要让其他设备连接，还应先检查监听地址、网络访问范围和 API Key 的保管方式。</p>
+<p><strong>许可限制也要看清。</strong> 仓库采用 <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL0RyYWN1bGFiby9BbnRpZ3Jhdml0eU1hbmFnZXIvYmxvYi9tYWluL0xJQ0VOU0U=">CC BY-NC-SA 4.0<i class="fa fa-external-link-alt"></i></span> 许可，项目声明禁止商业使用，仅供教育与研究目的。将它用于工作流之前，应该结合项目许可、适用法律及上游服务条款自行判断。<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL0RyYWN1bGFiby9BbnRpZ3Jhdml0eU1hbmFnZXIvYmxvYi9tYWluL1JFQURNRS56aC1DTi5tZCMlRTglQUUlQjglRTUlOEYlQUYlRTglQUYlODE=">项目 README<i class="fa fa-external-link-alt"></i></span></p>
+<h2 id="常见问题怎么排查？"><a href="#常见问题怎么排查？" class="headerlink" title="常见问题怎么排查？"></a>常见问题怎么排查？</h2><table>
+<thead>
+<tr>
+<th>现象</th>
+<th>优先检查</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>安装后无法启动</td>
+<td>操作系统、CPU 架构与安装包是否匹配；记录版本与具体报错</td>
+</tr>
+<tr>
+<td>登录或切换失败</td>
+<td>网络与代理设置、官方客户端首次设置、错误详情和诊断编号</td>
+</tr>
+<tr>
+<td>编程工具无法调用模型</td>
+<td>网关是否启动、账号是否有权限和额度、地址与 Key 是否正确</td>
+</tr>
+<tr>
+<td>工具显示已配置却没有流量</td>
+<td>重启工具，并检查环境变量、命令行参数或直登插件是否覆盖配置</td>
+</tr>
+</tbody></table>
+<p>反馈问题时，可在<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL0RyYWN1bGFiby9BbnRpZ3Jhdml0eU1hbmFnZXIvaXNzdWVz">项目 Issues<i class="fa fa-external-link-alt"></i></span>附上复现步骤、系统与架构、应用版本和诊断编号，同时先检查并移除敏感信息。<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL0RyYWN1bGFiby9BbnRpZ3Jhdml0eU1hbmFnZXIvYmxvYi9tYWluL1JFQURNRS56aC1DTi5tZCMlRTYlOEUlOTIlRTklOTQlOTklRTQlQjglOEUlRTklOTclQUUlRTklQTIlOTglRTUlOEYlOEQlRTklQTYlODg=">排错与反馈说明<i class="fa fa-external-link-alt"></i></span></p>
+<h2 id="适合谁使用？"><a href="#适合谁使用？" class="headerlink" title="适合谁使用？"></a>适合谁使用？</h2><p>如果你经常在 Antigravity 的多个客户端或多个 Google 账号间切换，希望集中查看额度，或者需要为 AI 编程工具配置一个本地兼容接口，Antigravity Manager 值得了解。最稳妥的上手顺序是：<strong>先管理一个账号并确认额度，再切换一个客户端；需要网关时，再连接一款工具并用真实请求验证。</strong> 这样每一步出现问题时都能更快定位原因。</p>
+<p>本文依据项目文档整理，功能与安装包可能随版本变化；实际操作以<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL0RyYWN1bGFiby9BbnRpZ3Jhdml0eU1hbmFnZXIvYmxvYi9tYWluL1JFQURNRS56aC1DTi5tZA==">项目中文 README<i class="fa fa-external-link-alt"></i></span>和<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL0RyYWN1bGFiby9BbnRpZ3Jhdml0eU1hbmFnZXIvcmVsZWFzZXM=">Releases 页面<i class="fa fa-external-link-alt"></i></span>为准。</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="reward-container">
+  <div>如果觉得我的文章对您有用，请随意打赏。您的支持将鼓励我继续创作！</div>
+  <button>
+    赞赏
+  </button>
+  <div class="post-reward">
+      <div>
+        <img src="/images/wechatpay.png" alt="Ray 微信">
+        <span>微信</span>
+      </div>
+
+  </div>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/Claude-Code/" rel="tag"># Claude Code</a>
+              <a href="/tags/AI-%E7%BC%96%E7%A8%8B/" rel="tag"># AI 编程</a>
+              <a href="/tags/Gemini/" rel="tag"># Gemini</a>
+              <a href="/tags/Antigravity-Manager/" rel="tag"># Antigravity Manager</a>
+              <a href="/tags/Codex/" rel="tag"># Codex</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/post/antigravity-login-verification-guide/" rel="prev" title="Google Antigravity 登录与扫码验证完整排查教程">
+                  <i class="fa fa-chevron-left"></i> Google Antigravity 登录与扫码验证完整排查教程
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/post/antigravity-complete-guide/" rel="next" title="Google Antigravity 完全使用与排障指南：安装汉化、TUN 全局、改区与免短信扫码验证">
+                  Google Antigravity 完全使用与排障指南：安装汉化、TUN 全局、改区与免短信扫码验证 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    <div class="comments gitalk-container"></div>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2026</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Ray</span>
+</div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+  <div class="powered-by">由 <span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlv">Hexo</span> & <span class="exturl" data-url="aHR0cHM6Ly90aGVtZS1uZXh0LmpzLm9yZw==">NexT.Gemini</span> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+<script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.0/search.js" integrity="sha256-vXZMYLEqsROAXkEw93GGIvaB2ab+QW6w3+1ahD9nXXA=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.8.0/gitalk.css" integrity="sha256-AJnUHL7dBv6PGaeyPQJcgQPDjt/Hn/PvYZde1iqfp8U=" crossorigin="anonymous">
+
+<script class="next-config" data-name="gitalk" type="application/json">{"enable":true,"github_id":"iamlay","repo":"gitalk","client_id":"798848f6f91162435156","client_secret":"d9b621213c7353cfa8b2286491f877ef4507da1e","admin_user":"iamlay","distraction_free_mode":true,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token","language":"zh-CN","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.8.0/gitalk.min.js","integrity":"sha256-MVK9MGD/XJaGyIghSVrONSnoXoGh3IFxLw0zfvzpxR4="},"path_md5":"7af54b00f88c9c9a43f332db279f341f"}</script>
+<script src="/js/third-party/comments/gitalk.js"></script>
+
+</body>
+</html>

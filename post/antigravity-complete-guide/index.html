@@ -1,0 +1,898 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 8.1.1">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+  <meta name="google-site-verification" content="bdLSZKDAikc4SOPIlDwwuSFBawDGQU3GmqUWTzUM-rE">
+  <meta name="baidu-site-verification" content="codeva-lCWvLLHuj5">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3825645052664031"
+     crossorigin="anonymous"></script>
+  <meta name="baidu-site-verification" content="true">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha256-AbA177XfpSnFEvgpYu1jMygiLabzPCJCRIBtR5jGc0k=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"www.iamlay.com","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.13.1","exturl":true,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"gitalk","storage":true,"lazyload":false,"nav":{"gitalk":{"ordcer":-1}},"activeClass":"gitalk"},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="涵盖 Google Antigravity 下载安装、中文汉化、TUN 全局网络搭建、not eligible 资格与地区限制解除、多设备免短信扫码验证、配额机制与 429 应对及全场景报错速查的一站式实战教程。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Google Antigravity 完全使用与排障指南：安装汉化、TUN 全局、改区与免短信扫码验证">
+<meta property="og:url" content="https://www.iamlay.com/post/antigravity-complete-guide/index.html">
+<meta property="og:site_name" content="以技术之名">
+<meta property="og:description" content="涵盖 Google Antigravity 下载安装、中文汉化、TUN 全局网络搭建、not eligible 资格与地区限制解除、多设备免短信扫码验证、配额机制与 429 应对及全场景报错速查的一站式实战教程。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://www.iamlay.com/images/antigravity-complete-guide/fig12_banner.png">
+<meta property="og:image" content="https://www.iamlay.com/images/antigravity-complete-guide/fig7_verification_required.png">
+<meta property="og:image" content="https://www.iamlay.com/images/antigravity-complete-guide/fig1_qr_prompt.png">
+<meta property="og:image" content="https://www.iamlay.com/images/antigravity-complete-guide/fig3_sms_send.png">
+<meta property="og:image" content="https://www.iamlay.com/images/antigravity-complete-guide/fig4_sms_fail.png">
+<meta property="og:image" content="https://www.iamlay.com/images/antigravity-complete-guide/fig10_mobile_success.png">
+<meta property="og:image" content="https://www.iamlay.com/images/antigravity-complete-guide/fig11_unlocking.png">
+<meta property="article:published_time" content="2026-11-21T09:10:00.000Z">
+<meta property="article:modified_time" content="2026-11-21T11:54:19.129Z">
+<meta property="article:author" content="Ray">
+<meta property="article:tag" content="AI 编程">
+<meta property="article:tag" content="Gemini">
+<meta property="article:tag" content="Google Antigravity">
+<meta property="article:tag" content="TUN 代理">
+<meta property="article:tag" content="登录验证">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://www.iamlay.com/images/antigravity-complete-guide/fig12_banner.png">
+
+
+<link rel="canonical" href="https://www.iamlay.com/post/antigravity-complete-guide/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://www.iamlay.com/post/antigravity-complete-guide/","path":"post/antigravity-complete-guide/","title":"Google Antigravity 完全使用与排障指南：安装汉化、TUN 全局、改区与免短信扫码验证"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>Google Antigravity 完全使用与排障指南：安装汉化、TUN 全局、改区与免短信扫码验证 | 以技术之名</title>
+  <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-170943611-2"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-170943611-2');
+</script>
+  <script src="/js/third-party/analytics/baidu-analytics.js"></script>
+  <script async src="https://hm.baidu.com/hm.js?2fdaf8ee633a188c5649eefea79b28b3"></script>
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<!-- hexo injector head_end start --><script async defer data-website-id="fad553b1-b94d-4311-8d52-913dc067e883" src="https://tongji.iamlay.com/script.js"></script><!-- hexo injector head_end end --></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">以技术之名</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">以技术之名</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-chatgpt"><a href="/chatgpt" rel="section"><i class="fa fa-comment-dots fa-fw"></i>AI体验</a></li><li class="menu-item menu-item-sitemap"><a href="/sitemap.xml" rel="section"><i class="fa fa-sitemap fa-fw"></i>站点地图</a></li><li class="menu-item menu-item-links"><a href="/links/" rel="section"><i class="fa fa-link fa-fw"></i>友情链接</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80%E3%80%81%E8%AE%A4%E8%AF%86-Antigravity-%E4%B8%8E%E7%8E%AF%E5%A2%83%E5%87%86%E5%A4%87"><span class="nav-number">1.</span> <span class="nav-text">一、认识 Antigravity 与环境准备</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1-Antigravity-%E6%98%AF%E4%BB%80%E4%B9%88"><span class="nav-number">1.1.</span> <span class="nav-text">1.1 Antigravity 是什么</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2-%E7%B3%BB%E7%BB%9F%E8%A6%81%E6%B1%82%E4%B8%8E%E9%9A%90%E5%BD%A2%E5%89%8D%E7%BD%AE%E9%97%A8%E6%A7%9B"><span class="nav-number">1.2.</span> <span class="nav-text">1.2 系统要求与隐形前置门槛</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%8C%E3%80%81%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E3%80%81%E5%88%9D%E5%A7%8B%E5%8C%96%E4%B8%8E%E4%B8%AD%E6%96%87%E6%B1%89%E5%8C%96"><span class="nav-number">2.</span> <span class="nav-text">二、下载、安装、初始化与中文汉化</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1-%E5%AE%98%E7%BD%91%E4%B8%8B%E8%BD%BD%E4%B8%8E%E5%AE%89%E8%A3%85"><span class="nav-number">2.1.</span> <span class="nav-text">2.1 官网下载与安装</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-%E9%A6%96%E6%AC%A1%E5%90%AF%E5%8A%A8%E5%88%9D%E5%A7%8B%E5%8C%96%E5%BB%BA%E8%AE%AE"><span class="nav-number">2.2.</span> <span class="nav-text">2.2 首次启动初始化建议</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-3-%E4%B8%80%E9%94%AE%E5%88%87%E6%8D%A2%E4%B8%AD%E6%96%87%E7%95%8C%E9%9D%A2%EF%BC%88%E6%97%A0%E9%9C%80%E7%AC%AC%E4%B8%89%E6%96%B9%E6%B1%89%E5%8C%96%E5%8C%85%EF%BC%89"><span class="nav-number">2.3.</span> <span class="nav-text">2.3 一键切换中文界面（无需第三方汉化包）</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%89%E3%80%81%E7%BD%91%E7%BB%9C%E5%9F%BA%E5%BB%BA%E4%B8%8E-TUN-%E5%85%A8%E5%B1%80%E9%85%8D%E7%BD%AE"><span class="nav-number">3.</span> <span class="nav-text">三、网络基建与 TUN 全局配置</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1-%E9%BB%84%E9%87%91%E5%8E%9F%E5%88%99%EF%BC%9A%E4%B8%89%E6%96%B9%E5%AF%B9%E9%BD%90-%E5%85%A8%E7%A8%8B-TUN"><span class="nav-number">3.1.</span> <span class="nav-text">3.1 黄金原则：三方对齐 + 全程 TUN</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-2-%E4%B8%BA%E4%BB%80%E4%B9%88%E5%BF%85%E9%A1%BB%E5%BC%80%E5%90%AF-TUN-%E6%A8%A1%E5%BC%8F"><span class="nav-number">3.2.</span> <span class="nav-text">3.2 为什么必须开启 TUN 模式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-3-TUN-%E5%85%A8%E5%B1%80%E9%85%8D%E7%BD%AE%E4%B8%8E%E7%A1%AC%E9%AA%8C%E8%AF%81"><span class="nav-number">3.3.</span> <span class="nav-text">3.3 TUN 全局配置与硬验证</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-4-%E5%A6%82%E4%BD%95%E6%8C%91%E9%80%89%E5%B9%B2%E5%87%80%E7%A8%B3%E5%AE%9A%E7%9A%84%E7%BA%BF%E8%B7%AF"><span class="nav-number">3.4.</span> <span class="nav-text">3.4 如何挑选干净稳定的线路</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9B%9B%E3%80%81%E8%B4%A6%E5%8F%B7%E8%B5%84%E6%A0%BC%EF%BC%88not-eligible%EF%BC%89%E4%B8%8E%E5%9C%B0%E5%8C%BA%E9%99%90%E5%88%B6%E8%A7%A3%E9%99%A4"><span class="nav-number">4.</span> <span class="nav-text">四、账号资格（not eligible）与地区限制解除</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#4-1-10-%E7%A7%92%E5%8C%BA%E5%88%86%E4%B8%A4%E7%B1%BB%E6%8B%A6%E6%88%AA"><span class="nav-number">4.1.</span> <span class="nav-text">4.1 10 秒区分两类拦截</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-2-%E8%A7%A3%E5%86%B3%E8%B4%A6%E5%8F%B7%E8%B5%84%E6%A0%BC%E4%B8%8D%E7%AC%A6%EF%BC%88not-eligible%EF%BC%89"><span class="nav-number">4.2.</span> <span class="nav-text">4.2 解决账号资格不符（not eligible）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-3-%E8%A7%A3%E5%86%B3%E5%9C%B0%E5%8C%BA%E9%99%90%E5%88%B6%EF%BC%88%E4%BF%AE%E6%94%B9-Google-%E8%B4%A6%E5%8F%B7%E5%BD%92%E5%B1%9E%E5%9C%B0%EF%BC%89"><span class="nav-number">4.3.</span> <span class="nav-text">4.3 解决地区限制（修改 Google 账号归属地）</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%94%E3%80%81%E6%89%AB%E7%A0%81%E9%A3%8E%E6%8E%A7%E9%AA%8C%E8%AF%81%EF%BC%88%E8%AE%BE%E5%A4%87%E4%BA%8C%E6%AC%A1%E9%AA%8C%E8%AF%81%EF%BC%89%E5%85%A8%E6%94%BB%E7%95%A5"><span class="nav-number">5.</span> <span class="nav-text">五、扫码风控验证（设备二次验证）全攻略</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#5-1-%E5%8A%A8%E6%89%8B%E5%89%8D-3-%E9%A1%B9%E8%87%AA%E6%A3%80%E4%B8%8E%E6%9C%80%E5%85%B3%E9%94%AE%E5%89%8D%E7%BD%AE%E6%9D%A1%E4%BB%B6"><span class="nav-number">5.1.</span> <span class="nav-text">5.1 动手前 3 项自检与最关键前置条件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-2-%E9%A6%96%E9%80%89%E5%85%8D%E7%9F%AD%E4%BF%A1%E6%96%B9%E6%A1%88%EF%BC%88%E6%8C%89%E8%AE%BE%E5%A4%87%E5%88%86%E6%B5%81%EF%BC%89"><span class="nav-number">5.2.</span> <span class="nav-text">5.2 首选免短信方案（按设备分流）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%96%B9%E6%A1%88-A%EF%BC%9AiPhone-%E7%94%A8%E6%88%B7%EF%BC%88%E9%A6%96%E9%80%89%EF%BC%8C%E5%85%8D%E5%8F%91%E7%9F%AD%E4%BF%A1%EF%BC%89"><span class="nav-number">5.2.1.</span> <span class="nav-text">方案 A：iPhone 用户（首选，免发短信）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%96%B9%E6%A1%88-B%EF%BC%9AAndroid-%E6%89%8B%E6%9C%BA"><span class="nav-number">5.2.2.</span> <span class="nav-text">方案 B：Android 手机</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%96%B9%E6%A1%88-C%EF%BC%9A%E5%8D%8E%E4%B8%BA%E7%AD%89%E6%97%A0%E5%8E%9F%E7%94%9F%E6%A1%86%E6%9E%B6%E8%AE%BE%E5%A4%87"><span class="nav-number">5.2.3.</span> <span class="nav-text">方案 C：华为等无原生框架设备</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-3-%E5%85%B6%E4%BB%96%E5%A4%87%E9%80%89%E6%96%B9%E6%A1%88"><span class="nav-number">5.3.</span> <span class="nav-text">5.3 其他备选方案</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-4-%E6%89%AB%E4%B8%8D%E4%BA%86%E7%A0%81-x2F-%E5%8F%91%E4%B8%8D%E5%87%BA%E7%9F%AD%E4%BF%A1%E5%BF%AB%E6%8E%92"><span class="nav-number">5.4.</span> <span class="nav-text">5.4 扫不了码 &#x2F; 发不出短信快排</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-5-%E9%AA%8C%E8%AF%81%E9%80%9A%E8%BF%87%E5%90%8E%E7%9A%84%E6%AD%A3%E7%A1%AE%E7%99%BB%E5%BD%95%E9%A1%BA%E5%BA%8F%EF%BC%88%E9%98%B2%E6%AD%BB%E5%BE%AA%E7%8E%AF%EF%BC%89"><span class="nav-number">5.5.</span> <span class="nav-text">5.5 验证通过后的正确登录顺序（防死循环）</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%AD%E3%80%81%E5%85%8D%E8%B4%B9%E9%85%8D%E9%A2%9D%E6%9C%BA%E5%88%B6%E4%B8%8E-429-%E9%99%90%E6%B5%81%E5%BA%94%E5%AF%B9"><span class="nav-number">6.</span> <span class="nav-text">六、免费配额机制与 429 限流应对</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#6-1-%E9%85%8D%E9%A2%9D%E6%80%8E%E4%B9%88%E7%AE%97-amp-%E5%90%84%E5%B1%82%E7%BA%A7%E5%88%B7%E6%96%B0%E8%8A%82%E5%A5%8F"><span class="nav-number">6.1.</span> <span class="nav-text">6.1 配额怎么算 &amp; 各层级刷新节奏</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-2-%E7%9C%8B%E6%87%82-429-RESOURCE-EXHAUSTED"><span class="nav-number">6.2.</span> <span class="nav-text">6.2 看懂 429 RESOURCE_EXHAUSTED</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-3-5-%E4%B8%AA%E5%AE%9E%E7%94%A8%E8%A7%A3%E6%B3%95%E4%B8%8E%E7%9C%81%E9%A2%9D%E5%BA%A6%E5%BF%83%E6%B3%95"><span class="nav-number">6.3.</span> <span class="nav-text">6.3 5 个实用解法与省额度心法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%83%E3%80%81%E5%85%A8%E5%9C%BA%E6%99%AF%E5%B8%B8%E8%A7%81%E6%8A%A5%E9%94%99%E6%80%BB%E9%80%9F%E6%9F%A5%E8%A1%A8"><span class="nav-number">7.</span> <span class="nav-text">七、全场景常见报错总速查表</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#7-1-%E5%AE%89%E8%A3%85%E4%B8%8E%E7%99%BB%E5%BD%95%E9%AA%8C%E8%AF%81%E7%B1%BB"><span class="nav-number">7.1.</span> <span class="nav-text">7.1 安装与登录验证类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-2-%E7%BD%91%E7%BB%9C%E4%B8%8E%E9%85%8D%E9%A2%9D%E4%BD%BF%E7%94%A8%E7%B1%BB"><span class="nav-number">7.2.</span> <span class="nav-text">7.2 网络与配额使用类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-3-%E6%8E%92%E9%9A%9C%E4%B8%89%E6%AD%A5%E9%BB%84%E9%87%91%E9%A1%BA%E5%BA%8F"><span class="nav-number">7.3.</span> <span class="nav-text">7.3 排障三步黄金顺序</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Ray</p>
+  <div class="site-description" itemprop="description">为信仰而生</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">58</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">15</span>
+        <span class="site-state-item-name">分类</span>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">39</span>
+        <span class="site-state-item-name">标签</span>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="/" title="GitHub → ">GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <span class="exturl" data-url="bWFpbHRvOmlhbWxheXNoYXJlQGdtYWlsLmNvbQ==" title="E-Mail → mailto:iamlayshare@gmail.com"><i class="fa fa-envelope fa-fw"></i>E-Mail</span>
+      </span>
+  </div>
+
+
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://www.iamlay.com/post/antigravity-complete-guide/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Ray">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="以技术之名">
+      <meta itemprop="description" content="为信仰而生">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="Google Antigravity 完全使用与排障指南：安装汉化、TUN 全局、改区与免短信扫码验证 | 以技术之名">
+      <meta itemprop="description" content="涵盖 Google Antigravity 下载安装、中文汉化、TUN 全局网络搭建、not eligible 资格与地区限制解除、多设备免短信扫码验证、配额机制与 429 应对及全场景报错速查的一站式实战教程。">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Google Antigravity 完全使用与排障指南：安装汉化、TUN 全局、改区与免短信扫码验证
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2026-11-21 17:10:00 / 修改时间：19:54:19" itemprop="dateCreated datePublished" datetime="2026-11-21T17:10:00+08:00">2026-11-21</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index"><span itemprop="name">技术</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+</div>
+
+	
+            <div class="post-description">涵盖 Google Antigravity 下载安装、中文汉化、TUN 全局网络搭建、not eligible 资格与地区限制解除、多设备免短信扫码验证、配额机制与 429 应对及全场景报错速查的一站式实战教程。</div>
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <p>一份覆盖 <strong>产品认知 → 下载安装与汉化 → TUN 全局网络 → 资格与地区解锁 → 免短信扫码风控验证 → 配额与 429 应对 → 全场景报错速查</strong> 的 Google Antigravity 一站式实战手册。</p>
+<blockquote>
+<p><strong>离线阅读 &#x2F; 收藏版</strong>：本文已同步制作带完整配图的排版精印 PDF（共 6 页），可直接点击下载：<a href="/downloads/antigravity-complete-guide-2026-11-21.pdf">Google Antigravity 完全使用与排障指南（PDF）</a>。</p>
+</blockquote>
+<span id="more"></span>
+
+<p><img src="/images/antigravity-complete-guide/fig12_banner.png" alt="Google Antigravity"></p>
+<h2 id="一、认识-Antigravity-与环境准备"><a href="#一、认识-Antigravity-与环境准备" class="headerlink" title="一、认识 Antigravity 与环境准备"></a>一、认识 Antigravity 与环境准备</h2><h3 id="1-1-Antigravity-是什么"><a href="#1-1-Antigravity-是什么" class="headerlink" title="1.1 Antigravity 是什么"></a>1.1 Antigravity 是什么</h3><p><strong>Google Antigravity</strong> 是一款基于 VS Code 分支深度构建的「智能体优先（Agent-first）」独立编程 IDE，而非普通编辑器插件：</p>
+<ul>
+<li><strong>双视图架构</strong>：<ul>
+<li><strong>Editor（编辑器视图）</strong>：保留 VS Code 习惯的编辑器体验，侧边集成 Agent 助手。</li>
+<li><strong>Manager（Agent Manager 视图）</strong>：支持同时编排多个智能体并行规划、编写代码、运行终端命令并验证结果。</li>
+</ul>
+</li>
+<li><strong>多模型与内置浏览器</strong>：除核心 Gemini 模型外，环境内支持按需切换多种主流模型；内置浏览器自动化能力，可直接驱动端到端网页测试。</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>对比维度</th>
+<th>Google Antigravity</th>
+<th>Cursor</th>
+<th>VS Code + Copilot</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>软件形态</td>
+<td>独立 IDE（VS Code 分支）</td>
+<td>独立 IDE（VS Code 分支）</td>
+<td>编辑器插件</td>
+</tr>
+<tr>
+<td>核心模式</td>
+<td>智能体优先（Agent-first）</td>
+<td>编辑器 + AI 助手</td>
+<td>编辑器 + AI 补全</td>
+</tr>
+<tr>
+<td>多代理并行</td>
+<td>支持（Agent Manager）</td>
+<td>部分支持</td>
+<td>不支持</td>
+</tr>
+<tr>
+<td>浏览器自动化</td>
+<td>内置支持</td>
+<td>有限支持</td>
+<td>不支持</td>
+</tr>
+<tr>
+<td>免费体验</td>
+<td>预览期提供免费周额度</td>
+<td>免费 + 订阅</td>
+<td>免费 + 订阅</td>
+</tr>
+</tbody></table>
+<h3 id="1-2-系统要求与隐形前置门槛"><a href="#1-2-系统要求与隐形前置门槛" class="headerlink" title="1.2 系统要求与隐形前置门槛"></a>1.2 系统要求与隐形前置门槛</h3><table>
+<thead>
+<tr>
+<th>平台</th>
+<th>最低要求</th>
+<th>关键注意事项</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Windows</strong></td>
+<td>Windows 10 &#x2F; 11（仅 64 位 x64 &#x2F; ARM64）</td>
+<td>沙箱与终端执行依赖 <strong>WSL2</strong>，建议提前启用</td>
+</tr>
+<tr>
+<td><strong>macOS</strong></td>
+<td>macOS 12（Monterey）及以上</td>
+<td>区分 <strong>Apple Silicon</strong> 与 <strong>Intel</strong> 安装包</td>
+</tr>
+<tr>
+<td><strong>Linux</strong></td>
+<td>glibc 2.28+ &#x2F; glibcxx 3.4.25+</td>
+<td>覆盖 Ubuntu 20.04+、Debian 10+、Fedora 36+、RHEL 8+</td>
+</tr>
+<tr>
+<td><strong>通用必备</strong></td>
+<td><strong>Google Chrome</strong> + <strong>个人 Gmail 账号</strong></td>
+<td>浏览器测试依赖 Chrome；优先使用个人老号（Workspace 企业&#x2F;学校号默认无资格）</td>
+</tr>
+</tbody></table>
+<hr>
+<h2 id="二、下载、安装、初始化与中文汉化"><a href="#二、下载、安装、初始化与中文汉化" class="headerlink" title="二、下载、安装、初始化与中文汉化"></a>二、下载、安装、初始化与中文汉化</h2><h3 id="2-1-官网下载与安装"><a href="#2-1-官网下载与安装" class="headerlink" title="2.1 官网下载与安装"></a>2.1 官网下载与安装</h3><ol>
+<li>认准唯一官方下载入口：<span class="exturl" data-url="aHR0cHM6Ly9hbnRpZ3Jhdml0eS5nb29nbGUvZG93bmxvYWQ=">antigravity.google&#x2F;download<i class="fa fa-external-link-alt"></i></span>（国内访问前需先开启支持地区的全局代理，切勿从第三方加速站下载）。</li>
+<li>按系统架构下载对应安装包（Windows <code>.exe</code>、macOS <code>.dmg</code>、Linux <code>.deb</code> &#x2F; <code>.rpm</code> &#x2F; tarball）。</li>
+<li><strong>系统拦截处理（属正常现象）</strong>：<ul>
+<li><strong>Windows</strong>：SmartScreen 弹窗时确认发布者为 <code>Google LLC</code>，点击「仍要运行」；默认安装至 <code>C:\Program Files\Google\Antigravity</code>。</li>
+<li><strong>macOS</strong>：拖入「应用程序」后若提示「无法验证开发者」，前往「系统设置 → 隐私与安全性」点击「仍要打开」；首次启动时放行文件、网络与<strong>终端访问权限</strong>。</li>
+<li><strong>Linux</strong>：安装后若出现 zsh 补全文件权限警告，执行以下命令修复：<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo <span class="built_in">chown</span> -R root:root /usr/share/zsh/vendor-completions/_antigravity</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+</ol>
+<h3 id="2-2-首次启动初始化建议"><a href="#2-2-首次启动初始化建议" class="headerlink" title="2.2 首次启动初始化建议"></a>2.2 首次启动初始化建议</h3><ul>
+<li><strong>导入现有配置</strong>：支持从 VS Code 或 Cursor 一键导入主题、快捷键与扩展，老用户推荐直接导入。</li>
+<li><strong>Agent 模式</strong>：提供 <code>Agent Driven</code>（代理主导）与 <code>Agent Assistant</code>（代理辅助），新手建议先选 <strong>辅助模式</strong>。</li>
+<li><strong>终端执行策略</strong>：建议初期设为 <strong>需手动确认</strong>，避免智能体未经确认直接运行高风险命令。</li>
+</ul>
+<h3 id="2-3-一键切换中文界面（无需第三方汉化包）"><a href="#2-3-一键切换中文界面（无需第三方汉化包）" class="headerlink" title="2.3 一键切换中文界面（无需第三方汉化包）"></a>2.3 一键切换中文界面（无需第三方汉化包）</h3><p>Antigravity 沿用 VS Code 语言包机制，内置切换即可：</p>
+<ol>
+<li>按 <code>Ctrl+Shift+P</code>（macOS 为 <code>Cmd+Shift+P</code>）打开命令面板。</li>
+<li>输入并回车选择 **<code>Configure Display Language</code>**。</li>
+<li>选择 <strong><code>中文(简体)</code>（<code>zh-cn</code>）</strong>，系统会自动下载语言包并提示重启。</li>
+<li>若列表中没有简体中文，可在扩展面板（<code>Ctrl+Shift+X</code>）搜索安装微软官方 <strong>MS-CEINTL 中文语言包</strong>，完成后彻底退出（含后台进程）再重启。</li>
+</ol>
+<blockquote>
+<p><strong>提示</strong>：界面语言与 AI 回复语言相互独立。<code>Configure Display Language</code> 仅切换菜单界面；如需让 AI 默认使用中文回复，请额外前往 <code>Settings → AI Assistant → Default Response Language</code> 设置为中文。</p>
+</blockquote>
+<hr>
+<h2 id="三、网络基建与-TUN-全局配置"><a href="#三、网络基建与-TUN-全局配置" class="headerlink" title="三、网络基建与 TUN 全局配置"></a>三、网络基建与 TUN 全局配置</h2><p>Antigravity 本地客户端只是交互入口，推理与鉴权全部依赖远端云服务。绝大多数“登录转圈、装包报错、用一会儿断线、反复弹码”都源于网络配置不当。</p>
+<h3 id="3-1-黄金原则：三方对齐-全程-TUN"><a href="#3-1-黄金原则：三方对齐-全程-TUN" class="headerlink" title="3.1 黄金原则：三方对齐 + 全程 TUN"></a>3.1 黄金原则：三方对齐 + 全程 TUN</h3><blockquote>
+<p><strong>核心要求</strong>：稳定使用必须同时满足 <strong>账号归属地区、节点出口地区、日常使用环境三方对齐</strong>（统一锚定同一支持地区，如美国），并且 <strong>全程开启 TUN 全局模式</strong>，中途不要频繁切区或关闭代理。</p>
+</blockquote>
+<h3 id="3-2-为什么必须开启-TUN-模式"><a href="#3-2-为什么必须开启-TUN-模式" class="headerlink" title="3.2 为什么必须开启 TUN 模式"></a>3.2 为什么必须开启 TUN 模式</h3><table>
+<thead>
+<tr>
+<th>维度</th>
+<th>普通系统代理（System Proxy &#x2F; PAC）</th>
+<th>TUN 模式（虚拟网卡）</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>工作层级</td>
+<td>应用层（仅改写系统代理设置）</td>
+<td>网络层（虚拟网卡接管整机路由）</td>
+</tr>
+<tr>
+<td>生效范围</td>
+<td>仅主动读取系统代理的应用（如浏览器）</td>
+<td>整机全部出站流量，无视应用自身配置</td>
+</tr>
+<tr>
+<td>IDE &#x2F; CLI &#x2F; 长连接</td>
+<td>极易绕过（终端、包管理、后台鉴权常直连）</td>
+<td>全部接管，彻底杜绝漏流</td>
+</tr>
+<tr>
+<td>权限要求</td>
+<td>低</td>
+<td>需安装虚拟网卡驱动 &#x2F; 系统服务（管理员权限）</td>
+</tr>
+</tbody></table>
+<h3 id="3-3-TUN-全局配置与硬验证"><a href="#3-3-TUN-全局配置与硬验证" class="headerlink" title="3.3 TUN 全局配置与硬验证"></a>3.3 TUN 全局配置与硬验证</h3><ol>
+<li><strong>先测通节点</strong>：在代理客户端（Clash Verge Rev &#x2F; Mihomo Party &#x2F; sing-box 等）中先确认选中节点可正常连通，<strong>再开启 TUN</strong>（避免直接断网）。</li>
+<li><strong>开启 TUN 与全局模式</strong>：在设置页开启 <code>TUN Mode / 虚拟网卡</code>（首次会提示安装 Service Mode 驱动或 macOS Network Extension，允许即可），将路由模式设为 <strong>全局（Global）</strong>。</li>
+<li><strong>防火墙放行</strong>：Windows 弹出防火墙提示时，同时勾选「专用网络」与「公用网络」并允许访问。Linux 如遇 nftables 反向路径过滤丢包，需将 TUN 接口设为可信。</li>
+<li><strong>命令行硬验证</strong>：不要只看开关亮没亮，在终端运行：<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl -I https://www.google.com</span><br></pre></td></tr></table></figure>
+能迅速返回 HTTP 响应头即说明底层流量已真正接管。随后访问 <span class="exturl" data-url="aHR0cHM6Ly93d3cuaXBhZGRyZXNzLm15Lz9sYW5nPXpoX0NO">ipaddress.my<i class="fa fa-external-link-alt"></i></span>，确认显示为 <strong>United States</strong>（或其他官方支持地区，见 <span class="exturl" data-url="aHR0cHM6Ly9hbnRpZ3Jhdml0eS5nb29nbGUvZG9jcy9mYXE=">官方 FAQ<i class="fa fa-external-link-alt"></i></span>），而非中国大陆或香港。</li>
+</ol>
+<blockquote>
+<p><strong>注意</strong>：Linux 装包时遇到 GPG 签名校验失败，通常是因为装包瞬间代理未接管流量。务必在 <strong>TUN 全程开启</strong> 状态下执行安装命令。</p>
+</blockquote>
+<h3 id="3-4-如何挑选干净稳定的线路"><a href="#3-4-如何挑选干净稳定的线路" class="headerlink" title="3.4 如何挑选干净稳定的线路"></a>3.4 如何挑选干净稳定的线路</h3><ul>
+<li><strong>落地地区</strong>：优先 <strong>美国</strong>（对接最顺畅）、<strong>新加坡</strong> 或 <strong>台湾</strong>（低延迟）；选定后<strong>长期固定，切忌跨区乱跳</strong>。</li>
+<li><strong>IP 质量</strong>：住宅 &#x2F; ISP 级 IP 风控信任度显著高于共享机房 IP（云机房同段 IP 易被批量标记）。</li>
+<li><strong>线路稳定</strong>：拒绝多重跳转的链式代理；通过 <code>ping</code>、<code>mtr</code> 与晚高峰（20:00–23:00）实测丢包与抖动，并用 IP 风险查询工具核验欺诈分。</li>
+</ul>
+<hr>
+<h2 id="四、账号资格（not-eligible）与地区限制解除"><a href="#四、账号资格（not-eligible）与地区限制解除" class="headerlink" title="四、账号资格（not eligible）与地区限制解除"></a>四、账号资格（not eligible）与地区限制解除</h2><h3 id="4-1-10-秒区分两类拦截"><a href="#4-1-10-秒区分两类拦截" class="headerlink" title="4.1 10 秒区分两类拦截"></a>4.1 10 秒区分两类拦截</h3><table>
+<thead>
+<tr>
+<th>拦截类型</th>
+<th>典型报错关键词</th>
+<th>核心本质</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>账号资格不符</strong></td>
+<td><code>not eligible</code> + <code>Try signing in with another personal Google account</code></td>
+<td>账号类型、年龄或分批放量校验未通过</td>
+</tr>
+<tr>
+<td><strong>地区不支持</strong></td>
+<td><code>not available in your location / region</code></td>
+<td>Google 账号的 <strong>服务条款归属地区</strong> 不在支持名单</td>
+</tr>
+</tbody></table>
+<h3 id="4-2-解决账号资格不符（not-eligible）"><a href="#4-2-解决账号资格不符（not-eligible）" class="headerlink" title="4.2 解决账号资格不符（not eligible）"></a>4.2 解决账号资格不符（not eligible）</h3><table>
+<thead>
+<tr>
+<th>常见成因</th>
+<th>对应处理方法</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>工作 &#x2F; 学校账号（Workspace）</strong></td>
+<td>更换为个人 Gmail；或请组织 IT 管理员在 Admin Console 开启 Google Labs &#x2F; 生成式 AI 权限</td>
+</tr>
+<tr>
+<td><strong>新注册小号 &#x2F; 放量未轮到</strong></td>
+<td>优先切换至 <strong>注册时间较长（如 2020 年前）的个人老号</strong>，手里有多个老号可逐个测试</td>
+</tr>
+<tr>
+<td><strong>生日未满 18 岁</strong></td>
+<td>前往 Google 账号「个人信息 → 生日」核对并修正为真实且满 18 岁的日期（切勿伪造）</td>
+</tr>
+<tr>
+<td><strong>Family Link 托管账号</strong></td>
+<td>更换为非托管成年人个人账号</td>
+</tr>
+<tr>
+<td><strong>本地缓存受限 token &#x2F; 同步延迟</strong></td>
+<td>清理客户端登录状态或等待 <strong>24–48 小时</strong> 全球同步后再试</td>
+</tr>
+</tbody></table>
+<h3 id="4-3-解决地区限制（修改-Google-账号归属地）"><a href="#4-3-解决地区限制（修改-Google-账号归属地）" class="headerlink" title="4.3 解决地区限制（修改 Google 账号归属地）"></a>4.3 解决地区限制（修改 Google 账号归属地）</h3><p>决定地区资格的不是当前瞬时 IP，而是 Google 账号的 <strong>服务条款归属国家（Terms of Service Region）</strong>。</p>
+<ol>
+<li><strong>查看当前归属地</strong>：访问 <span class="exturl" data-url="aHR0cHM6Ly9wb2xpY2llcy5nb29nbGUuY29tL3Rlcm1z">policies.google.com&#x2F;terms<i class="fa fa-external-link-alt"></i></span> 查看页面显示的国家版本（Country version）。</li>
+<li><strong>提交改区申请</strong>：先保持目标地区（如美国）稳定全局 + TUN 节点，访问 <span class="exturl" data-url="aHR0cHM6Ly9wb2xpY2llcy5nb29nbGUuY29tL2NvdW50cnktYXNzb2NpYXRpb24tZm9ybQ==">policies.google.com&#x2F;country-association-form<i class="fa fa-external-link-alt"></i></span>：<ul>
+<li>变更原因选择 <strong>Other reason</strong>（不要在理由中提及 VPN）。</li>
+<li>填写以下英文说明（可将 <code>California</code> 替换为其他美国州名）：<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">I am currently working on a project that requires access to US-exclusive developer tools and early access programs. To proceed with my work, I need to update my account region. Please assist me in changing my location to California.</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li><strong>等待审核邮件</strong>：快则 <strong>30 分钟至数小时</strong>，慢则数天至数周会收到标题类似 <code>Update regarding your Google Account region</code> 的邮件。<strong>务必检查垃圾邮件箱。</strong></li>
+<li><strong>申请被拒对策</strong>：若收到“证据不足”被拒，通常是因为常用登录地与申请国家不一致。需先在目标地区干净节点下稳定使用一段时间，确保<strong>账号地区、登录 IP、代理出口三方对齐</strong>后再申诉。</li>
+</ol>
+<blockquote>
+<p><strong>重要提醒</strong>：若 Antigravity 已在某台设备上正常可用，<strong>切勿轻易登出</strong>，以免触发重新校验导致所有设备一起受限。改区申请一年通常仅限一次，且存在平台条款风险，请谨慎操作。</p>
+</blockquote>
+<hr>
+<h2 id="五、扫码风控验证（设备二次验证）全攻略"><a href="#五、扫码风控验证（设备二次验证）全攻略" class="headerlink" title="五、扫码风控验证（设备二次验证）全攻略"></a>五、扫码风控验证（设备二次验证）全攻略</h2><p>当登录环境被判可疑（如 IP 频繁跳区、机房脏 IP、新号高频切换）时，客户端会弹出 <code>Verification required</code>，跳转网页后要求用手机扫码并向 <code>244444</code> 或 <code>96831</code> 等国际短号发短信。国内手机号直接发送常失败，或加 <code>+1</code> 发送后页面无响应。</p>
+<p><img src="/images/antigravity-complete-guide/fig7_verification_required.png" alt="Antigravity 客户端弹出风控验证提示"></p>
+<p><img src="/images/antigravity-complete-guide/fig1_qr_prompt.png" alt="Google 身份验证页弹出二维码"></p>
+<p><img src="/images/antigravity-complete-guide/fig3_sms_send.png" alt="普通扫码常跳转至国际短信验证页面"></p>
+<p><img src="/images/antigravity-complete-guide/fig4_sms_fail.png" alt="国内号码向 244444 等短号发短信通常会发送失败"></p>
+<h3 id="5-1-动手前-3-项自检与最关键前置条件"><a href="#5-1-动手前-3-项自检与最关键前置条件" class="headerlink" title="5.1 动手前 3 项自检与最关键前置条件"></a>5.1 动手前 3 项自检与最关键前置条件</h3><ol>
+<li><strong>确认卡点</strong>：是没摄像头扫不了码，还是扫码后跳国际短信发不出去，还是反复弹码（反复弹码请先按第三章修网络）。</li>
+<li><strong>检查设备框架（GMS）</strong>：手机能否正常打开 Google Play 商店并登录账号。</li>
+<li><strong>双端同节点（最关键）</strong>：</li>
+</ol>
+<blockquote>
+<p><strong>务必遵守</strong>：验证全程，<strong>手机与电脑必须连接完全相同的代理节点（同一出口 IP）</strong>，优先美国或新加坡节点，且全程不要切换。双端 IP 不一致极易导致“手机显示已通过，电脑仍提示无法验证”。</p>
+</blockquote>
+<h3 id="5-2-首选免短信方案（按设备分流）"><a href="#5-2-首选免短信方案（按设备分流）" class="headerlink" title="5.2 首选免短信方案（按设备分流）"></a>5.2 首选免短信方案（按设备分流）</h3><p>绕过国际短信、直接在可信 App 内一键确认是目前成功率最高的解法。</p>
+<h4 id="方案-A：iPhone-用户（首选，免发短信）"><a href="#方案-A：iPhone-用户（首选，免发短信）" class="headerlink" title="方案 A：iPhone 用户（首选，免发短信）"></a>方案 A：iPhone 用户（首选，免发短信）</h4><ul>
+<li><strong>方式 1 · 自带相机 + YouTube（最简）</strong>：<ol>
+<li>在 App Store 下载最新版 <strong>YouTube</strong> 并登录受限 Google 账号。</li>
+<li>电脑端弹出二维码后，直接用 iPhone <strong>自带相机</strong>扫描，点击识别出的 YouTube 链接并在应用内点击确认即可解锁。</li>
+</ol>
+</li>
+<li><strong>方式 2 · Google App + YouTube（通用）</strong>（若自带相机仅跳转网页）：<ol>
+<li>使用外区（如美区）Apple ID 下载 <strong>Google</strong> App，并将 <strong>Google</strong> 与 <strong>YouTube</strong> 均更新至最新版。</li>
+<li>在两个 App 中<strong>同时登录</strong>受限账号。</li>
+<li>打开 <strong>Google</strong> App，点击搜索栏右侧相机图标（Google Lens）贴近二维码，待弹出链接后点击进入。</li>
+<li>自动跳转至 <strong>YouTube</strong> 询问是否为本人操作，点击确认即可完成解锁。</li>
+</ol>
+</li>
+</ul>
+<blockquote>
+<p><strong>高频避坑</strong>：请认准应用名称就是 <strong>Google</strong>（谷歌官方入口 App），<strong>切勿误装成 Google Chrome 浏览器</strong>。在 App Store 搜索“Google 浏览器”首位为 Chrome，无法唤起免短信验证。</p>
+</blockquote>
+<h4 id="方案-B：Android-手机"><a href="#方案-B：Android-手机" class="headerlink" title="方案 B：Android 手机"></a>方案 B：Android 手机</h4><ol>
+<li>优先使用 <strong>Google Pixel、三星国际版</strong> 等具备完整原生谷歌框架（GMS）的设备（国行小米&#x2F;OPPO&#x2F;vivo 需先在系统设置中开启谷歌服务或刷国际版 ROM）。</li>
+<li>先在 <strong>Google Play</strong> 与 <strong>Google</strong> App 中登录同一账号，再用 Google App 扫码（部分原生设备使用已登录的 Chrome 亦可直接通过）。</li>
+<li>若为<strong>双卡手机</strong>且验证失败，可尝试在系统设置中<strong>暂时停用一张 SIM 卡</strong>后再扫码。</li>
+</ol>
+<h4 id="方案-C：华为等无原生框架设备"><a href="#方案-C：华为等无原生框架设备" class="headerlink" title="方案 C：华为等无原生框架设备"></a>方案 C：华为等无原生框架设备</h4><ol>
+<li>在 <strong>Gbox</strong> 或 <strong>出境易</strong> 容器中同时安装 <strong>Google</strong> 与 <strong>YouTube</strong>，并登录同一受限账号。</li>
+<li>手机与电脑统一连接 <strong>新加坡节点</strong>。</li>
+<li>使用容器内的 Google App 扫码跳转 YouTube 完成确认；若仍弹出短信步骤，可在当前节点下尝试发送。</li>
+</ol>
+<h3 id="5-3-其他备选方案"><a href="#5-3-其他备选方案" class="headerlink" title="5.3 其他备选方案"></a>5.3 其他备选方案</h3><table>
+<thead>
+<tr>
+<th>备选方案</th>
+<th>操作要点</th>
+<th>适用场景与注意</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong><code>g.co/verifyaccount</code> 网页替代</strong></td>
+<td>保持电脑二维码页不关，在另一台<strong>已登录</strong>该账号的设备浏览器输入 <code>g.co/verifyaccount</code> 确认</td>
+<td>适合电脑无摄像头或扫不了码；并非每次都会弹出。仅在自己刚发起登录时使用，谨防钓鱼链接</td>
+</tr>
+<tr>
+<td><strong>Google Cloud 迂回验证</strong></td>
+<td>手机端登录 Google Cloud 控制台，有机会回退至传统 6 位数字验证码</td>
+<td>账号风控状态互通，通过后 Antigravity 同步解锁</td>
+</tr>
+<tr>
+<td><strong>实体海外 SIM 卡</strong></td>
+<td>将支持国际短号的海外实体卡插入原生谷歌机直接发短信</td>
+<td>在线接码平台与 VoIP 虚拟号已大面积失效</td>
+</tr>
+<tr>
+<td><strong>原生 GMS 云手机</strong></td>
+<td>租用带原生谷歌框架的云手机并对齐同区干净 IP 扫码</td>
+<td>有租用成本；若仍卡短信步需配合其他方案</td>
+</tr>
+</tbody></table>
+<blockquote>
+<p><strong>安全警示</strong>：切勿轻信来路不明的第三方代验证或自动过码脚本。若迫不得已由可信亲友协助完成验证，事后务必第一时间<strong>修改密码、在 Google 账号安全页踢出陌生设备与会话、核查恢复邮箱与两步验证</strong>。</p>
+</blockquote>
+<h3 id="5-4-扫不了码-x2F-发不出短信快排"><a href="#5-4-扫不了码-x2F-发不出短信快排" class="headerlink" title="5.4 扫不了码 &#x2F; 发不出短信快排"></a>5.4 扫不了码 &#x2F; 发不出短信快排</h3><ul>
+<li><strong>扫不了码</strong>：确保安卓版本在 **Android 9+**、调高屏幕亮度、擦拭镜头、正对屏幕保持约 <strong>30cm</strong> 距离对焦。</li>
+<li><strong>发不出短信</strong>：确认手机已插可用 SIM 卡、暂时关闭骚扰拦截&#x2F;安全软件、更新 Google Play 服务；国内三大运营商普遍静默拦截 <code>244xxx</code> 短号，遇到此类拦截应直接改用 5.2 节免短信方案。</li>
+</ul>
+<h3 id="5-5-验证通过后的正确登录顺序（防死循环）"><a href="#5-5-验证通过后的正确登录顺序（防死循环）" class="headerlink" title="5.5 验证通过后的正确登录顺序（防死循环）"></a>5.5 验证通过后的正确登录顺序（防死循环）</h3><p><img src="/images/antigravity-complete-guide/fig10_mobile_success.png" alt="手机端确认后显示请回到另一部设备继续操作"></p>
+<p><img src="/images/antigravity-complete-guide/fig11_unlocking.png" alt="电脑端自动刷新显示 Unlocking access"></p>
+<p>当手机显示“请回到您的另一部设备继续操作”、电脑端自动刷新显示 <code>Unlocking access</code> 后：</p>
+<ol>
+<li>先在电脑端 <strong>Antigravity 主应用（非 IDE）</strong> 中发送任意消息，确认能够正常回复。</li>
+<li>再打开并登录 <strong>Antigravity IDE</strong>，即可正常调用所有模型。</li>
+</ol>
+<hr>
+<h2 id="六、免费配额机制与-429-限流应对"><a href="#六、免费配额机制与-429-限流应对" class="headerlink" title="六、免费配额机制与 429 限流应对"></a>六、免费配额机制与 <code>429</code> 限流应对</h2><h3 id="6-1-配额怎么算-amp-各层级刷新节奏"><a href="#6-1-配额怎么算-amp-各层级刷新节奏" class="headerlink" title="6.1 配额怎么算 &amp; 各层级刷新节奏"></a>6.1 配额怎么算 &amp; 各层级刷新节奏</h3><p>Antigravity 的配额<strong>按智能体实际算力工作量计量</strong>（而非简单按提问次数），跨文件复杂重构与超长对话历史消耗极快。<strong>免费层与付费层功能完全一致，差异仅在额度总量与刷新速度：</strong></p>
+<table>
+<thead>
+<tr>
+<th>用户层级</th>
+<th>配额刷新周期</th>
+<th>额度与权益</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>免费用户</strong></td>
+<td>每周刷新（周额度池）</td>
+<td>全功能开放（含 Agent Manager、Browser、无限 Tab 补全）</td>
+</tr>
+<tr>
+<td><strong>Google AI Pro</strong></td>
+<td>每 5 小时刷新（受每周上限约束）</td>
+<td>更高额度 + 优先访问</td>
+</tr>
+<tr>
+<td><strong>Google AI Ultra</strong></td>
+<td>每 5 小时刷新（最高档）</td>
+<td>最高额度 + 优先访问</td>
+</tr>
+</tbody></table>
+<h3 id="6-2-看懂-429-RESOURCE-EXHAUSTED"><a href="#6-2-看懂-429-RESOURCE-EXHAUSTED" class="headerlink" title="6.2 看懂 429 RESOURCE_EXHAUSTED"></a>6.2 看懂 <code>429 RESOURCE_EXHAUSTED</code></h3><p><code>429</code> 代表配额触顶限流，<strong>不是封号，也不是代码故障</strong>，需区分四种情况：</p>
+<ul>
+<li><strong>分钟级（RPM &#x2F; TPM）</strong>：短时请求过密或 token 吞吐过高，等待 <strong>10–60 秒</strong> 自动恢复。</li>
+<li><strong>每日级（RPD）</strong>：当日请求额度耗尽，按<strong>太平洋时间午夜</strong>重置。</li>
+<li><strong>客户端周额度池</strong>：免费层触达每周天花板，需等周刷新、切换轻模型或升级。</li>
+<li><strong>幽灵 429（Ghost 429）</strong>：刚从免费升级为付费后的 <strong>24–48 小时内</strong>，即便用量很低也可能误报 <code>429</code>，属后端配额校准延迟。<strong>耐心等待 24–48 小时即可，切勿反复退订或重登。</strong></li>
+</ul>
+<h3 id="6-3-5-个实用解法与省额度心法"><a href="#6-3-5-个实用解法与省额度心法" class="headerlink" title="6.3 5 个实用解法与省额度心法"></a>6.3 5 个实用解法与省额度心法</h3><table>
+<thead>
+<tr>
+<th>解法</th>
+<th>核心做法</th>
+<th>适用场景</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>1. 等待刷新</strong></td>
+<td>免费等周刷新、付费等 5h、API 等太平洋午夜</td>
+<td>零成本，不急用时最省事</td>
+</tr>
+<tr>
+<td><strong>2. 切换轻模型</strong></td>
+<td>日常改字、补全、小逻辑切至 <strong>Flash-Lite</strong> 等轻量档位，复杂推理再切回重模型</td>
+<td>零成本立刻续命</td>
+</tr>
+<tr>
+<td><strong>3. 升级 Pro &#x2F; Ultra</strong></td>
+<td>使用同一 Google 账号订阅，权益自动同步（注意长会话仍可能触发 5h 冷却）</td>
+<td>高频主力开发</td>
+</tr>
+<tr>
+<td><strong>4. 高校学生优惠</strong></td>
+<td>在官方 Gemini for Students 页面核查所在地区是否仍开放 <strong>SheerID</strong> 学生认证（政策时有收紧，以官网实时为准）</td>
+<td>符合条件的在读学生</td>
+</tr>
+<tr>
+<td><strong>5. API 轮换 + 退避</strong></td>
+<td>配额按 <strong>项目</strong> 共享（同项目多 key 无效），需跨账号&#x2F;跨项目轮换 key，并配合指数退避（<code>1s → 2s → 4s → 8s</code> + 随机 jitter，优先遵循 <code>retry-after</code> 响应头）</td>
+<td>API 开发者</td>
+</tr>
+</tbody></table>
+<p><strong>省额度四条心法</strong>：日常默认用轻模型；任务阶段结束后<strong>及时开启新会话</strong>避免拖带超长历史；将大重构拆分为小步任务；错开晚高峰使用并保证网络不频繁断连重试。</p>
+<hr>
+<h2 id="七、全场景常见报错总速查表"><a href="#七、全场景常见报错总速查表" class="headerlink" title="七、全场景常见报错总速查表"></a>七、全场景常见报错总速查表</h2><h3 id="7-1-安装与登录验证类"><a href="#7-1-安装与登录验证类" class="headerlink" title="7.1 安装与登录验证类"></a>7.1 安装与登录验证类</h3><table>
+<thead>
+<tr>
+<th>现象 &#x2F; 报错</th>
+<th>常见原因</th>
+<th>快速处理</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>官网下载极慢或打不开</td>
+<td>直连受限</td>
+<td>先配置美&#x2F;台&#x2F;新干净节点并开启 TUN 全局再下载</td>
+</tr>
+<tr>
+<td>点「Sign in」无反应 &#x2F; 跳空白页</td>
+<td>节点不通或鉴权时切换了代理</td>
+<td>换干净支持地区节点，鉴权全程勿切 VPN</td>
+</tr>
+<tr>
+<td><code>not eligible</code> &#x2F; 地区不支持</td>
+<td>账号类型&#x2F;年龄&#x2F;放量不符，或账号归属地非支持区</td>
+<td>换 2020 年前个人老号、核对满 18 岁；按第四章提交改区表单</td>
+</tr>
+<tr>
+<td>卡在 <code>Setting Up Your Account</code></td>
+<td>刚改区未生效或旧鉴权令牌残留</td>
+<td>彻底退出重开，无痕窗口访问官网确认可用</td>
+</tr>
+<tr>
+<td>扫码后只在网页打开、不跳 YouTube</td>
+<td>未装 YouTube 或误装成 Chrome</td>
+<td>装最新版 <strong>Google</strong> App + <strong>YouTube</strong> 并登录同一账号</td>
+</tr>
+<tr>
+<td>跳转 YouTube 后仍要求发短信</td>
+<td>YouTube 未登录该账号或版本过旧</td>
+<td>登录目标账号并将两个 App 升级至最新版后重扫</td>
+</tr>
+<tr>
+<td>手机显示成功，电脑提示“无法验证”</td>
+<td>手机与电脑代理节点 &#x2F; IP 不一致</td>
+<td>双端切至<strong>完全相同节点</strong>，或全流程在手机端完成</td>
+</tr>
+<tr>
+<td>验证通过后 IDE 仍死循环登录</td>
+<td>主应用未激活或代理漏流</td>
+<td>先在非 IDE 主应用发消息回复正常，并复查全局 + TUN</td>
+</tr>
+<tr>
+<td>Windows 终端 &#x2F; 沙箱异常</td>
+<td>未启用 WSL2</td>
+<td>启用 WSL2 并重启系统</td>
+</tr>
+<tr>
+<td>macOS 提示“无法验证开发者”</td>
+<td>系统签名拦截</td>
+<td>系统设置 → 隐私与安全性 → 仍要打开</td>
+</tr>
+<tr>
+<td>汉化选择后界面仍是英文</td>
+<td>语言包未完成加载</td>
+<td>彻底退出应用（含后台进程）后重新打开</td>
+</tr>
+</tbody></table>
+<h3 id="7-2-网络与配额使用类"><a href="#7-2-网络与配额使用类" class="headerlink" title="7.2 网络与配额使用类"></a>7.2 网络与配额使用类</h3><table>
+<thead>
+<tr>
+<th>现象 &#x2F; 报错</th>
+<th>常见原因</th>
+<th>快速处理</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>能登录但拉不到模型 &#x2F; 频繁断连</td>
+<td>未开 TUN 全局，或节点晚高峰丢包严重</td>
+<td>开启 TUN 全局并用 <code>curl -I https://www.google.com</code> 硬验证；更换稳定干净线路</td>
+</tr>
+<tr>
+<td>Linux 装包 GPG 签名校验失败</td>
+<td>装包瞬间未走代理</td>
+<td>全程开启 TUN 模式重新执行安装命令</td>
+</tr>
+<tr>
+<td>反复弹扫码，换设备也没用</td>
+<td>IP 跨区乱跳或命中机房脏 IP</td>
+<td>更换住宅&#x2F;纯净稳定节点，长期固定单一地区</td>
+</tr>
+<tr>
+<td>请求报 <code>429</code> &#x2F; 额度已用完</td>
+<td>触及分钟级、日级或周额度上限</td>
+<td>等待刷新 &#x2F; 切换轻量模型 &#x2F; 缩短对话上下文</td>
+</tr>
+<tr>
+<td>升级付费后仍偶发 <code>429</code></td>
+<td>幽灵 429（配额校准延迟）</td>
+<td>耐心等待 24–48 小时，切勿反复退订重登</td>
+</tr>
+</tbody></table>
+<h3 id="7-3-排障三步黄金顺序"><a href="#7-3-排障三步黄金顺序" class="headerlink" title="7.3 排障三步黄金顺序"></a>7.3 排障三步黄金顺序</h3><p>遇到任何未知异常，按以下顺序逐层排除：</p>
+<ol>
+<li><strong>先查网络</strong>：确认 TUN 全局真正生效、落地固定在支持地区、无链式代理与脏 IP。</li>
+<li><strong>再查账号</strong>：确认个人老号、生日满 18 岁、服务条款归属地与出口 IP 一致。</li>
+<li><strong>最后查设备</strong>：确认原生 GMS 框架、Google + YouTube 双登录、双端同 IP 以及客户端权限（WSL2 &#x2F; macOS 辅助与终端权限）。</li>
+</ol>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="reward-container">
+  <div>如果觉得我的文章对您有用，请随意打赏。您的支持将鼓励我继续创作！</div>
+  <button>
+    赞赏
+  </button>
+  <div class="post-reward">
+      <div>
+        <img src="/images/wechatpay.png" alt="Ray 微信">
+        <span>微信</span>
+      </div>
+
+  </div>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/Google-Antigravity/" rel="tag"># Google Antigravity</a>
+              <a href="/tags/AI-%E7%BC%96%E7%A8%8B/" rel="tag"># AI 编程</a>
+              <a href="/tags/Gemini/" rel="tag"># Gemini</a>
+              <a href="/tags/TUN-%E4%BB%A3%E7%90%86/" rel="tag"># TUN 代理</a>
+              <a href="/tags/%E7%99%BB%E5%BD%95%E9%AA%8C%E8%AF%81/" rel="tag"># 登录验证</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/post/antigravity-manager-guide/" rel="prev" title="Antigravity Manager 详细介绍：账号管理、额度监控与本地 API 网关">
+                  <i class="fa fa-chevron-left"></i> Antigravity Manager 详细介绍：账号管理、额度监控与本地 API 网关
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    <div class="comments gitalk-container"></div>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2026</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Ray</span>
+</div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+  <div class="powered-by">由 <span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlv">Hexo</span> & <span class="exturl" data-url="aHR0cHM6Ly90aGVtZS1uZXh0LmpzLm9yZw==">NexT.Gemini</span> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+<script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.0/search.js" integrity="sha256-vXZMYLEqsROAXkEw93GGIvaB2ab+QW6w3+1ahD9nXXA=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.8.0/gitalk.css" integrity="sha256-AJnUHL7dBv6PGaeyPQJcgQPDjt/Hn/PvYZde1iqfp8U=" crossorigin="anonymous">
+
+<script class="next-config" data-name="gitalk" type="application/json">{"enable":true,"github_id":"iamlay","repo":"gitalk","client_id":"798848f6f91162435156","client_secret":"d9b621213c7353cfa8b2286491f877ef4507da1e","admin_user":"iamlay","distraction_free_mode":true,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token","language":"zh-CN","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.8.0/gitalk.min.js","integrity":"sha256-MVK9MGD/XJaGyIghSVrONSnoXoGh3IFxLw0zfvzpxR4="},"path_md5":"d354e7355528c753431d98fc782a1983"}</script>
+<script src="/js/third-party/comments/gitalk.js"></script>
+
+</body>
+</html>
