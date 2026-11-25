@@ -1,0 +1,41 @@
+archives/2026/11/index.html
+  s_a53ee3fbaaecf0::t_2224a3843a0800 236-254
+archives/2026/index.html
+  s_a53ee3fbaaecf0::t_8d4b1e4840cbea 236-254
+archives/index.html
+  s_a53ee3fbaaecf0::t_419e5fdc0fd55b 236-254
+baidusitemap.xml
+  s_a53ee3fbaaecf0::t_6d6601fcaae3fb 239-242
+categories/AI/index.html
+  s_a53ee3fbaaecf0::t_5cf065ca5c9373 237-255
+index.html
+  s_a53ee3fbaaecf0::t_ba7dfae0ad2c85 324-398
+post/turkey-gemini-ultra-ios-subscription/index.html
+  s_a53ee3fbaaecf0::t_af768e6588b777 1-492
+sitemap.xml
+  s_a53ee3fbaaecf0::t_6d528822856fea 996-1003
+tags/Apple-ID/index.html
+  s_a53ee3fbaaecf0::t_4cfcbf55fae706 237-255
+tags/Gemini/index.html
+  s_a53ee3fbaaecf0::t_e27dc6e001d8dd 237-255
+tags/Google-One/index.html
+  s_a53ee3fbaaecf0::t_68408eaea04556 1-325
+tags/土耳其区/index.html
+  s_a53ee3fbaaecf0::t_a9d781b24dd99c 1-325
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "ec141c8d588020a3c58ae13ec915c68262a2c3fe",
+  "prompts": {},
+  "sessions": {
+    "s_a53ee3fbaaecf0": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "01a21053-06a3-7013-bd6e-f71b84892ca9",
+        "model": "unknown"
+      },
+      "human_author": "Ray <1187074543@qq.com>"
+    }
+  }
+}
