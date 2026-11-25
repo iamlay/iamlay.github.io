@@ -1,0 +1,19 @@
+post/turkey-gemini-ultra-ios-subscription/index.html
+  s_a53ee3fbaaecf0::t_0b48f3b449a577 47,276,319,344
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "da53696cbcf04ccb724cf3ffc297bbc988a6a588",
+  "prompts": {},
+  "sessions": {
+    "s_a53ee3fbaaecf0": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "01a21053-06a3-7013-bd6e-f71b84892ca9",
+        "model": "unknown"
+      },
+      "human_author": "Ray <1187074543@qq.com>"
+    }
+  }
+}
