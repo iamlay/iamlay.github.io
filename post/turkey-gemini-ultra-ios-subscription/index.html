@@ -25,18 +25,18 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"www.iamlay.com","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.13.1","exturl":true,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"gitalk","storage":true,"lazyload":false,"nav":{"gitalk":{"ordcer":-1}},"activeClass":"gitalk"},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
 
-    <meta name="description" content="根据 LINUX DO 的土区 Gemini 20x 讨论，梳理 iOS 内购路线、Google 支付页面跳转问题，以及价格和账号风险。">
+    <meta name="description" content="结合 LINUX DO《土区 Gemini20x 回归》实操经验，完整整理土区 iOS 内购 Google AI Ultra 的 Shadowrocket 配置步骤、重写规则、礼品卡支付风控与跳网页支付排查方案。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="土区 Gemini Ultra 20x 怎么订阅？Google One 内购路线与常见问题">
+<meta property="og:title" content="土区 Gemini Ultra 20x 订阅教程与避坑指南：Shadowrocket 配置、风控排查与常见问题">
 <meta property="og:url" content="https://www.iamlay.com/post/turkey-gemini-ultra-ios-subscription/index.html">
 <meta property="og:site_name" content="以技术之名">
-<meta property="og:description" content="根据 LINUX DO 的土区 Gemini 20x 讨论，梳理 iOS 内购路线、Google 支付页面跳转问题，以及价格和账号风险。">
+<meta property="og:description" content="结合 LINUX DO《土区 Gemini20x 回归》实操经验，完整整理土区 iOS 内购 Google AI Ultra 的 Shadowrocket 配置步骤、重写规则、礼品卡支付风控与跳网页支付排查方案。">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://www.iamlay.com/post/turkey-gemini-ultra-ios-subscription/original-01-config.jpeg">
-<meta property="og:image" content="https://www.iamlay.com/post/turkey-gemini-ultra-ios-subscription/original-02-rewrite-list.jpeg">
 <meta property="og:image" content="https://www.iamlay.com/post/turkey-gemini-ultra-ios-subscription/original-03-https-decrypt.jpeg">
-<meta property="og:image" content="https://www.iamlay.com/post/turkey-gemini-ultra-ios-subscription/original-04-rewrite-30tb.png">
 <meta property="og:image" content="https://www.iamlay.com/post/turkey-gemini-ultra-ios-subscription/original-05-decrypt-domain.jpeg">
+<meta property="og:image" content="https://www.iamlay.com/post/turkey-gemini-ultra-ios-subscription/original-02-rewrite-list.jpeg">
+<meta property="og:image" content="https://www.iamlay.com/post/turkey-gemini-ultra-ios-subscription/original-04-rewrite-30tb.png">
 <meta property="og:image" content="https://www.iamlay.com/post/turkey-gemini-ultra-ios-subscription/original-06-rewrite-20tb.png">
 <meta property="og:image" content="https://www.iamlay.com/post/turkey-gemini-ultra-ios-subscription/reply-695-01.jpeg">
 <meta property="og:image" content="https://www.iamlay.com/post/turkey-gemini-ultra-ios-subscription/reply-695-02.jpeg">
@@ -44,7 +44,7 @@
 <meta property="og:image" content="https://www.iamlay.com/post/turkey-gemini-ultra-ios-subscription/reply-695-04.jpeg">
 <meta property="og:image" content="https://www.iamlay.com/post/turkey-gemini-ultra-ios-subscription/reply-695-05.jpeg">
 <meta property="article:published_time" content="2026-11-25T04:00:00.000Z">
-<meta property="article:modified_time" content="2026-11-25T01:44:07.570Z">
+<meta property="article:modified_time" content="2026-11-25T02:15:19.944Z">
 <meta property="article:author" content="Ray">
 <meta property="article:tag" content="Apple ID">
 <meta property="article:tag" content="Gemini">
@@ -58,10 +58,10 @@
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://www.iamlay.com/post/turkey-gemini-ultra-ios-subscription/","path":"post/turkey-gemini-ultra-ios-subscription/","title":"土区 Gemini Ultra 20x 怎么订阅？Google One 内购路线与常见问题"}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://www.iamlay.com/post/turkey-gemini-ultra-ios-subscription/","path":"post/turkey-gemini-ultra-ios-subscription/","title":"土区 Gemini Ultra 20x 订阅教程与避坑指南：Shadowrocket 配置、风控排查与常见问题"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>土区 Gemini Ultra 20x 怎么订阅？Google One 内购路线与常见问题 | 以技术之名</title>
+<title>土区 Gemini Ultra 20x 订阅教程与避坑指南：Shadowrocket 配置、风控排查与常见问题 | 以技术之名</title>
   <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-170943611-2"></script>
 <script>
@@ -174,7 +174,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%88%E5%BC%84%E6%B8%85%E6%A5%9A%EF%BC%9A%E8%BF%99%E6%9D%A1%E8%B7%AF%E7%BA%BF%E5%9C%A8%E5%81%9A%E4%BB%80%E4%B9%88"><span class="nav-number">1.</span> <span class="nav-text">先弄清楚：这条路线在做什么</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%93%8D%E4%BD%9C%E5%89%8D%E5%85%88%E6%A0%B8%E5%AF%B9%E4%B8%89%E4%BB%B6%E4%BA%8B"><span class="nav-number">2.</span> <span class="nav-text">操作前先核对三件事</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8E%9F%E5%B8%96%E7%9A%84-iOS-%E8%B7%AF%E7%BA%BF"><span class="nav-number">3.</span> <span class="nav-text">原帖的 iOS 路线</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E4%BC%9A%E8%B7%B3%E5%88%B0-Safari-%E5%92%8C-Google-%E6%94%AF%E4%BB%98%EF%BC%9F"><span class="nav-number">4.</span> <span class="nav-text">为什么会跳到 Safari 和 Google 支付？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BB%98%E6%AC%BE%E5%89%8D%E5%90%8E%E6%80%8E%E4%B9%88%E7%A1%AE%E8%AE%A4"><span class="nav-number">5.</span> <span class="nav-text">付款前后怎么确认</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%88%91%E7%9A%84%E5%BB%BA%E8%AE%AE"><span class="nav-number">6.</span> <span class="nav-text">我的建议</span></a></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80%E3%80%81%E5%85%88%E7%9C%8B%E6%87%82%E5%8E%9F%E7%90%86%E4%B8%8E%E5%87%86%E5%A4%87%E5%B7%A5%E4%BD%9C"><span class="nav-number">1.</span> <span class="nav-text">一、先看懂原理与准备工作</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%8C%E3%80%81Shadowrocket-%E5%AE%8C%E6%95%B4%E9%85%8D%E7%BD%AE%E6%AD%A5%E9%AA%A4"><span class="nav-number">2.</span> <span class="nav-text">二、Shadowrocket 完整配置步骤</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AC%AC-1-%E6%AD%A5%EF%BC%9A%E8%BF%9B%E5%85%A5%E5%BD%93%E5%89%8D%E9%85%8D%E7%BD%AE%E8%AF%A6%E6%83%85"><span class="nav-number">2.1.</span> <span class="nav-text">第 1 步：进入当前配置详情</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AC%AC-2-%E6%AD%A5%EF%BC%9A%E5%BC%80%E5%90%AF-HTTPS-%E8%A7%A3%E5%AF%86%E5%B9%B6%E4%BF%A1%E4%BB%BB%E8%AF%81%E4%B9%A6%EF%BC%88%E6%9C%80%E5%AE%B9%E6%98%93%E6%BC%8F%EF%BC%89"><span class="nav-number">2.2.</span> <span class="nav-text">第 2 步：开启 HTTPS 解密并信任证书（最容易漏）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AC%AC-3-%E6%AD%A5%EF%BC%9A%E6%B7%BB%E5%8A%A0%E4%B8%A4%E6%9D%A1%E6%AD%A3%E6%96%87%E9%87%8D%E5%86%99%E8%A7%84%E5%88%99"><span class="nav-number">2.3.</span> <span class="nav-text">第 3 步：添加两条正文重写规则</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AC%AC-4-%E6%AD%A5%EF%BC%9A%E5%90%AF%E5%8A%A8%E4%BB%A3%E7%90%86%E5%B9%B6%E6%8B%89%E8%B5%B7-Apple-%E5%86%85%E8%B4%AD"><span class="nav-number">2.4.</span> <span class="nav-text">第 4 步：启动代理并拉起 Apple 内购</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%89%E3%80%81%E9%AB%98%E9%A2%91%E8%B8%A9%E5%9D%91-1%EF%BC%9A%E5%85%85%E4%BA%86%E7%A4%BC%E5%93%81%E5%8D%A1%E5%8D%B4%E4%BB%98%E4%B8%8D%E4%BA%86%E6%AC%BE-x2F-not-completed"><span class="nav-number">3.</span> <span class="nav-text">三、高频踩坑 1：充了礼品卡却付不了款 &#x2F; not completed</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E4%BC%9A%E8%A7%A6%E5%8F%91%E9%A3%8E%E6%8E%A7%EF%BC%9F"><span class="nav-number">3.1.</span> <span class="nav-text">为什么会触发风控？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%81%BF%E5%9D%91%E5%BB%BA%E8%AE%AE"><span class="nav-number">3.2.</span> <span class="nav-text">避坑建议</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9B%9B%E3%80%81%E9%AB%98%E9%A2%91%E8%B8%A9%E5%9D%91-2%EF%BC%9A%E4%B8%BA%E4%BB%80%E4%B9%88%E4%BC%9A%E8%B7%B3-Safari-x2F-Google-%E6%94%AF%E4%BB%98%EF%BC%8C%E6%88%96%E5%8F%AA%E6%98%BE%E7%A4%BA%E5%8E%9F%E4%BB%B7%EF%BC%9F"><span class="nav-number">4.</span> <span class="nav-text">四、高频踩坑 2：为什么会跳 Safari &#x2F; Google 支付，或只显示原价？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%94%E3%80%81%E4%BB%98%E6%AC%BE%E5%89%8D%E5%90%8E%E6%A0%B8%E5%AF%B9%E4%B8%8E%E5%AE%89%E5%85%A8%E5%96%84%E5%90%8E"><span class="nav-number">5.</span> <span class="nav-text">五、付款前后核对与安全善后</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -256,12 +256,12 @@
     </span>
 
     <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="土区 Gemini Ultra 20x 怎么订阅？Google One 内购路线与常见问题 | 以技术之名">
-      <meta itemprop="description" content="根据 LINUX DO 的土区 Gemini 20x 讨论，梳理 iOS 内购路线、Google 支付页面跳转问题，以及价格和账号风险。">
+      <meta itemprop="name" content="土区 Gemini Ultra 20x 订阅教程与避坑指南：Shadowrocket 配置、风控排查与常见问题 | 以技术之名">
+      <meta itemprop="description" content="结合 LINUX DO《土区 Gemini20x 回归》实操经验，完整整理土区 iOS 内购 Google AI Ultra 的 Shadowrocket 配置步骤、重写规则、礼品卡支付风控与跳网页支付排查方案。">
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          土区 Gemini Ultra 20x 怎么订阅？Google One 内购路线与常见问题
+          土区 Gemini Ultra 20x 订阅教程与避坑指南：Shadowrocket 配置、风控排查与常见问题
         </h1>
 
         <div class="post-meta-container">
@@ -273,7 +273,7 @@
       <span class="post-meta-item-text">发表于</span>
       
 
-      <time title="创建时间：2026-11-25 12:00:00 / 修改时间：09:44:07" itemprop="dateCreated datePublished" datetime="2026-11-25T12:00:00+08:00">2026-11-25</time>
+      <time title="创建时间：2026-11-25 12:00:00 / 修改时间：10:15:19" itemprop="dateCreated datePublished" datetime="2026-11-25T12:00:00+08:00">2026-11-25</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -296,7 +296,7 @@
 </div>
 
 	
-            <div class="post-description">根据 LINUX DO 的土区 Gemini 20x 讨论，梳理 iOS 内购路线、Google 支付页面跳转问题，以及价格和账号风险。</div>
+            <div class="post-description">结合 LINUX DO《土区 Gemini20x 回归》实操经验，完整整理土区 iOS 内购 Google AI Ultra 的 Shadowrocket 配置步骤、重写规则、礼品卡支付风控与跳网页支付排查方案。</div>
         </div>
       </header>
 
@@ -304,63 +304,126 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        <p>最近 LINUX DO 的<span class="exturl" data-url="aHR0cHM6Ly9saW51eC5kby90L3RvcGljLzMyMTkxNTc=">《土区 Gemini20x 回归》<i class="fa fa-external-link-alt"></i></span>引起了不少讨论。原帖分享了一条通过土耳其区 Apple ID、Google One iOS App 和 Shadowrocket 尝试订阅 Google AI Ultra 的路线。评论里也出现了一个很典型的问题：<strong>明明按教程操作，最后却跳到 Safari，让 Google 收款，而不是弹出 Apple 内购。</strong></p>
-<p>本文把这条路线的关键环节和排错方法整理出来。它是对社区经验的解读，并非 Google 或 Apple 的官方优惠教程；价格、套餐入口和订阅结果都可能变化。</p>
+        <p>最近 LINUX DO 的<span class="exturl" data-url="aHR0cHM6Ly9saW51eC5kby90L3RvcGljLzMyMTkxNTc=">《土区 Gemini20x 回归》<i class="fa fa-external-link-alt"></i></span>热度很高：通过 <strong>土耳其区 Apple ID + Google One iOS App + Shadowrocket（小火箭）响应重写</strong>，可以以约 <strong>2949 里拉</strong>（折合 3000 里拉礼品卡，成本约 <strong>420–430 元人民币</strong>）走 Apple 内购订阅 <strong>Google AI Ultra（社区常称 20x）</strong>。</p>
+<p>不过原帖和评论区里，大量用户卡在两个地方：</p>
+<ol>
+<li><strong>充值礼品卡后无法付款</strong>，提示 <code>not completed</code> 或触发 Apple 支付审核（常见锁定 72 小时）；</li>
+<li><strong>配置完仍跳到 Safari 用 Google 支付</strong>，或点进去只显示原价（如 8999 里拉）。</li>
+</ol>
+<p>本文把整套配置流程拆成可直接照抄的步骤，并把评论区验证有效的避坑与排错经验一并整理出来。</p>
+<blockquote>
+<p><strong>风险提示</strong>：本文为社区实操经验整理，并非 Google 或 Apple 官方优惠。价格、重写规则、入口可用性随时可能失效，请先评估可承受风险再决定是否充值。</p>
+</blockquote>
 <span id="more"></span>
 
-<h2 id="先弄清楚：这条路线在做什么"><a href="#先弄清楚：这条路线在做什么" class="headerlink" title="先弄清楚：这条路线在做什么"></a>先弄清楚：这条路线在做什么</h2><p>帖子里说的“20x”是社区对 Ultra 档位的称呼，订阅对象是 <strong>Google AI Ultra</strong>。Google 官方目前将 Türkiye 列在 Ultra 支持地区中，但<strong>支持某地区</strong>不等于任意账号都能按帖子中的金额购买，也不保证某个旧入口一直可用。<span class="exturl" data-url="aHR0cHM6Ly9zdXBwb3J0Lmdvb2dsZS5jb20vZ29vZ2xlb25lL2Fuc3dlci8xNjQ3Njc0OA==">Google AI Ultra 帮助<i class="fa fa-external-link-alt"></i></span></p>
-<p>原帖的关键并不是单纯切换 Apple ID 地区，而是借助 Shadowrocket 的 <strong>HTTPS 解密与响应重写</strong>，尝试让 Google One App 显示并发起特定的订阅档位。截图展示了针对 <code>one.google.com</code> 的解密与正文重写设置。由于这些规则依赖当时的接口和商品信息，直接复制旧规则可能无效，也可能展示出与最终扣费不同的信息。具体配置以<span class="exturl" data-url="aHR0cHM6Ly9saW51eC5kby90L3RvcGljLzMyMTkxNTcvMQ==">原帖及截图<i class="fa fa-external-link-alt"></i></span>为准。</p>
-<p>原帖作者提到，土区 Apple ID 和“积分卡”需要自备，并以“2949、相当于 3000 积分”描述所需额度；当时给出的成本约为 <strong>420～430 元人民币</strong>。这是 2026 年 11 月 22 日的帖子经验，并非官方定价或现在的保证成交价；礼品卡面额、汇率、渠道费用与实际结算金额都要重新核对。</p>
-<h2 id="操作前先核对三件事"><a href="#操作前先核对三件事" class="headerlink" title="操作前先核对三件事"></a>操作前先核对三件事</h2><ol>
-<li><strong>确认付款主体。</strong> 如果目标是 Apple 内购，最终应出现由 App Store 确认的订阅付款界面。只看到 Google 网页结账页，说明当前走的是另一条支付流程。</li>
-<li><strong>确认 Google 账号与 Apple 账号。</strong> Google One 中登录的是准备开通会员的 Google 账号；App Store 中登录的是用于付款的 Apple ID。Google 帮助文档还指出，一个 Apple 账号只能关联一个 Google 账号的 Google One 会员关系，已有订阅时尤其要先检查。<span class="exturl" data-url="aHR0cHM6Ly9zdXBwb3J0Lmdvb2dsZS5jb20vZ29vZ2xlb25lL2Fuc3dlci85MDAzNjMzP2NvPUdFTklFLlBsYXRmb3JtPWlPUw==">Google One iOS 订阅说明<i class="fa fa-external-link-alt"></i></span></li>
-<li><strong>先看可承受的损失。</strong> 礼品卡余额、Apple ID 风控、套餐变更和订阅回退都可能让资金暂时无法按预期使用。不要只凭页面上的“低价”就大额充值。</li>
+<h2 id="一、先看懂原理与准备工作"><a href="#一、先看懂原理与准备工作" class="headerlink" title="一、先看懂原理与准备工作"></a>一、先看懂原理与准备工作</h2><p>这条路线的核心<strong>并不是单纯切换 Apple ID 地区</strong>，而是利用 Shadowrocket（或 Loon、Quantumult X 等支持 MITM 的代理工具）对 <code>one.google.com</code> 开启 <strong>HTTPS 解密与正文重写</strong>，让 iOS 端拉起对应的土区 Apple 内购 SKU。Google 官方已将土耳其（Türkiye）列入 Ultra 支持地区，可参考<span class="exturl" data-url="aHR0cHM6Ly9zdXBwb3J0Lmdvb2dsZS5jb20vZ29vZ2xlb25lL2Fuc3dlci8xNjQ3Njc0OA==">Google AI Ultra 支持说明<i class="fa fa-external-link-alt"></i></span>。</p>
+<p>动手前请先准备好以下 4 样东西：</p>
+<ol>
+<li><strong>土耳其区 Apple ID（强烈建议老号）</strong>：新注册的土区 Apple ID 突然大额充值礼品卡，极易触发支付风控。</li>
+<li><strong>付款余额（约 3000 里拉）</strong>：20x Ultra 档位约 <strong>2949 TRY</strong>（对应 3000 里拉礼品卡，成本约 420–430 RMB；如果账号能直接绑卡更稳妥）。</li>
+<li><strong>Shadowrocket + 支持 Gemini 的代理节点</strong>：节点必须落在支持 Gemini &#x2F; Google One 订阅的地区（<strong>推荐美国节点</strong>，不要用香港等不支持地区）。</li>
+<li><strong>iOS 端安装 Google One App</strong>：认准 <strong>Google One</strong>（不是 Chrome，也不是 Gemini；但后续拉不起套餐页时，可配合 Gemini App 或 Google App 跳转）。</li>
 </ol>
-<h2 id="原帖的-iOS-路线"><a href="#原帖的-iOS-路线" class="headerlink" title="原帖的 iOS 路线"></a>原帖的 iOS 路线</h2><p>按原帖的顺序，先准备土耳其区 Apple ID 和付款余额，在 iPhone 上安装 <strong>Google One</strong> 与 Shadowrocket，然后参考原帖截图设置 Google One 相关的响应重写与 HTTPS 解密。安装证书后，还要在 iOS 的“设置 → 通用 → 关于本机 → 证书信任设置”里启用对应证书，并确保 Shadowrocket 配置已经实际启用。随后从 Google One App 内寻找套餐入口。<strong>如果 Google One App 拉不起套餐页，可以登录同一个 Google 账号，改从 Gemini App 的订阅入口尝试拉起。</strong>无论从哪个 App 发起，最终都要核对实际付款渠道、套餐与金额。</p>
-<p>下面保留<span class="exturl" data-url="aHR0cHM6Ly9saW51eC5kby90L3RvcGljLzMyMTkxNTcvMQ==">原帖首楼<i class="fa fa-external-link-alt"></i></span>的 6 张手机截图，依次展示配置入口、正文重写列表、HTTPS 解密入口、两条重写规则和解密域名。截图是发帖时的界面记录，不能替代付款前对当前套餐与金额的核对。</p>
+<hr>
+<h2 id="二、Shadowrocket-完整配置步骤"><a href="#二、Shadowrocket-完整配置步骤" class="headerlink" title="二、Shadowrocket 完整配置步骤"></a>二、Shadowrocket 完整配置步骤</h2><p>下面按实际操作顺序一步步配置（配置完成后务必在首页<strong>开启代理</strong>，否则规则不生效）。</p>
+<h3 id="第-1-步：进入当前配置详情"><a href="#第-1-步：进入当前配置详情" class="headerlink" title="第 1 步：进入当前配置详情"></a>第 1 步：进入当前配置详情</h3><p>打开 Shadowrocket 底部「配置」，找到正在使用的本地配置文件（如 <code>default.conf</code>），点击右侧 <strong><code>i</code></strong> 图标进入详情页。</p>
 <img src="/post/turkey-gemini-ultra-ios-subscription/original-01-config.jpeg" class title="原帖截图1：Shadowrocket 配置入口">
 
-<img src="/post/turkey-gemini-ultra-ios-subscription/original-02-rewrite-list.jpeg" class title="原帖截图2：正文重写入口">
-
+<h3 id="第-2-步：开启-HTTPS-解密并信任证书（最容易漏）"><a href="#第-2-步：开启-HTTPS-解密并信任证书（最容易漏）" class="headerlink" title="第 2 步：开启 HTTPS 解密并信任证书（最容易漏）"></a>第 2 步：开启 HTTPS 解密并信任证书（最容易漏）</h3><ol>
+<li>在配置详情页点击 <strong>「HTTPS 解密」</strong>。</li>
+<li>打开 <strong>「HTTPS 解密」</strong> 开关（下方的「通过 HTTP&#x2F;2 进行中间人攻击 (MitM)」保持关闭）。</li>
+<li>在「域名」中添加：<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">one.google.com</span><br></pre></td></tr></table></figure></li>
+<li>点击「证书」生成并安装描述文件。</li>
+<li><strong>关键两步切勿遗漏</strong>：<ul>
+<li>先到 iPhone <strong>「设置 → 通用 → VPN 与设备管理」</strong> 安装刚下载的描述文件；</li>
+<li>再到 <strong>「设置 → 通用 → 关于本机 → 证书信任设置」</strong>，把对应证书的完全信任开关打开（回到小火箭显示「系统已信任」才算成功）。</li>
+</ul>
+</li>
+</ol>
 <img src="/post/turkey-gemini-ultra-ios-subscription/original-03-https-decrypt.jpeg" class title="原帖截图3：HTTPS 解密入口">
+
+<img src="/post/turkey-gemini-ultra-ios-subscription/original-05-decrypt-domain.jpeg" class title="原帖截图5：解密域名与证书信任状态">
+
+<h3 id="第-3-步：添加两条正文重写规则"><a href="#第-3-步：添加两条正文重写规则" class="headerlink" title="第 3 步：添加两条正文重写规则"></a>第 3 步：添加两条正文重写规则</h3><p>返回配置详情页，点击 <strong>「正文重写」</strong>，新增以下 <strong>两条</strong> 规则。</p>
+<blockquote>
+<p><strong>务必逐字核对</strong>：社区有多位用户因为表达式或值里**多打了一个 <code>.</code>**，导致点进去一直显示 8999 原价，修正后立刻成功。</p>
+</blockquote>
+<p><strong>规则 1：</strong></p>
+<ul>
+<li><strong>类型</strong>：<code>http-response</code></li>
+<li><strong>表达式</strong>：<code>^https://one.google.com/ai\?.*$</code></li>
+<li><strong>值</strong>：<code>30tb\.ai\.pro\.m 30tb.m</code></li>
+</ul>
+<p><strong>规则 2：</strong></p>
+<ul>
+<li><strong>类型</strong>：<code>http-response</code></li>
+<li><strong>表达式</strong>：<code>^https://one.google.com/ai\?.*$</code></li>
+<li><strong>值</strong>：<code>20tb\.m\.v2 20tb.m</code></li>
+</ul>
+<img src="/post/turkey-gemini-ultra-ios-subscription/original-02-rewrite-list.jpeg" class title="原帖截图2：正文重写入口">
 
 <img src="/post/turkey-gemini-ultra-ios-subscription/original-04-rewrite-30tb.png" class title="原帖截图4：第一条正文重写规则">
 
-<img src="/post/turkey-gemini-ultra-ios-subscription/original-05-decrypt-domain.jpeg" class title="原帖截图5：解密域名与证书">
-
 <img src="/post/turkey-gemini-ultra-ios-subscription/original-06-rewrite-20tb.png" class title="原帖截图6：第二条正文重写规则">
 
-<p>这里最需要留意的是 <strong>HTTPS 解密证书的权限</strong>：信任证书并启用中间人解密后，匹配的流量可以被当前配置读取和改写。只使用自己检查过的规则，确认解密域名范围，操作结束后关闭相关解密或移除不再需要的证书。不要把来源不明的整套配置当作普通“加速规则”直接导入。</p>
-<h2 id="为什么会跳到-Safari-和-Google-支付？"><a href="#为什么会跳到-Safari-和-Google-支付？" class="headerlink" title="为什么会跳到 Safari 和 Google 支付？"></a>为什么会跳到 Safari 和 Google 支付？</h2><p><span class="exturl" data-url="aHR0cHM6Ly9saW51eC5kby90L3RvcGljLzMyMTkxNTcvNjk1">第 695 楼<i class="fa fa-external-link-alt"></i></span>的提问者遇到的正是这种情况：按教程配置后，订阅仍打开 Google One 网页，并使用 Google 支付。<strong>仅凭这条回复，无法判定是哪一步出了问题</strong>，但可以按下面的顺序排查：</p>
+<h3 id="第-4-步：启动代理并拉起-Apple-内购"><a href="#第-4-步：启动代理并拉起-Apple-内购" class="headerlink" title="第 4 步：启动代理并拉起 Apple 内购"></a>第 4 步：启动代理并拉起 Apple 内购</h3><ol>
+<li>回到 Shadowrocket 首页，选择 <strong>美国等支持 Gemini 的节点</strong> 并启动代理。</li>
+<li>打开 <strong>Google One App</strong>，登录准备开通会员的目标 Google 账号，查看升级套餐。</li>
+<li><strong>如果 Google One 拉不起套餐页或只显示原价</strong>：用同一个 Google 账号登录 <strong>Gemini App</strong>（或 <strong>Google App &#x2F; Chrome</strong>），从其中的订阅升级入口跳转回 Google One 尝试拉起。</li>
+<li><strong>以最终弹窗实付金额为准</strong>：不要只看页面上的展示价格，点击订阅后观察是否弹出 <strong>App Store 确认支付弹窗</strong>，核对实际扣款币种与金额（约 2949 TRY）无误后再确认付款。</li>
+</ol>
+<hr>
+<h2 id="三、高频踩坑-1：充了礼品卡却付不了款-x2F-not-completed"><a href="#三、高频踩坑-1：充了礼品卡却付不了款-x2F-not-completed" class="headerlink" title="三、高频踩坑 1：充了礼品卡却付不了款 &#x2F; not completed"></a>三、高频踩坑 1：充了礼品卡却付不了款 &#x2F; <code>not completed</code></h2><p>这是原帖第 55–65 楼集中爆发的最大痛点：不少人刚买完 3000 里拉礼品卡充进土区账号，点购买时却报错 <strong>无法完成购买（<code>not completed</code>）</strong> 或提示需要联系 Apple Support 审核。</p>
+<h3 id="为什么会触发风控？"><a href="#为什么会触发风控？" class="headerlink" title="为什么会触发风控？"></a>为什么会触发风控？</h3><ul>
+<li><strong>土区新号大额充卡</strong>：刚注册不久、没有历史消费记录的土区 Apple ID，突然充值大额礼品卡很容易触发 Apple 支付审核，常见需要等待 <strong>72 小时</strong>，部分账号即使点击申诉也无法立刻解封。</li>
+<li><strong>同一 Apple ID 连续换号复购</strong>：Google 官方本身规定一个 Apple 账号原则上只对应一个 Google One 订阅关系（见<span class="exturl" data-url="aHR0cHM6Ly9zdXBwb3J0Lmdvb2dsZS5jb20vZ29vZ2xlb25lL2Fuc3dlci85MDAzNjMzP2NvPUdFTklFLlBsYXRmb3JtPWlPUw==">Google One iOS 订阅说明<i class="fa fa-external-link-alt"></i></span>）。社区反馈在同一 App 里换另一个 Google 账号买第二个 20x 时，很容易直接报 <code>not completed</code>。</li>
+</ul>
+<h3 id="避坑建议"><a href="#避坑建议" class="headerlink" title="避坑建议"></a>避坑建议</h3><ul>
+<li><strong>优先使用土区老 Apple ID + Google 老号</strong>，有正常消费记录的账号通过率明显更高。</li>
+<li><strong>遇到风控立刻停手，切忌冲动继续充值</strong>：已有多位用户首次付款被拒后又补充 3000 里拉，结果资金全部卡在余额里无法消费。</li>
+<li>如果确有为多个 Google 账号开通的需求，社区有用户反馈分别从 <strong>Google One、Gemini、Google App</strong> 三个不同 App 入口绑定不同账号曾成功过，但仍存在触发风控的可能，不建议大额押注。</li>
+</ul>
+<hr>
+<h2 id="四、高频踩坑-2：为什么会跳-Safari-x2F-Google-支付，或只显示原价？"><a href="#四、高频踩坑-2：为什么会跳-Safari-x2F-Google-支付，或只显示原价？" class="headerlink" title="四、高频踩坑 2：为什么会跳 Safari &#x2F; Google 支付，或只显示原价？"></a>四、高频踩坑 2：为什么会跳 Safari &#x2F; Google 支付，或只显示原价？</h2><p><span class="exturl" data-url="aHR0cHM6Ly9saW51eC5kby90L3RvcGljLzMyMTkxNTcvNjk1">第 695 楼<i class="fa fa-external-link-alt"></i></span>的提问非常典型：明明照着配了小火箭，点订阅却直接跳去 Safari 的 Google One 网页让 Google 收款，或者页面只显示原价。</p>
+<p>遇到这种情况，<strong>先退出网页结账页（不要在网页里直接付款）</strong>，按下面 5 个检查点从上到下排查：</p>
 <table>
 <thead>
 <tr>
 <th>检查点</th>
-<th>要确认什么</th>
+<th>常见踩坑原因</th>
+<th>解决方法</th>
 </tr>
 </thead>
 <tbody><tr>
-<td>发起入口</td>
-<td>是否从 iOS 上的 Google One App 进入；若无法拉起套餐页，可从 Gemini App 的订阅入口尝试，而不是停留在浏览器的 Google One 网页</td>
+<td><strong>1. 重写规则拼写</strong></td>
+<td>正则表达式或值里多打&#x2F;少打了 <code>.</code> 或 <code>\</code>，导致规则根本没命中</td>
+<td>删除重填第 2 节中的两条原文规则，逐字符核对</td>
 </tr>
 <tr>
-<td>Shadowrocket 配置</td>
-<td>当前启用的配置是否包含原帖所示的正文重写，规则是否处于启用状态</td>
+<td><strong>2. 证书与代理开关</strong></td>
+<td>证书只下载未安装描述文件、漏开「证书信任设置」，或小火箭首页未点启动</td>
+<td>确认系统「证书信任设置」已开、小火箭显示「系统已信任」且右上角已出现 VPN 图标</td>
 </tr>
 <tr>
-<td>HTTPS 解密</td>
-<td>证书是否安装并被系统信任，解密域名是否覆盖规则需要的地址</td>
+<td><strong>3. 代理节点地区</strong></td>
+<td>节点落在香港或其他不支持 Gemini 订阅的地区，导致不显示 Ultra 或报错无法购买</td>
+<td>切换至 <strong>美国</strong> 等支持 Gemini 的干净节点后重启 App 重试</td>
 </tr>
 <tr>
-<td>Google 账号</td>
-<td>Google One 中是否登录了目标账号，账号是否已有其他渠道的会员订阅</td>
+<td><strong>4. 订阅发起入口</strong></td>
+<td>直接在 Google One App 内被缓存原价，或停留在网页端</td>
+<td>用同一账号改从 <strong>Gemini App</strong> 或 <strong>Google App</strong> 的升级入口跳转回 Google One 拉起</td>
 </tr>
 <tr>
-<td>最终付款页</td>
-<td>最后是否出现 Apple 的订阅确认弹窗，套餐名称、周期、币种和金额是否与预期一致</td>
+<td><strong>5. 账号有旧 Lite 订阅</strong></td>
+<td>账号曾开过或正在生效 <strong>Google One Lite</strong>，会挡住此重写方式升级 5x&#x2F;20x</td>
+<td>前往 <code>reportaproblem.apple.com</code> 对 Lite 申请退款（或等彻底到期消失），或更换新 Google 账号</td>
 </tr>
 </tbody></table>
-<p>第 695 楼还附了 5 张排查截图，分别是代理主页、两条正文重写规则、规则列表和 HTTPS 解密设置。它们能说明发帖人的配置状态，但<strong>无法单凭截图证明购买流程已走到 Apple 内购</strong>。</p>
+<blockquote>
+<p><strong>补充说明</strong>：Google 官方将 <strong>App Store 订阅</strong>与 <strong>Google 网站订阅</strong>分开管理。如果该 Google 账号此前是通过网页端开通的会员，iOS 端可能无法直接通过 Apple 内购变更，详情见<span class="exturl" data-url="aHR0cHM6Ly9zdXBwb3J0Lmdvb2dsZS5jb20vZ29vZ2xlb25lL2Fuc3dlci85MDAzNjMzP2NvPUdFTklFLlBsYXRmb3JtPWlPUw==">Google One iOS 升级说明<i class="fa fa-external-link-alt"></i></span>。</p>
+</blockquote>
+<p>下方保留第 695 楼的 5 张排查对照截图，可用来核对代理主页、重写规则列表与 HTTPS 解密开关状态：</p>
 <img src="/post/turkey-gemini-ultra-ios-subscription/reply-695-01.jpeg" class title="第695楼截图1：Shadowrocket 代理主页">
 
 <img src="/post/turkey-gemini-ultra-ios-subscription/reply-695-02.jpeg" class title="第695楼截图2：第一条正文重写规则">
@@ -371,11 +434,13 @@
 
 <img src="/post/turkey-gemini-ultra-ios-subscription/reply-695-05.jpeg" class title="第695楼截图5：HTTPS 解密设置">
 
-<p>Google 官方将 <strong>App Store 购买</strong>和 <strong>Google One 网站购买</strong>分开管理：通过网站或其他设备购买的会员，可能无法直接在 iPhone 的 Google One App 中按 Apple 订阅方式修改。因而，跳到 Google 网页结账页时，不应把它当作“Apple 内购已经成功”的信号；先退出付款流程，查清入口和账号状态，再决定是否继续。<span class="exturl" data-url="aHR0cHM6Ly9zdXBwb3J0Lmdvb2dsZS5jb20vZ29vZ2xlb25lL2Fuc3dlci85MDAzNjMzP2NvPUdFTklFLlBsYXRmb3JtPWlPUw==">Google One iOS 升级与故障说明<i class="fa fa-external-link-alt"></i></span></p>
-<h2 id="付款前后怎么确认"><a href="#付款前后怎么确认" class="headerlink" title="付款前后怎么确认"></a>付款前后怎么确认</h2><p>付款前只认<strong>最终确认页</strong>：核对产品名称、订阅周期、首期金额、续费金额与币种。页面显示的套餐文字或社区截图，都不能代替最终订单信息。付款后，在 iPhone 的“设置 → Apple 账号 → 订阅”检查是否出现对应订阅，并在 Google One 中查看会员状态；如走了 Google 网页付款，则到 Google One 的网页端查看和管理，而不是到 Apple 订阅列表里寻找。<span class="exturl" data-url="aHR0cHM6Ly9zdXBwb3J0LmFwcGxlLmNvbS9ndWlkZS9pcGhvbmUvc2VlLXlvdXItcHVyY2hhc2VzLWFuZC1zdWJzY3JpcHRpb25zLWlwaDRlM2U3MzI0Zi9pb3M=">Apple 订阅管理说明<i class="fa fa-external-link-alt"></i></span>｜<span class="exturl" data-url="aHR0cHM6Ly9zdXBwb3J0Lmdvb2dsZS5jb20vZ29vZ2xlb25lL2Fuc3dlci85MDAzNjMzP2NvPUdFTklFLlBsYXRmb3JtPWlPUw==">Google One 订阅说明<i class="fa fa-external-link-alt"></i></span></p>
-<p>如果扣款渠道、套餐或金额与预期不符，先保留订单记录并通过<strong>实际扣款方</strong>的官方渠道处理，不要反复点击购买。社区里关于“稳定”“会退款”“能用多久”的说法都只是个人经历，不构成保证。</p>
-<h2 id="我的建议"><a href="#我的建议" class="headerlink" title="我的建议"></a>我的建议</h2><p>这条路线最容易让人误判的地方，是把<strong>看到 Ultra 入口</strong>、<strong>跳转到订阅页</strong>和<strong>完成 Apple 内购</strong>当成同一件事。它们是三个不同环节。尤其遇到第 695 楼那样的 Google 网页支付页面时，先停在付款前，核对入口、解密规则和最终结账主体，比继续尝试充值更重要。</p>
-<p>如果你只想长期稳定使用 Gemini，优先比较 Google 官方当前展示的套餐和付款渠道。若要参考社区方案，请把原帖当作一份<strong>有时效性的经验记录</strong>，并在付款前重新验证每一项条件。</p>
+<hr>
+<h2 id="五、付款前后核对与安全善后"><a href="#五、付款前后核对与安全善后" class="headerlink" title="五、付款前后核对与安全善后"></a>五、付款前后核对与安全善后</h2><ol>
+<li><strong>付款前只看最终弹窗</strong>：无论页面文字或社区截图怎么写，一切以 <strong>App Store 支付确认弹窗</strong> 显示的套餐名称、订阅周期、币种与金额为准。</li>
+<li><strong>付款后核验订阅状态</strong>：在 iPhone <strong>「设置 → Apple 账号 → 订阅」</strong> 中确认已生成对应订阅，并回到 Google One &#x2F; Gemini App 检查会员权益是否生效（<span class="exturl" data-url="aHR0cHM6Ly9zdXBwb3J0LmFwcGxlLmNvbS9ndWlkZS9pcGhvbmUvc2VlLXlvdXItcHVyY2hhc2VzLWFuZC1zdWJzY3JpcHRpb25zLWlwaDRlM2U3MzI0Zi9pb3M=">Apple 订阅管理说明<i class="fa fa-external-link-alt"></i></span>）。</li>
+<li><strong>完成后立即关闭 HTTPS 解密</strong>：信任 MITM 证书后，匹配域名的加密流量可被代理规则读取和改写。<strong>订阅完成后建议立刻关闭 <code>one.google.com</code> 的 HTTPS 解密</strong>（或移除不再使用的证书），也不要导入来路不明的整套配置。</li>
+<li><strong>理性看待低价渠道风险</strong>：社区路线高度依赖接口与平台策略，价格与可用性随时会变（例如同期其他低价渠道已出现封号且申诉不解封的案例）。如果追求长期省心稳定，优先对照官方正规订阅渠道；若参考社区路线，务必把原帖当作有时效性的经验记录，先小额验证、核清最终扣款页再行动。</li>
+</ol>
 
     </div>
 
