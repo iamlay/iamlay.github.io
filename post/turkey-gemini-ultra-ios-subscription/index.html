@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 8.1.1">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+  <meta name="google-site-verification" content="bdLSZKDAikc4SOPIlDwwuSFBawDGQU3GmqUWTzUM-rE">
+  <meta name="baidu-site-verification" content="codeva-lCWvLLHuj5">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3825645052664031"
+     crossorigin="anonymous"></script>
+  <meta name="baidu-site-verification" content="true">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha256-AbA177XfpSnFEvgpYu1jMygiLabzPCJCRIBtR5jGc0k=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"www.iamlay.com","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.13.1","exturl":true,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"gitalk","storage":true,"lazyload":false,"nav":{"gitalk":{"ordcer":-1}},"activeClass":"gitalk"},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="根据 LINUX DO 的土区 Gemini 20x 讨论，梳理 iOS 内购路线、Google 支付页面跳转问题，以及价格和账号风险。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="土区 Gemini Ultra 20x 怎么订阅？Google One 内购路线与常见问题">
+<meta property="og:url" content="https://www.iamlay.com/post/turkey-gemini-ultra-ios-subscription/index.html">
+<meta property="og:site_name" content="以技术之名">
+<meta property="og:description" content="根据 LINUX DO 的土区 Gemini 20x 讨论，梳理 iOS 内购路线、Google 支付页面跳转问题，以及价格和账号风险。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://www.iamlay.com/post/turkey-gemini-ultra-ios-subscription/original-01-config.jpeg">
+<meta property="og:image" content="https://www.iamlay.com/post/turkey-gemini-ultra-ios-subscription/original-02-rewrite-list.jpeg">
+<meta property="og:image" content="https://www.iamlay.com/post/turkey-gemini-ultra-ios-subscription/original-03-https-decrypt.jpeg">
+<meta property="og:image" content="https://www.iamlay.com/post/turkey-gemini-ultra-ios-subscription/original-04-rewrite-30tb.png">
+<meta property="og:image" content="https://www.iamlay.com/post/turkey-gemini-ultra-ios-subscription/original-05-decrypt-domain.jpeg">
+<meta property="og:image" content="https://www.iamlay.com/post/turkey-gemini-ultra-ios-subscription/original-06-rewrite-20tb.png">
+<meta property="og:image" content="https://www.iamlay.com/post/turkey-gemini-ultra-ios-subscription/reply-695-01.jpeg">
+<meta property="og:image" content="https://www.iamlay.com/post/turkey-gemini-ultra-ios-subscription/reply-695-02.jpeg">
+<meta property="og:image" content="https://www.iamlay.com/post/turkey-gemini-ultra-ios-subscription/reply-695-03.jpeg">
+<meta property="og:image" content="https://www.iamlay.com/post/turkey-gemini-ultra-ios-subscription/reply-695-04.jpeg">
+<meta property="og:image" content="https://www.iamlay.com/post/turkey-gemini-ultra-ios-subscription/reply-695-05.jpeg">
+<meta property="article:published_time" content="2026-11-25T04:00:00.000Z">
+<meta property="article:modified_time" content="2026-11-25T01:34:53.783Z">
+<meta property="article:author" content="Ray">
+<meta property="article:tag" content="Apple ID">
+<meta property="article:tag" content="Gemini">
+<meta property="article:tag" content="Google One">
+<meta property="article:tag" content="土耳其区">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://www.iamlay.com/post/turkey-gemini-ultra-ios-subscription/original-01-config.jpeg">
+
+
+<link rel="canonical" href="https://www.iamlay.com/post/turkey-gemini-ultra-ios-subscription/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://www.iamlay.com/post/turkey-gemini-ultra-ios-subscription/","path":"post/turkey-gemini-ultra-ios-subscription/","title":"土区 Gemini Ultra 20x 怎么订阅？Google One 内购路线与常见问题"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>土区 Gemini Ultra 20x 怎么订阅？Google One 内购路线与常见问题 | 以技术之名</title>
+  <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-170943611-2"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-170943611-2');
+</script>
+  <script src="/js/third-party/analytics/baidu-analytics.js"></script>
+  <script async src="https://hm.baidu.com/hm.js?2fdaf8ee633a188c5649eefea79b28b3"></script>
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<!-- hexo injector head_end start --><script async defer data-website-id="fad553b1-b94d-4311-8d52-913dc067e883" src="https://tongji.iamlay.com/script.js"></script><!-- hexo injector head_end end --></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">以技术之名</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">以技术之名</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-chatgpt"><a href="/chatgpt" rel="section"><i class="fa fa-comment-dots fa-fw"></i>AI体验</a></li><li class="menu-item menu-item-sitemap"><a href="/sitemap.xml" rel="section"><i class="fa fa-sitemap fa-fw"></i>站点地图</a></li><li class="menu-item menu-item-links"><a href="/links/" rel="section"><i class="fa fa-link fa-fw"></i>友情链接</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%88%E5%BC%84%E6%B8%85%E6%A5%9A%EF%BC%9A%E8%BF%99%E6%9D%A1%E8%B7%AF%E7%BA%BF%E5%9C%A8%E5%81%9A%E4%BB%80%E4%B9%88"><span class="nav-number">1.</span> <span class="nav-text">先弄清楚：这条路线在做什么</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%93%8D%E4%BD%9C%E5%89%8D%E5%85%88%E6%A0%B8%E5%AF%B9%E4%B8%89%E4%BB%B6%E4%BA%8B"><span class="nav-number">2.</span> <span class="nav-text">操作前先核对三件事</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8E%9F%E5%B8%96%E7%9A%84-iOS-%E8%B7%AF%E7%BA%BF"><span class="nav-number">3.</span> <span class="nav-text">原帖的 iOS 路线</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E4%BC%9A%E8%B7%B3%E5%88%B0-Safari-%E5%92%8C-Google-%E6%94%AF%E4%BB%98%EF%BC%9F"><span class="nav-number">4.</span> <span class="nav-text">为什么会跳到 Safari 和 Google 支付？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BB%98%E6%AC%BE%E5%89%8D%E5%90%8E%E6%80%8E%E4%B9%88%E7%A1%AE%E8%AE%A4"><span class="nav-number">5.</span> <span class="nav-text">付款前后怎么确认</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%88%91%E7%9A%84%E5%BB%BA%E8%AE%AE"><span class="nav-number">6.</span> <span class="nav-text">我的建议</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Ray</p>
+  <div class="site-description" itemprop="description">为信仰而生</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">59</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">15</span>
+        <span class="site-state-item-name">分类</span>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">41</span>
+        <span class="site-state-item-name">标签</span>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="/" title="GitHub → ">GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <span class="exturl" data-url="bWFpbHRvOmlhbWxheXNoYXJlQGdtYWlsLmNvbQ==" title="E-Mail → mailto:iamlayshare@gmail.com"><i class="fa fa-envelope fa-fw"></i>E-Mail</span>
+      </span>
+  </div>
+
+
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://www.iamlay.com/post/turkey-gemini-ultra-ios-subscription/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Ray">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="以技术之名">
+      <meta itemprop="description" content="为信仰而生">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="土区 Gemini Ultra 20x 怎么订阅？Google One 内购路线与常见问题 | 以技术之名">
+      <meta itemprop="description" content="根据 LINUX DO 的土区 Gemini 20x 讨论，梳理 iOS 内购路线、Google 支付页面跳转问题，以及价格和账号风险。">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          土区 Gemini Ultra 20x 怎么订阅？Google One 内购路线与常见问题
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2026-11-25 12:00:00 / 修改时间：09:34:53" itemprop="dateCreated datePublished" datetime="2026-11-25T12:00:00+08:00">2026-11-25</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/AI/" itemprop="url" rel="index"><span itemprop="name">AI</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+</div>
+
+	
+            <div class="post-description">根据 LINUX DO 的土区 Gemini 20x 讨论，梳理 iOS 内购路线、Google 支付页面跳转问题，以及价格和账号风险。</div>
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <p>最近 LINUX DO 的<span class="exturl" data-url="aHR0cHM6Ly9saW51eC5kby90L3RvcGljLzMyMTkxNTc=">《土区 Gemini20x 回归》<i class="fa fa-external-link-alt"></i></span>引起了不少讨论。原帖分享了一条通过土耳其区 Apple ID、Google One iOS App 和 Shadowrocket 尝试订阅 Google AI Ultra 的路线。评论里也出现了一个很典型的问题：<strong>明明按教程操作，最后却跳到 Safari，让 Google 收款，而不是弹出 Apple 内购。</strong></p>
+<p>本文把这条路线的关键环节和排错方法整理出来。它是对社区经验的解读，并非 Google 或 Apple 的官方优惠教程；价格、套餐入口和订阅结果都可能变化。</p>
+<span id="more"></span>
+
+<h2 id="先弄清楚：这条路线在做什么"><a href="#先弄清楚：这条路线在做什么" class="headerlink" title="先弄清楚：这条路线在做什么"></a>先弄清楚：这条路线在做什么</h2><p>帖子里说的“20x”是社区对 Ultra 档位的称呼，订阅对象是 <strong>Google AI Ultra</strong>。Google 官方目前将 Türkiye 列在 Ultra 支持地区中，但<strong>支持某地区</strong>不等于任意账号都能按帖子中的金额购买，也不保证某个旧入口一直可用。<span class="exturl" data-url="aHR0cHM6Ly9zdXBwb3J0Lmdvb2dsZS5jb20vZ29vZ2xlb25lL2Fuc3dlci8xNjQ3Njc0OA==">Google AI Ultra 帮助<i class="fa fa-external-link-alt"></i></span></p>
+<p>原帖的关键并不是单纯切换 Apple ID 地区，而是借助 Shadowrocket 的 <strong>HTTPS 解密与响应重写</strong>，尝试让 Google One App 显示并发起特定的订阅档位。截图展示了针对 <code>one.google.com</code> 的解密与正文重写设置。由于这些规则依赖当时的接口和商品信息，直接复制旧规则可能无效，也可能展示出与最终扣费不同的信息。具体配置以<span class="exturl" data-url="aHR0cHM6Ly9saW51eC5kby90L3RvcGljLzMyMTkxNTcvMQ==">原帖及截图<i class="fa fa-external-link-alt"></i></span>为准。</p>
+<p>原帖作者提到，土区 Apple ID 和“积分卡”需要自备，并以“2949、相当于 3000 积分”描述所需额度；当时给出的成本约为 <strong>420～430 元人民币</strong>。这是 2026 年 11 月 22 日的帖子经验，并非官方定价或现在的保证成交价；礼品卡面额、汇率、渠道费用与实际结算金额都要重新核对。</p>
+<h2 id="操作前先核对三件事"><a href="#操作前先核对三件事" class="headerlink" title="操作前先核对三件事"></a>操作前先核对三件事</h2><ol>
+<li><strong>确认付款主体。</strong> 如果目标是 Apple 内购，最终应出现由 App Store 确认的订阅付款界面。只看到 Google 网页结账页，说明当前走的是另一条支付流程。</li>
+<li><strong>确认 Google 账号与 Apple 账号。</strong> Google One 中登录的是准备开通会员的 Google 账号；App Store 中登录的是用于付款的 Apple ID。Google 帮助文档还指出，一个 Apple 账号只能关联一个 Google 账号的 Google One 会员关系，已有订阅时尤其要先检查。<span class="exturl" data-url="aHR0cHM6Ly9zdXBwb3J0Lmdvb2dsZS5jb20vZ29vZ2xlb25lL2Fuc3dlci85MDAzNjMzP2NvPUdFTklFLlBsYXRmb3JtPWlPUw==">Google One iOS 订阅说明<i class="fa fa-external-link-alt"></i></span></li>
+<li><strong>先看可承受的损失。</strong> 礼品卡余额、Apple ID 风控、套餐变更和订阅回退都可能让资金暂时无法按预期使用。不要只凭页面上的“低价”就大额充值。</li>
+</ol>
+<h2 id="原帖的-iOS-路线"><a href="#原帖的-iOS-路线" class="headerlink" title="原帖的 iOS 路线"></a>原帖的 iOS 路线</h2><p>按原帖的顺序，先准备土耳其区 Apple ID 和付款余额，在 iPhone 上安装 <strong>Google One</strong> 与 Shadowrocket，然后参考原帖截图设置 Google One 相关的响应重写与 HTTPS 解密。安装证书后，还要在 iOS 的“设置 → 通用 → 关于本机 → 证书信任设置”里启用对应证书，并确保 Shadowrocket 配置已经实际启用。随后从 Google One App 内寻找套餐入口；原帖还提到，若 Google One 未能打开套餐页，可以尝试从 Google App 的订阅入口跳转回 Google One。</p>
+<p>下面保留<span class="exturl" data-url="aHR0cHM6Ly9saW51eC5kby90L3RvcGljLzMyMTkxNTcvMQ==">原帖首楼<i class="fa fa-external-link-alt"></i></span>的 6 张手机截图，依次展示配置入口、正文重写列表、HTTPS 解密入口、两条重写规则和解密域名。截图是发帖时的界面记录，不能替代付款前对当前套餐与金额的核对。</p>
+<img src="/post/turkey-gemini-ultra-ios-subscription/original-01-config.jpeg" class title="原帖截图1：Shadowrocket 配置入口">
+
+<img src="/post/turkey-gemini-ultra-ios-subscription/original-02-rewrite-list.jpeg" class title="原帖截图2：正文重写入口">
+
+<img src="/post/turkey-gemini-ultra-ios-subscription/original-03-https-decrypt.jpeg" class title="原帖截图3：HTTPS 解密入口">
+
+<img src="/post/turkey-gemini-ultra-ios-subscription/original-04-rewrite-30tb.png" class title="原帖截图4：第一条正文重写规则">
+
+<img src="/post/turkey-gemini-ultra-ios-subscription/original-05-decrypt-domain.jpeg" class title="原帖截图5：解密域名与证书">
+
+<img src="/post/turkey-gemini-ultra-ios-subscription/original-06-rewrite-20tb.png" class title="原帖截图6：第二条正文重写规则">
+
+<p>这里最需要留意的是 <strong>HTTPS 解密证书的权限</strong>：信任证书并启用中间人解密后，匹配的流量可以被当前配置读取和改写。只使用自己检查过的规则，确认解密域名范围，操作结束后关闭相关解密或移除不再需要的证书。不要把来源不明的整套配置当作普通“加速规则”直接导入。</p>
+<h2 id="为什么会跳到-Safari-和-Google-支付？"><a href="#为什么会跳到-Safari-和-Google-支付？" class="headerlink" title="为什么会跳到 Safari 和 Google 支付？"></a>为什么会跳到 Safari 和 Google 支付？</h2><p><span class="exturl" data-url="aHR0cHM6Ly9saW51eC5kby90L3RvcGljLzMyMTkxNTcvNjk1">第 695 楼<i class="fa fa-external-link-alt"></i></span>的提问者遇到的正是这种情况：按教程配置后，订阅仍打开 Google One 网页，并使用 Google 支付。<strong>仅凭这条回复，无法判定是哪一步出了问题</strong>，但可以按下面的顺序排查：</p>
+<table>
+<thead>
+<tr>
+<th>检查点</th>
+<th>要确认什么</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>发起入口</td>
+<td>是否从 iOS 上的 Google One App 进入，而不是停留在浏览器的 Google One 网页</td>
+</tr>
+<tr>
+<td>Shadowrocket 配置</td>
+<td>当前启用的配置是否包含原帖所示的正文重写，规则是否处于启用状态</td>
+</tr>
+<tr>
+<td>HTTPS 解密</td>
+<td>证书是否安装并被系统信任，解密域名是否覆盖规则需要的地址</td>
+</tr>
+<tr>
+<td>Google 账号</td>
+<td>Google One 中是否登录了目标账号，账号是否已有其他渠道的会员订阅</td>
+</tr>
+<tr>
+<td>最终付款页</td>
+<td>最后是否出现 Apple 的订阅确认弹窗，套餐名称、周期、币种和金额是否与预期一致</td>
+</tr>
+</tbody></table>
+<p>第 695 楼还附了 5 张排查截图，分别是代理主页、两条正文重写规则、规则列表和 HTTPS 解密设置。它们能说明发帖人的配置状态，但<strong>无法单凭截图证明购买流程已走到 Apple 内购</strong>。</p>
+<img src="/post/turkey-gemini-ultra-ios-subscription/reply-695-01.jpeg" class title="第695楼截图1：Shadowrocket 代理主页">
+
+<img src="/post/turkey-gemini-ultra-ios-subscription/reply-695-02.jpeg" class title="第695楼截图2：第一条正文重写规则">
+
+<img src="/post/turkey-gemini-ultra-ios-subscription/reply-695-03.jpeg" class title="第695楼截图3：第二条正文重写规则">
+
+<img src="/post/turkey-gemini-ultra-ios-subscription/reply-695-04.jpeg" class title="第695楼截图4：正文重写规则列表">
+
+<img src="/post/turkey-gemini-ultra-ios-subscription/reply-695-05.jpeg" class title="第695楼截图5：HTTPS 解密设置">
+
+<p>Google 官方将 <strong>App Store 购买</strong>和 <strong>Google One 网站购买</strong>分开管理：通过网站或其他设备购买的会员，可能无法直接在 iPhone 的 Google One App 中按 Apple 订阅方式修改。因而，跳到 Google 网页结账页时，不应把它当作“Apple 内购已经成功”的信号；先退出付款流程，查清入口和账号状态，再决定是否继续。<span class="exturl" data-url="aHR0cHM6Ly9zdXBwb3J0Lmdvb2dsZS5jb20vZ29vZ2xlb25lL2Fuc3dlci85MDAzNjMzP2NvPUdFTklFLlBsYXRmb3JtPWlPUw==">Google One iOS 升级与故障说明<i class="fa fa-external-link-alt"></i></span></p>
+<h2 id="付款前后怎么确认"><a href="#付款前后怎么确认" class="headerlink" title="付款前后怎么确认"></a>付款前后怎么确认</h2><p>付款前只认<strong>最终确认页</strong>：核对产品名称、订阅周期、首期金额、续费金额与币种。页面显示的套餐文字或社区截图，都不能代替最终订单信息。付款后，在 iPhone 的“设置 → Apple 账号 → 订阅”检查是否出现对应订阅，并在 Google One 中查看会员状态；如走了 Google 网页付款，则到 Google One 的网页端查看和管理，而不是到 Apple 订阅列表里寻找。<span class="exturl" data-url="aHR0cHM6Ly9zdXBwb3J0LmFwcGxlLmNvbS9ndWlkZS9pcGhvbmUvc2VlLXlvdXItcHVyY2hhc2VzLWFuZC1zdWJzY3JpcHRpb25zLWlwaDRlM2U3MzI0Zi9pb3M=">Apple 订阅管理说明<i class="fa fa-external-link-alt"></i></span>｜<span class="exturl" data-url="aHR0cHM6Ly9zdXBwb3J0Lmdvb2dsZS5jb20vZ29vZ2xlb25lL2Fuc3dlci85MDAzNjMzP2NvPUdFTklFLlBsYXRmb3JtPWlPUw==">Google One 订阅说明<i class="fa fa-external-link-alt"></i></span></p>
+<p>如果扣款渠道、套餐或金额与预期不符，先保留订单记录并通过<strong>实际扣款方</strong>的官方渠道处理，不要反复点击购买。社区里关于“稳定”“会退款”“能用多久”的说法都只是个人经历，不构成保证。</p>
+<h2 id="我的建议"><a href="#我的建议" class="headerlink" title="我的建议"></a>我的建议</h2><p>这条路线最容易让人误判的地方，是把<strong>看到 Ultra 入口</strong>、<strong>跳转到订阅页</strong>和<strong>完成 Apple 内购</strong>当成同一件事。它们是三个不同环节。尤其遇到第 695 楼那样的 Google 网页支付页面时，先停在付款前，核对入口、解密规则和最终结账主体，比继续尝试充值更重要。</p>
+<p>如果你只想长期稳定使用 Gemini，优先比较 Google 官方当前展示的套餐和付款渠道。若要参考社区方案，请把原帖当作一份<strong>有时效性的经验记录</strong>，并在付款前重新验证每一项条件。</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="reward-container">
+  <div>如果觉得我的文章对您有用，请随意打赏。您的支持将鼓励我继续创作！</div>
+  <button>
+    赞赏
+  </button>
+  <div class="post-reward">
+      <div>
+        <img src="/images/wechatpay.png" alt="Ray 微信">
+        <span>微信</span>
+      </div>
+
+  </div>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/Apple-ID/" rel="tag"># Apple ID</a>
+              <a href="/tags/Gemini/" rel="tag"># Gemini</a>
+              <a href="/tags/Google-One/" rel="tag"># Google One</a>
+              <a href="/tags/%E5%9C%9F%E8%80%B3%E5%85%B6%E5%8C%BA/" rel="tag"># 土耳其区</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/post/antigravity-complete-guide/" rel="prev" title="Google Antigravity 完全使用与排障指南：安装汉化、TUN 全局、改区与免短信扫码验证">
+                  <i class="fa fa-chevron-left"></i> Google Antigravity 完全使用与排障指南：安装汉化、TUN 全局、改区与免短信扫码验证
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    <div class="comments gitalk-container"></div>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2026</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Ray</span>
+</div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+  <div class="powered-by">由 <span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlv">Hexo</span> & <span class="exturl" data-url="aHR0cHM6Ly90aGVtZS1uZXh0LmpzLm9yZw==">NexT.Gemini</span> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+<script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.0/search.js" integrity="sha256-vXZMYLEqsROAXkEw93GGIvaB2ab+QW6w3+1ahD9nXXA=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.8.0/gitalk.css" integrity="sha256-AJnUHL7dBv6PGaeyPQJcgQPDjt/Hn/PvYZde1iqfp8U=" crossorigin="anonymous">
+
+<script class="next-config" data-name="gitalk" type="application/json">{"enable":true,"github_id":"iamlay","repo":"gitalk","client_id":"798848f6f91162435156","client_secret":"d9b621213c7353cfa8b2286491f877ef4507da1e","admin_user":"iamlay","distraction_free_mode":true,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token","language":"zh-CN","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.8.0/gitalk.min.js","integrity":"sha256-MVK9MGD/XJaGyIghSVrONSnoXoGh3IFxLw0zfvzpxR4="},"path_md5":"1805745abd848ce00b524fccd093c3a7"}</script>
+<script src="/js/third-party/comments/gitalk.js"></script>
+
+</body>
+</html>
